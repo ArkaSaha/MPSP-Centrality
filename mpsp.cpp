@@ -4,30 +4,31 @@
 # include <list>
 # include <map>
 # include <set>
+# include <vector>
 # include <algorithm>
+# include <random>
 # include <ctime>
 # include <boost/heap/fibonacci_heap.hpp>
 
 using namespace std;
 using namespace boost::heap;
 
-typedef tuple<string,long,double> adj_ent;
-typedef tuple<string,string,long,double> edge;
+typedef tuple<int,long,double> adj_ent;
+typedef tuple<int,int,long,double> edge;
 
 struct Graph
 {
 	int n, m;
-	set<string> vertices;
-	map< string,list<adj_ent> > adj;
+	vector<adj_ent>* adj;
 };
 
-tuple< list<edge>,long,double,double > prob_dijkstra(Graph* g, string s, string t, double lb)
+tuple< list<edge>,long,double,double > prob_dijkstra(Graph* g, int s, int t, double lb, double& elapsed)
 {
 	struct node
 	{
-		string vertex;
+		int vertex;
 		long distance;
-		node(const string& v, long d) : vertex(v), distance(d) {}
+		node(const int& v, long d) : vertex(v), distance(d) {}
 	};
 	struct compare_node
 	{
@@ -38,118 +39,127 @@ tuple< list<edge>,long,double,double > prob_dijkstra(Graph* g, string s, string 
 	};
 	fibonacci_heap< node, compare<compare_node> > heap = fibonacci_heap< node, compare<compare_node> >();
 	typedef fibonacci_heap< node, compare<compare_node> >::handle_type handle_t;
-	map<string,handle_t> handles = map<string,handle_t>();
-	map<string,adj_ent> prev = map<string,adj_ent>();
-	map<string,double> prob = map<string,double>();
-	set<string> lu = set<string>();
-	for (string v : g->vertices)
-		handles[v] = heap.push(node(v,LONG_MAX));
-	heap.update(handles[s],node(s,0));
+	handle_t* handles = new handle_t[g->n];
+	bool* exist = new bool[g->n];
+	bool* visited = new bool[g->n];
+	adj_ent* prev = new adj_ent[g->n];
+	double* prob = new double[g->n];
+	set<int> lu = set<int>();
+	for (int i = 0; i < g->n; i++)
+	{
+		exist[i] = false;
+		visited[i] = false;
+	}
+	handles[s] = heap.push(node(s,0));
+	exist[s] = true;
 	prob[s] = 1;
 	prob[t] = 1;
 	long min_dist = 0;
 	double prod = 1;
 	list<edge> p = list<edge>();
 	lu.insert(s);
+	clock_t begin = clock();
 	while (! (heap.empty() || lu.empty()))
 	{
 		node n = heap.top();
-		string u = n.vertex;
+		int u = n.vertex;
 		long d = n.distance;
 		heap.pop();
-		handles.erase(u);
+		exist[u] = false;
+		visited[u] = true;
 		lu.erase(u);
-		if (u == t || d == LONG_MAX)
+		if (u == t)
 		{
 			min_dist = d;
 			break;
 		}
 		for (adj_ent e : g->adj[u])
 		{
-			string v = get<0>(e);
-			double r = (double)rand() / RAND_MAX;
-			if (r < get<2>(e))
+			int v = get<0>(e);
+			if (! visited[v])
 			{
-				long alt = d + get<1>(e);
-				if (alt < (*handles[v]).distance)
+				double r = (double)rand() / RAND_MAX, pr = get<2>(e);
+				if (r < pr)
 				{
-					prev[v] = make_tuple(u,get<1>(e),get<2>(e));
-					prob[v] = prob[u] * get<2>(e);
-					if (prob[v] >= lb)
-						lu.insert(v);
-					heap.update(handles[v],node(v,alt));
+					long w = get<1>(e);
+					long alt = d + w;
+					if (! exist[v])
+					{
+						prev[v] = make_tuple(u,w,pr);
+						prob[v] = prob[u] * pr;
+						if (prob[v] >= lb)
+							lu.insert(v);
+						handles[v] = heap.push(node(v,alt));
+						exist[v] = true;
+					}
+					else if (alt < (*handles[v]).distance)
+					{
+						prev[v] = make_tuple(u,w,pr);
+						prob[v] = prob[u] * pr;
+						if (prob[v] >= lb)
+							lu.insert(v);
+						heap.update(handles[v],node(v,alt));
+					}
 				}
+				else
+					prod *= (1 - pr);
 			}
-			else
-				prod *= (1 - get<2>(e));
 		}
 	}
-	if (min_dist != LONG_MAX && min_dist != 0 && prob[t] >= lb)
+	clock_t end = clock();
+	if (min_dist != 0 && prob[t] >= lb)
 	{
-		string v = t;
+		int v = t;
 		while (v != s)
 		{
 			adj_ent res = prev[v];
 			p.push_front(make_tuple(get<0>(res),v,get<1>(res),get<2>(res)));
-			v = get<1>(res);
-		}	
+			v = get<0>(res);
+		}
+		elapsed += ((double)(end - begin) / CLOCKS_PER_SEC);
 	}
-	return make_tuple(p,min_dist,prod*prob[t],prob[t]);
+	double pr = prob[t];
+	delete [] handles;
+	delete [] exist;
+	delete [] visited;
+	delete [] prev;
+	delete [] prob;
+	return make_tuple(p,min_dist,prod*pr,pr);
 }
 
-struct path
+double approx_prob(Graph* g, vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
 {
-	list<edge> edges;
-	long weight;
-	path(const list<edge>& e, long w) : edges(e), weight(w) {}
-};
-
-struct compare_path
-{
-	bool operator()(const path& p1, const path& p2) const
-	{
-		return p1.weight < p2.weight;
-	}
-};
-
-double approx_prob(Graph* g, set<path,compare_path>::iterator first, set<path,compare_path>::iterator last, double exist)
-{
-	int C = 0, N = 1000000;
-	path pp = *last;
-	map< list<edge>,list<edge> > diff = map< list<edge>,list<edge> >();
-	map< list<edge>,double > pr = map< list<edge>,double >();
+	int C = 0, N = 10000, n = cp.size();
+	list<edge>* diff = new list<edge>[n];
+	vector<double> pr = vector<double>();
 	double S = 0;
-	for (set<path,compare_path>::iterator x = first; x != last; x++)
+	for (int i = 0; i < n; i++)
 	{
-		path p = *x;
-		pr[p.edges] = 1;
-		diff[p.edges] = list<edge>();
-		set_difference(p.edges.begin(),p.edges.end(),pp.edges.begin(),pp.edges.end(),diff[p.edges].begin());
-		for (edge e : diff[p.edges])
-			pr[p.edges] *= get<3>(e);
-		S += pr[p.edges];
+		list<edge> p = cp[i];
+		double prob = 1;
+		list<edge> l = list<edge>();
+		list<edge>::iterator it = set_difference(p.begin(),p.end(),sp.begin(),sp.end(),l.begin());
+		l.resize(distance(l.begin(),it));
+		for (edge e : l)
+			prob *= get<3>(e);
+		S += prob;
+		diff[i] = l;
+		pr.push_back(prob);
 	}
+	random_device rd;
+	mt19937 gen(rd());
+	discrete_distribution<> d(pr.begin(), pr.end());
+	clock_t begin = clock();
 	for (int k = 1; k <= N; k++)
 	{
-		set<path,compare_path>::iterator y = first;
-		double r = (double)rand() / RAND_MAX;
-		for (set<path,compare_path>::iterator x = first; x != last; x++)
-		{
-			path p = *x;
-			if (r < pr[p.edges]/S)
-			{
-				y = x;
-				break;
-			}
-		}
+		int i = d(gen);
 		bool f1 = false;
-		for (set<path,compare_path>::iterator x = first; x != y; x++)
+		for (int j = 0; j < i; j++)
 		{
 			bool f2 = true;
-			path p = *x;
-			for (edge e : diff[p.edges])
+			for (edge e : diff[j])
 			{
-				r = (double)rand() / RAND_MAX;
+				double r = (double)rand() / RAND_MAX;
 				if (r > get<2>(e))
 				{
 					f2 = false;
@@ -165,63 +175,99 @@ double approx_prob(Graph* g, set<path,compare_path>::iterator first, set<path,co
 		if (f1)
 			C++;
 	}
+	clock_t end = clock();
+	elapsed += ((double)(end - begin) / CLOCKS_PER_SEC);
+	delete [] diff;
 	return (1 - C * S / N) * exist;
 }
 
-list<edge> mpsp(Graph* g, string s, string t, int m)
+list<edge> mpsp(Graph* g, int s, int t, int m)
 {
-	set<path,compare_path> cp = set<path,compare_path>();
 	double lb_max = 0;
-	map< list<edge>,double > lbs = map< list<edge>,double >();
-	map< list<edge>,double > ubs = map< list<edge>,double >();
+	map< long,vector< tuple<list<edge>,double,double> > > paths = map< long,vector< tuple<list<edge>,double,double> > >();
+	double candidate_time = 0;
 	for (int i = 1; i <= m; i++)
 	{
 		list<edge> p;
 		long w;
 		double lb, ub;
-		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,lb_max);
-		if (w == LONG_MAX)
-			i--;
+		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,lb_max,candidate_time);
 		if (p.empty())
-			continue;
-		if (lb > lb_max)
-			lb_max = lb;
-		if (lbs.find(p) == lbs.end() || lbs[p] < lb)
-			lbs[p] = lb;
-		if (ubs.find(p) == ubs.end() || ubs[p] > ub)
-			ubs[p] = ub;
-		cp.insert(path(p,w));
-	}
-	map< list<edge>,double > pr = map< list<edge>,double >();
-	path pp = path(list<edge>(),0);
-	double p_max = 0;
-	for (set<path,compare_path>::iterator x = cp.begin(); x != cp.end(); x++)
-	{
-		path p = *x;
-		pr[p.edges] = approx_prob(g,cp.begin(),x,ubs[p.edges]);
-		if (pr[p.edges] > p_max)
 		{
-			p_max = pr[p.edges];
-			pp = p;
+			i--;
+			continue;
+		}
+		map< long,vector< tuple<list<edge>,double,double> > >::iterator it = paths.find(w);
+		if (it == paths.end())
+		{
+			vector< tuple<list<edge>,double,double> > ss = vector< tuple<list<edge>,double,double> >();
+			ss.push_back(make_tuple(p,lb,ub));
+			paths[w] = ss;
+		}
+		else
+		{
+			vector< tuple<list<edge>,double,double> > vv = it->second;
+			bool f = true;
+			for (tuple<list<edge>,double,double> tt : vv)
+			{
+				if (get<0>(tt) == p)
+				{
+					double& l = get<1>(tt);
+					if (lb > l)
+						l = lb;
+					f = false;
+					break;
+				}
+			}
+			if (f)
+				vv.push_back(make_tuple(p,lb,ub));
 		}
 	}
-	return pp.edges;
+	cout << "Candidate Generation Time : " << candidate_time << " seconds" << endl;
+	list<edge> pp = list<edge>();
+	double p_max = 0;
+	vector< list<edge> > cp = vector< list<edge> >();
+	double prob_time = 0;
+	for (auto x = paths.begin(); x != paths.end(); x++)
+	{
+		long w = x->first;
+		vector< tuple<list<edge>,double,double> > vv = x->second;
+		vector< list<edge> > tmp = vector< list<edge> >();
+		for (tuple<list<edge>,double,double> tt : vv)
+		{
+			list<edge> p = get<0>(tt);
+			double lb = get<1>(tt);
+			double ub = get<2>(tt);
+			if (ub >= lb_max)
+			{
+				double prob = approx_prob(g,cp,p,ub,prob_time);
+				tmp.push_back(p);
+				if (prob >= lb && prob <= ub)
+				{
+					if (prob > p_max)
+					{
+						p_max = prob;
+						pp = p;
+					}
+				}
+			}
+		}
+		cp.insert(cp.end(),tmp.begin(),tmp.end());
+	}
+	cout << "Number of Candidate Paths : " << cp.size() << endl;
+	cout << "Probability Computation Time : " << prob_time << " seconds" << endl;
+	return pp;
 }
 
 int main()
 {
 	srand(time(NULL));
 	Graph g;
-	g.n = 100;
-	g.m = 200;
-	g.vertices = set<string>();
-	g.adj = map< string,list<adj_ent> >();
+	g.n = 200000;
+	g.m = 500000;
+	g.adj = new vector<adj_ent>[g.n];
 	for (int i=0; i<g.n; i++)
-	{
-		g.vertices.insert(to_string(i));
-		g.adj[to_string(i)] = list<adj_ent>();
-	}
-	cout << "vertices" << endl;
+		g.adj[i] = vector<adj_ent>();
 	for (int i=0; i<g.m; i++)
 	{
 		int v1 = (int)((double)rand() / RAND_MAX * g.n);
@@ -231,14 +277,33 @@ int main()
 			i--;
 			continue;
 		}
-		g.adj[to_string(v1)].push_back(make_tuple(to_string(v2), rand(), (double)rand() / RAND_MAX));
+		bool f = true;
+		for (adj_ent e : g.adj[v1])
+		{
+			if (get<0>(e) == v2)
+			{
+				f = false;
+				break;
+			}
+		}
+		if (f)
+			g.adj[v1].push_back(make_tuple(v2, rand(), (double)rand() / RAND_MAX));
+		else
+			i--;
 	}
-	cout << "edges" << endl;
 	int s = (int)((double)rand() / RAND_MAX * g.n);
-	int t = (int)((double)rand() / RAND_MAX * g.n);
+	while (g.adj[s].empty())
+		s = (int)((double)rand() / RAND_MAX * g.n);
+	int u = get<0>(g.adj[s][(int)((double)rand() / RAND_MAX * g.adj[s].size())]);
+	while (g.adj[u].empty())
+		u = get<0>(g.adj[s][(int)((double)rand() / RAND_MAX * g.adj[s].size())]);
+	int t = get<0>(g.adj[u][(int)((double)rand() / RAND_MAX * g.adj[u].size())]);
+	while (t == s)
+		t = get<0>(g.adj[u][(int)((double)rand() / RAND_MAX * g.adj[u].size())]);
 	cout << s << "\t" << t << endl;
-	list<edge> p = mpsp(&g, to_string(s), to_string(t), 10000);
+	list<edge> p = mpsp(&g, s, t, 10);
 	for (edge e : p)
 		cout << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
+	delete [] g.adj;
 	return 0;
 }
