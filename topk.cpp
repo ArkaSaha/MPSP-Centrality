@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cmath>
 #include<cstdlib>
 #include<climits>
 #include<list>
@@ -22,6 +23,13 @@ struct Edge
     bool operator<(const Edge& rhs) const{
         return this->index < rhs.index;
     }
+
+    bool operator==(const Edge& rhs) const{
+        return this->index == rhs.index;
+    }
+    bool operator!=(const Edge& rhs) const{
+        return this->index != rhs.index;
+    }
 };
 
 struct Graph
@@ -39,6 +47,38 @@ struct Path
         UB = 1.0;
     }
 
+    int len(){
+        int res = 0;
+        for(auto e: edges){
+            res += e.l;
+        }
+        return res;
+    }
+
+    void print(){
+        if(edges.size() > 0){
+            cout << edges[0].u;
+            for(auto e: edges){
+                cout << " -> " << e.v;
+            }
+            cout << endl;
+        }
+        else{
+            cout << "Empty Path" << endl;
+        }
+    }
+
+    bool operator==(const Path& rhs) const{
+        if(this->edges.size() != rhs.edges.size()) return false;
+        for(int i=0; i<this->edges.size(); i++){
+            if(this->edges[i] != rhs.edges[i]) return false;
+        }
+        return true; 
+    }
+
+    bool operator!=(const Path& rhs) const{
+        return !((*this) == rhs); 
+    }
 };
 
 
@@ -85,7 +125,7 @@ void update_UB(vector<Path> &paths, int n){
 }
 
 Path dijkstra(Graph* g, int s, int t){
-
+    cout << "Starting dijkstra from node " << s << " to node " << t << endl;
 	struct node
 	{
         int u;
@@ -107,30 +147,32 @@ Path dijkstra(Graph* g, int s, int t){
     vector<handle_t> handles = vector<handle_t>(g->n);
     vector<bool> visited = vector<bool>(g->n, false);
 
-    handles[s] = q.push(node({s, 0}));
+    handles[s] = q.push(node(s, 0));
     D[s] = 0;
     visited[s] = true;
     while(!q.empty()){
-        node n = q.top();
-        cout << "Currently at node " << n.u << endl;
-        q.pop();
-        if(n.u == t){
+        node curnode = q.top();
+        q.pop(); // Something with removing references, check if this does not cause future problems
+        if(curnode.u == t){
             break;
         }
-        for(Edge e: g->adj[n.u]){
-            cout << "Trying edge " << e.u << " - " << e.v << endl;
+        for(Edge e: g->adj[curnode.u]){
             if(!visited[e.v]){
                 D[e.v] = D[e.u] + e.l;
-                handles[e.v] = q.push(node({e.v, D[e.v]}));
+                handles[e.v] = q.push(node(e.v, D[e.v]));
                 prev[e.v] = e;
+                visited[e.v] = true;
             }
             else if(D[e.u] + e.l < D[e.v]){
                 D[e.v] = D[e.u] + e.l;
-                q.update(handles[e.v], node({e.v, D[e.v]}));
+                q.update(handles[e.v], node(e.v, D[e.v]));
                 prev[e.v] = e;
             }
         }
     }
+
+    cout << "dijkstra, done with while" << endl;
+     
     if(D[t] == ULLONG_MAX){
         cout << "There is no path between s = " << s << " and t = " << t << endl;
         // disconnected
@@ -144,9 +186,137 @@ Path dijkstra(Graph* g, int s, int t){
             startnode = prev[startnode].u;
         }
         reverse(edges.begin(), edges.end());
-        return Path({edges});
+        Path re = Path({edges});
+        cout << "completely done with dijkstra" << endl;
+        re.print();
+        return re;
     }
-    
+}
+
+
+bool subpath_of(Path p1, Path p2){
+    for(int i=0; i<p1.edges.size(); i++){
+        if(i > p2.edges.size()) return false;
+        if(p1.edges[i] != p2.edges[i]) return false;
+    }
+    return true;
+}
+
+
+vector<Path> classic_yen(Graph *g, int s, int t, int K){
+    cout << "\n\n\nYENNNNN\n\n\n" << endl;
+    Path p1 = dijkstra(g, s, t);
+    cout << "Shortest path : ";
+    p1.print();    
+
+    vector<Path> A = {p1};
+    vector<Path> B = vector<Path>();
+    for(int k=1; k<K; k++){
+        cout << "\nk : " << k << endl << endl;
+        for(int i=0; i<A[k-1].edges.size(); i++){
+            cout << "spurPath : "; A[k-1].print();
+            int spurNode = A[k-1].edges[i].u;
+            Path rootPath = Path({A[k-1].edges.begin(), A[k-1].edges.begin() + i});
+
+            cout << "spurNode : " << spurNode << endl;
+            cout << "rootPath : ";
+            rootPath.print();
+
+            set<int> edges_to_delete = set<int>();
+            for(int j=0; j<A.size();j++){
+                cout << "? is subpath " << j << endl;
+                if(subpath_of(rootPath, A[j])){
+                    cout << "subpath " << j << endl;
+                    edges_to_delete.insert(A[j].edges[i].index);
+                    cout << "Delete edge " << A[j].edges[i].index << endl;
+                }
+            }
+
+            /*
+            cout << "Edges to delete" << endl;
+            for(auto elt: edges_to_delete){
+                cout << elt << " ";
+            }
+            cout << endl;
+            */
+
+            set<int> nodes_to_delete = {};
+            for(auto e: rootPath.edges){
+                if(e.u != spurNode){
+                    nodes_to_delete.insert(e.u);
+                }
+            }
+            /*
+            cout << "Nodes to delete" << endl;
+            for(auto elt: nodes_to_delete){
+                cout << elt << " ";
+            }
+            cout << endl;
+            */
+
+            Graph g2;
+            g2.n = g->n; g2.m = 0;
+            g2.adj = vector<vector<Edge>>(g2.n, vector<Edge>());
+            for(int j=0; j<g2.n; j++){
+                if(nodes_to_delete.find(j) == nodes_to_delete.end()){
+                    for(auto e: g->adj[j]){
+                        if(edges_to_delete.find(e.index) == edges_to_delete.end()){
+                            g2.m++;
+                            g2.adj[j].push_back(e);
+                        }
+                    }
+                }
+            }
+
+            /*
+            cout << "Graph2" << endl;
+            cout << g2.n << " " << g2.m << endl;
+            for(int j=0; j<g2.n; j++){
+                for(auto e: g2.adj[j]){
+                    cout << e.u  << " - " << e.v << endl;
+                }
+            }
+
+            cout << "spur dijkstra" << endl;
+            */
+            Path spurPath = dijkstra(&g2, spurNode, t);
+
+            if(spurPath.edges.size() > 0){
+                rootPath.edges.insert(rootPath.edges.end(), spurPath.edges.begin(), spurPath.edges.end());
+                cout << "Adding path to B                             ";
+                rootPath.print();
+                if(find(B.begin(), B.end(), rootPath) == B.end()){
+                    B.push_back(rootPath);
+                }
+            }
+        }
+        cout << "B contains : " << B.size() << endl;
+        if(B.size() == 0){
+            break;
+        }
+
+
+        // Get shortest path in B
+        int indexmin = 0;
+        int lenmin = B[0].len();
+        for(int j=1; j<B.size(); j++){
+            int curlen = B[j].len();
+            if(curlen < lenmin){
+                lenmin = curlen;
+                indexmin = j;
+            }
+        }
+        cout << "Path " << k << " : ";
+        B[indexmin].print();
+        A.push_back(B[indexmin]);
+        B.erase(B.begin() + indexmin);
+    }
+
+    cout << "Done with yen" << endl;
+    for(Path p: A){
+        p.print();
+    }
+    return A;
 
 }
 
@@ -232,6 +402,19 @@ int main(){
 
     testLB1_UB();
 
+
+    dijkstra(&G, 0, 5);
+    dijkstra(&G, 1, 5);
+    dijkstra(&G, 0, 4);
+    dijkstra(&G, 2, 3);
+    dijkstra(&G, 1, 4);
+    dijkstra(&G, 3, 5);
+
+
+
+    cout << "YEN" << endl;
+    yen(&G, 0, 5, 3);
+    yen(&G, 0, 5, 10);
 
 	return 0;
 }
