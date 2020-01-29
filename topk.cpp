@@ -287,8 +287,8 @@ double LB2(const vector<Path> &paths, int n){
     paths[n].print(); cout << endl;
 
     if(n == 0) return 0.0;
+
     vector<set<Edge>> set_covers = find_pairwise_independend_set_covers(paths, n);
-    assert(set_covers.size() > 0);
 
     double prob_of_path_pn = 1.0;
     for(Edge e: paths[n].edges){
