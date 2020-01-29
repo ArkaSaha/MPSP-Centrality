@@ -1,7 +1,9 @@
 # include <iostream>
+# include <fstream>
 # include <cstdlib>
 # include <climits>
 # include <list>
+# include <queue>
 # include <map>
 # include <set>
 # include <vector>
@@ -131,7 +133,7 @@ double approx_prob(Graph* g, vector< list<edge> > cp, list<edge> sp, double exis
 {
 	int C = 0, N = 10000, n = cp.size();
 	list<edge>* diff = new list<edge>[n];
-	vector<double> pr = vector<double>();
+	vector<double> pr = vector<double>(n);
 	double S = 0;
 	for (int i = 0; i < n; i++)
 	{
@@ -144,7 +146,7 @@ double approx_prob(Graph* g, vector< list<edge> > cp, list<edge> sp, double exis
 			prob *= get<3>(e);
 		S += prob;
 		diff[i] = l;
-		pr.push_back(prob);
+		pr[i] = prob;
 	}
 	random_device rd;
 	mt19937 gen(rd());
@@ -181,11 +183,10 @@ double approx_prob(Graph* g, vector< list<edge> > cp, list<edge> sp, double exis
 	return (1 - C * S / N) * exist;
 }
 
-list<edge> mpsp(Graph* g, int s, int t, int m)
+list<edge> mpsp(Graph* g, int s, int t, int m, double& candidate_time, double& prob_time)
 {
-	double lb_max = 0;
+	double lb_max = 0, p_max = 0;
 	map< long,vector< tuple<list<edge>,double,double> > > paths = map< long,vector< tuple<list<edge>,double,double> > >();
-	double candidate_time = 0;
 	for (int i = 1; i <= m; i++)
 	{
 		list<edge> p;
@@ -223,11 +224,8 @@ list<edge> mpsp(Graph* g, int s, int t, int m)
 				vv.push_back(make_tuple(p,lb,ub));
 		}
 	}
-	cout << "Candidate Generation Time : " << candidate_time << " seconds" << endl;
 	list<edge> pp = list<edge>();
-	double p_max = 0;
 	vector< list<edge> > cp = vector< list<edge> >();
-	double prob_time = 0;
 	for (auto x = paths.begin(); x != paths.end(); x++)
 	{
 		long w = x->first;
@@ -255,55 +253,114 @@ list<edge> mpsp(Graph* g, int s, int t, int m)
 		cp.insert(cp.end(),tmp.begin(),tmp.end());
 	}
 	cout << "Number of Candidate Paths : " << cp.size() << endl;
-	cout << "Probability Computation Time : " << prob_time << " seconds" << endl;
 	return pp;
+}
+
+int bfs(Graph* g, int s, int d)
+{
+	set<int> visited = set<int>();
+	queue< tuple<int,int> > q = queue< tuple<int,int> >();
+	q.push(make_tuple(s,0));
+	while (! q.empty())
+	{
+		int t, h;
+		tie(t,h) = q.front();
+		q.pop();
+		if (h == d)
+			return t;
+		for (adj_ent e : g->adj[t])
+			q.push(make_tuple(get<0>(e),h+1));
+	}
+	return -1;
 }
 
 int main()
 {
+	ofstream graph, queries;
 	srand(time(NULL));
+	graph.open("graph.txt");
 	Graph g;
 	g.n = 200000;
 	g.m = 500000;
+	graph << g.n << " " << g.m << endl;
 	g.adj = new vector<adj_ent>[g.n];
 	for (int i=0; i<g.n; i++)
 		g.adj[i] = vector<adj_ent>();
 	for (int i=0; i<g.m; i++)
 	{
-		int v1 = (int)((double)rand() / RAND_MAX * g.n);
-		int v2 = (int)((double)rand() / RAND_MAX * g.n);
-		if (v1==v2)
+		int u = (int)((double)rand() / RAND_MAX * g.n), v = (int)((double)rand() / RAND_MAX * g.n);
+		if (u == v || u == g.n || v == g.n)
 		{
 			i--;
 			continue;
 		}
 		bool f = true;
-		for (adj_ent e : g.adj[v1])
+		for (adj_ent e : g.adj[u])
 		{
-			if (get<0>(e) == v2)
+			if (get<0>(e) == v)
 			{
 				f = false;
 				break;
 			}
 		}
-		if (f)
-			g.adj[v1].push_back(make_tuple(v2, rand(), (double)rand() / RAND_MAX));
+		if (f && v != g.n)
+		{
+			long w = rand();
+			double p = (double)rand() / RAND_MAX;
+			g.adj[u].push_back(make_tuple(v, w, p));
+			graph << u << " " << v << " " << w << " " << p << endl;
+		}
 		else
 			i--;
 	}
-	int s = (int)((double)rand() / RAND_MAX * g.n);
-	while (g.adj[s].empty())
-		s = (int)((double)rand() / RAND_MAX * g.n);
-	int u = get<0>(g.adj[s][(int)((double)rand() / RAND_MAX * g.adj[s].size())]);
-	while (g.adj[u].empty())
-		u = get<0>(g.adj[s][(int)((double)rand() / RAND_MAX * g.adj[s].size())]);
-	int t = get<0>(g.adj[u][(int)((double)rand() / RAND_MAX * g.adj[u].size())]);
-	while (t == s)
-		t = get<0>(g.adj[u][(int)((double)rand() / RAND_MAX * g.adj[u].size())]);
-	cout << s << "\t" << t << endl;
-	list<edge> p = mpsp(&g, s, t, 10);
-	for (edge e : p)
-		cout << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
+	graph.close();
+	queries.open("queries.txt");
+	for (int k = 1; k <= 4; k++)
+	{
+		cerr << "k = " << k << endl;
+		cout << "Number of hops = " << k * 2 << endl << endl;
+		long a_w = 0;
+		double t_c = 0, t_p = 0, a_p = 0;
+		for (int i = 1; i <= 100; i++)
+		{
+			cerr << "i = " << i << endl;
+			int s = (int)((double)rand() / RAND_MAX * (g.n - 1));
+			while (g.adj[s].empty())
+				s = (int)((double)rand() / RAND_MAX * (g.n - 1));
+			int t = bfs(&g, s, k * 2);
+			if (t == -1)
+			{
+				i--;
+				continue;
+			}
+			queries << s << " " << t << endl;
+			cout << s << "\t" << t << endl;
+			long wt = 0;
+			double candidate_time = 0, prob_time = 0, pr = 1;
+			list<edge> p = mpsp(&g, s, t, 10, candidate_time, prob_time);
+			for (edge e : p)
+			{
+				cout << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
+				wt += get<2>(e);
+				pr *= get<3>(e);
+			}
+			a_w += wt;
+			a_p += pr;
+			t_c += candidate_time;
+			t_p += prob_time;
+			cout << "Length of MPSP : " << wt << endl;
+			cout << "Probability of MPSP : " << pr << endl;
+			cout << "Candidate Generation Time : " << candidate_time << " seconds" << endl;
+			cout << "Probability Computation Time : " << prob_time << " seconds" << endl;
+			cout << endl;
+		}
+		cout << "Average Length of MPSP for " << k * 2 << " hops : " << a_w / 100 << endl;
+		cout << "Average Probability of MPSP for " << k * 2 << " hops : " << a_p / 100 << endl;
+		cout << "Average Candidate Generation Time for " << k * 2 << " hops : " << t_c / 100 << " seconds" << endl;
+		cout << "Average Probability Computation Time for " << k * 2 << " hops : " << t_p / 100 << " seconds" << endl;
+		cout << endl << endl;
+	}
+	queries.close();
 	delete [] g.adj;
 	return 0;
 }
