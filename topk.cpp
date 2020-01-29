@@ -134,10 +134,6 @@ double LB1(vector<Path> &paths, int n){
     
     for(int i=0; i<n; i++){
         set<Edge> edges_Pi = p_minus_q(paths[i], paths[n]);
-        //set<Edge>(paths[i].edges.begin(), paths[i].edges.end());
-        //for(auto e: paths[n].edges){
-        //    edges_Pi.erase(e);
-        //}
 
         double prod_of_probs = 1.0;
         for(auto e: edges_Pi){
@@ -642,7 +638,7 @@ double Luby_Karp(const Graph &g, const vector<Path> &paths, int n, ull N){
                     truth_assignment[e] = (coin_flip < e.p) ? true : false;
                 }
 
-                if(truth_assignment[e] = false){
+                if(!truth_assignment[e]){
                     path_j_exists = false;
                     break;
                 }
@@ -772,8 +768,8 @@ bool testLB1_UB(){
 
 
 int main(){
-    //Graph G = read_from_stdin();
     /*
+    Graph G = read_from_stdin();
     cout << G.n << " " << G.m << endl;
     for(auto a: G.adj){
         for(auto elt: a){
@@ -789,7 +785,7 @@ int main(){
 
     //testLB1_UB();
 
-    vector<Path> paths = yen(G, 0, 5, 2);
+    vector<Path> paths = yen(G, 0, 5, 4);
 
     cout << "checkpoint1" << endl;
 
@@ -833,7 +829,7 @@ int main(){
     
     //vector<Path> paths11 = classic_yen(&g_random, 0, g_random.n - 1, 10);
     //vector<Path> paths11 = yen(g_random, 0, g_random.n - 1, 3);
-    vector<pair<Path,double>> res = topk(g_random, 0, g_random.n-1, 2);
+    vector<pair<Path,double>> res = topk(g_random, 0, g_random.n-1, 1);
     for(int i= 0; i<res.size(); i++){
         cout << "Path " << i+1 << " : probability : " << res[i].second << endl;
         cout <<             "       : length      : " << res[i].first.len() << endl;
