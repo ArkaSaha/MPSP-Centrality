@@ -9,6 +9,13 @@
  */
 
 
+/*
+ * Things to consider:
+ *                    - What if the probability goes below double precision ~ 10^{-15} ?
+ *                          
+ */
+
+
 #include<iostream>
 #include<cmath>
 #include<cstdlib>
@@ -36,6 +43,7 @@ struct Edge
     int l;
     double p;
     int index;
+    bool available = true;
 
     bool operator<(const Edge& rhs) const{
         return this->index < rhs.index;
@@ -51,9 +59,29 @@ struct Edge
 
 struct Graph
 {
+    /*
+     * NB: When adj changes the pointers in incoming and index2edge are invalidated and should be recalculated
+     */
 	int n, m;
     vector< vector<Edge> > adj;
+    vector< vector<Edge *> > incoming;
+    vector<Edge *> index2edge;
+
+    Graph(int n, int m, vector<vector<Edge> > adj, vector<vector<Edge *>> incoming, vector<Edge *> index2edge) : n(n), m(m), adj(adj), incoming(incoming), index2edge(index2edge) {} ;
+    Graph(int n, int m) : Graph(n, m, vector<vector<Edge>>(n, vector<Edge>()), vector<vector<Edge *>>(n, vector<Edge*>()), vector<Edge *>(m)) {} ;
+    Graph(){};
+
+    void update_incoming_index2edge(){
+        for(int i=0; i<this->n;i++){
+            this->incoming[i] = vector<Edge *>();
+            for(uint j=0; j<this->adj[i].size(); j++){
+                this->incoming[this->adj[i][j].v].push_back(&this->adj[i][j]);
+                this->index2edge[this->adj[i][j].index] = &this->adj[i][j];
+            } 
+        }
+    }
 };
+
 
 struct Path
 {
@@ -66,7 +94,7 @@ struct Path
 
     int len(){
         int res = 0;
-        for(auto e: edges){
+        for(Edge e: edges){
             res += e.l;
         }
         return res;
@@ -75,7 +103,7 @@ struct Path
     void print() const{
         if(edges.size() > 0){
             cout << edges[0].u;
-            for(auto e: edges){
+            for(Edge e: edges){
                 cout << " -> " << e.v;
             }
         }
@@ -105,7 +133,7 @@ struct Path
     bool operator==(const Path& rhs) const{
         // Paths are equal if all the edges are the same
         if(this->edges.size() != rhs.edges.size()) return false;
-        for(int i=0; i<this->edges.size(); i++){
+        for(uint i=0; i<this->edges.size(); i++){
             if(this->edges[i] != rhs.edges[i]) return false;
         }
         return true; 
@@ -118,7 +146,7 @@ struct Path
 
 set<Edge> p_minus_q(Path p, Path q){
     set<Edge> res = set<Edge>(p.edges.begin(), p.edges.end());
-    for(auto e: q.edges){
+    for(Edge e: q.edges){
         res.erase(e);
     }
     return res;
@@ -128,7 +156,7 @@ double LB1(vector<Path> &paths, int n){
     // Given a sorted vector of the top n shortest paths
     // computes LB1 of the nth path as in Theorem 1 in [WISE 2011]
     double LB_prob = 1.0;
-    for(auto e: paths[n].edges){
+    for(Edge e: paths[n].edges){
         LB_prob *= e.p;
     }
     
@@ -136,7 +164,7 @@ double LB1(vector<Path> &paths, int n){
         set<Edge> edges_Pi = p_minus_q(paths[i], paths[n]);
 
         double prod_of_probs = 1.0;
-        for(auto e: edges_Pi){
+        for(Edge e: edges_Pi){
             prod_of_probs *= e.p;
         }
         LB_prob *= (1.0 - prod_of_probs);
@@ -158,11 +186,10 @@ Edge edge_with_most_paths(const map<Edge, set<int>> &edge_to_path){
     return max_element;
 }
 
-
 void print_M(const vector<set<Edge>> &M){
     cout << "Size of M : " << M.size() << endl;
     for(auto row: M){
-        for(auto elt: row){
+        for(Edge elt: row){
             cout << elt.u << " - " << elt.v << " | ";
         }
         cout << endl;
@@ -174,8 +201,8 @@ map<Edge, set<int>> build_edge_to_path(const vector<set<Edge>> &M, const set<int
     // Takes an Edge-Path matrix M and turns into into a map giving for each edge in which paths they occur
     // Only taking the edges in remaining into account
     map<Edge, set<int>> edge_to_path;
-    for(auto i: remaining_indices){
-        for(auto e : M[i]){
+    for(int i: remaining_indices){
+        for(Edge e : M[i]){
             edge_to_path[e].insert(i);
         }
     }
@@ -185,18 +212,19 @@ map<Edge, set<int>> build_edge_to_path(const vector<set<Edge>> &M, const set<int
 
 set<Edge> find_set_cover(const vector<set<Edge>> &M){
     // Given an edge path matrix M, computes greedily a set-cover
-    set<int> remaining_indices = set<int>();
-    for(int i=0; i<M.size(); i++){
+    
+    set<int> remaining_indices = set<int>(); // Will contain the indices of the E(Pi-Pn) which are already covered by our set cover
+    for(uint i=0; i<M.size(); i++){
         remaining_indices.insert(i);
     }
 
     set<Edge> set_cover = set<Edge>();
     while(!remaining_indices.empty()){
         auto edge_to_path = build_edge_to_path(M, remaining_indices);
-        Edge max_elt = edge_with_most_paths(edge_to_path);
+        Edge max_elt = edge_with_most_paths(edge_to_path); // finds the edge covering most E(Pi-Pn)
 
         set_cover.insert(max_elt);
-        for(auto i: edge_to_path[max_elt]){
+        for(int i: edge_to_path[max_elt]){
             remaining_indices.erase(i);
         }
     }
@@ -205,7 +233,7 @@ set<Edge> find_set_cover(const vector<set<Edge>> &M){
 
 set<Edge> A_minus_B(set<Edge> A, set<Edge> B){
     // Removes elements in B from A
-    for(auto elt: B){
+    for(Edge elt: B){
         A.erase(elt);
     }
     return A;
@@ -213,6 +241,7 @@ set<Edge> A_minus_B(set<Edge> A, set<Edge> B){
 
 vector<set<Edge>> build_M(const vector<Path> &paths, int n, const set<Edge> &exclude){
     // For computing LB2, computes M as in section 5.1  in [WISE 2011]
+    // A 'row' in M contains the edges in E(Pi - Pn)
     vector<set<Edge> > M = vector<set<Edge>>(n, set<Edge>());
     for(int i=0; i<n; i++){
         set<Edge> pi_minus_pn = p_minus_q(paths[i], paths[n]);
@@ -236,10 +265,13 @@ vector<set<Edge>> find_pairwise_independend_set_covers(const vector<Path> &paths
     set<Edge> exclude = set<Edge>();
     vector<set<Edge>> M = build_M(paths, n, exclude);
     vector<set<Edge>> set_covers = vector<set<Edge>>();
-    while(M_covers_every_path(M)){
+
+    while(M_covers_every_path(M)){ // while there are set covers to be found
         set<Edge> cur_set_cover = find_set_cover(M);
         set_covers.push_back(cur_set_cover);
-        exclude.insert(cur_set_cover.begin(), cur_set_cover.end());
+
+        // exclude the edges in the set cover, so that we don't pick them again
+        exclude.insert(cur_set_cover.begin(), cur_set_cover.end()); 
         M = build_M(paths, n, exclude);
     }
 
@@ -259,14 +291,14 @@ double LB2(const vector<Path> &paths, int n){
     assert(set_covers.size() > 0);
 
     double prob_of_path_pn = 1.0;
-    for(auto e: paths[n].edges){
+    for(Edge e: paths[n].edges){
         prob_of_path_pn *= e.p;
     }
 
     double PUES = 0;
-    for(int j=0; j<set_covers.size(); j++){
+    for(uint j=0; j<set_covers.size(); j++){
         double prob_none_of_Sj = 1.0;
-        for(auto e: set_covers[j]){
+        for(Edge e: set_covers[j]){
             prob_none_of_Sj *= (1 - e.p);
         }
         PUES = PUES + (1-PUES) * prob_none_of_Sj;
@@ -342,6 +374,7 @@ Path dijkstra(const Graph &g, int s, int t){
             break;
         }
         for(Edge e: g.adj[curnode.u]){
+            if(!e.available) continue;
             if(!visited[e.v]){
                 // if we have never seen this node, create a handle and set distance and prev
                 D[e.v] = D[e.u] + e.l;
@@ -380,7 +413,7 @@ Path dijkstra(const Graph &g, int s, int t){
 
 bool subpath_of(const Path &p1, const Path &p2){
     // Test if p1 is the same as the beginning of path p2
-    for(int i=0; i<p1.edges.size(); i++){
+    for(uint i=0; i<p1.edges.size(); i++){
         if(i > p2.edges.size()) return false;
         if(p1.edges[i] != p2.edges[i]) return false;
     }
@@ -397,7 +430,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
     vector<Path> B = vector<Path>();
     for(int k=1; k<K; k++){
         cout << "\nk : " << k << endl << endl;
-        for(int i=0; i<A.back().edges.size(); i++){
+        for(uint i=0; i<A.back().edges.size(); i++){
 
             // we are going find a new path, diverting from the old path from the spurNode
             int spurNode = A[k-1].edges[i].u;
@@ -405,7 +438,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
 
             // edges we want to avoid
             set<int> edges_to_delete = set<int>();
-            for(int j=0; j<A.size();j++){
+            for(uint j=0; j<A.size();j++){
                 if(subpath_of(rootPath, A[j])){
                     edges_to_delete.insert(A[j].edges[i].index);
                 }
@@ -413,7 +446,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
 
             // nodes we want to avoid
             set<int> nodes_to_delete = {};
-            for(auto e: rootPath.edges){
+            for(Edge e: rootPath.edges){
                 if(e.u != spurNode){
                     nodes_to_delete.insert(e.u);
                 }
@@ -427,7 +460,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
             g2.adj = vector<vector<Edge>>(g2.n, vector<Edge>());
             for(int j=0; j<g2.n; j++){
                 if(nodes_to_delete.find(j) == nodes_to_delete.end()){
-                    for(auto e: g.adj[j]){
+                    for(Edge e: g.adj[j]){
                         if(edges_to_delete.find(e.index) == edges_to_delete.end()){
                             g2.m++;
                             g2.adj[j].push_back(e);
@@ -457,7 +490,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
         // Get shortest path in B
         int indexmin = 0;
         int lenmin = B[0].len();
-        for(int j=1; j<B.size(); j++){
+        for(uint j=1; j<B.size(); j++){
             int curlen = B[j].len();
             if(curlen < lenmin){
                 lenmin = curlen;
@@ -471,7 +504,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
     }
 
     cout << "Done with yen" << endl;
-    for(int i=0; i<A.size(); i++){
+    for(uint i=0; i<A.size(); i++){
         cout << "Path " << i << " : ";
         A[i].print(); cout << endl;
     }
@@ -488,7 +521,7 @@ double kth_largest(const set<double> &elts, int k){
     return *elt;
 }
 
-vector<Path> yen(const Graph &g, int s, int t, int k){
+vector<Path> yen(Graph &g, int s, int t, int k){
     // Computes the top k_prime shortest paths using Yen's algorithm where k_prime depends on a stop condition
     // instead of being a fixed parameter
     //
@@ -509,47 +542,40 @@ vector<Path> yen(const Graph &g, int s, int t, int k){
     int k_prime = 0;
     while(k_prime < k || A[k_prime].UB >= kth_largest(LBs, k)){
         cout << "\nk_prime : " << k_prime << endl << endl;
-        for(int i=0; i<A.back().edges.size(); i++){
+        for(uint i=0; i<A.back().edges.size(); i++){
             // we are going find a new path, diverting from the old path from the spurNode
             int spurNode = A.back().edges[i].u;
             Path rootPath = Path({A.back().edges.begin(), A.back().edges.begin() + i});
 
-            // edges we want to avoid
-            set<int> edges_to_delete = set<int>();
-            for(int j=0; j<A.size();j++){
-                if(subpath_of(rootPath, A[j])){
-                    edges_to_delete.insert(A[j].edges[i].index);
-                }
-            }
 
             // nodes we want to avoid
-            set<int> nodes_to_delete = {};
-            for(auto e: rootPath.edges){
+            vector<int> nodes_to_delete = vector<int>();
+            for(Edge e: rootPath.edges){
                 if(e.u != spurNode){
-                    nodes_to_delete.insert(e.u);
-                }
-            }
+                    nodes_to_delete.push_back(e.u);
 
-            // create a new graph without all the unwanted nodes and edges
-            // TODO: maybe use booleans for edge in g to denote whether we are allowed to use them, instead of creating
-            // a copy of the whole graph?
-            Graph g2;
-            g2.n = g.n; g2.m = 0;
-            g2.adj = vector<vector<Edge>>(g2.n, vector<Edge>());
-            for(int j=0; j<g2.n; j++){
-                if(nodes_to_delete.find(j) == nodes_to_delete.end()){
-                    for(auto e: g.adj[j]){
-                        if(edges_to_delete.find(e.index) == edges_to_delete.end()){
-                            g2.m++;
-                            g2.adj[j].push_back(e);
-                        }
+                    for(Edge *e2:  g.incoming[e.u]){
+                        e2->available = false;
+                    }
+                    for(Edge e2: g.adj[e.u]){
+                        e2.available = false;
                     }
                 }
             }
 
-            Path spurPath = dijkstra(g2, spurNode, t);
+            // edges we want to avoid
+            vector<int> edges_to_delete = vector<int>();
+            for(uint j=0; j<A.size();j++){
+                if(subpath_of(rootPath, A[j])){
+                    edges_to_delete.push_back(A[j].edges[i].index);
+
+                    g.index2edge[A[j].edges[i].index]->available = false;
+                }
+            }
 
             // compute the shortest path in the new graph from the spurnode to the terminal node
+            Path spurPath = dijkstra(g, spurNode, t);
+
             if(spurPath.edges.size() > 0){
                 // if we found a path, concatenate it to the rootpath and add it to the set B
                 rootPath.edges.insert(rootPath.edges.end(), spurPath.edges.begin(), spurPath.edges.end());
@@ -558,6 +584,21 @@ vector<Path> yen(const Graph &g, int s, int t, int k){
                     B.push_back(rootPath);
                 }
             }
+
+            // restore graph
+            for(int elt: nodes_to_delete){
+                for(Edge *e : g.incoming[elt]){
+                    e->available = true;
+                }
+                for(Edge e : g.adj[elt]){
+                    e.available = true;
+                }
+            }
+            for(int index: edges_to_delete){
+                g.index2edge[index]->available = true;
+            }
+
+
         }
 
         if(B.size() == 0){
@@ -568,7 +609,7 @@ vector<Path> yen(const Graph &g, int s, int t, int k){
         // Get shortest path in B
         int indexmin = 0;
         int lenmin = B[0].len();
-        for(int j=1; j<B.size(); j++){
+        for(uint j=1; j<B.size(); j++){
             int curlen = B[j].len();
             if(curlen < lenmin){
                 lenmin = curlen;
@@ -582,6 +623,7 @@ vector<Path> yen(const Graph &g, int s, int t, int k){
 
         k_prime++;
 
+        cout << "New path : "; A[k_prime].print(); cout << endl;
         // compute the LB and UB for the new path
         update_LB(A, k_prime);
         update_UB(A, k_prime);
@@ -593,7 +635,7 @@ vector<Path> yen(const Graph &g, int s, int t, int k){
         A.pop_back();
     }
     cout << "Done with yen, found " << A.size() << " paths" << endl;
-    for(int i=0; i<A.size(); i++){
+    for(uint i=0; i<A.size(); i++){
         cout << "Path " << i << " : ";
         A[i].print(); cout << endl;
     }
@@ -601,7 +643,7 @@ vector<Path> yen(const Graph &g, int s, int t, int k){
 }
 
 
-double Luby_Karp(const Graph &g, const vector<Path> &paths, int n, ull N){
+double Luby_Karp(const vector<Path> &paths, int n, ull N){
     // Implementation of Luby Karp as in section 7 of [WISE 2011]
     
     if(n == 0) 
@@ -613,7 +655,7 @@ double Luby_Karp(const Graph &g, const vector<Path> &paths, int n, ull N){
     double S = 0.0;
     for(int i=0; i < n; i++){
         Pi_Pn[i] = p_minus_q(paths[i], paths[n]); // the edges in Pi but not in Pn;
-        for(auto e : Pi_Pn[i]){
+        for(Edge e : Pi_Pn[i]){
             PEPi_Pn[i] *= e.p;
         }
         S += PEPi_Pn[i];
@@ -664,7 +706,7 @@ double Luby_Karp(const Graph &g, const vector<Path> &paths, int n, ull N){
     return (1-p_tilde) * paths[n].probability();
 }
 
-vector<pair<Path,double>> topk(const Graph &g, int s, int t, int k){
+vector<pair<Path,double>> topk(Graph &g, int s, int t, int k){
     /* Computes the topk most probably shortest paths. Consists of two steps
      * 1) Use Yen's algorithm with a modified stopping rule to find a set of candidates.
      * 2) Use Luby-Karp Mote Carlo sampling to compute probabilities 
@@ -676,8 +718,8 @@ vector<pair<Path,double>> topk(const Graph &g, int s, int t, int k){
 
     // for every path, use Luby-Karp to estimate the probability of it being the shortest path
     vector<pair<double, int>> LK_probabilities = vector<pair<double, int>>(candidates.size()); 
-    for(int i=0; i<candidates.size(); i++){
-        double LK = Luby_Karp(g, candidates, i, 1000000);
+    for(uint i=0; i<candidates.size(); i++){
+        double LK = Luby_Karp(candidates, i, 1000000);
         LK_probabilities[i] = {LK, i};
     }
 
@@ -706,12 +748,16 @@ Graph read_from_stdin(){
     // representing an edge from node u to node v of length l with probability p
     int n, m;
     cin >> n >> m;
-    Graph G = Graph({n, m, vector<vector<Edge>>(n, vector<Edge>())});
+    Graph G = Graph({n, m});
     int u, v, l; double p;
     for(int i=0; i<m; i++){
         cin >> u >> v >> l >> p;
+
         G.adj[u].push_back(Edge({u, v, l, p, i}));
     }
+
+    G.update_incoming_index2edge();
+
     return G;
 }
 
@@ -768,19 +814,12 @@ bool testLB1_UB(){
 
 
 int main(){
-    /*
     Graph G = read_from_stdin();
-    cout << G.n << " " << G.m << endl;
-    for(auto a: G.adj){
-        for(auto elt: a){
-            cout << elt.p << " ";
-        }
-        cout << endl;
-    }
 
     Path p = dijkstra(G, 0, 3);
-    for(auto e: p.edges){
-        cout << e.u << " " << e.v << endl;
+
+    for(int i=0; i<G.m; i++){
+        cout << "edge " << i << " : " << G.index2edge[i]->u << " - " << G.index2edge[i]->v << endl;
     }
 
     //testLB1_UB();
@@ -789,25 +828,22 @@ int main(){
 
     cout << "checkpoint1" << endl;
 
-    for(int i=0; i<paths.size(); i++){
-        double prob = Luby_Karp(G, paths, i, 100000);
+    for(uint i=0; i<paths.size(); i++){
+        double prob = Luby_Karp(paths, i, 100000);
         cout << i << "   : " << prob << endl;
     }
-    */
 
 
     cout << "random stuff" << endl;
 
 
+	clock_t t1 = clock();
     // some random graph
-    Graph g_random;
-    g_random.n = 40000;
-    g_random.m = 200000;
-    g_random.adj = vector<vector<Edge>>(g_random.n, vector<Edge>());
+    Graph g_random(200000, 500000);
 
     int MAX_EDGE_LENGTH = 10;
     uniform_int_distribution<int> new_vertex(0, g_random.n-1); 
-    uniform_real_distribution<double> new_probability(0.7, 1.0); 
+    uniform_real_distribution<double> new_probability(0.9, 1.0); 
     uniform_int_distribution<int> new_length(1, MAX_EDGE_LENGTH); 
 
     set<pair<int, int>> generated_edges = set<pair<int, int>>();
@@ -822,15 +858,21 @@ int main(){
             continue;
         } 
 
-        Edge e = {u, v, new_length(mersenne), new_probability(mersenne), i};
-        g_random.adj[u].push_back(e);
+        g_random.adj[u].push_back({u, v, new_length(mersenne), new_probability(mersenne), i});
     }
-    cout << "Done generating" << endl;
+    g_random.update_incoming_index2edge();
+
+    clock_t t2 = clock();
+    cout << "Done generating in " << 1000.0 * (t2-t1) / CLOCKS_PER_SEC << " miliseconds" << endl;
     
     //vector<Path> paths11 = classic_yen(&g_random, 0, g_random.n - 1, 10);
     //vector<Path> paths11 = yen(g_random, 0, g_random.n - 1, 3);
     vector<pair<Path,double>> res = topk(g_random, 0, g_random.n-1, 1);
-    for(int i= 0; i<res.size(); i++){
+
+    clock_t t3 = clock();
+    cout << "Done in " << 1000.0 * (t3-t2) / CLOCKS_PER_SEC << " miliseconds" << endl;
+
+    for(uint i= 0; i<res.size(); i++){
         cout << "Path " << i+1 << " : probability : " << res[i].second << endl;
         cout <<             "       : length      : " << res[i].first.len() << endl;
         cout <<             "       : edges       : "; res[i].first.print(); cout << endl;
