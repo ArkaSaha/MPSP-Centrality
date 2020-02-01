@@ -109,17 +109,22 @@ tuple< list<edge>,long,double,double > prob_dijkstra(Graph* g, int s, int t, dou
 		}
 	}
 	clock_t end = clock();
-	if (min_dist != 0 && prob[t] >= lb)
+	if (min_dist != 0)
 	{
-		int v = t;
-		while (v != s)
+		if (prob[t] >= lb)
 		{
-			adj_ent res = prev[v];
-			p.push_front(make_tuple(get<0>(res),v,get<1>(res),get<2>(res)));
-			v = get<0>(res);
+			int v = t;
+			while (v != s)
+			{
+				adj_ent res = prev[v];
+				p.push_front(make_tuple(get<0>(res),v,get<1>(res),get<2>(res)));
+				v = get<0>(res);
+			}
 		}
 		elapsed += ((double)(end - begin) / CLOCKS_PER_SEC);
 	}
+	else if (lu.empty())
+		elapsed += ((double)(end - begin) / CLOCKS_PER_SEC);
 	double pr = prob[t];
 	delete [] handles;
 	delete [] exist;
@@ -192,10 +197,13 @@ list<edge> mpsp(Graph* g, int s, int t, int m, double& candidate_time, double& p
 		list<edge> p;
 		long w;
 		double lb, ub;
+		double start = candidate_time;
 		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,lb_max,candidate_time);
+		double end = candidate_time;
 		if (p.empty())
 		{
-			i--;
+			if (end == start)
+				i--;
 			continue;
 		}
 		map< long,vector< tuple<list<edge>,double,double> > >::iterator it = paths.find(w);
@@ -258,7 +266,9 @@ list<edge> mpsp(Graph* g, int s, int t, int m, double& candidate_time, double& p
 
 int bfs(Graph* g, int s, int d)
 {
-	set<int> visited = set<int>();
+	bool* visited = new bool[g->n];
+	for (int i=0; i<g->n; i++)
+		visited[i] = false;
 	queue< tuple<int,int> > q = queue< tuple<int,int> >();
 	q.push(make_tuple(s,0));
 	while (! q.empty())
@@ -266,22 +276,30 @@ int bfs(Graph* g, int s, int d)
 		int t, h;
 		tie(t,h) = q.front();
 		q.pop();
+		visited[t] = true;
 		if (h == d)
+		{
+			delete [] visited;
 			return t;
+		}
 		for (adj_ent e : g->adj[t])
-			q.push(make_tuple(get<0>(e),h+1));
+		{
+			int v = get<0>(e);
+			if (! visited[v])
+				q.push(make_tuple(v,h+1));
+		}
 	}
+	delete [] visited;
 	return -1;
 }
 
-int main()
+Graph generate_er(int n, int m)
 {
-	ofstream graph, queries;
-	srand(time(NULL));
+	ofstream graph;
 	graph.open("graph.txt");
 	Graph g;
-	g.n = 200000;
-	g.m = 500000;
+	g.n = n;
+	g.m = m;
 	graph << g.n << " " << g.m << endl;
 	g.adj = new vector<adj_ent>[g.n];
 	for (int i=0; i<g.n; i++)
@@ -314,6 +332,36 @@ int main()
 			i--;
 	}
 	graph.close();
+	return g;
+}
+
+Graph read_graph()
+{
+	ifstream graph;
+	graph.open("graph.txt");
+	Graph g;
+	graph >> g.n >> g.m;
+	g.adj = new vector<adj_ent>[g.n];
+	for (int i=0; i<g.n; i++)
+		g.adj[i] = vector<adj_ent>();
+	for (int i = 0; i < g.m; i++)
+	{
+		int u, v;
+		long w;
+		double p;
+		graph >> u >> v >> w >> p;
+		g.adj[u].push_back(make_tuple(v, w, p));
+	}
+	graph.close();
+	return g;
+}
+
+int main(int argc, char* argv[])
+{
+	ofstream queries;
+	srand(time(NULL));
+	// Graph g = generate_er(40000,80000);
+	Graph g = read_graph();
 	queries.open("queries.txt");
 	for (int k = 1; k <= 4; k++)
 	{
@@ -337,7 +385,7 @@ int main()
 			cout << s << "\t" << t << endl;
 			long wt = 0;
 			double candidate_time = 0, prob_time = 0, pr = 1;
-			list<edge> p = mpsp(&g, s, t, 10, candidate_time, prob_time);
+			list<edge> p = mpsp(&g, s, t, 1000, candidate_time, prob_time);
 			for (edge e : p)
 			{
 				cout << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;

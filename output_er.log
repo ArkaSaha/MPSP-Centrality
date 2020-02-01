@@ -1,0 +1,5632 @@
+Number of hops = 2
+
+5118	26978
+Number of Candidate Paths : 2
+5118	10410	703652956	0.457356
+10410	26978	801501494	0.0584662
+Length of MPSP : 1505154450
+Probability of MPSP : 0.0267399
+Candidate Generation Time : 0.441594 seconds
+Probability Computation Time : 0.000636 seconds
+
+7432	15820
+Number of Candidate Paths : 1
+7432	36038	24072040	0.70842
+36038	15820	1028810917	0.92074
+Length of MPSP : 1052882957
+Probability of MPSP : 0.652271
+Candidate Generation Time : 0.012067 seconds
+Probability Computation Time : 0.000318 seconds
+
+20180	21899
+Number of Candidate Paths : 1
+20180	35432	2141078988	0.383284
+35432	21899	837307276	0.259515
+Length of MPSP : 2978386264
+Probability of MPSP : 0.099468
+Candidate Generation Time : 0.467414 seconds
+Probability Computation Time : 0.000318 seconds
+
+10974	28523
+Number of Candidate Paths : 1
+10974	24551	1100231025	0.440043
+24551	28523	1353828750	0.278638
+Length of MPSP : 2454059775
+Probability of MPSP : 0.122613
+Candidate Generation Time : 0.002505 seconds
+Probability Computation Time : 0.000318 seconds
+
+24730	37501
+Number of Candidate Paths : 1
+24730	17232	723695282	0.0954387
+17232	37501	838946038	0.525922
+Length of MPSP : 1562641320
+Probability of MPSP : 0.0501934
+Candidate Generation Time : 0.002404 seconds
+Probability Computation Time : 0.000318 seconds
+
+6548	21537
+Number of Candidate Paths : 1
+6548	26634	207956985	0.261748
+26634	21537	60263068	0.487591
+Length of MPSP : 268220053
+Probability of MPSP : 0.127626
+Candidate Generation Time : 0.002471 seconds
+Probability Computation Time : 0.000316 seconds
+
+11372	4160
+Number of Candidate Paths : 1
+11372	24278	1222206483	0.235967
+24278	4160	79160250	0.116028
+Length of MPSP : 1301366733
+Probability of MPSP : 0.0273789
+Candidate Generation Time : 0.002033 seconds
+Probability Computation Time : 0.000313 seconds
+
+26994	6864
+Number of Candidate Paths : 1
+26994	3394	1518157534	0.891356
+3394	6864	1748913367	0.504255
+Length of MPSP : 3267070901
+Probability of MPSP : 0.449471
+Candidate Generation Time : 0.258385 seconds
+Probability Computation Time : 0.000354 seconds
+
+36549	32464
+Number of Candidate Paths : 1
+36549	1249	1673114517	0.700901
+1249	32464	97579154	0.811741
+Length of MPSP : 1770693671
+Probability of MPSP : 0.56895
+Candidate Generation Time : 0.003641 seconds
+Probability Computation Time : 0.000309 seconds
+
+6638	19860
+Number of Candidate Paths : 1
+6638	22224	1081816895	0.0866236
+22224	19860	494517257	0.199861
+Length of MPSP : 1576334152
+Probability of MPSP : 0.0173127
+Candidate Generation Time : 0.011691 seconds
+Probability Computation Time : 0.000308 seconds
+
+36144	27838
+Number of Candidate Paths : 1
+36144	16137	1380616222	0.460609
+16137	27838	469046661	0.122978
+Length of MPSP : 1849662883
+Probability of MPSP : 0.0566449
+Candidate Generation Time : 0.002956 seconds
+Probability Computation Time : 0.000306 seconds
+
+37830	30065
+Number of Candidate Paths : 1
+37830	6865	1504799019	0.705355
+6865	30065	60581719	0.291307
+Length of MPSP : 1565380738
+Probability of MPSP : 0.205475
+Candidate Generation Time : 0.096988 seconds
+Probability Computation Time : 0.000314 seconds
+
+19889	16993
+Number of Candidate Paths : 2
+19889	37184	1423662194	0.783244
+37184	16993	1650393141	0.925554
+Length of MPSP : 3074055335
+Probability of MPSP : 0.724935
+Candidate Generation Time : 0.077149 seconds
+Probability Computation Time : 0.000616 seconds
+
+18778	19508
+Number of Candidate Paths : 1
+18778	38213	632422885	0.0617628
+38213	19508	1189016769	0.206589
+Length of MPSP : 1821439654
+Probability of MPSP : 0.0127595
+Candidate Generation Time : 0.001516 seconds
+Probability Computation Time : 0.000312 seconds
+
+27723	33681
+Number of Candidate Paths : 1
+27723	14333	1240438130	0.956506
+14333	33681	372487194	0.961988
+Length of MPSP : 1612925324
+Probability of MPSP : 0.920147
+Candidate Generation Time : 0.004147 seconds
+Probability Computation Time : 0.000319 seconds
+
+37081	21062
+Number of Candidate Paths : 2
+37081	33434	1211599526	0.537362
+33434	21062	1709777831	0.40544
+Length of MPSP : 2921377357
+Probability of MPSP : 0.217868
+Candidate Generation Time : 0.095743 seconds
+Probability Computation Time : 0.000645 seconds
+
+28587	7167
+Number of Candidate Paths : 8
+28587	24362	546104409	0.607237
+24362	7167	38371568	0.428556
+Length of MPSP : 584475977
+Probability of MPSP : 0.260235
+Candidate Generation Time : 0.331234 seconds
+Probability Computation Time : 0.01929 seconds
+
+29763	8678
+Number of Candidate Paths : 1
+29763	22992	1120867959	0.0569055
+22992	8678	1470697640	0.352571
+Length of MPSP : 2591565599
+Probability of MPSP : 0.0200632
+Candidate Generation Time : 0.003132 seconds
+Probability Computation Time : 0.000322 seconds
+
+38447	27695
+Number of Candidate Paths : 6
+38447	11743	1809276695	0.256108
+11743	27695	1621879337	0.855675
+Length of MPSP : 3431156032
+Probability of MPSP : 0.219145
+Candidate Generation Time : 0.486069 seconds
+Probability Computation Time : 0.012823 seconds
+
+13530	5403
+Number of Candidate Paths : 2
+13530	31031	1418122432	0.533978
+31031	5403	1442123612	0.66089
+Length of MPSP : 2860246044
+Probability of MPSP : 0.352901
+Candidate Generation Time : 0.040868 seconds
+Probability Computation Time : 0.000613 seconds
+
+23766	2648
+Number of Candidate Paths : 1
+23766	1443	860330297	0.910741
+1443	2648	1704607350	0.706597
+Length of MPSP : 2564937647
+Probability of MPSP : 0.643527
+Candidate Generation Time : 0.010055 seconds
+Probability Computation Time : 0.000313 seconds
+
+38739	10988
+Number of Candidate Paths : 1
+38739	72	1427137448	0.899124
+72	10988	1793062091	0.203284
+Length of MPSP : 3220199539
+Probability of MPSP : 0.182777
+Candidate Generation Time : 0.229364 seconds
+Probability Computation Time : 0.000313 seconds
+
+35527	21648
+Number of Candidate Paths : 13
+35527	37798	1856173447	0.139295
+37798	21648	688845023	0.56868
+Length of MPSP : 2545018470
+Probability of MPSP : 0.0792144
+Candidate Generation Time : 0.345729 seconds
+Probability Computation Time : 0.036128 seconds
+
+35696	5147
+Number of Candidate Paths : 1
+35696	16149	362037524	0.118932
+16149	5147	1590400792	0.463425
+Length of MPSP : 1952438316
+Probability of MPSP : 0.0551162
+Candidate Generation Time : 0.003412 seconds
+Probability Computation Time : 0.000324 seconds
+
+7238	31648
+Number of Candidate Paths : 1
+7238	35781	2136262148	0.703357
+35781	31648	1315454636	0.451231
+Length of MPSP : 3451716784
+Probability of MPSP : 0.317376
+Candidate Generation Time : 0.003187 seconds
+Probability Computation Time : 0.000323 seconds
+
+24365	39057
+Number of Candidate Paths : 1
+24365	306	538075370	0.0772612
+306	39057	1343306096	0.486441
+Length of MPSP : 1881381466
+Probability of MPSP : 0.037583
+Candidate Generation Time : 0.239464 seconds
+Probability Computation Time : 0.000307 seconds
+
+22658	8890
+Number of Candidate Paths : 1
+22658	1273	1344912662	0.678603
+1273	8890	360441319	0.85393
+Length of MPSP : 1705353981
+Probability of MPSP : 0.579479
+Candidate Generation Time : 0.060061 seconds
+Probability Computation Time : 0.00031 seconds
+
+15912	8971
+Number of Candidate Paths : 3
+15912	38924	805378092	0.0437688
+38924	8971	919480282	0.708553
+Length of MPSP : 1724858374
+Probability of MPSP : 0.0310125
+Candidate Generation Time : 0.294452 seconds
+Probability Computation Time : 0.003563 seconds
+
+4874	11541
+Number of Candidate Paths : 1
+4874	18099	361944777	0.809657
+18099	11541	700917991	0.863986
+Length of MPSP : 1062862768
+Probability of MPSP : 0.699532
+Candidate Generation Time : 0.007922 seconds
+Probability Computation Time : 0.000307 seconds
+
+35633	39871
+Number of Candidate Paths : 2
+35633	35911	1209870328	0.590302
+35911	39871	1475689733	0.332201
+Length of MPSP : 2685560061
+Probability of MPSP : 0.196099
+Candidate Generation Time : 0.189606 seconds
+Probability Computation Time : 0.000635 seconds
+
+29322	4738
+Number of Candidate Paths : 1
+29322	24328	844633852	0.372088
+24328	4738	1367277586	0.0191707
+Length of MPSP : 2211911438
+Probability of MPSP : 0.00713318
+Candidate Generation Time : 0.115791 seconds
+Probability Computation Time : 0.00033 seconds
+
+36116	37973
+Number of Candidate Paths : 1
+36116	38687	1263775200	0.368241
+38687	37973	72473717	0.451487
+Length of MPSP : 1336248917
+Probability of MPSP : 0.166256
+Candidate Generation Time : 0.130437 seconds
+Probability Computation Time : 0.00034 seconds
+
+27483	25815
+Number of Candidate Paths : 6
+27483	7789	428047474	0.992351
+7789	25815	874775807	0.322326
+Length of MPSP : 1302823281
+Probability of MPSP : 0.319861
+Candidate Generation Time : 0.43956 seconds
+Probability Computation Time : 0.013366 seconds
+
+3843	39385
+Number of Candidate Paths : 1
+3843	24780	1247876669	0.934366
+24780	39385	171247628	0.128431
+Length of MPSP : 1419124297
+Probability of MPSP : 0.120001
+Candidate Generation Time : 0.857694 seconds
+Probability Computation Time : 0.000358 seconds
+
+22787	18255
+Number of Candidate Paths : 1
+22787	2659	1907709394	0.427751
+2659	18255	573216062	0.840523
+Length of MPSP : 2480925456
+Probability of MPSP : 0.359535
+Candidate Generation Time : 0.061165 seconds
+Probability Computation Time : 0.00031 seconds
+
+6374	26424
+Number of Candidate Paths : 1
+6374	13054	765335113	0.477602
+13054	26424	797674889	0.633635
+Length of MPSP : 1563010002
+Probability of MPSP : 0.302625
+Candidate Generation Time : 0.093379 seconds
+Probability Computation Time : 0.000313 seconds
+
+28007	481
+Number of Candidate Paths : 1
+28007	22182	790554663	0.711319
+22182	481	1778734889	0.88549
+Length of MPSP : 2569289552
+Probability of MPSP : 0.629866
+Candidate Generation Time : 0.005046 seconds
+Probability Computation Time : 0.000307 seconds
+
+38677	38657
+Number of Candidate Paths : 6
+38677	28324	675879862	0.599457
+28324	38657	2144419049	0.105531
+Length of MPSP : 2820298911
+Probability of MPSP : 0.0632614
+Candidate Generation Time : 0.195557 seconds
+Probability Computation Time : 0.012695 seconds
+
+25278	35368
+Number of Candidate Paths : 7
+25278	22934	783536646	0.246257
+22934	35368	1705225518	0.0829237
+Length of MPSP : 2488762164
+Probability of MPSP : 0.0204205
+Candidate Generation Time : 0.335209 seconds
+Probability Computation Time : 0.016707 seconds
+
+10068	28222
+Number of Candidate Paths : 1
+10068	8812	695266145	0.99007
+8812	28222	876295001	0.819325
+Length of MPSP : 1571561146
+Probability of MPSP : 0.811189
+Candidate Generation Time : 0.004191 seconds
+Probability Computation Time : 0.000312 seconds
+
+5490	3515
+Number of Candidate Paths : 1
+5490	29164	1059941487	0.698688
+29164	3515	1852385390	0.990407
+Length of MPSP : 2912326877
+Probability of MPSP : 0.691986
+Candidate Generation Time : 0.009908 seconds
+Probability Computation Time : 0.000321 seconds
+
+33305	33828
+Number of Candidate Paths : 1
+33305	37701	1692747540	0.57062
+37701	33828	1737041970	0.516647
+Length of MPSP : 3429789510
+Probability of MPSP : 0.294809
+Candidate Generation Time : 0.016459 seconds
+Probability Computation Time : 0.000322 seconds
+
+16825	38054
+Number of Candidate Paths : 8
+16825	34047	1182671547	0.974905
+34047	38054	1689609460	0.282725
+Length of MPSP : 2872281007
+Probability of MPSP : 0.27563
+Candidate Generation Time : 0.550942 seconds
+Probability Computation Time : 0.019838 seconds
+
+10915	36830
+Number of Candidate Paths : 1
+10915	24029	1812565972	0.149433
+24029	36830	1931067218	0.617768
+Length of MPSP : 3743633190
+Probability of MPSP : 0.092315
+Candidate Generation Time : 0.001846 seconds
+Probability Computation Time : 0.00031 seconds
+
+32013	3528
+Number of Candidate Paths : 2
+32013	14505	568270456	0.464962
+14505	3528	1738343271	0.989772
+Length of MPSP : 2306613727
+Probability of MPSP : 0.460206
+Candidate Generation Time : 0.082951 seconds
+Probability Computation Time : 0.00062 seconds
+
+15783	278
+Number of Candidate Paths : 1
+15783	31793	954253452	0.330991
+31793	278	225586122	0.502498
+Length of MPSP : 1179839574
+Probability of MPSP : 0.166322
+Candidate Generation Time : 0.002198 seconds
+Probability Computation Time : 0.000312 seconds
+
+12983	39288
+Number of Candidate Paths : 2
+12983	4137	179140545	0.103521
+4137	39288	1591342018	0.644836
+Length of MPSP : 1770482563
+Probability of MPSP : 0.0667539
+Candidate Generation Time : 0.122201 seconds
+Probability Computation Time : 0.000618 seconds
+
+9619	19240
+Number of Candidate Paths : 1
+9619	10677	42675486	0.389432
+10677	19240	2118495721	0.327902
+Length of MPSP : 2161171207
+Probability of MPSP : 0.127696
+Candidate Generation Time : 0.228708 seconds
+Probability Computation Time : 0.000307 seconds
+
+13104	20826
+Number of Candidate Paths : 1
+13104	31081	808598308	0.81682
+31081	20826	1698834006	0.834362
+Length of MPSP : 2507432314
+Probability of MPSP : 0.681523
+Candidate Generation Time : 0.049368 seconds
+Probability Computation Time : 0.000322 seconds
+
+31651	13634
+Number of Candidate Paths : 1
+31651	26845	145264496	0.307475
+26845	13634	1662946374	0.14226
+Length of MPSP : 1808210870
+Probability of MPSP : 0.0437414
+Candidate Generation Time : 0.002191 seconds
+Probability Computation Time : 0.000324 seconds
+
+26828	4747
+Number of Candidate Paths : 1
+26828	11355	500528674	0.390524
+11355	4747	1661089030	0.901466
+Length of MPSP : 2161617704
+Probability of MPSP : 0.352044
+Candidate Generation Time : 0.015269 seconds
+Probability Computation Time : 0.000406 seconds
+
+4178	16655
+Number of Candidate Paths : 1
+4178	10942	1166267449	0.689384
+10942	16655	180249753	0.43203
+Length of MPSP : 1346517202
+Probability of MPSP : 0.297835
+Candidate Generation Time : 0.047537 seconds
+Probability Computation Time : 0.00031 seconds
+
+17742	2472
+Number of Candidate Paths : 1
+17742	32491	222205631	0.192135
+32491	2472	1413302064	0.682848
+Length of MPSP : 1635507695
+Probability of MPSP : 0.131199
+Candidate Generation Time : 0.080379 seconds
+Probability Computation Time : 0.000326 seconds
+
+27068	28004
+Number of Candidate Paths : 4
+27068	8690	1224784266	0.87792
+8690	28004	979409485	0.0104302
+Length of MPSP : 2204193751
+Probability of MPSP : 0.00915688
+Candidate Generation Time : 0.113144 seconds
+Probability Computation Time : 0.006497 seconds
+
+8707	31766
+Number of Candidate Paths : 1
+8707	39550	2042752981	0.947478
+39550	31766	2026438021	0.0112212
+Length of MPSP : 4069191002
+Probability of MPSP : 0.0106319
+Candidate Generation Time : 1.05506 seconds
+Probability Computation Time : 0.000312 seconds
+
+16024	13544
+Number of Candidate Paths : 1
+16024	8079	978357988	0.0211873
+8079	13544	496061599	0.942014
+Length of MPSP : 1474419587
+Probability of MPSP : 0.0199588
+Candidate Generation Time : 0.001541 seconds
+Probability Computation Time : 0.000315 seconds
+
+18974	35079
+Number of Candidate Paths : 16
+18974	4672	1035282043	0.849308
+4672	35079	1980778747	0.270169
+Length of MPSP : 3016060790
+Probability of MPSP : 0.229457
+Candidate Generation Time : 0.875394 seconds
+Probability Computation Time : 0.046731 seconds
+
+13095	35163
+Number of Candidate Paths : 1
+13095	12693	1249032298	0.562912
+12693	35163	1491153873	0.377661
+Length of MPSP : 2740186171
+Probability of MPSP : 0.21259
+Candidate Generation Time : 0.021795 seconds
+Probability Computation Time : 0.000307 seconds
+
+8165	25659
+Number of Candidate Paths : 3
+8165	8767	514301662	0.686713
+8767	25659	1466970604	0.697498
+Length of MPSP : 1981272266
+Probability of MPSP : 0.478981
+Candidate Generation Time : 0.204475 seconds
+Probability Computation Time : 0.003534 seconds
+
+12026	7359
+Number of Candidate Paths : 1
+12026	18695	1375123514	0.731912
+18695	7359	213885534	0.672344
+Length of MPSP : 1589009048
+Probability of MPSP : 0.492097
+Candidate Generation Time : 0.040068 seconds
+Probability Computation Time : 0.000309 seconds
+
+14132	16454
+Number of Candidate Paths : 1
+14132	25200	526439153	0.79387
+25200	16454	1327885950	0.754309
+Length of MPSP : 1854325103
+Probability of MPSP : 0.598824
+Candidate Generation Time : 0.004514 seconds
+Probability Computation Time : 0.000306 seconds
+
+35170	28790
+Number of Candidate Paths : 3
+35170	3755	546313414	0.211795
+3755	28790	36565539	0.124774
+Length of MPSP : 582878953
+Probability of MPSP : 0.0264266
+Candidate Generation Time : 0.040528 seconds
+Probability Computation Time : 0.003726 seconds
+
+1620	12574
+Number of Candidate Paths : 1
+1620	19084	2095421609	0.0571638
+19084	12574	97149892	0.313481
+Length of MPSP : 2192571501
+Probability of MPSP : 0.0179197
+Candidate Generation Time : 0.029881 seconds
+Probability Computation Time : 0.000309 seconds
+
+11988	6016
+Number of Candidate Paths : 3
+11988	7519	1090583012	0.185041
+7519	6016	196849815	0.283905
+Length of MPSP : 1287432827
+Probability of MPSP : 0.0525341
+Candidate Generation Time : 0.267067 seconds
+Probability Computation Time : 0.003504 seconds
+
+7129	12946
+Number of Candidate Paths : 1
+7129	5429	2092167059	0.987801
+5429	12946	1695481607	0.136412
+Length of MPSP : 3787648666
+Probability of MPSP : 0.134748
+Candidate Generation Time : 0.00319 seconds
+Probability Computation Time : 0.000309 seconds
+
+20658	22298
+Number of Candidate Paths : 2
+20658	21870	761495760	0.919453
+21870	22298	1292346171	0.0849049
+Length of MPSP : 2053841931
+Probability of MPSP : 0.0780661
+Candidate Generation Time : 0.284239 seconds
+Probability Computation Time : 0.000641 seconds
+
+24205	15198
+Number of Candidate Paths : 2
+24205	13309	1982454993	0.255015
+13309	15198	668482001	0.2629
+Length of MPSP : 2650936994
+Probability of MPSP : 0.0670435
+Candidate Generation Time : 0.016947 seconds
+Probability Computation Time : 0.000613 seconds
+
+31597	15917
+Number of Candidate Paths : 3
+31597	5458	149997081	0.382433
+5458	15917	1428809060	0.740465
+Length of MPSP : 1578806141
+Probability of MPSP : 0.283179
+Candidate Generation Time : 0.059511 seconds
+Probability Computation Time : 0.003548 seconds
+
+16887	3983
+Number of Candidate Paths : 1
+16887	18608	1032730395	0.475612
+18608	3983	2029888599	0.286352
+Length of MPSP : 3062618994
+Probability of MPSP : 0.136192
+Candidate Generation Time : 0.055586 seconds
+Probability Computation Time : 0.000307 seconds
+
+10313	39062
+Number of Candidate Paths : 1
+10313	36480	1365139490	0.458009
+36480	39062	460173391	0.178685
+Length of MPSP : 1825312881
+Probability of MPSP : 0.0818392
+Candidate Generation Time : 0.417296 seconds
+Probability Computation Time : 0.000311 seconds
+
+23628	22239
+Number of Candidate Paths : 1
+23628	27606	107627533	0.94757
+27606	22239	1942501177	0.791588
+Length of MPSP : 2050128710
+Probability of MPSP : 0.750085
+Candidate Generation Time : 0.040529 seconds
+Probability Computation Time : 0.000307 seconds
+
+38062	32209
+Number of Candidate Paths : 1
+38062	19233	1390681524	0.182356
+19233	32209	1980681585	0.0882362
+Length of MPSP : 3371363109
+Probability of MPSP : 0.0160904
+Candidate Generation Time : 0.288665 seconds
+Probability Computation Time : 0.000308 seconds
+
+32278	11425
+Number of Candidate Paths : 1
+32278	22014	308908836	0.354507
+22014	11425	259313335	0.643976
+Length of MPSP : 568222171
+Probability of MPSP : 0.228294
+Candidate Generation Time : 0.003657 seconds
+Probability Computation Time : 0.000313 seconds
+
+36465	22878
+Number of Candidate Paths : 2
+36465	12909	521088441	0.586493
+12909	22878	698661050	0.712346
+Length of MPSP : 1219749491
+Probability of MPSP : 0.417786
+Candidate Generation Time : 0.094668 seconds
+Probability Computation Time : 0.00062 seconds
+
+35243	25757
+Number of Candidate Paths : 1
+35243	17225	1942783051	0.545818
+17225	25757	1728835280	0.776005
+Length of MPSP : 3671618331
+Probability of MPSP : 0.423557
+Candidate Generation Time : 0.047755 seconds
+Probability Computation Time : 0.000307 seconds
+
+1190	32718
+Number of Candidate Paths : 1
+1190	29913	1830352572	0.826221
+29913	32718	184580360	0.0264199
+Length of MPSP : 2014932932
+Probability of MPSP : 0.0218286
+Candidate Generation Time : 0.959164 seconds
+Probability Computation Time : 0.000311 seconds
+
+17419	3300
+Number of Candidate Paths : 1
+17419	6942	1032911899	0.899985
+6942	3300	1599788444	0.151524
+Length of MPSP : 2632700343
+Probability of MPSP : 0.13637
+Candidate Generation Time : 0.005871 seconds
+Probability Computation Time : 0.000307 seconds
+
+7603	33468
+Number of Candidate Paths : 1
+7603	16759	496473418	0.897442
+16759	33468	1732539688	0.674249
+Length of MPSP : 2229013106
+Probability of MPSP : 0.6051
+Candidate Generation Time : 0.073536 seconds
+Probability Computation Time : 0.000306 seconds
+
+37183	8769
+Number of Candidate Paths : 1
+37183	27864	197073066	0.240813
+27864	8769	1053044974	0.888298
+Length of MPSP : 1250118040
+Probability of MPSP : 0.213914
+Candidate Generation Time : 0.027739 seconds
+Probability Computation Time : 0.00031 seconds
+
+12280	16701
+Number of Candidate Paths : 1
+12280	3055	770977814	0.70768
+3055	16701	322255306	0.0746873
+Length of MPSP : 1093233120
+Probability of MPSP : 0.0528548
+Candidate Generation Time : 0.431699 seconds
+Probability Computation Time : 0.000308 seconds
+
+9048	23104
+Number of Candidate Paths : 1
+9048	30183	842971706	0.355991
+30183	23104	40816024	0.700563
+Length of MPSP : 883787730
+Probability of MPSP : 0.249394
+Candidate Generation Time : 0.002711 seconds
+Probability Computation Time : 0.000312 seconds
+
+17512	24613
+Number of Candidate Paths : 4
+17512	2931	1374451012	0.36263
+2931	24613	1944040098	0.344627
+Length of MPSP : 3318491110
+Probability of MPSP : 0.124972
+Candidate Generation Time : 0.070493 seconds
+Probability Computation Time : 0.006429 seconds
+
+38217	11203
+Number of Candidate Paths : 2
+38217	36189	938936696	0.684798
+36189	11203	1273815478	0.579893
+Length of MPSP : 2212752174
+Probability of MPSP : 0.39711
+Candidate Generation Time : 0.061219 seconds
+Probability Computation Time : 0.00062 seconds
+
+36955	4321
+Number of Candidate Paths : 12
+36955	34624	494553449	0.221174
+34624	4321	255627757	0.664754
+Length of MPSP : 750181206
+Probability of MPSP : 0.147026
+Candidate Generation Time : 0.457526 seconds
+Probability Computation Time : 0.033717 seconds
+
+15285	34348
+Number of Candidate Paths : 1
+15285	29157	1678575491	0.347535
+29157	34348	1483623257	0.585393
+Length of MPSP : 3162198748
+Probability of MPSP : 0.203444
+Candidate Generation Time : 0.157527 seconds
+Probability Computation Time : 0.000325 seconds
+
+39325	27789
+Number of Candidate Paths : 9
+39325	22285	1784637230	0.331421
+22285	27789	1544539909	0.337076
+Length of MPSP : 3329177139
+Probability of MPSP : 0.111714
+Candidate Generation Time : 0.266167 seconds
+Probability Computation Time : 0.022477 seconds
+
+35585	38491
+Number of Candidate Paths : 1
+35585	12440	458074875	0.697495
+12440	38491	2100045839	0.545629
+Length of MPSP : 2558120714
+Probability of MPSP : 0.380573
+Candidate Generation Time : 0.106324 seconds
+Probability Computation Time : 0.000309 seconds
+
+17895	34904
+Number of Candidate Paths : 9
+17895	15793	906229443	0.457974
+15793	34904	991167898	0.604689
+Length of MPSP : 1897397341
+Probability of MPSP : 0.276932
+Candidate Generation Time : 0.209668 seconds
+Probability Computation Time : 0.022451 seconds
+
+1200	34919
+Number of Candidate Paths : 1
+1200	24806	844227282	0.601705
+24806	34919	521434207	0.00738991
+Length of MPSP : 1365661489
+Probability of MPSP : 0.00444654
+Candidate Generation Time : 0.157332 seconds
+Probability Computation Time : 0.000307 seconds
+
+37125	27545
+Number of Candidate Paths : 2
+37125	15359	345312964	0.448223
+15359	27545	866229884	0.911765
+Length of MPSP : 1211542848
+Probability of MPSP : 0.408674
+Candidate Generation Time : 0.092303 seconds
+Probability Computation Time : 0.00062 seconds
+
+9118	20810
+Number of Candidate Paths : 5
+9118	9203	1546934226	0.312319
+9203	20810	1835526032	0.283906
+Length of MPSP : 3382460258
+Probability of MPSP : 0.0886695
+Candidate Generation Time : 0.449019 seconds
+Probability Computation Time : 0.009592 seconds
+
+26812	7754
+Number of Candidate Paths : 4
+26812	20858	1870050164	0.749938
+20858	7754	538941880	0.226126
+Length of MPSP : 2408992044
+Probability of MPSP : 0.169581
+Candidate Generation Time : 0.674134 seconds
+Probability Computation Time : 0.006507 seconds
+
+36360	21875
+Number of Candidate Paths : 1
+36360	14443	434817520	0.882629
+14443	21875	959461550	0.545084
+Length of MPSP : 1394279070
+Probability of MPSP : 0.481107
+Candidate Generation Time : 0.004664 seconds
+Probability Computation Time : 0.000307 seconds
+
+19833	18330
+Number of Candidate Paths : 1
+19833	19218	622462881	0.483887
+19218	18330	642879431	0.715718
+Length of MPSP : 1265342312
+Probability of MPSP : 0.346327
+Candidate Generation Time : 0.002512 seconds
+Probability Computation Time : 0.00031 seconds
+
+34074	84
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.161584 seconds
+Probability Computation Time : 0 seconds
+
+37325	27281
+Number of Candidate Paths : 1
+37325	5166	1825066942	0.39343
+5166	27281	1840516390	0.376808
+Length of MPSP : 3665583332
+Probability of MPSP : 0.148247
+Candidate Generation Time : 0.002171 seconds
+Probability Computation Time : 0.000313 seconds
+
+568	34098
+Number of Candidate Paths : 1
+568	9882	726718465	0.20677
+9882	34098	686153572	0.805269
+Length of MPSP : 1412872037
+Probability of MPSP : 0.166505
+Candidate Generation Time : 0.125753 seconds
+Probability Computation Time : 0.000306 seconds
+
+8067	34895
+Number of Candidate Paths : 1
+8067	8401	703592505	0.926147
+8401	34895	1584338505	0.652071
+Length of MPSP : 2287931010
+Probability of MPSP : 0.603914
+Candidate Generation Time : 0.013874 seconds
+Probability Computation Time : 0.000307 seconds
+
+33495	30303
+Number of Candidate Paths : 1
+33495	9389	122219658	0.358288
+9389	30303	918769560	0.558272
+Length of MPSP : 1040989218
+Probability of MPSP : 0.200022
+Candidate Generation Time : 0.002333 seconds
+Probability Computation Time : 0.000311 seconds
+
+8489	5668
+Number of Candidate Paths : 1
+8489	18136	1459557154	0.193039
+18136	5668	1769873009	0.575358
+Length of MPSP : 3229430163
+Probability of MPSP : 0.111066
+Candidate Generation Time : 0.024837 seconds
+Probability Computation Time : 0.000307 seconds
+
+Average Length of MPSP for 2 hops : 2112717771
+Average Probability of MPSP for 2 hops : 0.258514
+Average Candidate Generation Time for 2 hops : 0.156809 seconds
+Average Probability Computation Time for 2 hops : 0.00331768 seconds
+
+
+Number of hops = 4
+
+2105	35125
+Number of Candidate Paths : 9
+2105	22250	2129878485	0.414503
+22250	8288	2134875569	0.295718
+8288	33083	1815997704	0.173219
+33083	35125	1022764375	0.283708
+Length of MPSP : 7103516133
+Probability of MPSP : 0.00602384
+Candidate Generation Time : 0.325378 seconds
+Probability Computation Time : 0.022471 seconds
+
+28608	458
+Number of Candidate Paths : 2
+28608	37784	235008330	0.631603
+37784	10181	761172897	0.436376
+10181	27314	1712278293	0.0454557
+27314	458	528904065	0.962756
+Length of MPSP : 3237363585
+Probability of MPSP : 0.0120617
+Candidate Generation Time : 0.060492 seconds
+Probability Computation Time : 0.00062 seconds
+
+25466	1740
+Number of Candidate Paths : 1
+25466	3820	195166030	0.995203
+3820	12771	775236399	0.323326
+12771	36669	1991848332	0.731505
+36669	1740	1704354412	0.181121
+Length of MPSP : 4666605173
+Probability of MPSP : 0.0426321
+Candidate Generation Time : 0.091194 seconds
+Probability Computation Time : 0.000306 seconds
+
+23414	18346
+Number of Candidate Paths : 2
+23414	20316	98399005	0.231967
+20316	34275	1020818834	0.857974
+34275	8261	765570853	0.010318
+8261	18346	379118616	0.523121
+Length of MPSP : 2263907308
+Probability of MPSP : 0.00107424
+Candidate Generation Time : 0.116177 seconds
+Probability Computation Time : 0.00062 seconds
+
+36051	3623
+Number of Candidate Paths : 12
+36051	14399	877569386	0.474319
+14399	10086	1919474234	0.187962
+10086	14690	1350464712	0.931733
+14690	3623	200196176	0.69171
+Length of MPSP : 4347704508
+Probability of MPSP : 0.0574586
+Candidate Generation Time : 0.28942 seconds
+Probability Computation Time : 0.032634 seconds
+
+6405	10955
+Number of Candidate Paths : 1
+6405	5582	1261047436	0.31121
+5582	33772	318631942	0.612651
+33772	8520	844907697	0.187569
+8520	10955	1265508688	0.630608
+Length of MPSP : 3690095763
+Probability of MPSP : 0.0225521
+Candidate Generation Time : 0.0332 seconds
+Probability Computation Time : 0.000307 seconds
+
+8761	19852
+Number of Candidate Paths : 1
+8761	18734	1027479264	0.191452
+18734	3271	861395189	0.784209
+3271	24828	119980208	0.990913
+24828	19852	1342768880	0.206722
+Length of MPSP : 3351623541
+Probability of MPSP : 0.0307547
+Candidate Generation Time : 0.760118 seconds
+Probability Computation Time : 0.000311 seconds
+
+24928	26810
+Number of Candidate Paths : 8
+24928	19024	1788241782	0.906206
+19024	31773	1795205763	0.908832
+31773	39927	2109765599	0.725101
+39927	26810	1032831792	0.8408
+Length of MPSP : 6726044936
+Probability of MPSP : 0.502113
+Candidate Generation Time : 0.278758 seconds
+Probability Computation Time : 0.019207 seconds
+
+26387	12419
+Number of Candidate Paths : 1
+26387	26634	1977916365	0.225028
+26634	21537	60263068	0.487591
+21537	9798	1806523065	0.545638
+9798	12419	1560821010	0.230776
+Length of MPSP : 5405523508
+Probability of MPSP : 0.0138161
+Candidate Generation Time : 0.10792 seconds
+Probability Computation Time : 0.000307 seconds
+
+20452	38243
+Number of Candidate Paths : 1
+20452	15702	186025417	0.346983
+15702	34475	2019906985	0.928037
+34475	6421	499364708	0.11683
+6421	38243	1630245005	0.946466
+Length of MPSP : 4335542115
+Probability of MPSP : 0.0356067
+Candidate Generation Time : 0.00328 seconds
+Probability Computation Time : 0.000309 seconds
+
+27893	2880
+Number of Candidate Paths : 1
+27893	9035	1120042079	0.0339141
+9035	966	1627065022	0.698498
+966	35354	62745126	0.716747
+35354	2880	1030171432	0.416447
+Length of MPSP : 3840023659
+Probability of MPSP : 0.00707085
+Candidate Generation Time : 0.010347 seconds
+Probability Computation Time : 0.00033 seconds
+
+31712	34799
+Number of Candidate Paths : 3
+31712	19881	226927538	0.932133
+19881	15722	129717919	0.501161
+15722	27763	1179347079	0.363336
+27763	34799	98165416	0.262479
+Length of MPSP : 1634157952
+Probability of MPSP : 0.0445512
+Candidate Generation Time : 0.134164 seconds
+Probability Computation Time : 0.003758 seconds
+
+3660	31906
+Number of Candidate Paths : 1
+3660	4491	1722974262	0.196531
+4491	24759	381900842	0.117875
+24759	34846	342710845	0.893031
+34846	31906	203139341	0.928472
+Length of MPSP : 2650725290
+Probability of MPSP : 0.0192083
+Candidate Generation Time : 0.005758 seconds
+Probability Computation Time : 0.000311 seconds
+
+915	22200
+Number of Candidate Paths : 2
+915	15891	1709039965	0.562276
+15891	20253	1704421164	0.896763
+20253	20828	1830252470	0.609272
+20828	22200	46163133	0.678505
+Length of MPSP : 5289876732
+Probability of MPSP : 0.208445
+Candidate Generation Time : 0.039409 seconds
+Probability Computation Time : 0.000639 seconds
+
+31906	11706
+Number of Candidate Paths : 1
+31906	13251	1647616868	0.576408
+13251	3244	1580237260	0.175024
+3244	36987	1005012609	0.89963
+36987	11706	1439148870	0.936533
+Length of MPSP : 5672015607
+Probability of MPSP : 0.0849991
+Candidate Generation Time : 0.101626 seconds
+Probability Computation Time : 0.000318 seconds
+
+38915	953
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.134509 seconds
+Probability Computation Time : 0 seconds
+
+31413	35638
+Number of Candidate Paths : 1
+31413	25679	1183301134	0.720863
+25679	4738	1664427758	0.427648
+4738	27745	1930683878	0.870318
+27745	35638	1709985138	0.669948
+Length of MPSP : 6488397908
+Probability of MPSP : 0.179746
+Candidate Generation Time : 0.073163 seconds
+Probability Computation Time : 0.000307 seconds
+
+34211	11448
+Number of Candidate Paths : 2
+34211	11224	1193410850	0.794042
+11224	26522	539661668	0.650484
+26522	32291	1824236888	0.749243
+32291	11448	1150727972	0.205342
+Length of MPSP : 4708037378
+Probability of MPSP : 0.0794657
+Candidate Generation Time : 0.279741 seconds
+Probability Computation Time : 0.000618 seconds
+
+12794	20823
+Number of Candidate Paths : 4
+12794	2776	1495250393	0.259203
+2776	22265	122160899	0.19256
+22265	17255	229364784	0.802034
+17255	20823	1252842100	0.729919
+Length of MPSP : 3099618176
+Probability of MPSP : 0.0292196
+Candidate Generation Time : 0.137376 seconds
+Probability Computation Time : 0.006423 seconds
+
+39354	25488
+Number of Candidate Paths : 1
+39354	10979	40368602	0.197943
+10979	9039	1411684706	0.356411
+9039	5493	1223370292	0.851099
+5493	25488	1301844689	0.0734975
+Length of MPSP : 3977268289
+Probability of MPSP : 0.00441311
+Candidate Generation Time : 0.007243 seconds
+Probability Computation Time : 0.000311 seconds
+
+20385	24029
+Number of Candidate Paths : 1
+20385	3256	304747657	0.352333
+3256	31472	1466980064	0.239648
+31472	13365	1257695642	0.178438
+13365	24029	1717840839	0.555702
+Length of MPSP : 4747264202
+Probability of MPSP : 0.00837254
+Candidate Generation Time : 0.026424 seconds
+Probability Computation Time : 0.000313 seconds
+
+754	34413
+Number of Candidate Paths : 1
+754	10145	1008077465	0.849326
+10145	1255	1157098196	0.0990819
+1255	27005	458207145	0.699059
+27005	34413	1659395173	0.512647
+Length of MPSP : 4282777979
+Probability of MPSP : 0.0301579
+Candidate Generation Time : 0.020671 seconds
+Probability Computation Time : 0.000313 seconds
+
+6681	35344
+Number of Candidate Paths : 1
+6681	13209	841348239	0.449897
+13209	8749	631504920	0.227731
+8749	21932	40635397	0.678186
+21932	35344	1379884841	0.923968
+Length of MPSP : 2893373397
+Probability of MPSP : 0.0642011
+Candidate Generation Time : 0.026674 seconds
+Probability Computation Time : 0.000311 seconds
+
+28756	14841
+Number of Candidate Paths : 1
+28756	5800	1524753181	0.835586
+5800	20689	2033149920	0.650826
+20689	9916	1975515225	0.980021
+9916	14841	526320879	0.497478
+Length of MPSP : 6059739205
+Probability of MPSP : 0.265134
+Candidate Generation Time : 0.069675 seconds
+Probability Computation Time : 0.000309 seconds
+
+20013	19857
+Number of Candidate Paths : 1
+20013	22711	2005103896	0.962672
+22711	33156	1185135861	0.163938
+33156	10111	1912608276	0.713336
+10111	19857	411990471	0.938708
+Length of MPSP : 5514838504
+Probability of MPSP : 0.105677
+Candidate Generation Time : 0.092328 seconds
+Probability Computation Time : 0.000308 seconds
+
+38885	34698
+Number of Candidate Paths : 5
+38885	25443	284750903	0.706251
+25443	11049	574525108	0.600835
+11049	22682	1840816147	0.35748
+22682	34698	1541085961	0.832168
+Length of MPSP : 4241178119
+Probability of MPSP : 0.126234
+Candidate Generation Time : 0.312376 seconds
+Probability Computation Time : 0.009497 seconds
+
+21748	18859
+Number of Candidate Paths : 1
+21748	4468	698891081	0.117967
+4468	15752	1772344532	0.680821
+15752	27834	713863830	0.473341
+27834	18859	887616944	0.787898
+Length of MPSP : 4072716387
+Probability of MPSP : 0.0299527
+Candidate Generation Time : 0.044843 seconds
+Probability Computation Time : 0.000306 seconds
+
+11374	35100
+Number of Candidate Paths : 1
+11374	4280	1007479375	0.849618
+4280	5593	1802716402	0.612655
+5593	31747	1898355552	0.680553
+31747	35100	1973904428	0.657365
+Length of MPSP : 6682455757
+Probability of MPSP : 0.232867
+Candidate Generation Time : 0.017425 seconds
+Probability Computation Time : 0.000313 seconds
+
+18327	31596
+Number of Candidate Paths : 1
+18327	7330	1264145944	0.381041
+7330	17425	211630261	0.525284
+17425	17970	631759497	0.665995
+17970	31596	867378393	0.0539871
+Length of MPSP : 2974914095
+Probability of MPSP : 0.0071966
+Candidate Generation Time : 0.004985 seconds
+Probability Computation Time : 0.000336 seconds
+
+31344	31124
+Number of Candidate Paths : 1
+31344	20480	1603478475	0.793808
+20480	16575	731329986	0.988516
+16575	13137	2109956031	0.349994
+13137	31124	88087011	0.600244
+Length of MPSP : 4532851503
+Probability of MPSP : 0.164849
+Candidate Generation Time : 0.185047 seconds
+Probability Computation Time : 0.000311 seconds
+
+19440	28317
+Number of Candidate Paths : 1
+19440	2282	69931586	0.700093
+2282	8917	142503993	0.0424087
+8917	2638	988891366	0.624825
+2638	28317	236628602	0.46597
+Length of MPSP : 1437955547
+Probability of MPSP : 0.00864423
+Candidate Generation Time : 0.003376 seconds
+Probability Computation Time : 0.000306 seconds
+
+18047	4413
+Number of Candidate Paths : 2
+18047	373	1075011641	0.805255
+373	10569	1354877369	0.613462
+10569	25393	1781417953	0.0450139
+25393	4413	700769866	0.958052
+Length of MPSP : 4912076829
+Probability of MPSP : 0.0213038
+Candidate Generation Time : 0.05576 seconds
+Probability Computation Time : 0.000648 seconds
+
+33706	29343
+Number of Candidate Paths : 3
+33706	37293	1555114747	0.166772
+37293	2843	1716304382	0.88453
+2843	29793	1991906140	0.281511
+29793	29343	302857930	0.61605
+Length of MPSP : 5566183199
+Probability of MPSP : 0.0255827
+Candidate Generation Time : 0.096512 seconds
+Probability Computation Time : 0.003661 seconds
+
+18745	9780
+Number of Candidate Paths : 1
+18745	26745	1396813296	0.917189
+26745	33503	24349566	0.933999
+33503	32829	755761233	0.918648
+32829	9780	1958415365	0.933334
+Length of MPSP : 4135339460
+Probability of MPSP : 0.734498
+Candidate Generation Time : 0.048665 seconds
+Probability Computation Time : 0.000307 seconds
+
+37816	2722
+Number of Candidate Paths : 7
+37816	20729	860429558	0.655108
+20729	13373	2053856051	0.294192
+13373	7898	1955103792	0.415372
+7898	2722	793916576	0.423677
+Length of MPSP : 5663305977
+Probability of MPSP : 0.0339169
+Candidate Generation Time : 0.079755 seconds
+Probability Computation Time : 0.015895 seconds
+
+731	3724
+Number of Candidate Paths : 1
+731	11332	139930676	0.211122
+11332	19511	1895436712	0.605138
+19511	17094	1912679127	0.796059
+17094	3724	1907425739	0.88034
+Length of MPSP : 5855472254
+Probability of MPSP : 0.089533
+Candidate Generation Time : 0.037441 seconds
+Probability Computation Time : 0.000306 seconds
+
+15887	37906
+Number of Candidate Paths : 2
+15887	6948	1022346364	0.404409
+6948	25328	451587353	0.847519
+25328	25122	1303196799	0.549419
+25122	37906	404865939	0.462879
+Length of MPSP : 3181996455
+Probability of MPSP : 0.0871648
+Candidate Generation Time : 0.132207 seconds
+Probability Computation Time : 0.000612 seconds
+
+1741	1181
+Number of Candidate Paths : 2
+1741	4513	1355610328	0.70433
+4513	10830	624202309	0.801487
+10830	145	559729868	0.377076
+145	1181	1506585142	0.523031
+Length of MPSP : 4046127647
+Probability of MPSP : 0.111334
+Candidate Generation Time : 0.646887 seconds
+Probability Computation Time : 0.000617 seconds
+
+6398	515
+Number of Candidate Paths : 6
+6398	155	714556819	0.204456
+155	33899	713622839	0.337984
+33899	10740	577544810	0.816372
+10740	515	993633863	0.863852
+Length of MPSP : 2999358331
+Probability of MPSP : 0.048733
+Candidate Generation Time : 0.288031 seconds
+Probability Computation Time : 0.012673 seconds
+
+14893	25826
+Number of Candidate Paths : 1
+14893	10799	2119800720	0.640522
+10799	5720	815952015	0.144401
+5720	34138	173780306	0.577323
+34138	25826	2041094374	0.913482
+Length of MPSP : 5150627415
+Probability of MPSP : 0.0487779
+Candidate Generation Time : 0.010079 seconds
+Probability Computation Time : 0.00031 seconds
+
+1129	33981
+Number of Candidate Paths : 1
+1129	19911	560896977	0.584109
+19911	11985	1611735822	0.0109958
+11985	30316	63964147	0.437224
+30316	33981	741296100	0.58135
+Length of MPSP : 2977893046
+Probability of MPSP : 0.00163254
+Candidate Generation Time : 0.002943 seconds
+Probability Computation Time : 0.000307 seconds
+
+13195	32185
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.00203 seconds
+Probability Computation Time : 0 seconds
+
+14171	18529
+Number of Candidate Paths : 2
+14171	35690	1371754181	0.356731
+35690	4340	1833955212	0.650022
+4340	6158	33792253	0.81149
+6158	18529	201896951	0.438206
+Length of MPSP : 3441398597
+Probability of MPSP : 0.0824573
+Candidate Generation Time : 0.311492 seconds
+Probability Computation Time : 0.000615 seconds
+
+38556	21507
+Number of Candidate Paths : 10
+38556	14362	482385454	0.747804
+14362	30627	1050756064	0.659498
+30627	29188	904985357	0.247313
+29188	21507	336430824	0.0569754
+Length of MPSP : 2774557699
+Probability of MPSP : 0.00694922
+Candidate Generation Time : 1.27632 seconds
+Probability Computation Time : 0.025803 seconds
+
+3289	17210
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.017031 seconds
+Probability Computation Time : 0 seconds
+
+29827	37237
+Number of Candidate Paths : 3
+29827	3608	1698138497	0.910364
+3608	38989	944421603	0.804657
+38989	32804	1339410658	0.640479
+32804	9921	1490995777	0.991594
+9921	6795	1568345846	0.240774
+6795	36512	303978533	0.592937
+36512	26854	933271784	0.996726
+26854	14620	126297559	0.847139
+14620	25636	635658336	0.682642
+25636	34772	38183334	0.772051
+34772	25544	1123598016	0.785695
+25544	10764	1672965940	0.914056
+10764	19017	23682	0.471616
+19017	13578	337491534	0.841129
+13578	21194	784451239	0.455349
+21194	11785	776619709	0.85608
+11785	7729	1535459337	0.513913
+7729	13829	1637482401	0.899743
+13829	28187	2048353397	0.0876583
+28187	39977	1922682085	0.933075
+39977	19025	1550367767	0.73253
+19025	15587	145849692	0.364424
+15587	13940	798793486	0.934363
+13940	39384	2133328752	0.242683
+39384	645	1602493565	0.983192
+645	35427	1524469684	0.955881
+35427	2403	1157793129	0.677677
+2403	21603	679707219	0.454199
+21603	9401	1270510988	0.642463
+9401	38197	1739569978	0.761882
+38197	8213	1374227465	0.971529
+8213	24906	1055535525	0.877799
+24906	17385	748831279	0.441508
+17385	10148	1123422371	0.702194
+10148	17639	1952292411	0.915467
+17639	36621	1376627046	0.779135
+36621	9996	2014507859	0.885984
+9996	37975	1202232347	0.549101
+37975	2337	1535123539	0.952331
+2337	4889	2108330398	0.741513
+4889	325	163626211	0.689026
+325	14858	2064574043	0.68592
+14858	22124	123504342	0.819883
+22124	9233	1938863333	0.207385
+9233	38194	1329136069	0.717724
+38194	27612	227649245	0.947756
+27612	830	707203417	0.314954
+830	33793	954980487	0.798646
+33793	406	499217473	0.33988
+406	39026	291773634	0.451687
+39026	37237	993250609	0.38086
+Length of MPSP : 57305622630
+Probability of MPSP : 5.54178e-11
+Candidate Generation Time : 0.686381 seconds
+Probability Computation Time : 0.00363 seconds
+
+16898	29081
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.018253 seconds
+Probability Computation Time : 0 seconds
+
+11027	14623
+Number of Candidate Paths : 2
+11027	35421	1657777282	0.298763
+35421	22705	799622121	0.381212
+22705	13156	680198052	0.335475
+13156	14623	785455290	0.122689
+Length of MPSP : 3923052745
+Probability of MPSP : 0.0046877
+Candidate Generation Time : 0.044778 seconds
+Probability Computation Time : 0.00062 seconds
+
+10518	14637
+Number of Candidate Paths : 2
+10518	24581	1395273742	0.306895
+24581	2410	571555422	0.560338
+2410	4595	1414954459	0.364001
+4595	14637	885997948	0.00458022
+Length of MPSP : 4267781571
+Probability of MPSP : 0.000286701
+Candidate Generation Time : 0.095883 seconds
+Probability Computation Time : 0.000616 seconds
+
+4559	12705
+Number of Candidate Paths : 4
+4559	8679	1206452664	0.247692
+8679	4511	76298095	0.508247
+4511	10121	1847829320	0.384686
+10121	12705	1884885292	0.334199
+Length of MPSP : 5015465371
+Probability of MPSP : 0.0161845
+Candidate Generation Time : 0.149035 seconds
+Probability Computation Time : 0.00644 seconds
+
+17928	10999
+Number of Candidate Paths : 5
+17928	34116	1226519425	0.558013
+34116	35304	28984720	0.453868
+35304	15612	41075276	0.507671
+15612	10999	191186160	0.913434
+Length of MPSP : 1487765581
+Probability of MPSP : 0.117445
+Candidate Generation Time : 0.143582 seconds
+Probability Computation Time : 0.0095 seconds
+
+38416	7206
+Number of Candidate Paths : 2
+38416	39597	1024390588	0.934237
+39597	12031	2127512012	0.577629
+12031	2040	172511750	0.873788
+2040	7206	413297226	0.235717
+Length of MPSP : 3737711576
+Probability of MPSP : 0.111148
+Candidate Generation Time : 0.496847 seconds
+Probability Computation Time : 0.00062 seconds
+
+29700	11337
+Number of Candidate Paths : 1
+29700	2672	54676418	0.30804
+2672	18232	92855434	0.224043
+18232	13484	1930404338	0.115013
+13484	11337	1779595462	0.188344
+Length of MPSP : 3857531652
+Probability of MPSP : 0.00149499
+Candidate Generation Time : 0.032599 seconds
+Probability Computation Time : 0.000308 seconds
+
+31973	14060
+Number of Candidate Paths : 2
+31973	27658	9600077	0.529288
+27658	12936	739853714	0.459615
+12936	10517	863723363	0.453378
+10517	14060	804902141	0.220862
+Length of MPSP : 2418079295
+Probability of MPSP : 0.0243595
+Candidate Generation Time : 0.190533 seconds
+Probability Computation Time : 0.000616 seconds
+
+13011	22470
+Number of Candidate Paths : 1
+13011	9343	309507101	0.777806
+9343	14494	632845503	0.946661
+14494	10168	481409577	0.029284
+10168	22470	1620122224	0.957362
+Length of MPSP : 3043884405
+Probability of MPSP : 0.020643
+Candidate Generation Time : 0.013708 seconds
+Probability Computation Time : 0.000306 seconds
+
+11079	4735
+Number of Candidate Paths : 1
+11079	7419	919156987	0.71661
+7419	172	2146969530	0.656344
+172	2260	1094337702	0.64809
+2260	4735	2134606675	0.523839
+Length of MPSP : 6295070894
+Probability of MPSP : 0.159679
+Candidate Generation Time : 0.217116 seconds
+Probability Computation Time : 0.000331 seconds
+
+34934	37279
+Number of Candidate Paths : 1
+34934	37873	413309389	0.546048
+37873	9739	1299148014	0.0140871
+9739	22619	1159121180	0.292746
+22619	37279	1313935417	0.789496
+Length of MPSP : 4185514000
+Probability of MPSP : 0.00177784
+Candidate Generation Time : 0.533787 seconds
+Probability Computation Time : 0.00032 seconds
+
+39310	19144
+Number of Candidate Paths : 1
+39310	19589	1542508077	0.547353
+19589	22855	1761987282	0.335493
+22855	3400	905849517	0.0604264
+3400	19144	259599204	0.542314
+Length of MPSP : 4469944080
+Probability of MPSP : 0.00601767
+Candidate Generation Time : 0.008984 seconds
+Probability Computation Time : 0.000306 seconds
+
+34553	21106
+Number of Candidate Paths : 12
+34553	37847	229947469	0.994782
+37847	19417	1217620712	0.61947
+19417	24218	2107052721	0.101745
+24218	21106	233115074	0.178447
+Length of MPSP : 3787735976
+Probability of MPSP : 0.0111884
+Candidate Generation Time : 0.537724 seconds
+Probability Computation Time : 0.032598 seconds
+
+38483	26247
+Number of Candidate Paths : 1
+38483	38063	541382957	0.187647
+38063	10787	1052823412	0.603588
+10787	28011	2075353453	0.752036
+28011	26247	165377951	0.176297
+Length of MPSP : 3834937773
+Probability of MPSP : 0.0150164
+Candidate Generation Time : 0.02929 seconds
+Probability Computation Time : 0.00031 seconds
+
+5105	6146
+Number of Candidate Paths : 4
+5105	18211	501497498	0.887971
+18211	2537	1811990677	0.751532
+2537	10242	327819478	0.0183657
+10242	6146	1512505274	0.956835
+Length of MPSP : 4153812927
+Probability of MPSP : 0.0117271
+Candidate Generation Time : 0.197379 seconds
+Probability Computation Time : 0.006794 seconds
+
+12688	39284
+Number of Candidate Paths : 9
+12688	7215	1364028381	0.715407
+7215	35125	780075509	0.404188
+35125	26630	2133002094	0.385325
+26630	39284	1049060098	0.824992
+Length of MPSP : 5326166082
+Probability of MPSP : 0.0919205
+Candidate Generation Time : 0.756791 seconds
+Probability Computation Time : 0.022445 seconds
+
+20137	10005
+Number of Candidate Paths : 1
+20137	22239	2027264412	0.0644868
+22239	22752	1181539238	0.311019
+22752	28942	1348858964	0.710484
+28942	10005	1155157260	0.0344922
+Length of MPSP : 5712819874
+Probability of MPSP : 0.00049151
+Candidate Generation Time : 0.036986 seconds
+Probability Computation Time : 0.000324 seconds
+
+22756	2394
+Number of Candidate Paths : 5
+22756	17173	771985085	0.82479
+17173	5520	2046676696	0.646661
+5520	30970	193404235	0.910135
+30970	2394	443115132	0.34635
+Length of MPSP : 3455181148
+Probability of MPSP : 0.168128
+Candidate Generation Time : 0.157305 seconds
+Probability Computation Time : 0.009702 seconds
+
+709	31656
+Number of Candidate Paths : 3
+709	20926	104922036	0.48773
+20926	27408	120562621	0.968045
+27408	30511	57116991	0.48773
+30511	31656	303082108	0.425647
+Length of MPSP : 585683756
+Probability of MPSP : 0.0980176
+Candidate Generation Time : 0.490155 seconds
+Probability Computation Time : 0.003591 seconds
+
+13284	1778
+Number of Candidate Paths : 1
+13284	38606	1340444518	0.00480603
+38606	19782	2130259237	0.936494
+19782	37572	776502478	0.412645
+37572	1778	1941655787	0.774854
+Length of MPSP : 6188862020
+Probability of MPSP : 0.00143909
+Candidate Generation Time : 0.004206 seconds
+Probability Computation Time : 0.000311 seconds
+
+3564	10853
+Number of Candidate Paths : 1
+3564	36913	1225218455	0.604389
+36913	39858	361176988	0.87432
+39858	26855	1810939106	0.814187
+26855	10853	368301772	0.389103
+Length of MPSP : 3765636321
+Probability of MPSP : 0.167408
+Candidate Generation Time : 0.223709 seconds
+Probability Computation Time : 0.00031 seconds
+
+20954	2531
+Number of Candidate Paths : 7
+20954	25589	269022092	0.743771
+25589	15152	70528358	0.886691
+15152	38613	493629762	0.153614
+38613	2531	1373465019	0.041179
+Length of MPSP : 2206645231
+Probability of MPSP : 0.00417175
+Candidate Generation Time : 0.233257 seconds
+Probability Computation Time : 0.01608 seconds
+
+28608	458
+Number of Candidate Paths : 2
+28608	37784	235008330	0.631603
+37784	10181	761172897	0.436376
+10181	27314	1712278293	0.0454557
+27314	458	528904065	0.962756
+Length of MPSP : 3237363585
+Probability of MPSP : 0.0120617
+Candidate Generation Time : 0.053763 seconds
+Probability Computation Time : 0.000617 seconds
+
+18531	19929
+Number of Candidate Paths : 3
+18531	3990	1373901575	0.544044
+3990	33157	1824217374	0.163342
+33157	24141	1801314567	0.310777
+24141	19929	1721541541	0.868978
+Length of MPSP : 6720975057
+Probability of MPSP : 0.0239988
+Candidate Generation Time : 0.190307 seconds
+Probability Computation Time : 0.003562 seconds
+
+24002	17061
+Number of Candidate Paths : 2
+24002	31465	2102612047	0.3012
+31465	4604	558110513	0.799779
+4604	22882	1304896662	0.286112
+22882	17061	837885034	0.359577
+Length of MPSP : 4803504256
+Probability of MPSP : 0.024783
+Candidate Generation Time : 0.70208 seconds
+Probability Computation Time : 0.000614 seconds
+
+13604	20487
+Number of Candidate Paths : 3
+13604	32468	1973684256	0.592821
+32468	535	1320881711	0.348289
+535	36309	860629041	0.862576
+36309	20487	523793626	0.407843
+Length of MPSP : 4678988634
+Probability of MPSP : 0.0726364
+Candidate Generation Time : 0.229286 seconds
+Probability Computation Time : 0.003488 seconds
+
+14709	13158
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.001625 seconds
+Probability Computation Time : 0 seconds
+
+38582	26257
+Number of Candidate Paths : 1
+38582	23883	627979634	0.733097
+23883	9596	1464595086	0.644467
+9596	15018	829547654	0.70997
+15018	26257	827091109	0.197341
+Length of MPSP : 3749213483
+Probability of MPSP : 0.0661942
+Candidate Generation Time : 0.03903 seconds
+Probability Computation Time : 0.00031 seconds
+
+9703	20819
+Number of Candidate Paths : 12
+9703	39378	300142911	0.969963
+39378	30194	1244341580	0.819297
+30194	37061	1746080652	0.773412
+37061	20819	891177818	0.283067
+Length of MPSP : 4181742961
+Probability of MPSP : 0.173979
+Candidate Generation Time : 0.382607 seconds
+Probability Computation Time : 0.032567 seconds
+
+13906	14964
+Number of Candidate Paths : 1
+13906	20388	1967006660	0.982281
+20388	2157	1043558684	0.467024
+2157	5663	619224124	0.231997
+5663	14964	483467486	0.218143
+Length of MPSP : 4113256954
+Probability of MPSP : 0.0232166
+Candidate Generation Time : 0.08509 seconds
+Probability Computation Time : 0.000307 seconds
+
+28355	10893
+Number of Candidate Paths : 1
+28355	24004	674131402	0.604855
+24004	7404	1724895690	0.294784
+7404	15871	337521279	0.960959
+15871	10893	1691030411	0.672534
+Length of MPSP : 4427578782
+Probability of MPSP : 0.115232
+Candidate Generation Time : 0.235523 seconds
+Probability Computation Time : 0.000307 seconds
+
+38831	10525
+Number of Candidate Paths : 1
+38831	30992	777761947	0.898336
+30992	15206	3058191	0.424123
+15206	7639	1771916200	0.477536
+7639	10525	1518197567	0.109728
+Length of MPSP : 4070933905
+Probability of MPSP : 0.0199644
+Candidate Generation Time : 0.185321 seconds
+Probability Computation Time : 0.000324 seconds
+
+12227	7321
+Number of Candidate Paths : 1
+12227	21794	16365112	0.899117
+21794	6624	1009597535	0.88113
+6624	12070	328447822	0.613584
+12070	7321	151610113	0.936685
+Length of MPSP : 1506020582
+Probability of MPSP : 0.455327
+Candidate Generation Time : 0.082764 seconds
+Probability Computation Time : 0.000325 seconds
+
+8243	22281
+Number of Candidate Paths : 1
+8243	34147	1673932547	0.0915973
+34147	8098	647174287	0.551406
+8098	35626	890497588	0.986705
+35626	22281	1088858858	0.219293
+Length of MPSP : 4300463280
+Probability of MPSP : 0.0109286
+Candidate Generation Time : 0.058524 seconds
+Probability Computation Time : 0.000307 seconds
+
+29472	35781
+Number of Candidate Paths : 7
+29472	26592	343983733	0.279709
+26592	1451	1551376826	0.744715
+1451	27445	720699500	0.761317
+27445	35781	1541013648	0.888604
+Length of MPSP : 4157073707
+Probability of MPSP : 0.140919
+Candidate Generation Time : 0.161613 seconds
+Probability Computation Time : 0.015955 seconds
+
+33750	4538
+Number of Candidate Paths : 1
+33750	37251	301597033	0.538087
+37251	13255	1563193458	0.928566
+13255	22808	642977234	0.50094
+22808	4538	1365441361	0.62592
+Length of MPSP : 3873209086
+Probability of MPSP : 0.156664
+Candidate Generation Time : 0.106465 seconds
+Probability Computation Time : 0.00031 seconds
+
+1292	2413
+Number of Candidate Paths : 1
+1292	6629	2100061812	0.879157
+6629	13184	1568369385	0.77341
+13184	28400	811921698	0.942162
+28400	2413	1964250081	0.542792
+Length of MPSP : 6444602976
+Probability of MPSP : 0.347725
+Candidate Generation Time : 0.006645 seconds
+Probability Computation Time : 0.000306 seconds
+
+8642	87
+Number of Candidate Paths : 1
+8642	4311	1309502172	0.225233
+4311	3684	121393611	0.520104
+3684	34	248904720	0.113065
+34	87	258236370	0.476434
+Length of MPSP : 1938036873
+Probability of MPSP : 0.00631033
+Candidate Generation Time : 0.046356 seconds
+Probability Computation Time : 0.000312 seconds
+
+32544	15220
+Number of Candidate Paths : 1
+32544	14276	83428481	0.0381835
+14276	35607	367253751	0.115847
+35607	28987	1629009064	0.941338
+28987	15220	1535586869	0.849471
+Length of MPSP : 3615278165
+Probability of MPSP : 0.00353715
+Candidate Generation Time : 0.136022 seconds
+Probability Computation Time : 0.000309 seconds
+
+280	12796
+Number of Candidate Paths : 1
+280	20777	1066443034	0.638059
+20777	8056	826523576	0.743463
+8056	29737	1488799563	0.392883
+29737	12796	1366141623	0.186119
+Length of MPSP : 4747907796
+Probability of MPSP : 0.0346877
+Candidate Generation Time : 0.095679 seconds
+Probability Computation Time : 0.000307 seconds
+
+30490	31334
+Number of Candidate Paths : 1
+30490	27891	224216069	0.226805
+27891	3173	1696818859	0.840881
+3173	35575	1600350127	0.0989069
+35575	31334	665307537	0.56155
+Length of MPSP : 4186692592
+Probability of MPSP : 0.0105926
+Candidate Generation Time : 0.08658 seconds
+Probability Computation Time : 0.000306 seconds
+
+30639	15871
+Number of Candidate Paths : 1
+30639	28355	2146990867	0.85749
+28355	24004	674131402	0.604855
+24004	7404	1724895690	0.294784
+7404	15871	337521279	0.960959
+Length of MPSP : 4883539238
+Probability of MPSP : 0.146923
+Candidate Generation Time : 0.137926 seconds
+Probability Computation Time : 0.000307 seconds
+
+801	29737
+Number of Candidate Paths : 1
+801	22427	1786210942	0.427457
+22427	36784	860750389	0.172608
+36784	8056	2025671430	0.956113
+8056	29737	1488799563	0.392883
+Length of MPSP : 6161432324
+Probability of MPSP : 0.0277157
+Candidate Generation Time : 0.002801 seconds
+Probability Computation Time : 0.000307 seconds
+
+15056	28727
+Number of Candidate Paths : 3
+15056	37357	599399872	0.65262
+37357	18698	1314178692	0.808749
+18698	11111	77396675	0.264695
+11111	28727	1052663923	0.415805
+Length of MPSP : 3043639162
+Probability of MPSP : 0.0580911
+Candidate Generation Time : 0.114683 seconds
+Probability Computation Time : 0.00351 seconds
+
+20972	16060
+Number of Candidate Paths : 1
+20972	21264	884630410	0.96603
+21264	16106	1843214723	0.893932
+16106	11782	768067275	0.575036
+11782	16060	2075691132	0.171049
+Length of MPSP : 5571603540
+Probability of MPSP : 0.0849398
+Candidate Generation Time : 0.144915 seconds
+Probability Computation Time : 0.000307 seconds
+
+13128	1496
+Number of Candidate Paths : 1
+13128	12390	1306154948	0.984945
+12390	27544	64171987	0.899105
+27544	6666	487716071	0.826539
+6666	1496	1592553513	0.850644
+Length of MPSP : 3450596519
+Probability of MPSP : 0.622635
+Candidate Generation Time : 0.089463 seconds
+Probability Computation Time : 0.000307 seconds
+
+10281	22921
+Number of Candidate Paths : 2
+10281	13572	1249144620	0.341362
+13572	29176	1992856066	0.954484
+29176	26238	918639237	0.341393
+26238	22921	123413770	0.304187
+Length of MPSP : 4284053693
+Probability of MPSP : 0.0338361
+Candidate Generation Time : 0.116392 seconds
+Probability Computation Time : 0.000619 seconds
+
+8805	16198
+Number of Candidate Paths : 1
+8805	6950	886322316	0.253056
+6950	1051	1945263	0.0601333
+1051	66	1395872695	0.662471
+66	16198	98886668	0.228488
+Length of MPSP : 2383026942
+Probability of MPSP : 0.00230336
+Candidate Generation Time : 0.011282 seconds
+Probability Computation Time : 0.000307 seconds
+
+8699	7898
+Number of Candidate Paths : 4
+8699	27924	1219723234	0.487928
+27924	37010	1933891075	0.287646
+37010	13373	1346321348	0.259833
+13373	7898	1955103792	0.415372
+Length of MPSP : 6455039449
+Probability of MPSP : 0.0151476
+Candidate Generation Time : 0.271221 seconds
+Probability Computation Time : 0.006443 seconds
+
+9269	20253
+Number of Candidate Paths : 1
+9269	1852	554462343	0.234902
+1852	10458	663792362	0.136495
+10458	15891	1187415091	0.26923
+15891	20253	1704421164	0.896763
+Length of MPSP : 4110090960
+Probability of MPSP : 0.00774114
+Candidate Generation Time : 0.003278 seconds
+Probability Computation Time : 0.000308 seconds
+
+11029	7021
+Number of Candidate Paths : 2
+11029	12091	73074121	0.449598
+12091	9609	319784950	0.900142
+9609	1365	426156709	0.791908
+1365	7021	1381243471	0.244091
+Length of MPSP : 2200259251
+Probability of MPSP : 0.0782279
+Candidate Generation Time : 0.245909 seconds
+Probability Computation Time : 0.000618 seconds
+
+11338	8884
+Number of Candidate Paths : 2
+11338	38530	1756011088	0.816965
+38530	2018	730687317	0.67397
+2018	36305	361083490	0.146558
+36305	8884	295896870	0.406151
+Length of MPSP : 3143678765
+Probability of MPSP : 0.0327749
+Candidate Generation Time : 0.197027 seconds
+Probability Computation Time : 0.000625 seconds
+
+9183	2612
+Number of Candidate Paths : 1
+9183	10639	19914474	0.464245
+10639	6242	1904991423	0.881242
+6242	15785	707764554	0.653177
+15785	2612	2011664740	0.901712
+Length of MPSP : 4644335191
+Probability of MPSP : 0.240958
+Candidate Generation Time : 0.004794 seconds
+Probability Computation Time : 0.00031 seconds
+
+18017	7112
+Number of Candidate Paths : 5
+18017	23317	2096775469	0.873477
+23317	6829	1292591669	0.313268
+6829	17041	17133253	0.654902
+17041	7112	1230094511	0.215652
+Length of MPSP : 4636594902
+Probability of MPSP : 0.0386454
+Candidate Generation Time : 0.117648 seconds
+Probability Computation Time : 0.00958 seconds
+
+Average Length of MPSP for 4 hops : 4493780866
+Average Probability of MPSP for 4 hops : 0.128383
+Average Candidate Generation Time for 4 hops : 0.164392 seconds
+Average Probability Computation Time for 4 hops : 0.00364643 seconds
+
+
+Number of hops = 6
+
+9652	39847
+Number of Candidate Paths : 2
+9652	20735	1413680182	0.374614
+20735	808	1484277838	0.791469
+808	1745	803442245	0.15657
+1745	3051	1754518335	0.86949
+3051	8551	1025283088	0.292139
+8551	39847	689361875	0.324133
+Length of MPSP : 7170563563
+Probability of MPSP : 0.00382212
+Candidate Generation Time : 0.035758 seconds
+Probability Computation Time : 0.000617 seconds
+
+6029	33846
+Number of Candidate Paths : 7
+6029	37462	1425419010	0.733354
+37462	28940	1555786176	0.648216
+28940	29955	2066108500	0.0792303
+29955	12105	1764469299	0.587904
+12105	6839	1686637995	0.870589
+6839	33846	2081843434	0.770236
+Length of MPSP : 10580264414
+Probability of MPSP : 0.014848
+Candidate Generation Time : 0.422066 seconds
+Probability Computation Time : 0.015907 seconds
+
+14920	19345
+Number of Candidate Paths : 7
+14920	36771	33293161	0.91446
+36771	2664	2071431981	0.978562
+2664	33353	110619806	0.515994
+33353	20884	54505722	0.44835
+20884	33723	1698127450	0.787261
+33723	19345	536271018	0.532651
+Length of MPSP : 4504249138
+Probability of MPSP : 0.0868112
+Candidate Generation Time : 0.219073 seconds
+Probability Computation Time : 0.015923 seconds
+
+10875	13060
+Number of Candidate Paths : 9
+10875	29713	1120238194	0.338635
+29713	38991	629189452	0.631494
+38991	2956	620031266	0.806244
+2956	17518	1704413285	0.390438
+17518	7863	1181533228	0.421824
+7863	13060	2147141230	0.985598
+Length of MPSP : 7402546655
+Probability of MPSP : 0.0279866
+Candidate Generation Time : 1.02449 seconds
+Probability Computation Time : 0.022453 seconds
+
+4180	34894
+Number of Candidate Paths : 5
+4180	3974	2077314385	0.887183
+3974	16860	632664939	0.995069
+16860	20611	1282941081	0.0249462
+20611	2501	773442947	0.374298
+2501	15650	2101207859	0.23877
+15650	34894	1079354715	0.690031
+Length of MPSP : 7946925926
+Probability of MPSP : 0.00135812
+Candidate Generation Time : 0.268176 seconds
+Probability Computation Time : 0.010037 seconds
+
+2633	20726
+Number of Candidate Paths : 1
+2633	33247	1204782828	0.64478
+33247	26731	1608684215	0.708591
+26731	22501	1537244374	0.814467
+22501	33865	29965828	0.51627
+33865	9318	81710505	0.447874
+9318	22900	390613029	0.844454
+22900	36741	1159468046	0.773238
+36741	17473	2110383493	0.855051
+17473	23707	1836103330	0.802645
+23707	31661	1522279977	0.640324
+31661	18794	1962543205	0.723856
+18794	19060	1968659833	0.596887
+19060	3538	1581634899	0.51603
+3538	4961	554567825	0.449715
+4961	1706	928367299	0.998756
+1706	741	678423887	0.427614
+741	12854	977647731	0.712614
+12854	37628	1712012812	0.840021
+37628	8602	1571109696	0.597176
+8602	4414	1710858022	0.869386
+4414	33632	1654970242	0.91067
+33632	2823	1576873529	0.163969
+2823	34956	2129842440	0.715766
+34956	9365	792841365	0.369901
+9365	16012	1356332719	0.513435
+16012	966	1008749221	0.624465
+966	35354	62745126	0.716747
+35354	22658	353485016	0.593299
+22658	1273	1344912662	0.678603
+1273	8890	360441319	0.85393
+8890	28300	1124672516	0.934626
+28300	39413	119283880	0.545714
+39413	22931	1720907318	0.835847
+22931	32538	1524130832	0.265954
+32538	30322	1216363548	0.263755
+30322	8477	1903058867	0.218957
+8477	15941	1637453039	0.497585
+15941	251	617416583	0.5784
+251	4727	335471094	0.656417
+4727	20013	1741809542	0.991408
+20013	22711	2005103896	0.962672
+22711	27779	1233694746	0.789628
+27779	35208	1354462257	0.70646
+35208	10386	604289890	0.763154
+10386	18407	1502175067	0.882973
+18407	35726	1794989484	0.696987
+35726	1194	1476169339	0.952444
+1194	12222	1183861661	0.384958
+12222	21689	602599085	0.601822
+21689	20726	405258130	0.318289
+Length of MPSP : 59871425247
+Probability of MPSP : 2.22965e-11
+Candidate Generation Time : 0.175388 seconds
+Probability Computation Time : 0.000318 seconds
+
+28804	20155
+Number of Candidate Paths : 3
+28804	16256	778256490	0.604172
+16256	28475	1169223908	0.0560018
+28475	36789	551814248	0.940036
+36789	11952	761064710	0.481149
+11952	4245	2064657500	0.0709277
+4245	20155	395412256	0.878235
+Length of MPSP : 5720429112
+Probability of MPSP : 0.000953263
+Candidate Generation Time : 0.486476 seconds
+Probability Computation Time : 0.003561 seconds
+
+21461	32120
+Number of Candidate Paths : 2
+21461	33287	1198632875	0.17575
+33287	1682	1588969375	0.220963
+1682	15757	1651320261	0.192992
+15757	11279	1685873787	0.502926
+11279	26359	20860626	0.567535
+26359	32120	1724312257	0.595992
+Length of MPSP : 7869969181
+Probability of MPSP : 0.00127494
+Candidate Generation Time : 0.059587 seconds
+Probability Computation Time : 0.000648 seconds
+
+9873	14489
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.028685 seconds
+Probability Computation Time : 0 seconds
+
+4949	4943
+Number of Candidate Paths : 1
+4949	33681	979732063	0.881584
+33681	26884	1420949359	0.81777
+26884	34189	1239846153	0.301103
+34189	12543	296774534	0.0650325
+12543	33675	1665601393	0.0604245
+33675	4943	1817049993	0.718769
+Length of MPSP : 7419953495
+Probability of MPSP : 0.000613118
+Candidate Generation Time : 0.145839 seconds
+Probability Computation Time : 0.000319 seconds
+
+36740	17778
+Number of Candidate Paths : 1
+36740	21611	1713157571	0.46259
+21611	31811	797809886	0.0419021
+31811	13840	852907368	0.158718
+13840	9618	716348970	0.296703
+9618	11840	860767253	0.723915
+11840	16626	2104145490	0.837194
+16626	12088	543029092	0.81144
+12088	30124	1117440041	0.733595
+30124	19180	1165685777	0.92129
+19180	13570	547791390	0.912054
+13570	7217	110659656	0.791249
+7217	32197	719457231	0.569913
+32197	1320	456326948	0.730721
+1320	32617	643344824	0.735551
+32617	1736	1420028207	0.471465
+1736	25535	425860429	0.375863
+25535	12156	1462146248	0.389492
+12156	23205	1602632012	0.460704
+23205	38636	2033886209	0.888134
+38636	38273	1800724364	0.975396
+38273	20672	154005788	0.892828
+20672	37863	339709235	0.788676
+37863	27339	682522675	0.9056
+27339	20605	1701719815	0.862435
+20605	19509	865969757	0.778126
+19509	35769	1416746680	0.752534
+35769	31387	1971763568	0.935188
+31387	18751	1998648630	0.545411
+18751	34319	1674611477	0.458806
+34319	30749	1731671395	0.913992
+30749	1840	607675808	0.848649
+1840	35154	1686173473	0.902641
+35154	29814	1593003239	0.269332
+29814	7451	1396527402	0.342758
+7451	36950	890097405	0.138341
+36950	6395	1697130599	0.464226
+6395	20832	765195234	0.760138
+20832	9841	1038656573	0.374543
+9841	24524	146259505	0.82087
+24524	33529	1919835305	0.868501
+33529	38282	1511215578	0.373909
+38282	8785	1697210470	0.956366
+8785	7241	1479674951	0.825097
+7241	17778	760306586	0.492356
+Length of MPSP : 50820480114
+Probability of MPSP : 1.70403e-11
+Candidate Generation Time : 0.027533 seconds
+Probability Computation Time : 0.000318 seconds
+
+2870	31060
+Number of Candidate Paths : 4
+2870	5634	731264064	0.974634
+5634	33693	979104788	0.161179
+33693	21452	189402103	0.679306
+21452	2700	2044252363	0.468136
+2700	4807	2113171464	0.0145816
+4807	31060	1039162982	0.283043
+Length of MPSP : 7096357764
+Probability of MPSP : 0.00020618
+Candidate Generation Time : 0.064525 seconds
+Probability Computation Time : 0.006461 seconds
+
+8206	18882
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.002652 seconds
+Probability Computation Time : 0 seconds
+
+33964	23828
+Number of Candidate Paths : 2
+33964	8070	1591112053	0.204996
+8070	6688	2135118250	0.943575
+6688	19436	666384711	0.703401
+19436	31604	565944274	0.980807
+31604	36206	1902597079	0.93095
+36206	23828	934028965	0.976322
+Length of MPSP : 7795185332
+Probability of MPSP : 0.121291
+Candidate Generation Time : 0.049654 seconds
+Probability Computation Time : 0.000613 seconds
+
+20649	6983
+Number of Candidate Paths : 6
+20649	22393	1993265129	0.997956
+22393	36460	1636282084	0.87039
+36460	34060	1197810886	0.435921
+34060	31913	1939070166	0.718309
+31913	18848	734993743	0.344281
+18848	33331	698773698	0.867446
+33331	22613	1706145194	0.607086
+22613	3409	140542431	0.748367
+3409	26718	84126787	0.108234
+26718	6983	21129666	0.477893
+Length of MPSP : 10152139784
+Probability of MPSP : 0.00190879
+Candidate Generation Time : 1.25696 seconds
+Probability Computation Time : 0.012688 seconds
+
+8479	21021
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.008823 seconds
+Probability Computation Time : 0 seconds
+
+373	4924
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.04554 seconds
+Probability Computation Time : 0 seconds
+
+8675	26456
+Number of Candidate Paths : 8
+8675	566	145350793	0.745951
+566	6011	437133616	0.667629
+6011	19939	231293517	0.993014
+19939	3241	755804567	0.997817
+3241	17534	308635306	0.851725
+17534	23371	1822096064	0.915086
+23371	23853	1957572733	0.743292
+23853	1996	2083886550	0.946641
+1996	13607	869622070	0.894623
+13607	27214	358684944	0.8337
+27214	33237	182367451	0.40784
+33237	17085	2070053111	0.950397
+17085	9513	1800300331	0.861014
+9513	28801	1583035076	0.450872
+28801	39778	1391732879	0.380786
+39778	13135	1347418714	0.446409
+13135	1853	1033095150	0.860199
+1853	26103	1976652789	0.328448
+26103	326	108994626	0.3463
+326	8160	947355117	0.804582
+8160	26456	1731466757	0.28698
+Length of MPSP : 23142552161
+Probability of MPSP : 0.000116633
+Candidate Generation Time : 0.899664 seconds
+Probability Computation Time : 0.019165 seconds
+
+24414	17774
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.001386 seconds
+Probability Computation Time : 0 seconds
+
+8444	2350
+Number of Candidate Paths : 4
+8444	23869	397722639	0.280184
+23869	10302	1735639755	0.0666402
+10302	26507	1471731696	0.243115
+26507	37396	1501591438	0.0533184
+37396	30482	246073332	0.358754
+30482	2350	315724499	0.961294
+Length of MPSP : 5668483359
+Probability of MPSP : 8.34682e-05
+Candidate Generation Time : 0.28129 seconds
+Probability Computation Time : 0.006535 seconds
+
+14139	15564
+Number of Candidate Paths : 3
+14139	4837	964021260	0.797558
+4837	9909	782736390	0.54939
+9909	35093	1172831252	0.670702
+35093	17437	1592907474	0.799554
+17437	14317	1634529383	0.911013
+14317	6573	945468891	0.917203
+6573	32290	1301919300	0.721753
+32290	18560	637166782	0.819911
+18560	15737	2021510971	0.481442
+15737	27933	481331206	0.870697
+27933	3065	1826380085	0.30198
+3065	14225	1311824123	0.519405
+14225	31137	1271998883	0.565396
+31137	29616	1786523695	0.877978
+29616	10965	1504739747	0.487635
+10965	36896	512337462	0.64074
+36896	1617	1728563349	0.79723
+1617	37549	1310329140	0.708181
+37549	3482	1088969014	0.376718
+3482	3182	557657823	0.350487
+3182	15420	140316917	0.467731
+15420	38197	43788878	0.385066
+38197	15564	1075538101	0.477089
+Length of MPSP : 25693390126
+Probability of MPSP : 7.58968e-06
+Candidate Generation Time : 0.139891 seconds
+Probability Computation Time : 0.003554 seconds
+
+28760	10692
+Number of Candidate Paths : 2
+28760	9522	1500574017	0.237476
+9522	11080	901359052	0.313168
+11080	28997	1312267501	0.975115
+28997	15337	1907279770	0.35406
+15337	16176	51111906	0.882212
+16176	10692	1024014929	0.179615
+Length of MPSP : 6696607175
+Probability of MPSP : 0.0040686
+Candidate Generation Time : 0.337542 seconds
+Probability Computation Time : 0.000613 seconds
+
+7618	23302
+Number of Candidate Paths : 3
+7618	15466	252768669	0.985159
+15466	29976	1304582386	0.529674
+29976	28416	1176288049	0.464367
+28416	15580	2114435751	0.789073
+15580	28023	573756875	0.805229
+28023	23302	736847722	0.308661
+Length of MPSP : 6158679452
+Probability of MPSP : 0.0475219
+Candidate Generation Time : 0.143226 seconds
+Probability Computation Time : 0.003583 seconds
+
+23896	5564
+Number of Candidate Paths : 8
+23896	1309	771305751	0.527405
+1309	2179	141902968	0.571236
+2179	20491	815499960	0.130406
+20491	4748	2001371931	0.90613
+4748	6527	298847497	0.79591
+6527	5564	46138776	0.423298
+Length of MPSP : 4075066883
+Probability of MPSP : 0.0119939
+Candidate Generation Time : 0.220253 seconds
+Probability Computation Time : 0.01913 seconds
+
+37655	13412
+Number of Candidate Paths : 12
+37655	723	1948605258	0.706101
+723	19554	1349349855	0.950048
+19554	26000	840195058	0.875742
+26000	4285	1653705115	0.936211
+4285	29074	1373042894	0.862343
+29074	22801	1655650028	0.465672
+22801	15078	1942992725	0.466017
+15078	11097	150552293	0.635417
+11097	5984	1262213510	0.714923
+5984	13074	584010490	0.884267
+13074	9408	2024647442	0.445954
+9408	35292	1058340898	0.946837
+35292	26685	331871433	0.901995
+26685	11760	877661187	0.632207
+11760	38669	1505656916	0.957308
+38669	16739	184419992	0.66277
+16739	20289	1882458414	0.362501
+20289	1350	1428157049	0.669592
+1350	7279	1285283292	0.173372
+7279	23570	162859579	0.860329
+23570	30774	225668005	0.839375
+30774	13412	441681607	0.695122
+Length of MPSP : 24169023040
+Probability of MPSP : 0.000133429
+Candidate Generation Time : 0.777543 seconds
+Probability Computation Time : 0.032563 seconds
+
+22491	9991
+Number of Candidate Paths : 1
+22491	1094	919115991	0.632425
+1094	3051	318860695	0.914801
+3051	8551	1025283088	0.292139
+8551	39847	689361875	0.324133
+39847	8669	1024542334	0.740115
+8669	9991	1426767654	0.5428
+Length of MPSP : 5403931637
+Probability of MPSP : 0.0220083
+Candidate Generation Time : 0.175833 seconds
+Probability Computation Time : 0.000318 seconds
+
+7167	10882
+Number of Candidate Paths : 1
+7167	6875	418740694	0.0460387
+6875	33354	1516311824	0.73181
+33354	18537	183979918	0.171949
+18537	28401	249504780	0.666251
+28401	38748	1291417162	0.824076
+38748	10882	1485787027	0.112985
+Length of MPSP : 5145741405
+Probability of MPSP : 0.000359375
+Candidate Generation Time : 0.004017 seconds
+Probability Computation Time : 0.000307 seconds
+
+17672	36068
+Number of Candidate Paths : 3
+17672	27011	571759979	0.106627
+27011	37122	847517692	0.804519
+37122	36459	1049301640	0.936714
+36459	15250	1717905095	0.785635
+15250	3230	775697428	0.700954
+3230	36068	320562610	0.568373
+Length of MPSP : 5282744444
+Probability of MPSP : 0.0251509
+Candidate Generation Time : 0.197604 seconds
+Probability Computation Time : 0.003494 seconds
+
+19287	7582
+Number of Candidate Paths : 1
+19287	36457	2118016988	0.961065
+36457	4141	1689273170	0.10085
+4141	26000	1830372724	0.374203
+26000	4285	1653705115	0.936211
+4285	29074	1373042894	0.862343
+29074	22801	1655650028	0.465672
+22801	15078	1942992725	0.466017
+15078	7280	152049912	0.642705
+7280	2532	815394474	0.677364
+2532	38709	1854725135	0.694401
+38709	3471	792613755	0.891497
+3471	17621	773690640	0.0785906
+17621	7582	1343486643	0.523368
+Length of MPSP : 17995014203
+Probability of MPSP : 7.04394e-05
+Candidate Generation Time : 0.269245 seconds
+Probability Computation Time : 0.000317 seconds
+
+2134	24239
+Number of Candidate Paths : 3
+2134	2858	705357741	0.601727
+2858	36344	2071177220	0.672724
+36344	29651	1382238464	0.803524
+29651	10809	820256511	0.146198
+10809	4794	1186514059	0.834173
+4794	24239	926049364	0.440371
+Length of MPSP : 7091593359
+Probability of MPSP : 0.0174683
+Candidate Generation Time : 0.211263 seconds
+Probability Computation Time : 0.003562 seconds
+
+4408	15019
+Number of Candidate Paths : 3
+4408	15367	1735997553	0.63649
+15367	22626	619034662	0.673968
+22626	16398	521000000	0.111348
+16398	38139	1893004415	0.910963
+38139	27732	1495305968	0.157362
+27732	15019	311888137	0.72706
+Length of MPSP : 6576230735
+Probability of MPSP : 0.00497834
+Candidate Generation Time : 0.252347 seconds
+Probability Computation Time : 0.003495 seconds
+
+31369	25717
+Number of Candidate Paths : 1
+31369	18390	1134036095	0.214365
+18390	599	1891194477	0.330724
+599	10509	616749738	0.646829
+10509	21680	2034566881	0.792347
+21680	23279	504333681	0.0776256
+23279	25717	1653074082	0.1755
+Length of MPSP : 7833954954
+Probability of MPSP : 0.000495001
+Candidate Generation Time : 0.807029 seconds
+Probability Computation Time : 0.000311 seconds
+
+25954	25351
+Number of Candidate Paths : 1
+25954	26412	595235231	0.830233
+26412	23826	1192333406	0.629565
+23826	29928	901356464	0.810262
+29928	31380	1977301718	0.295174
+31380	18148	1061080933	0.458222
+18148	25351	848689818	0.51327
+Length of MPSP : 6575997570
+Probability of MPSP : 0.0294012
+Candidate Generation Time : 0.154101 seconds
+Probability Computation Time : 0.000309 seconds
+
+1068	19322
+Number of Candidate Paths : 7
+1068	38095	1375846631	0.939775
+38095	25706	1264913890	0.968649
+25706	23780	1322659023	0.980016
+23780	4712	296993282	0.832336
+4712	8830	1557567900	0.75259
+8830	27059	48666117	0.793519
+27059	14553	820922731	0.986131
+14553	26661	56105360	0.2918
+26661	39063	239339791	0.894193
+39063	3102	1151311910	0.817301
+3102	1932	1967603847	0.276717
+1932	17482	2082000215	0.968298
+17482	27151	1315265811	0.910889
+27151	35926	321580670	0.330739
+35926	32585	1745051292	0.573503
+32585	13526	1780963234	0.72689
+13526	18063	258941665	0.865929
+18063	27509	450174265	0.866755
+27509	18124	865470094	0.92956
+18124	31700	214651036	0.898923
+31700	19322	352266956	0.559602
+Length of MPSP : 19488295720
+Probability of MPSP : 0.00110136
+Candidate Generation Time : 0.430289 seconds
+Probability Computation Time : 0.016071 seconds
+
+16284	4934
+Number of Candidate Paths : 2
+16284	27601	1332065144	0.34372
+27601	13428	1395360314	0.65201
+13428	15665	1232048983	0.479562
+15665	26736	2132608917	0.720193
+26736	845	1742684691	0.369232
+845	4934	2054591647	0.702007
+Length of MPSP : 9889359696
+Probability of MPSP : 0.0200629
+Candidate Generation Time : 0.237995 seconds
+Probability Computation Time : 0.000617 seconds
+
+16934	19931
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.047579 seconds
+Probability Computation Time : 0 seconds
+
+1206	22746
+Number of Candidate Paths : 1
+1206	35518	617980018	0.821766
+35518	25737	1075118447	0.408649
+25737	10178	1353973770	0.193147
+10178	10279	1809222797	0.221165
+10279	17009	1527287051	0.699353
+17009	22746	1648380938	0.344763
+Length of MPSP : 8031963021
+Probability of MPSP : 0.00345875
+Candidate Generation Time : 0.15177 seconds
+Probability Computation Time : 0.000322 seconds
+
+35737	14246
+Number of Candidate Paths : 2
+35737	31418	408879986	0.254915
+31418	1536	1234505307	0.635025
+1536	12615	1211344089	0.846299
+12615	14617	163198723	0.27539
+14617	28743	948449584	0.340098
+28743	14246	661661217	0.884298
+Length of MPSP : 4628038906
+Probability of MPSP : 0.0113465
+Candidate Generation Time : 0.05816 seconds
+Probability Computation Time : 0.000618 seconds
+
+24398	37867
+Number of Candidate Paths : 1
+24398	11404	278797510	0.786233
+11404	20388	1204358159	0.683115
+20388	2157	1043558684	0.467024
+2157	5663	619224124	0.231997
+5663	14964	483467486	0.218143
+14964	37867	369155041	0.680555
+Length of MPSP : 3998561004
+Probability of MPSP : 0.00863917
+Candidate Generation Time : 0.052305 seconds
+Probability Computation Time : 0.000306 seconds
+
+36399	26306
+Number of Candidate Paths : 1
+36399	4274	1968372034	0.320802
+4274	22481	930118889	0.158082
+22481	6638	372561700	0.55341
+6638	24925	620587545	0.213816
+24925	8097	2051352191	0.736097
+8097	26306	1403775797	0.344134
+Length of MPSP : 7346768156
+Probability of MPSP : 0.00152009
+Candidate Generation Time : 0.073851 seconds
+Probability Computation Time : 0.000308 seconds
+
+5762	12674
+Number of Candidate Paths : 2
+5762	24956	1971840138	0.362912
+24956	36849	825167267	0.164428
+36849	39877	1171298970	0.591483
+39877	35094	26328780	0.225108
+35094	12384	1486562566	0.688142
+12384	12674	96025232	0.313894
+Length of MPSP : 5577222953
+Probability of MPSP : 0.00171622
+Candidate Generation Time : 0.253387 seconds
+Probability Computation Time : 0.000619 seconds
+
+19557	27099
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.009062 seconds
+Probability Computation Time : 0 seconds
+
+22170	39871
+Number of Candidate Paths : 1
+22170	15770	881052312	0.0708686
+15770	37469	1860099337	0.900248
+37469	32228	1223931344	0.282856
+32228	7400	531926536	0.665214
+7400	14552	1002625008	0.317732
+14552	39871	646528167	0.344816
+Length of MPSP : 6146162704
+Probability of MPSP : 0.0013152
+Candidate Generation Time : 0.015132 seconds
+Probability Computation Time : 0.000306 seconds
+
+14687	23333
+Number of Candidate Paths : 4
+14687	31613	571395012	0.999675
+31613	6737	1956377817	0.351222
+6737	18648	219815147	0.816397
+18648	17382	1423383108	0.80095
+17382	6310	206460192	0.100284
+6310	12238	447747147	0.85262
+12238	34846	742103541	0.696682
+34846	31906	203139341	0.928472
+31906	13251	1647616868	0.576408
+13251	12576	350762163	0.445711
+12576	25970	2090569535	0.623745
+25970	28534	609977105	0.431379
+28534	29995	721138642	0.513861
+29995	35705	1043972025	0.455194
+35705	12324	1130296940	0.685284
+12324	14193	163867545	0.667458
+14193	3183	1074528360	0.636721
+3183	12762	1501590658	0.206926
+12762	35760	2112593539	0.957126
+35760	1974	1253506946	0.986719
+1974	29290	115846718	0.741222
+29290	25545	656268596	0.530739
+25545	39853	2089147812	0.840518
+39853	9634	1445721746	0.633639
+9634	22845	775327302	0.359719
+22845	18400	1338329428	0.968596
+18400	39804	1487814715	0.828186
+39804	11968	1445488919	0.723109
+11968	34907	595152438	0.631763
+34907	12467	464764011	0.744256
+12467	3285	248619281	0.584363
+3285	37712	121721048	0.233228
+37712	34264	1237436639	0.402693
+34264	14269	1200272695	0.335579
+14269	21466	107593896	0.914117
+21466	34634	894591402	0.703089
+34634	31689	1868620389	0.398664
+31689	31001	93883486	0.855848
+31001	23333	116081505	0.697883
+Length of MPSP : 35773523657
+Probability of MPSP : 6.77035e-10
+Candidate Generation Time : 0.393618 seconds
+Probability Computation Time : 0.006485 seconds
+
+12146	3321
+Number of Candidate Paths : 4
+12146	7164	1558713495	0.947525
+7164	27272	1693752636	0.629487
+27272	24454	879380890	0.808059
+24454	30871	974401305	0.32834
+30871	32295	1022362282	0.804379
+32295	3321	21264033	0.147943
+Length of MPSP : 6149874641
+Probability of MPSP : 0.0188322
+Candidate Generation Time : 0.345258 seconds
+Probability Computation Time : 0.006498 seconds
+
+6300	27408
+Number of Candidate Paths : 1
+6300	15704	867840208	0.444432
+15704	19113	2143880424	0.510873
+19113	31522	1981919337	0.795744
+31522	709	517215375	0.89506
+709	20926	104922036	0.48773
+20926	27408	120562621	0.968045
+Length of MPSP : 5736340001
+Probability of MPSP : 0.0763518
+Candidate Generation Time : 0.044815 seconds
+Probability Computation Time : 0.000307 seconds
+
+39150	35747
+Number of Candidate Paths : 10
+39150	25575	227006522	0.911546
+25575	6635	1194180916	0.532984
+6635	39761	1241741115	0.36052
+39761	22742	944334306	0.677425
+22742	2959	1016498729	0.608151
+2959	35747	196015670	0.0738783
+Length of MPSP : 4819777258
+Probability of MPSP : 0.00533105
+Candidate Generation Time : 0.286041 seconds
+Probability Computation Time : 0.02581 seconds
+
+27519	33040
+Number of Candidate Paths : 3
+27519	9941	81091106	0.468663
+9941	1535	63554358	0.548362
+1535	5370	1135099662	0.165617
+5370	28689	410795353	0.741841
+28689	32863	698558640	0.243434
+32863	33040	2101169527	0.0880808
+Length of MPSP : 4490268646
+Probability of MPSP : 0.000677028
+Candidate Generation Time : 0.289438 seconds
+Probability Computation Time : 0.003499 seconds
+
+26962	5494
+Number of Candidate Paths : 1
+26962	30498	1722747340	0.256962
+30498	22630	937812447	0.167382
+22630	6078	1575256617	0.271442
+6078	32303	877754209	0.753023
+32303	35376	160617588	0.182792
+35376	5494	711197904	0.63841
+Length of MPSP : 5985386105
+Probability of MPSP : 0.00102593
+Candidate Generation Time : 0.059913 seconds
+Probability Computation Time : 0.000312 seconds
+
+2819	36413
+Number of Candidate Paths : 1
+2819	2937	1490629926	0.67655
+2937	29371	2083312254	0.199982
+29371	287	1729042259	0.741769
+287	23730	1360742780	0.0886453
+23730	31619	334238667	0.57565
+31619	36413	1689603039	0.461714
+Length of MPSP : 8687568925
+Probability of MPSP : 0.00236454
+Candidate Generation Time : 0.041357 seconds
+Probability Computation Time : 0.000307 seconds
+
+24156	14505
+Number of Candidate Paths : 3
+24156	958	658511373	0.356893
+958	32376	2129895411	0.451437
+32376	29772	35233316	0.482301
+29772	20789	962459073	0.943228
+20789	29826	826923470	0.270268
+29826	14505	847302289	0.628438
+Length of MPSP : 5460324932
+Probability of MPSP : 0.0124488
+Candidate Generation Time : 0.18397 seconds
+Probability Computation Time : 0.00366 seconds
+
+19599	3044
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.075835 seconds
+Probability Computation Time : 0 seconds
+
+35552	3213
+Number of Candidate Paths : 12
+35552	24134	899946203	0.724746
+24134	26120	2056754271	0.34217
+26120	13602	429783069	0.956047
+13602	8935	1592951004	0.403138
+8935	39967	1873997217	0.712872
+39967	23274	1555132729	0.537046
+23274	25850	974876912	0.404739
+25850	202	786477021	0.760287
+202	17774	339615984	0.725849
+17774	2975	1325300762	0.690717
+2975	8314	1184733371	0.194359
+8314	38677	1003911836	0.965044
+38677	37303	936056482	0.816979
+37303	29702	73147370	0.876789
+29702	27342	455274078	0.663052
+27342	3036	574794862	0.967511
+3036	13312	1549108265	0.582954
+13312	3213	858290611	0.947972
+Length of MPSP : 18470152047
+Probability of MPSP : 0.000268889
+Candidate Generation Time : 0.421475 seconds
+Probability Computation Time : 0.032892 seconds
+
+35494	37472
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.032624 seconds
+Probability Computation Time : 0 seconds
+
+32316	22530
+Number of Candidate Paths : 3
+32316	17866	1479383146	0.38696
+17866	13084	199453601	0.683758
+13084	17082	1715190913	0.576278
+17082	10538	316763135	0.357358
+10538	29768	572190550	0.532146
+29768	22530	1922221240	0.982659
+Length of MPSP : 6205202585
+Probability of MPSP : 0.028493
+Candidate Generation Time : 0.227519 seconds
+Probability Computation Time : 0.003551 seconds
+
+5400	34006
+Number of Candidate Paths : 5
+5400	19813	244221171	0.670539
+19813	39388	944099852	0.902643
+39388	17689	265580777	0.430402
+17689	29599	624764390	0.168412
+29599	4668	157037074	0.267849
+4668	35190	365767006	0.175655
+35190	18148	1036410859	0.87406
+18148	25351	848689818	0.51327
+25351	33537	1980276724	0.909279
+33537	34006	195074041	0.602179
+Length of MPSP : 6661921712
+Probability of MPSP : 0.000507043
+Candidate Generation Time : 0.444334 seconds
+Probability Computation Time : 0.009568 seconds
+
+11657	39849
+Number of Candidate Paths : 3
+11657	7609	578955383	0.845581
+7609	4775	2059418308	0.0896986
+4775	25435	1425849648	0.938582
+25435	8549	1178000997	0.1114
+8549	12277	1738417557	0.261409
+12277	39849	236025707	0.692117
+Length of MPSP : 7216667600
+Probability of MPSP : 0.00143482
+Candidate Generation Time : 0.270707 seconds
+Probability Computation Time : 0.003548 seconds
+
+9935	1181
+Number of Candidate Paths : 3
+9935	31934	1962649279	0.340419
+31934	38257	954166833	0.256983
+38257	33477	1267698284	0.775467
+33477	35582	1767670048	0.679974
+35582	145	1030569734	0.216499
+145	1181	1506585142	0.523031
+Length of MPSP : 8489339320
+Probability of MPSP : 0.00522346
+Candidate Generation Time : 0.467676 seconds
+Probability Computation Time : 0.003554 seconds
+
+20402	9122
+Number of Candidate Paths : 3
+20402	14733	1416197368	0.864693
+14733	32252	1591539100	0.628087
+32252	38042	1998254946	0.486165
+38042	5381	1822522828	0.567602
+5381	33980	516598298	0.853635
+33980	9122	1355797263	0.0201613
+Length of MPSP : 8700909803
+Probability of MPSP : 0.00257929
+Candidate Generation Time : 0.871094 seconds
+Probability Computation Time : 0.003499 seconds
+
+27839	35258
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.0185 seconds
+Probability Computation Time : 0 seconds
+
+37882	17287
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.006043 seconds
+Probability Computation Time : 0 seconds
+
+26788	37061
+Number of Candidate Paths : 1
+26788	10510	978816745	0.870076
+10510	10610	1616736018	0.107556
+10610	15754	867856787	0.760744
+15754	1694	1937455393	0.968392
+1694	30194	770360340	0.584632
+30194	37061	1746080652	0.773412
+Length of MPSP : 7917305935
+Probability of MPSP : 0.0311728
+Candidate Generation Time : 0.011624 seconds
+Probability Computation Time : 0.000307 seconds
+
+7938	17089
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.050433 seconds
+Probability Computation Time : 0 seconds
+
+9644	39117
+Number of Candidate Paths : 6
+9644	24434	1755990302	0.621708
+24434	36953	909330265	0.666222
+36953	37566	313788182	0.351587
+37566	23277	1802415688	0.221552
+23277	18376	1730110694	0.647288
+18376	39117	1572947538	0.274643
+Length of MPSP : 8084582669
+Probability of MPSP : 0.00573561
+Candidate Generation Time : 0.580099 seconds
+Probability Computation Time : 0.012664 seconds
+
+33807	366
+Number of Candidate Paths : 1
+33807	1512	340795513	0.844223
+1512	39109	682981169	0.0684142
+39109	27089	687515548	0.514429
+27089	21290	1935856613	0.820778
+21290	25819	1262977603	0.864189
+25819	366	1583062884	0.252309
+Length of MPSP : 6493189330
+Probability of MPSP : 0.00531736
+Candidate Generation Time : 0.003522 seconds
+Probability Computation Time : 0.000332 seconds
+
+32253	35049
+Number of Candidate Paths : 1
+32253	5684	1415227931	0.0146108
+5684	29532	1417537021	0.283459
+29532	26717	449317684	0.193319
+26717	10617	1363356629	0.712652
+10617	39006	1663662961	0.810972
+39006	35049	813708974	0.934127
+Length of MPSP : 7122811200
+Probability of MPSP : 0.000432244
+Candidate Generation Time : 0.001409 seconds
+Probability Computation Time : 0.000306 seconds
+
+23610	1720
+Number of Candidate Paths : 1
+23610	38090	1907263810	0.619762
+38090	2130	1995367863	0.583599
+2130	28304	1703603741	0.539885
+28304	37890	984722398	0.638581
+37890	22015	1238344792	0.167427
+22015	1720	669803609	0.506201
+Length of MPSP : 8499106213
+Probability of MPSP : 0.0105683
+Candidate Generation Time : 0.173849 seconds
+Probability Computation Time : 0.000307 seconds
+
+35596	6257
+Number of Candidate Paths : 3
+35596	3796	1389397359	0.781797
+3796	5129	1719548267	0.232935
+5129	16181	1294759364	0.857007
+16181	11248	90817463	0.446458
+11248	35586	432771310	0.644862
+35586	6257	229802990	0.611474
+Length of MPSP : 5157096753
+Probability of MPSP : 0.027475
+Candidate Generation Time : 0.204795 seconds
+Probability Computation Time : 0.003521 seconds
+
+24050	10078
+Number of Candidate Paths : 4
+24050	33165	708972592	0.263965
+33165	33707	1617440437	0.887325
+33707	28069	1990658577	0.526952
+28069	38316	555848076	0.499098
+38316	10285	737518015	0.953978
+10285	13852	1834101198	0.738271
+13852	23005	310654343	0.186489
+23005	23758	113267875	0.596832
+23758	10079	707700710	0.908448
+10079	39329	1668084236	0.499388
+39329	4790	1727100046	0.521722
+4790	33366	147060167	0.782012
+33366	434	812842738	0.930665
+434	17574	1930751583	0.941315
+17574	8444	477218508	0.28135
+8444	23869	397722639	0.280184
+23869	11736	714544423	0.74153
+11736	5758	1657266756	0.256852
+5758	17520	1493558181	0.68757
+17520	33258	1764693916	0.569412
+33258	37251	197650259	0.366771
+37251	22406	1886984428	0.27802
+22406	12305	325109190	0.800485
+12305	14179	393342186	0.850188
+14179	37348	458778276	0.0672371
+37348	10078	1047314893	0.967665
+Length of MPSP : 25676184248
+Probability of MPSP : 2.07817e-08
+Candidate Generation Time : 0.201746 seconds
+Probability Computation Time : 0.006584 seconds
+
+34606	34100
+Number of Candidate Paths : 1
+34606	2227	2140426958	0.357243
+2227	38783	301375709	0.115681
+38783	3437	459650364	0.487816
+3437	5596	996849089	0.446658
+5596	33142	473470442	0.405342
+33142	34100	1917935395	0.697879
+Length of MPSP : 6289707957
+Probability of MPSP : 0.00254718
+Candidate Generation Time : 0.090167 seconds
+Probability Computation Time : 0.000316 seconds
+
+17961	24001
+Number of Candidate Paths : 2
+17961	17077	1820616014	0.445593
+17077	23053	159620685	0.812316
+23053	32293	1141524733	0.415876
+32293	23306	1417346848	0.154045
+23306	33606	1887973169	0.597767
+33606	24001	1968539500	0.388822
+Length of MPSP : 8395620949
+Probability of MPSP : 0.0053896
+Candidate Generation Time : 0.070847 seconds
+Probability Computation Time : 0.000616 seconds
+
+23262	9727
+Number of Candidate Paths : 3
+23262	19264	625209984	0.284279
+19264	8200	1267502254	0.884951
+8200	2305	115045264	0.112779
+2305	25967	1201191837	0.121027
+25967	29829	592374406	0.470588
+29829	9727	184284639	0.675552
+Length of MPSP : 3985608384
+Probability of MPSP : 0.00109162
+Candidate Generation Time : 0.017419 seconds
+Probability Computation Time : 0.003509 seconds
+
+27309	1512
+Number of Candidate Paths : 1
+27309	9577	803903994	0.548593
+9577	29250	691258110	0.614377
+29250	21371	1737024514	0.192103
+21371	28725	1136018907	0.343581
+28725	33807	1331981464	0.430255
+33807	1512	340795513	0.844223
+Length of MPSP : 6040982502
+Probability of MPSP : 0.00808038
+Candidate Generation Time : 0.086057 seconds
+Probability Computation Time : 0.000307 seconds
+
+28597	20811
+Number of Candidate Paths : 3
+28597	21926	1520226751	0.42334
+21926	39639	1989707889	0.334961
+39639	32681	319095763	0.190958
+32681	26344	820176820	0.85747
+26344	7502	507595592	0.667143
+7502	20811	1917393065	0.581198
+Length of MPSP : 7074195880
+Probability of MPSP : 0.00900294
+Candidate Generation Time : 0.035133 seconds
+Probability Computation Time : 0.003505 seconds
+
+15719	24598
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.665888 seconds
+Probability Computation Time : 0 seconds
+
+32610	14262
+Number of Candidate Paths : 1
+32610	1623	534285318	0.0430317
+1623	8988	1177320794	0.71119
+8988	26188	1512756827	0.772584
+26188	22835	122726849	0.217263
+22835	2627	1722318761	0.977897
+2627	14262	1605904314	0.208219
+Length of MPSP : 6675312863
+Probability of MPSP : 0.00104597
+Candidate Generation Time : 0.007073 seconds
+Probability Computation Time : 0.000317 seconds
+
+660	38067
+Number of Candidate Paths : 1
+660	15580	1897130694	0.160899
+15580	28023	573756875	0.805229
+28023	23302	736847722	0.308661
+23302	19380	851299253	0.879901
+19380	34802	1518286004	0.337017
+34802	38067	1831347829	0.742217
+Length of MPSP : 7408668377
+Probability of MPSP : 0.00880181
+Candidate Generation Time : 0.03939 seconds
+Probability Computation Time : 0.000323 seconds
+
+33381	12254
+Number of Candidate Paths : 2
+33381	3788	230060067	0.316837
+3788	28888	19996415	0.194573
+28888	38444	1726902329	0.376619
+38444	23374	1906090456	0.128109
+23374	2799	536638899	0.383904
+2799	12254	135589166	0.660108
+Length of MPSP : 4555277332
+Probability of MPSP : 0.000753764
+Candidate Generation Time : 0.006335 seconds
+Probability Computation Time : 0.000613 seconds
+
+36006	2933
+Number of Candidate Paths : 5
+36006	10445	768440329	0.377214
+10445	38599	1239459289	0.26756
+38599	25447	548930313	0.253971
+25447	38920	873674528	0.82949
+38920	15264	1498213432	0.933421
+15264	2933	130887672	0.395902
+Length of MPSP : 5059605563
+Probability of MPSP : 0.00785724
+Candidate Generation Time : 0.110837 seconds
+Probability Computation Time : 0.009491 seconds
+
+33478	7306
+Number of Candidate Paths : 3
+33478	33407	384293421	0.718533
+33407	12816	775020756	0.634195
+12816	12923	1930706802	0.377533
+12923	13370	1400124233	0.135049
+13370	4015	876071925	0.516991
+4015	7306	813733395	0.494165
+Length of MPSP : 6179950532
+Probability of MPSP : 0.00593567
+Candidate Generation Time : 0.228899 seconds
+Probability Computation Time : 0.003638 seconds
+
+29109	18071
+Number of Candidate Paths : 10
+29109	28354	1139325710	0.872562
+28354	9705	2090626797	0.262645
+9705	38620	1692488142	0.91889
+38620	31050	338880764	0.0989516
+31050	8558	1686192659	0.877191
+8558	18071	2053983763	0.765234
+Length of MPSP : 9001497835
+Probability of MPSP : 0.0139875
+Candidate Generation Time : 0.685603 seconds
+Probability Computation Time : 0.026663 seconds
+
+18397	38447
+Number of Candidate Paths : 2
+18397	35686	647417149	0.467592
+35686	29906	718714359	0.447827
+29906	12665	1237168199	0.408744
+12665	15959	676344277	0.980682
+15959	24701	821522394	0.844108
+24701	38447	362501368	0.956683
+Length of MPSP : 4463667746
+Probability of MPSP : 0.0677833
+Candidate Generation Time : 0.100679 seconds
+Probability Computation Time : 0.000614 seconds
+
+31106	18719
+Number of Candidate Paths : 4
+31106	29188	1386250612	0.917109
+29188	21507	336430824	0.0569754
+21507	20689	723282823	0.423401
+20689	9916	1975515225	0.980021
+9916	14841	526320879	0.497478
+14841	18719	2141151377	0.390469
+Length of MPSP : 7088951740
+Probability of MPSP : 0.00421169
+Candidate Generation Time : 0.123452 seconds
+Probability Computation Time : 0.006486 seconds
+
+26377	8357
+Number of Candidate Paths : 5
+26377	6869	606926857	0.555455
+6869	11447	1709356374	0.687421
+11447	7666	821496410	0.523433
+7666	35112	1958705544	0.760656
+35112	25414	1478310774	0.561399
+25414	8357	231673443	0.24464
+Length of MPSP : 6806469402
+Probability of MPSP : 0.0208795
+Candidate Generation Time : 0.214322 seconds
+Probability Computation Time : 0.009821 seconds
+
+8555	38783
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.437283 seconds
+Probability Computation Time : 0 seconds
+
+33562	6713
+Number of Candidate Paths : 3
+33562	31541	1928984041	0.848518
+31541	19815	1400187348	0.966896
+19815	37649	807334176	0.71301
+37649	5589	1481036276	0.280397
+5589	25789	308269537	0.599967
+25789	24855	135248391	0.521678
+24855	5798	1143460332	0.903388
+5798	14141	884919810	0.439122
+14141	32735	1825724319	0.811009
+32735	6368	265763577	0.423655
+6368	6895	2043225008	0.877383
+6895	21311	845428277	0.53868
+21311	1589	1372784461	0.681114
+1589	9656	1454411885	0.782543
+9656	29410	616313637	0.42604
+29410	33407	923527679	0.656001
+33407	12816	775020756	0.634195
+12816	12923	1930706802	0.377533
+12923	16834	659123072	0.786535
+16834	2654	338379140	0.713039
+2654	34508	1868588017	0.784272
+34508	2027	328622180	0.204992
+2027	28091	1276583691	0.910724
+28091	32232	1215364715	0.895672
+32232	6713	1468205499	0.998918
+Length of MPSP : 27297212626
+Probability of MPSP : 8.66596e-06
+Candidate Generation Time : 0.154275 seconds
+Probability Computation Time : 0.00349 seconds
+
+13918	23546
+Number of Candidate Paths : 4
+13918	19532	1984974649	0.575724
+19532	5941	1002017529	0.616069
+5941	29503	750656065	0.908617
+29503	8097	1861098429	0.0677444
+8097	26306	1403775797	0.344134
+26306	23546	333018987	0.551449
+Length of MPSP : 7335541456
+Probability of MPSP : 0.00414315
+Candidate Generation Time : 0.454807 seconds
+Probability Computation Time : 0.00645 seconds
+
+28655	37447
+Number of Candidate Paths : 43
+28655	6289	1460194928	0.830685
+6289	4776	297452611	0.666482
+4776	33866	273072191	0.799157
+33866	15173	1723948293	0.913877
+15173	21692	1367037303	0.532381
+21692	37447	1532514469	0.477776
+Length of MPSP : 6654219795
+Probability of MPSP : 0.102847
+Candidate Generation Time : 0.887203 seconds
+Probability Computation Time : 0.14881 seconds
+
+7095	39877
+Number of Candidate Paths : 3
+7095	5418	1990667766	0.687031
+5418	10761	2082248201	0.18608
+10761	20869	1942846862	0.414116
+20869	24956	317333950	0.431195
+24956	36849	825167267	0.164428
+36849	39877	1171298970	0.591483
+Length of MPSP : 8329563016
+Probability of MPSP : 0.00222019
+Candidate Generation Time : 0.0817 seconds
+Probability Computation Time : 0.003666 seconds
+
+5095	33418
+Number of Candidate Paths : 2
+5095	28486	2105498857	0.198771
+28486	10029	320541690	0.646108
+10029	19471	1867288413	0.168139
+19471	21534	1035615944	0.911056
+21534	34018	993399262	0.921601
+34018	3379	2000639901	0.572314
+3379	13701	214855005	0.53816
+13701	39911	1407687074	0.538852
+39911	27470	1995278874	0.628452
+27470	16796	855878722	0.87603
+16796	30124	1796304396	0.53605
+30124	19180	1165685777	0.92129
+19180	28489	1846713815	0.576049
+28489	19347	1457556495	0.65432
+19347	19364	1411734690	0.626443
+19364	12048	1479121396	0.813791
+12048	28487	1482630162	0.804409
+28487	36969	1596641099	0.590014
+36969	22297	1151672565	0.972736
+22297	14432	2090947537	0.684722
+14432	30350	2094034948	0.489077
+30350	29459	916877428	0.909248
+29459	4188	647677974	0.992634
+4188	3130	191606141	0.761079
+3130	22434	1808417915	0.292371
+22434	11194	1239347135	0.648443
+11194	4863	2023654392	0.439094
+4863	39673	244450603	0.628929
+39673	10422	453326838	0.985145
+10422	24964	2008527179	0.28962
+24964	9111	2136704952	0.389227
+9111	19277	993111202	0.961771
+19277	10542	1836492892	0.849726
+10542	35304	384383548	0.641208
+35304	15612	41075276	0.507671
+15612	10999	191186160	0.913434
+10999	39957	125636995	0.700014
+39957	31114	218128764	0.490201
+31114	7284	698390363	0.508951
+7284	13664	1851202714	0.57342
+13664	25605	169970344	0.641986
+25605	16709	774599305	0.499628
+16709	36477	715906801	0.417001
+36477	7958	875797401	0.958315
+7958	33418	1035717005	0.832214
+Length of MPSP : 51951915949
+Probability of MPSP : 2.51991e-10
+Candidate Generation Time : 0.1219 seconds
+Probability Computation Time : 0.000635 seconds
+
+7249	12258
+Number of Candidate Paths : 1
+7249	29270	1614429335	0.31082
+29270	2539	654128827	0.50063
+2539	33110	2068618066	0.335011
+33110	2497	591978906	0.802841
+2497	34758	1810550452	0.953355
+34758	12258	490344992	0.838447
+Length of MPSP : 7230050578
+Probability of MPSP : 0.0334537
+Candidate Generation Time : 0.003225 seconds
+Probability Computation Time : 0.000318 seconds
+
+2815	29737
+Number of Candidate Paths : 8
+2815	37298	739223531	0.261087
+37298	25699	155072083	0.993574
+25699	280	173701071	0.572361
+280	20777	1066443034	0.638059
+20777	8056	826523576	0.743463
+8056	29737	1488799563	0.392883
+Length of MPSP : 4449762858
+Probability of MPSP : 0.0276719
+Candidate Generation Time : 0.179077 seconds
+Probability Computation Time : 0.019155 seconds
+
+17081	37459
+Number of Candidate Paths : 2
+17081	30073	1047832036	0.879218
+30073	3443	1626647278	0.735271
+3443	19454	600417930	0.244034
+19454	22732	40544328	0.127943
+22732	24682	108201927	0.201747
+24682	37459	1811307708	0.958113
+Length of MPSP : 5234951207
+Probability of MPSP : 0.00390154
+Candidate Generation Time : 0.025348 seconds
+Probability Computation Time : 0.000619 seconds
+
+18081	38989
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.007529 seconds
+Probability Computation Time : 0 seconds
+
+3814	5395
+Number of Candidate Paths : 1
+3814	39182	1106822796	0.348858
+39182	23844	352091471	0.510768
+23844	3241	2144981794	0.724945
+3241	10113	831134685	0.651845
+10113	11731	318439222	0.387714
+11731	5395	2125045024	0.429009
+Length of MPSP : 6878514992
+Probability of MPSP : 0.0140055
+Candidate Generation Time : 0.124867 seconds
+Probability Computation Time : 0.000308 seconds
+
+18587	10893
+Number of Candidate Paths : 1
+18587	5199	442361152	0.729933
+5199	18548	222129599	0.912572
+18548	24004	439620075	0.280898
+24004	7404	1724895690	0.294784
+7404	15871	337521279	0.960959
+15871	10893	1691030411	0.672534
+Length of MPSP : 4857558206
+Probability of MPSP : 0.0356469
+Candidate Generation Time : 0.159177 seconds
+Probability Computation Time : 0.000307 seconds
+
+33203	21143
+Number of Candidate Paths : 4
+33203	28762	492342541	0.634894
+28762	1704	113994655	0.890368
+1704	22577	441293707	0.220403
+22577	11150	689877831	0.205316
+11150	23733	1354907743	0.448677
+23733	21143	183843667	0.21474
+Length of MPSP : 3276260144
+Probability of MPSP : 0.00246467
+Candidate Generation Time : 0.093478 seconds
+Probability Computation Time : 0.006713 seconds
+
+1768	8157
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.176144 seconds
+Probability Computation Time : 0 seconds
+
+6864	15662
+Number of Candidate Paths : 1
+6864	16986	743050948	0.117627
+16986	32928	38079143	0.980985
+32928	1674	835376443	0.639241
+1674	7523	365374390	0.579855
+7523	25165	1568286337	0.871935
+25165	15662	1794959575	0.455125
+Length of MPSP : 5345126836
+Probability of MPSP : 0.0169734
+Candidate Generation Time : 0.026313 seconds
+Probability Computation Time : 0.000311 seconds
+
+11746	29940
+Number of Candidate Paths : 1
+11746	10027	411645034	0.571469
+10027	33239	296246705	0.911039
+33239	36274	1558778021	0.730266
+36274	29845	357381075	0.261546
+29845	6960	1580361842	0.156388
+6960	29940	999481132	0.522783
+Length of MPSP : 5203893809
+Probability of MPSP : 0.0081299
+Candidate Generation Time : 0.100337 seconds
+Probability Computation Time : 0.00031 seconds
+
+Average Length of MPSP for 6 hops : 8518334945
+Average Probability of MPSP for 6 hops : 0.171192
+Average Candidate Generation Time for 6 hops : 0.217454 seconds
+Average Probability Computation Time for 6 hops : 0.00591108 seconds
+
+
+Number of hops = 8
+
+6510	21194
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.013047 seconds
+Probability Computation Time : 0 seconds
+
+13931	26226
+Number of Candidate Paths : 29
+13931	5344	958709650	0.619066
+5344	21121	1400085274	0.466685
+21121	9402	899048391	0.273507
+9402	33205	1737612659	0.402191
+33205	1554	1166696461	0.39282
+1554	35051	166125982	0.397263
+35051	21810	2080503451	0.858709
+21810	26226	1532997358	0.736487
+Length of MPSP : 9941779226
+Probability of MPSP : 0.0031365
+Candidate Generation Time : 1.19271 seconds
+Probability Computation Time : 0.094739 seconds
+
+25710	19162
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.163636 seconds
+Probability Computation Time : 0 seconds
+
+23354	6035
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.244479 seconds
+Probability Computation Time : 0 seconds
+
+32576	1738
+Number of Candidate Paths : 1
+32576	15662	1779814925	0.639778
+15662	21252	1900326561	0.685555
+21252	31546	1909428635	0.729481
+31546	4653	331699850	0.642687
+4653	8388	793316512	0.490622
+8388	11402	2117245905	0.819213
+11402	28178	1624481331	0.651088
+28178	13261	549262906	0.992692
+13261	4542	1656536703	0.779879
+4542	17339	28629514	0.61527
+17339	33075	1582394075	0.256816
+33075	2818	1450860171	0.806065
+2818	21685	370968888	0.693754
+21685	34614	1025943759	0.924431
+34614	3506	1876795833	0.678831
+3506	4593	674647168	0.425816
+4593	11874	943039332	0.889517
+11874	12397	571932469	0.999418
+12397	22553	1003864975	0.844314
+22553	14286	307005488	0.440278
+14286	33978	575613442	0.71116
+33978	1008	640283857	0.145104
+1008	1558	996500488	0.849946
+1558	29850	675558017	0.988795
+29850	11785	899850226	0.625703
+11785	25870	1844129981	0.63689
+25870	19546	1449386760	0.405182
+19546	1322	1138168572	0.829874
+1322	5616	2003499224	0.448306
+5616	34730	1720174795	0.237748
+34730	36251	1815584829	0.19582
+36251	11218	392502032	0.961968
+11218	31020	1647207104	0.945879
+31020	24522	757962781	0.956902
+24522	17012	994707480	0.325113
+17012	27796	1819060433	0.862434
+27796	9841	1235135645	0.618908
+9841	24524	146259505	0.82087
+24524	33529	1919835305	0.868501
+33529	12964	1499598934	0.544581
+12964	26718	1376075593	0.374458
+26718	6983	21129666	0.477893
+6983	14357	930707219	0.480448
+14357	24030	1662985834	0.721345
+24030	31053	800362280	0.645336
+31053	34956	436123543	0.568711
+34956	28159	1157435790	0.631529
+28159	30142	376382580	0.859425
+30142	31467	1343036562	0.771475
+31467	15586	1339303838	0.79666
+15586	33121	588177757	0.861072
+33121	10032	1354741923	0.997105
+10032	28175	469684333	0.589995
+28175	3677	1639162430	0.372749
+3677	38367	1852673089	0.405585
+38367	20491	1429121156	0.964788
+20491	37346	1588172087	0.163887
+37346	17331	1836042117	0.934379
+17331	4082	1582373433	0.375682
+4082	1424	1218334611	0.749755
+1424	20976	1929687341	0.549785
+20976	34692	1444513834	0.751127
+34692	17603	18245978	0.612533
+17603	34040	953528348	0.981019
+34040	21607	1280420347	0.872448
+21607	11858	987835201	0.45732
+11858	39165	1640224996	0.433582
+39165	20290	1717786550	0.778636
+20290	14257	439183916	0.804137
+14257	24386	1989453097	0.797673
+24386	25051	954467672	0.909926
+25051	27451	1463100908	0.744554
+27451	5727	195849079	0.53294
+5727	30632	1047555374	0.879301
+30632	39850	2048973773	0.41459
+39850	4326	97795931	0.755943
+4326	30694	1824969243	0.939628
+30694	28609	1260562792	0.851117
+28609	185	1446030908	0.875939
+185	3712	1221741239	0.519892
+3712	2501	966396755	0.916184
+2501	28243	1280404935	0.967535
+28243	26565	2115457186	0.910384
+26565	12441	658843476	0.0935315
+12441	25816	2031898821	0.731025
+25816	29418	1909357382	0.795778
+29418	1738	1365513301	0.911928
+Length of MPSP : 103961038634
+Probability of MPSP : 3.48164e-18
+Candidate Generation Time : 0.193413 seconds
+Probability Computation Time : 0.000312 seconds
+
+32229	39461
+Number of Candidate Paths : 6
+32229	38031	1350744127	0.988382
+38031	13437	130401743	0.717005
+13437	1103	1638325274	0.726386
+1103	1941	413319927	0.827271
+1941	11297	866502182	0.821256
+11297	12164	2123443231	0.90008
+12164	27443	1916317003	0.697593
+27443	39461	1474229144	0.508782
+Length of MPSP : 9913282631
+Probability of MPSP : 0.111726
+Candidate Generation Time : 0.405767 seconds
+Probability Computation Time : 0.013108 seconds
+
+18807	34096
+Number of Candidate Paths : 14
+18807	2501	412433670	0.670653
+2501	28243	1280404935	0.967535
+28243	26565	2115457186	0.910384
+26565	9635	1190490348	0.506462
+9635	6949	2078040759	0.49009
+6949	36992	521286197	0.646593
+36992	15719	1520042106	0.606019
+15719	32792	675249749	0.902027
+32792	25760	969876025	0.992249
+25760	30644	592041526	0.820342
+30644	12280	1188948587	0.325556
+12280	3055	770977814	0.70768
+3055	30551	4949525	0.531292
+30551	23575	563724840	0.72681
+23575	13977	1248032822	0.888188
+13977	3464	661050475	0.62236
+3464	6061	1170316132	0.337366
+6061	34096	2001848448	0.965244
+Length of MPSP : 18965171144
+Probability of MPSP : 0.000675562
+Candidate Generation Time : 0.24338 seconds
+Probability Computation Time : 0.040933 seconds
+
+5246	9450
+Number of Candidate Paths : 1
+5246	20508	513942559	0.181152
+20508	20340	524774307	0.555775
+20340	35118	298904773	0.725835
+35118	10047	1162568510	0.728852
+10047	16160	370367535	0.876726
+16160	16340	1756323012	0.936467
+16340	552	1770411540	0.744058
+552	31542	1136130315	0.752008
+31542	14908	1803655661	0.583515
+14908	2359	1176672764	0.420157
+2359	398	206612503	0.944521
+398	10132	1717686248	0.0617156
+10132	19642	560710554	0.65765
+19642	8395	1489635317	0.890204
+8395	14370	365195904	0.438455
+14370	24203	969392592	0.485313
+24203	4593	531137222	0.598924
+4593	11874	943039332	0.889517
+11874	30895	597062613	0.880219
+30895	19197	794687638	0.619357
+19197	1912	1129355703	0.653921
+1912	8466	2043077821	0.502562
+8466	30617	1087518721	0.898169
+30617	26862	735547862	0.866946
+26862	744	1139963230	0.759769
+744	21432	1157960452	0.529311
+21432	29575	1852276215	0.725441
+29575	33434	1791445409	0.794465
+33434	28917	204148819	0.702424
+28917	7481	461682601	0.472166
+7481	11932	320832013	0.569633
+11932	2394	168880123	0.329449
+2394	7222	692927333	0.93439
+7222	16590	471132216	0.597214
+16590	16954	570001719	0.83686
+16954	3577	267787117	0.364922
+3577	5028	1919069974	0.89733
+5028	34051	904923148	0.126255
+34051	30928	6255066	0.5828
+30928	29027	1805974216	0.346383
+29027	17670	1231865121	0.210909
+17670	4486	320546298	0.848186
+4486	33418	712125727	0.809271
+33418	20028	1583644093	0.966221
+20028	9842	1254290582	0.211356
+9842	35948	1879810172	0.713833
+35948	32017	25754773	0.374344
+32017	31066	239452454	0.831782
+31066	12490	1247681279	0.583051
+12490	6486	1694533477	0.591348
+6486	36815	4498705	0.146324
+36815	36669	1774485062	0.908276
+36669	14259	1628188759	0.762422
+14259	33871	771792982	0.579516
+33871	11756	1506381961	0.887201
+11756	1677	426213300	0.735707
+1677	13526	1287472122	0.941056
+13526	18063	258941665	0.865929
+18063	27509	450174265	0.866755
+27509	32587	884961605	0.947816
+32587	16666	1940604535	0.509835
+16666	14715	495770036	0.132906
+14715	16022	936394700	0.260558
+16022	4121	720330238	0.320983
+4121	3341	72033797	0.417392
+3341	35469	941083207	0.760629
+35469	35909	61436395	0.761727
+35909	17884	1634875164	0.542791
+17884	17559	226071749	0.332954
+17559	20591	649777788	0.970667
+20591	1400	917751422	0.99182
+1400	27148	1806791404	0.774731
+27148	5236	1231994213	0.929746
+5236	20720	1328172302	0.554497
+20720	17435	245241853	0.488084
+17435	27947	1132186791	0.654185
+27947	2687	1339069575	0.965047
+2687	20025	912478786	0.63497
+20025	21570	1660110589	0.953223
+21570	26894	960451923	0.640447
+26894	1991	1966249519	0.898163
+1991	34982	589275771	0.732907
+34982	21993	930173498	0.991337
+21993	14588	1451138587	0.495345
+14588	4777	1978605533	0.484124
+4777	2703	821804106	0.983924
+2703	7687	1256328987	0.547448
+7687	9450	334974280	0.371094
+Length of MPSP : 85143661807
+Probability of MPSP : 3.76588e-21
+Candidate Generation Time : 0.114405 seconds
+Probability Computation Time : 0.000307 seconds
+
+29030	3255
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.015825 seconds
+Probability Computation Time : 0 seconds
+
+9862	7177
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.365711 seconds
+Probability Computation Time : 0 seconds
+
+35045	7802
+Number of Candidate Paths : 3
+35045	12229	1261577342	0.939782
+12229	10048	958365765	0.332881
+10048	35479	1194199079	0.522004
+35479	21773	779767577	0.338238
+21773	2120	1548276933	0.891214
+2120	33377	1517455970	0.643642
+33377	22280	611414297	0.901008
+22280	37030	1942851991	0.813136
+37030	5709	1343975326	0.748142
+5709	7802	145711127	0.419377
+Length of MPSP : 11303595407
+Probability of MPSP : 0.00728315
+Candidate Generation Time : 0.152942 seconds
+Probability Computation Time : 0.00369 seconds
+
+32378	27365
+Number of Candidate Paths : 3
+32378	17204	1245119194	0.952761
+17204	12180	559837429	0.485969
+12180	18613	1164523031	0.914174
+18613	33764	1462892699	0.801042
+33764	38942	239097723	0.684434
+38942	13117	627878961	0.81217
+13117	39924	868173189	0.744755
+39924	27365	648764592	0.177991
+Length of MPSP : 6816286818
+Probability of MPSP : 0.0249843
+Candidate Generation Time : 0.367262 seconds
+Probability Computation Time : 0.003545 seconds
+
+18473	8863
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.034347 seconds
+Probability Computation Time : 0 seconds
+
+34656	5548
+Number of Candidate Paths : 2
+34656	6092	739586624	0.175499
+6092	19378	431816388	0.523504
+19378	34087	1453386718	0.780119
+34087	20929	755876528	0.638736
+20929	32016	1783758717	0.790039
+32016	14886	1065093442	0.699905
+14886	17536	358403125	0.164955
+17536	5548	1212716355	0.934545
+Length of MPSP : 7800637897
+Probability of MPSP : 0.00390239
+Candidate Generation Time : 0.303367 seconds
+Probability Computation Time : 0.000617 seconds
+
+33086	29610
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.051914 seconds
+Probability Computation Time : 0 seconds
+
+36424	17746
+Number of Candidate Paths : 1
+36424	20409	822919734	0.29139
+20409	27216	782426626	0.104563
+27216	13648	1051152390	0.936096
+13648	28322	1537786370	0.729667
+28322	6870	1601502998	0.703193
+6870	11941	111560872	0.265327
+11941	38536	2133054475	0.9261
+38536	8253	845551826	0.606576
+8253	30838	481657690	0.495082
+30838	20579	1104733648	0.697803
+20579	21391	1087181837	0.930405
+21391	9314	747658627	0.831167
+9314	26967	1827485352	0.859056
+26967	17746	1424809458	0.155271
+Length of MPSP : 15559481903
+Probability of MPSP : 7.77284e-05
+Candidate Generation Time : 0.356486 seconds
+Probability Computation Time : 0.000311 seconds
+
+34920	29803
+Number of Candidate Paths : 13
+34920	5958	459125434	0.411261
+5958	24543	1999590655	0.881433
+24543	19111	315193375	0.735385
+19111	23561	160026590	0.969262
+23561	37199	1180073284	0.873581
+37199	17179	731744262	0.536415
+17179	33448	298314511	0.248031
+33448	35329	2135148252	0.761553
+35329	35470	1843938925	0.99406
+35470	23721	2035513333	0.953372
+23721	11130	1065451829	0.647867
+11130	33410	2076972647	0.499441
+33410	14099	632167292	0.958819
+14099	3906	1648956133	0.459829
+3906	4826	1438044989	0.693016
+4826	25450	670648571	0.801558
+25450	4230	1086486432	0.5545
+4230	21938	1180212577	0.811677
+21938	24892	845948635	0.395402
+24892	2223	393474689	0.831585
+2223	36293	2118688052	0.348548
+36293	39154	549949050	0.985719
+39154	29803	1441149347	0.525058
+Length of MPSP : 26306818864
+Probability of MPSP : 4.58546e-05
+Candidate Generation Time : 0.925409 seconds
+Probability Computation Time : 0.036068 seconds
+
+19285	33226
+Number of Candidate Paths : 2
+19285	25098	12329358	0.795001
+25098	26299	843556740	0.482573
+26299	20583	774642332	0.89793
+20583	23417	415448556	0.27351
+23417	33824	1811689594	0.811893
+33824	5037	2036055963	0.944621
+5037	16098	138837296	0.230324
+16098	33226	993096216	0.980659
+Length of MPSP : 7025656055
+Probability of MPSP : 0.0163215
+Candidate Generation Time : 0.478556 seconds
+Probability Computation Time : 0.000615 seconds
+
+16074	37451
+Number of Candidate Paths : 23
+16074	16740	1271089820	0.99253
+16740	33341	2014936565	0.768505
+33341	34660	1708961930	0.877788
+34660	25264	60957068	0.551915
+25264	35012	1271687911	0.700184
+35012	20718	1098469894	0.708917
+20718	29769	812486899	0.441491
+29769	37451	1476830697	0.807516
+Length of MPSP : 9715420784
+Probability of MPSP : 0.0653932
+Candidate Generation Time : 0.976422 seconds
+Probability Computation Time : 0.072651 seconds
+
+36784	7837
+Number of Candidate Paths : 1
+36784	8056	2025671430	0.956113
+8056	29737	1488799563	0.392883
+29737	15729	1246141520	0.635736
+15729	27333	565850366	0.374695
+27333	10698	641349594	0.557859
+10698	39558	1228512269	0.900079
+39558	6926	627522599	0.802014
+6926	37496	1555917062	0.303709
+37496	8850	1518581426	0.623021
+8850	2513	173121894	0.8916
+2513	16626	194787659	0.657815
+16626	12088	543029092	0.81144
+12088	30124	1117440041	0.733595
+30124	27196	1966439331	0.512941
+27196	27236	1873835696	0.327945
+27236	7802	1918825036	0.481834
+7802	14584	950988325	0.841628
+14584	4597	1400937226	0.165045
+4597	7022	228913417	0.689151
+7022	4107	849916481	0.51108
+4107	24797	483598370	0.342884
+24797	5782	1720831369	0.719011
+5782	12169	1358486608	0.27535
+12169	37758	804419119	0.777547
+37758	24986	374395030	0.601037
+24986	24349	1575899630	0.982252
+24349	7374	934132057	0.28066
+7374	39853	1949421023	0.755624
+39853	9634	1445721746	0.633639
+9634	21539	82704989	0.914717
+21539	4381	1831076251	0.850128
+4381	38482	455156061	0.299045
+38482	11641	799502516	0.794684
+11641	4733	1052504852	0.947503
+4733	20992	194989778	0.853277
+20992	19969	644829119	0.984368
+19969	10911	384675588	0.948619
+10911	17063	1958328501	0.259312
+17063	12834	1963877201	0.761415
+12834	29977	1933906199	0.511575
+29977	10042	1262056354	0.860052
+10042	17985	1418049042	0.808767
+17985	4550	221109070	0.742289
+4550	26288	1064810208	0.698548
+26288	1503	1264628061	0.56673
+1503	38534	575083713	0.845629
+38534	16289	1518362070	0.892068
+16289	27856	141551822	0.844505
+27856	14708	1752248172	0.398614
+14708	34268	706714939	0.337317
+34268	23274	807406168	0.35512
+23274	30071	823643941	0.878076
+30071	38194	1609329589	0.935643
+38194	23882	1338035325	0.356806
+23882	26104	2011951609	0.482414
+26104	21747	2120888841	0.476387
+21747	23575	395353859	0.195018
+23575	13977	1248032822	0.888188
+13977	35913	51171511	0.996441
+35913	7924	1213441678	0.582613
+7924	246	737696557	0.362081
+246	16921	1213628292	0.83831
+16921	31196	1325271540	0.162366
+31196	15609	147428057	0.379696
+15609	22916	1603405125	0.783227
+22916	17439	114945617	0.771774
+17439	23660	1093334032	0.839718
+23660	17440	1674357565	0.69861
+17440	34848	197874813	0.784415
+34848	35222	1688850299	0.968361
+35222	1505	820606416	0.935707
+1505	28526	1771271723	0.812451
+28526	3123	68085224	0.234476
+3123	31913	723531301	0.7457
+31913	24152	1962800876	0.286987
+24152	11402	73523099	0.891276
+11402	28178	1624481331	0.651088
+28178	13261	549262906	0.992692
+13261	4542	1656536703	0.779879
+4542	17339	28629514	0.61527
+17339	33075	1582394075	0.256816
+33075	37350	954793403	0.962173
+37350	4843	1530901347	0.892781
+4843	2094	1207290258	0.681516
+2094	27291	1156835221	0.951484
+27291	27606	1162940468	0.67245
+27606	22239	1942501177	0.791588
+22239	25308	738019929	0.808679
+25308	29994	697607585	0.667491
+29994	12333	1556411387	0.322933
+12333	14236	81009989	0.902686
+14236	24217	1966179541	0.295815
+24217	22293	614869429	0.364044
+22293	39361	1056034892	0.476972
+39361	34249	152323682	0.6789
+34249	37814	2033825847	0.364789
+37814	17491	1010999121	0.793667
+17491	7153	141734431	0.172672
+7153	34540	2071384893	0.649903
+34540	28575	841934000	0.203193
+28575	8707	2020991081	0.329889
+8707	26019	2068639431	0.904568
+26019	13856	1070570769	0.755628
+13856	7837	203132416	0.33649
+Length of MPSP : 112547750190
+Probability of MPSP : 2.60994e-25
+Candidate Generation Time : 0.123388 seconds
+Probability Computation Time : 0.000313 seconds
+
+15610	18297
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.005027 seconds
+Probability Computation Time : 0 seconds
+
+19364	26636
+Number of Candidate Paths : 11
+19364	32319	2145130251	0.481034
+32319	16143	60147126	0.578961
+16143	192	1110415998	0.501231
+192	34188	232779187	0.539119
+34188	20865	608721838	0.723148
+20865	18336	2107323283	0.997281
+18336	39171	87977276	0.996078
+39171	1551	1229812892	0.949805
+1551	35829	1312765381	0.933728
+35829	27006	1777232477	0.924302
+27006	4344	785617504	0.21888
+4344	7836	1498645581	0.582569
+7836	4483	1030665812	0.273968
+4483	39968	1044473138	0.901629
+39968	3948	314259832	0.462005
+3948	15701	882200678	0.688434
+15701	29472	608639498	0.658206
+29472	27878	620817618	0.0807319
+27878	20269	1828073253	0.962235
+20269	30372	6091321	0.995597
+30372	26636	1304742649	0.859691
+Length of MPSP : 20596532593
+Probability of MPSP : 1.94293e-05
+Candidate Generation Time : 0.435491 seconds
+Probability Computation Time : 0.029151 seconds
+
+4396	19939
+Number of Candidate Paths : 8
+4396	16886	1260815106	0.615212
+16886	24908	1574353971	0.830719
+24908	4082	1714188992	0.679619
+4082	11629	1344406232	0.33018
+11629	24770	690104403	0.0863111
+24770	34784	1022800657	0.900562
+34784	37676	729344520	0.879006
+37676	11568	1423021348	0.739895
+11568	541	1653249315	0.333007
+541	21860	1283454138	0.304004
+21860	27067	599657189	0.83004
+27067	20560	1597549914	0.373057
+20560	17942	1761651796	0.806482
+17942	8675	1220352556	0.425243
+8675	566	145350793	0.745951
+566	6011	437133616	0.667629
+6011	19939	231293517	0.993014
+Length of MPSP : 18688728063
+Probability of MPSP : 3.08231e-05
+Candidate Generation Time : 0.117595 seconds
+Probability Computation Time : 0.019139 seconds
+
+39186	18940
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.021582 seconds
+Probability Computation Time : 0 seconds
+
+30654	30700
+Number of Candidate Paths : 1
+30654	8159	235262065	0.267996
+8159	9137	1210721637	0.603621
+9137	30644	648709146	0.973568
+30644	12280	1188948587	0.325556
+12280	3055	770977814	0.70768
+3055	16701	322255306	0.0746873
+16701	14028	132750543	0.152654
+14028	30700	1576749072	0.260959
+Length of MPSP : 6086374170
+Probability of MPSP : 0.000107957
+Candidate Generation Time : 0.12568 seconds
+Probability Computation Time : 0.000313 seconds
+
+36812	13835
+Number of Candidate Paths : 3
+36812	1410	1081871007	0.358934
+1410	8897	265978041	0.924926
+8897	8068	553367400	0.632633
+8068	10157	881631329	0.989698
+10157	34797	646381101	0.629843
+34797	20501	1711497646	0.745868
+20501	26432	1399154952	0.582585
+26432	22569	99966838	0.0946009
+22569	15947	922407347	0.585139
+15947	18247	997315247	0.94095
+18247	25920	81347364	0.970733
+25920	29508	268296251	0.683229
+29508	21649	530530268	0.558783
+21649	36963	1867164577	0.866812
+36963	28581	1589657855	0.232889
+28581	964	1090087943	0.726992
+964	12403	744300512	0.341532
+12403	23717	1870819290	0.531553
+23717	23481	1776616197	0.23536
+23481	22619	70289485	0.893074
+22619	34426	1458960428	0.953706
+34426	23764	465492837	0.930127
+23764	7794	960389397	0.542019
+7794	33114	668380813	0.905392
+33114	39169	143347836	0.515176
+39169	38824	1100408709	0.753014
+38824	13835	1708549065	0.705718
+Length of MPSP : 24954209735
+Probability of MPSP : 7.32927e-07
+Candidate Generation Time : 0.231245 seconds
+Probability Computation Time : 0.003499 seconds
+
+24960	17223
+Number of Candidate Paths : 1
+24960	34862	2095420606	0.333886
+34862	6440	358822989	0.915222
+6440	39891	301368532	0.784537
+39891	24589	4935755	0.777657
+24589	21055	1663533332	0.922817
+21055	29933	981724883	0.568463
+29933	6728	754972215	0.96385
+6728	27783	351350884	0.919085
+27783	10499	1467331367	0.757597
+10499	22200	2018250178	0.792226
+22200	26705	421802293	0.754496
+26705	31547	650698706	0.661399
+31547	16448	978477488	0.557407
+16448	37124	30383251	0.704638
+37124	2035	125266018	0.845557
+2035	23180	1145180806	0.822302
+23180	16968	305282874	0.690212
+16968	30625	1777712490	0.639445
+30625	2723	1878298545	0.366118
+2723	36466	1318869970	0.854209
+36466	17223	858592874	0.401087
+Length of MPSP : 19488276056
+Probability of MPSP : 0.000392318
+Candidate Generation Time : 0.452969 seconds
+Probability Computation Time : 0.000307 seconds
+
+14138	1144
+Number of Candidate Paths : 8
+14138	16229	1514387450	0.491251
+16229	5720	1870833792	0.467425
+5720	34138	173780306	0.577323
+34138	25826	2041094374	0.913482
+25826	19446	1554171189	0.763958
+19446	9263	532302407	0.114731
+9263	17406	2095111739	0.221365
+17406	1144	1578385126	0.496621
+Length of MPSP : 11360066383
+Probability of MPSP : 0.00116686
+Candidate Generation Time : 0.161092 seconds
+Probability Computation Time : 0.019184 seconds
+
+3910	33634
+Number of Candidate Paths : 7
+3910	7668	33678888	0.955103
+7668	12806	873552704	0.884399
+12806	34916	1408481593	0.100624
+34916	36973	456981515	0.41721
+36973	25179	286685523	0.859234
+25179	31095	1378954587	0.39891
+31095	11791	1610809937	0.743914
+11791	33634	876542110	0.339755
+Length of MPSP : 6925686857
+Probability of MPSP : 0.00307206
+Candidate Generation Time : 0.269157 seconds
+Probability Computation Time : 0.01687 seconds
+
+11244	27685
+Number of Candidate Paths : 3
+11244	28456	94876192	0.393882
+28456	24776	1380549770	0.59974
+24776	39896	1199268115	0.917452
+39896	27479	1520223341	0.847375
+27479	36659	693656861	0.756386
+36659	19003	1568158740	0.944954
+19003	38885	494340854	0.990388
+38885	25443	284750903	0.706251
+25443	31300	1359809541	0.991045
+31300	5955	1741333327	0.2293
+5955	5577	1790149453	0.189093
+5577	4404	1964657577	0.809898
+4404	30357	362316053	0.632859
+30357	11700	943511279	0.530184
+11700	15260	2044336329	0.884882
+15260	10606	1264964078	0.68842
+10606	146	1728635060	0.490212
+146	28152	1461782286	0.26766
+28152	20517	1682437972	0.740324
+20517	8577	1751462481	0.548748
+8577	6661	1864841422	0.701561
+6661	30502	218748738	0.352578
+30502	14933	680587398	0.578331
+14933	27796	1311259535	0.610574
+27796	9841	1235135645	0.618908
+9841	24524	146259505	0.82087
+24524	33529	1919835305	0.868501
+33529	38282	1511215578	0.373909
+38282	8785	1697210470	0.956366
+8785	7241	1479674951	0.825097
+7241	17778	760306586	0.492356
+17778	23615	1988434578	0.281622
+23615	38068	1502771684	0.520556
+38068	16501	350112631	0.59652
+16501	1835	1789864845	0.673099
+1835	22627	1421154475	0.844632
+22627	34203	1914375558	0.537393
+34203	26238	368046910	0.695221
+26238	31025	1424876269	0.837462
+31025	29932	2017478847	0.722323
+29932	18641	2060152438	0.833813
+18641	32340	1459256169	0.785248
+32340	39250	137148854	0.879042
+39250	35457	2047092762	0.17928
+35457	12326	1997333702	0.655691
+12326	25150	1301802467	0.953196
+25150	34493	193937922	0.381126
+34493	35240	711531609	0.732584
+35240	39171	943375243	0.125404
+39171	30337	933658483	0.702872
+30337	21688	1015224823	0.825169
+21688	13022	2000974278	0.493353
+13022	28693	224716791	0.0853099
+28693	7385	506433560	0.781375
+7385	12253	672824553	0.475554
+12253	23933	245070265	0.740357
+23933	903	522681498	0.464631
+903	27685	672361466	0.232997
+Length of MPSP : 68578988025
+Probability of MPSP : 3.59511e-15
+Candidate Generation Time : 0.597129 seconds
+Probability Computation Time : 0.003687 seconds
+
+19866	19341
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.00617 seconds
+Probability Computation Time : 0 seconds
+
+27942	11098
+Number of Candidate Paths : 1
+27942	17456	706284436	0.378875
+17456	39723	1628073628	0.708807
+39723	10211	1264100764	0.393803
+10211	12301	2027238108	0.573185
+12301	35125	854315465	0.962062
+35125	26630	2133002094	0.385325
+26630	39284	1049060098	0.824992
+39284	11098	34152572	0.183298
+Length of MPSP : 9696227165
+Probability of MPSP : 0.00339808
+Candidate Generation Time : 0.064544 seconds
+Probability Computation Time : 0.000307 seconds
+
+20471	21703
+Number of Candidate Paths : 1
+20471	22289	1578865217	0.840095
+22289	21236	2035808124	0.848923
+21236	8336	1388463481	0.526464
+8336	16394	2008745693	0.8226
+16394	24533	723430829	0.951559
+24533	37960	747807802	0.654727
+37960	517	226263055	0.885384
+517	4214	1251804002	0.543441
+4214	27378	938264209	0.984596
+27378	31402	1258487602	0.99877
+31402	31412	1934938524	0.437263
+31412	3396	89421062	0.753308
+3396	17487	69007292	0.717483
+17487	35943	1381003851	0.737681
+35943	29550	1634195926	0.987713
+29550	7502	1995787443	0.992715
+7502	20811	1917393065	0.581198
+20811	18980	1748633156	0.694096
+18980	34497	192112476	0.794297
+34497	14685	855282187	0.963731
+14685	28031	1799900874	0.718383
+28031	941	2054382388	0.808542
+941	4037	688927332	0.717508
+4037	26054	795923036	0.832612
+26054	31604	1120296196	0.520531
+31604	36206	1902597079	0.93095
+36206	23828	934028965	0.976322
+23828	21932	1106990654	0.133249
+21932	35344	1379884841	0.923968
+35344	34749	1788616163	0.598777
+34749	11542	100031684	0.852811
+11542	36288	1817601694	0.19931
+36288	25688	2021081292	0.628108
+25688	21703	218450978	0.193836
+Length of MPSP : 41704428172
+Probability of MPSP : 1.20372e-06
+Candidate Generation Time : 0.282892 seconds
+Probability Computation Time : 0.000319 seconds
+
+1581	28743
+Number of Candidate Paths : 3
+1581	18909	1323203451	0.361706
+18909	6299	1188221756	0.872342
+6299	32895	2114801224	0.975168
+32895	38942	1999315713	0.790328
+38942	13117	627878961	0.81217
+13117	6741	1909101756	0.554617
+6741	345	2066415808	0.688169
+345	4523	1059779101	0.548841
+4523	752	1972500703	0.502522
+752	13702	1636200637	0.736257
+13702	4473	2123693305	0.939928
+4473	19457	1005661996	0.541758
+19457	31073	181923434	0.966149
+31073	39369	120166948	0.846037
+39369	7438	593340387	0.347716
+7438	25918	563600631	0.97408
+25918	30320	413716456	0.323678
+30320	5041	572661792	0.921554
+5041	5727	1611982585	0.475946
+5727	28743	808623915	0.408656
+Length of MPSP : 23892790559
+Probability of MPSP : 0.000125198
+Candidate Generation Time : 0.299235 seconds
+Probability Computation Time : 0.003532 seconds
+
+1458	35021
+Number of Candidate Paths : 1
+1458	23363	243890645	0.69101
+23363	32519	539262066	0.00776523
+32519	7672	687098786	0.930651
+7672	22279	705312088	0.318558
+22279	38115	1224391945	0.544892
+38115	13606	1209249135	0.262484
+13606	23325	960174159	0.874017
+23325	35021	681931626	0.804901
+Length of MPSP : 6251310450
+Probability of MPSP : 0.000160062
+Candidate Generation Time : 0.051895 seconds
+Probability Computation Time : 0.000307 seconds
+
+30354	35286
+Number of Candidate Paths : 9
+30354	33775	1302707004	0.989146
+33775	15122	1692597558	0.853976
+15122	25088	806657474	0.456192
+25088	14803	747102886	0.484755
+14803	10792	135400899	0.988398
+10792	13525	2121634434	0.82892
+13525	22297	1417897853	0.76908
+22297	4298	1323071856	0.477943
+4298	36567	1559853172	0.201928
+36567	7556	1406874630	0.987743
+7556	3654	797467953	0.178243
+3654	35795	574845017	0.23996
+35795	10859	1121165629	0.901568
+10859	35798	1315316550	0.781812
+35798	20753	40185426	0.573462
+20753	12460	236922714	0.962806
+12460	120	500350824	0.987342
+120	35923	2072481050	0.86419
+35923	35286	709448208	0.907842
+Length of MPSP : 19881981137
+Probability of MPSP : 0.000144674
+Candidate Generation Time : 0.250425 seconds
+Probability Computation Time : 0.022449 seconds
+
+22825	22126
+Number of Candidate Paths : 1
+22825	38002	568769504	0.547351
+38002	18337	383498048	0.242179
+18337	16086	346945740	0.73808
+16086	24203	810822645	0.898812
+24203	27075	130036704	0.909237
+27075	1633	768257633	0.462799
+1633	6097	621253773	0.281839
+6097	38760	1773396558	0.980188
+38760	5936	607814662	0.887637
+5936	9174	935887367	0.510476
+9174	575	881988382	0.819016
+575	25127	1908463418	0.260542
+25127	21660	1715029498	0.557266
+21660	5838	29474331	0.476258
+5838	5887	677676181	0.58762
+5887	4097	1942458339	0.477838
+4097	32585	1983612263	0.368902
+32585	22126	1665996682	0.362722
+Length of MPSP : 17751381728
+Probability of MPSP : 9.85605e-06
+Candidate Generation Time : 0.18515 seconds
+Probability Computation Time : 0.000314 seconds
+
+32584	17833
+Number of Candidate Paths : 2
+32584	36830	1570057491	0.629806
+36830	28437	181471024	0.121945
+28437	17647	655219084	0.466554
+17647	13375	2118550747	0.458679
+13375	7520	1977003370	0.742956
+7520	37419	493285908	0.540555
+37419	22837	914899837	0.962448
+22837	33002	911224067	0.517309
+33002	38062	2089010083	0.900899
+38062	25970	1977785539	0.187275
+25970	21328	879238398	0.885351
+21328	37103	990434813	0.651011
+37103	1640	2058957280	0.324679
+1640	21258	1949386359	0.642713
+21258	18163	689153402	0.952754
+18163	24077	664467081	0.317874
+24077	25354	237135459	0.171775
+25354	2472	80681983	0.309033
+2472	16727	319201665	0.148504
+16727	33443	850050667	0.720368
+33443	24980	1152890070	0.293069
+24980	20943	205852803	0.727192
+20943	31268	1049113851	0.313384
+31268	23540	1747276088	0.695333
+23540	15305	800211788	0.139451
+15305	17960	841785522	0.315646
+17960	17833	1429741958	0.730227
+Length of MPSP : 28834086337
+Probability of MPSP : 1.71199e-10
+Candidate Generation Time : 0.06575 seconds
+Probability Computation Time : 0.000621 seconds
+
+29296	36944
+Number of Candidate Paths : 10
+29296	9844	1194256462	0.509804
+9844	13833	304561499	0.880013
+13833	7611	1366786325	0.765397
+7611	30493	489016982	0.915382
+30493	8635	560420886	0.575197
+8635	29443	977884016	0.235425
+29443	161	1225118543	0.472931
+161	36944	1063888948	0.847685
+Length of MPSP : 7181933661
+Probability of MPSP : 0.0170641
+Candidate Generation Time : 0.168083 seconds
+Probability Computation Time : 0.025777 seconds
+
+20752	17951
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.025828 seconds
+Probability Computation Time : 0 seconds
+
+37397	31149
+Number of Candidate Paths : 3
+37397	18735	556044808	0.845552
+18735	19621	850500671	0.116905
+19621	15670	1931231016	0.541513
+15670	24911	960461507	0.713386
+24911	8057	142447324	0.930576
+8057	38089	551308797	0.675053
+38089	21130	1639219323	0.997206
+21130	31149	316405123	0.308503
+Length of MPSP : 6947618569
+Probability of MPSP : 0.00737971
+Candidate Generation Time : 0.285594 seconds
+Probability Computation Time : 0.003505 seconds
+
+19550	28437
+Number of Candidate Paths : 1
+19550	11427	1284078409	0.356515
+11427	10858	1957477610	0.691056
+10858	31438	546198141	0.330163
+31438	24890	808261178	0.201143
+24890	25521	783390331	0.673199
+25521	6529	1038951718	0.862783
+6529	12261	863975762	0.779343
+12261	10783	1500704117	0.793051
+10783	21132	1226400263	0.814268
+21132	37447	1291741695	0.973958
+37447	3308	1680235734	0.816945
+3308	5309	1973401480	0.995528
+5309	26867	676768501	0.754928
+26867	23431	848628352	0.536928
+23431	37838	1782275309	0.939639
+37838	18338	1663437769	0.66673
+18338	9365	508761931	0.566924
+9365	28475	392150052	0.595863
+28475	36789	551814248	0.940036
+36789	11952	761064710	0.481149
+11952	24539	880166284	0.580361
+24539	7360	883877398	0.615589
+7360	26971	507083199	0.549402
+26971	14879	532296416	0.786029
+14879	28316	712949553	0.65017
+28316	39127	941198301	0.419756
+39127	37863	1189157117	0.586905
+37863	27339	682522675	0.9056
+27339	22687	1542901441	0.065802
+22687	19977	808042061	0.410069
+19977	29819	1581671341	0.998797
+29819	34078	59118405	0.629032
+34078	3972	1188838135	0.831117
+3972	36143	163712254	0.601619
+36143	29205	1957504667	0.962861
+29205	5283	921459229	0.876491
+5283	35505	1352557421	0.927257
+35505	7815	1964339813	0.884815
+7815	17566	1519886694	0.303133
+17566	15526	764189252	0.721621
+15526	21779	1988185120	0.76041
+21779	4737	378988597	0.872474
+4737	2512	2073816453	0.926241
+2512	37108	714333748	0.583099
+37108	16689	1194639355	0.940147
+16689	4779	624597005	0.484409
+4779	39233	277641708	0.82001
+39233	39492	46390019	0.411335
+39492	25072	522953554	0.821558
+25072	5887	204699372	0.423804
+5887	4097	1942458339	0.477838
+4097	28437	1603136409	0.700497
+Length of MPSP : 53865028645
+Probability of MPSP : 2.7092e-11
+Candidate Generation Time : 0.198979 seconds
+Probability Computation Time : 0.000322 seconds
+
+13200	21464
+Number of Candidate Paths : 1
+13200	39100	982810146	0.402196
+39100	7619	1842872030	0.143543
+7619	17668	1441880641	0.7988
+17668	5316	1933591758	0.604444
+5316	39304	1141129630	0.217093
+39304	3675	1561513330	0.84611
+3675	28349	909186133	0.799271
+28349	18082	324783105	0.537571
+18082	14285	1633408557	0.667792
+14285	31425	710165528	0.11069
+31425	34219	750845869	0.867425
+34219	16957	666006626	0.483642
+16957	14527	1949940468	0.9495
+14527	8345	442091444	0.439171
+8345	20881	173002377	0.821984
+20881	18000	553063217	0.65414
+18000	16289	1887728289	0.161383
+16289	2502	435674308	0.766802
+2502	22664	1944875956	0.762268
+22664	1144	1785531951	0.724236
+1144	8030	1795976837	0.641935
+8030	37333	1517788449	0.497268
+37333	31266	1515112992	0.886268
+31266	3658	2127192650	0.740616
+3658	20045	1118965742	0.773057
+20045	11018	2043785952	0.381595
+11018	16077	772690529	0.501638
+16077	30659	939204385	0.365897
+30659	17224	989557187	0.0634192
+17224	4281	461370813	0.394615
+4281	8767	149689910	0.866001
+8767	4579	1033009009	0.958779
+4579	9989	640470163	0.826551
+9989	20892	2042166597	0.950491
+20892	31765	986159637	0.575464
+31765	26	2083839729	0.932187
+26	21946	1601924769	0.894095
+21946	4274	1378566206	0.793005
+4274	23836	142254193	0.420997
+23836	13717	526462305	0.546356
+13717	32093	77940711	0.355973
+32093	23925	1188011883	0.975757
+23925	35934	642562525	0.875059
+35934	13570	2017756944	0.980555
+13570	7217	110659656	0.791249
+7217	32197	719457231	0.569913
+32197	37358	1354628209	0.748291
+37358	22508	902023916	0.986621
+22508	33969	1255803522	0.799296
+33969	36240	264721881	0.0760448
+36240	38177	2024557326	0.778055
+38177	11942	306960200	0.204845
+11942	28406	1569049524	0.529583
+28406	1946	1066061664	0.626911
+1946	37307	1902302032	0.84319
+37307	16863	1712314128	0.322632
+16863	20555	272986392	0.932857
+20555	32876	2003397437	0.841235
+32876	12896	1391955961	0.648768
+12896	8415	644750219	0.89633
+8415	12498	289158060	0.775469
+12498	17956	112915893	0.835561
+17956	24095	745668300	0.677736
+24095	3137	359416115	0.691199
+3137	26550	131941262	0.206843
+26550	34832	1743415336	0.653107
+34832	6260	711093686	0.631287
+6260	38684	838374241	0.769041
+38684	15215	2037524433	0.528399
+15215	31397	1496309415	0.15747
+31397	34240	2111584511	0.885058
+34240	35659	202547632	0.714177
+35659	7182	131791750	0.453836
+7182	33808	1609760955	0.185252
+33808	27049	126433441	0.886397
+27049	21047	419109489	0.920132
+21047	4270	451170877	0.393282
+4270	27904	1577350199	0.0315384
+27904	24690	1954642853	0.345276
+24690	39427	1833813780	0.205798
+39427	22206	1963533079	0.973823
+22206	26988	46073873	0.4313
+26988	26599	1052998581	0.891962
+26599	9516	1664185601	0.772414
+9516	37255	1259185008	0.623737
+37255	38497	1618782443	0.631783
+38497	6717	1370819459	0.753351
+6717	39196	194991567	0.361766
+39196	30916	2028034605	0.821777
+30916	18324	1014708930	0.447084
+18324	5564	1654110900	0.619693
+5564	2623	90978763	0.481975
+2623	20647	1215422218	0.938602
+20647	26380	1288034820	0.165588
+26380	26413	37491530	0.484098
+26413	38187	34613649	0.892596
+38187	10371	200253273	0.723687
+10371	16025	1220429043	0.400539
+16025	37359	1348814732	0.85879
+37359	32789	1977189269	0.228212
+32789	16151	1816357535	0.476069
+16151	17845	1970928269	0.907778
+17845	37759	1379257546	0.746296
+37759	22264	569114680	0.635143
+22264	21118	341850527	0.469062
+21118	21464	1479193691	0.827529
+Length of MPSP : 116085566597
+Probability of MPSP : 4.39123e-29
+Candidate Generation Time : 0.021968 seconds
+Probability Computation Time : 0.000307 seconds
+
+1112	37551
+Number of Candidate Paths : 2
+1112	15734	1695394289	0.261021
+15734	17403	1693694774	0.33731
+17403	17985	763273822	0.890351
+17985	4550	221109070	0.742289
+4550	26288	1064810208	0.698548
+26288	1503	1264628061	0.56673
+1503	24606	1576355621	0.886544
+24606	12936	1565562799	0.792616
+12936	10517	863723363	0.453378
+10517	39425	1219488542	0.94917
+39425	37486	395576253	0.920006
+37486	34184	257079799	0.575778
+34184	29549	764711115	0.994093
+29549	12809	2040090371	0.821824
+12809	28690	880767718	0.765542
+28690	33554	1896621815	0.806602
+33554	10215	1678879897	0.905712
+10215	32664	813904686	0.289222
+32664	5280	2071084575	0.530391
+5280	19345	60271720	0.568821
+19345	32588	1637853293	0.291727
+32588	14128	1808078640	0.72644
+14128	36485	113666926	0.244672
+36485	9854	1226692815	0.689025
+9854	2970	1049129756	0.160573
+2970	32202	1888593797	0.318157
+32202	2402	2125597664	0.904436
+2402	13359	49531086	0.74954
+13359	3671	1037726406	0.713901
+3671	6120	1896463281	0.326993
+6120	22112	599272122	0.292128
+22112	12220	388385803	0.752984
+12220	37551	1921276257	0.678623
+Length of MPSP : 38529296344
+Probability of MPSP : 6.34307e-09
+Candidate Generation Time : 0.175571 seconds
+Probability Computation Time : 0.000621 seconds
+
+1055	22077
+Number of Candidate Paths : 1
+1055	10451	1884891751	0.804231
+10451	39911	1028359105	0.545366
+39911	27470	1995278874	0.628452
+27470	16796	855878722	0.87603
+16796	30124	1796304396	0.53605
+30124	19180	1165685777	0.92129
+19180	9903	1763096039	0.4237
+9903	38611	2013117305	0.874313
+38611	29698	1646421310	0.837895
+29698	34087	936935005	0.842593
+34087	20929	755876528	0.638736
+20929	32016	1783758717	0.790039
+32016	23627	157789470	0.271142
+23627	11862	87941787	0.858326
+11862	38194	1876184500	0.935456
+38194	34078	910034247	0.981709
+34078	3972	1188838135	0.831117
+3972	36143	163712254	0.601619
+36143	29205	1957504667	0.962861
+29205	5283	921459229	0.876491
+5283	35505	1352557421	0.927257
+35505	7815	1964339813	0.884815
+7815	17566	1519886694	0.303133
+17566	15526	764189252	0.721621
+15526	21779	1988185120	0.76041
+21779	38873	2059919375	0.554798
+38873	29638	105646000	0.713744
+29638	29303	1275144477	0.242343
+29303	18974	1625474361	0.568444
+18974	4672	1035282043	0.849308
+4672	34391	1265010281	0.771024
+34391	4480	233460111	0.597903
+4480	33981	297703875	0.666797
+33981	28142	1107497339	0.22417
+28142	35177	913958927	0.850481
+35177	38480	1074517387	0.809208
+38480	13248	476918507	0.139064
+13248	19089	1295499692	0.807716
+19089	1599	817617068	0.851335
+1599	9894	1018170078	0.817127
+9894	9724	250290040	0.930321
+9724	10126	19478328	0.230981
+10126	20770	301168784	0.545748
+20770	35564	1158179996	0.667438
+35564	22077	424444256	0.0798143
+Length of MPSP : 49233607043
+Probability of MPSP : 2.07763e-10
+Candidate Generation Time : 0.607685 seconds
+Probability Computation Time : 0.000311 seconds
+
+14357	33121
+Number of Candidate Paths : 21
+14357	24030	1662985834	0.721345
+24030	31053	800362280	0.645336
+31053	34956	436123543	0.568711
+34956	28159	1157435790	0.631529
+28159	30142	376382580	0.859425
+30142	31467	1343036562	0.771475
+31467	15586	1339303838	0.79666
+15586	33121	588177757	0.861072
+Length of MPSP : 7703808184
+Probability of MPSP : 0.0760426
+Candidate Generation Time : 0.45727 seconds
+Probability Computation Time : 0.065118 seconds
+
+15798	4632
+Number of Candidate Paths : 1
+15798	9035	786751475	0.568726
+9035	966	1627065022	0.698498
+966	35354	62745126	0.716747
+35354	2880	1030171432	0.416447
+2880	18620	1963515253	0.490567
+18620	39178	1281163724	0.662124
+39178	12143	1549280515	0.916132
+12143	14984	138426620	0.503898
+14984	31782	150290681	0.878224
+31782	21639	1761031516	0.846286
+21639	27875	1283049758	0.955567
+27875	17669	612986668	0.938273
+17669	18350	401324941	0.137262
+18350	29077	1848775455	0.869496
+29077	27509	1538763167	0.683714
+27509	32587	884961605	0.947816
+32587	19697	305643626	0.579331
+19697	6734	833403345	0.38861
+6734	18437	1792687617	0.783112
+18437	4632	448390424	0.50433
+Length of MPSP : 20300427970
+Probability of MPSP : 8.14784e-05
+Candidate Generation Time : 0.329766 seconds
+Probability Computation Time : 0.000311 seconds
+
+5325	32563
+Number of Candidate Paths : 1
+5325	28217	791743501	0.816754
+28217	33442	2053998121	0.998809
+33442	31682	2136441379	0.548855
+31682	22801	238755878	0.753335
+22801	15078	1942992725	0.466017
+15078	11097	150552293	0.635417
+11097	5984	1262213510	0.714923
+5984	31315	306914816	0.387124
+31315	24840	1751656703	0.513968
+24840	29922	689876896	0.897169
+29922	2727	2142392655	0.828762
+2727	21957	793767653	0.645605
+21957	18774	714888203	0.15083
+18774	13496	1108871752	0.876547
+13496	1799	1672069921	0.753021
+1799	27609	1017513165	0.0556654
+27609	31621	1023410077	0.968478
+31621	36682	848041655	0.774608
+36682	37788	1636168921	0.232201
+37788	13526	614770855	0.269491
+13526	18063	258941665	0.865929
+18063	27509	450174265	0.866755
+27509	18124	865470094	0.92956
+18124	21277	1376638990	0.429663
+21277	18868	687764019	0.358866
+18868	32563	93755048	0.21281
+Length of MPSP : 26629784760
+Probability of MPSP : 4.06201e-08
+Candidate Generation Time : 0.333271 seconds
+Probability Computation Time : 0.000306 seconds
+
+3296	134
+Number of Candidate Paths : 1
+3296	558	1225448372	0.461748
+558	19728	492717337	0.572475
+19728	8752	888511060	0.399295
+8752	19248	497272491	0.455726
+19248	25552	1012823312	0.568046
+25552	7634	1524486222	0.451806
+7634	775	1703027300	0.803616
+775	134	1638352274	0.271263
+Length of MPSP : 8982638368
+Probability of MPSP : 0.00269113
+Candidate Generation Time : 0.013275 seconds
+Probability Computation Time : 0.000307 seconds
+
+27040	5046
+Number of Candidate Paths : 9
+27040	21996	461243585	0.567861
+21996	31978	268415919	0.750679
+31978	10424	1649583817	0.321879
+10424	15524	229436074	0.961021
+15524	38602	868173603	0.414539
+38602	34709	514680510	0.325512
+34709	31078	782458896	0.232762
+31078	5046	285606467	0.946227
+Length of MPSP : 5059598871
+Probability of MPSP : 0.00391888
+Candidate Generation Time : 0.439399 seconds
+Probability Computation Time : 0.022405 seconds
+
+13847	34969
+Number of Candidate Paths : 2
+13847	20025	163647166	0.210838
+20025	24961	200491499	0.809253
+24961	18930	1913367150	0.357474
+18930	7274	347900868	0.448019
+7274	37543	1518987955	0.264699
+37543	21069	424647638	0.561625
+21069	31609	1497459657	0.461759
+31609	34969	1874984466	0.302148
+Length of MPSP : 7941486399
+Probability of MPSP : 0.00056677
+Candidate Generation Time : 0.091102 seconds
+Probability Computation Time : 0.000644 seconds
+
+23707	3544
+Number of Candidate Paths : 1
+23707	31661	1522279977	0.640324
+31661	18794	1962543205	0.723856
+18794	19060	1968659833	0.596887
+19060	3538	1581634899	0.51603
+3538	4961	554567825	0.449715
+4961	35537	834340100	0.0731802
+35537	14125	883566963	0.433483
+14125	3544	2006468316	0.777559
+Length of MPSP : 11314061118
+Probability of MPSP : 0.00158364
+Candidate Generation Time : 0.254331 seconds
+Probability Computation Time : 0.000307 seconds
+
+21361	2531
+Number of Candidate Paths : 4
+21361	39826	1600080060	0.680383
+39826	7174	375804000	0.870624
+7174	12388	1952287082	0.693839
+12388	25127	1178147398	0.542293
+25127	21660	1715029498	0.557266
+21660	5838	29474331	0.476258
+5838	19759	1559923596	0.756953
+19759	33118	1974860539	0.60309
+33118	12138	1209350059	0.703252
+12138	15048	1770589234	0.375717
+15048	21230	344973491	0.908154
+21230	28570	491994882	0.967979
+28570	6657	2074098393	0.209015
+6657	8558	2118659435	0.641191
+8558	18071	2053983763	0.765234
+18071	3730	1327849327	0.312214
+3730	10022	1204222776	0.102052
+10022	18120	1712447631	0.928004
+18120	17230	2000170990	0.661224
+17230	2531	925805558	0.642885
+Length of MPSP : 27619752043
+Probability of MPSP : 8.08528e-06
+Candidate Generation Time : 0.359732 seconds
+Probability Computation Time : 0.006525 seconds
+
+32	9203
+Number of Candidate Paths : 8
+32	1224	523219640	0.0808242
+1224	18381	1039218178	0.755454
+18381	18679	1792123066	0.65374
+18679	34152	1733970980	0.925131
+34152	25638	1573858656	0.744476
+25638	24569	194376794	0.697131
+24569	2840	789803288	0.860135
+2840	38629	2001803555	0.935545
+38629	13062	1724009310	0.980751
+13062	31611	1003894119	0.91106
+31611	39269	1982840957	0.835427
+39269	24248	1601692340	0.820191
+24248	4994	1428995073	0.798658
+4994	568	2094687938	0.588572
+568	1471	1103203840	0.126104
+1471	34188	942815581	0.952949
+34188	20865	608721838	0.723148
+20865	18336	2107323283	0.997281
+18336	20008	1362493203	0.793963
+20008	82	1551831317	0.635042
+82	9203	2072077947	0.761956
+Length of MPSP : 29232960903
+Probability of MPSP : 0.000147781
+Candidate Generation Time : 0.12547 seconds
+Probability Computation Time : 0.019144 seconds
+
+29974	18664
+Number of Candidate Paths : 6
+29974	30614	510718235	0.813291
+30614	15619	162083325	0.590967
+15619	33803	2048187571	0.480247
+33803	25331	1903519824	0.449903
+25331	33691	1567405876	0.703133
+33691	5516	675450541	0.974425
+5516	29165	1273227472	0.779169
+29165	25234	1941848059	0.968123
+25234	7356	500959582	0.393129
+7356	23046	996796905	0.443802
+23046	17185	523755898	0.853754
+17185	37378	478042384	0.870539
+37378	18664	66574907	0.603658
+Length of MPSP : 12648570579
+Probability of MPSP : 0.00420123
+Candidate Generation Time : 0.329358 seconds
+Probability Computation Time : 0.012675 seconds
+
+34733	31710
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.709724 seconds
+Probability Computation Time : 0 seconds
+
+34041	35644
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.063245 seconds
+Probability Computation Time : 0 seconds
+
+23719	35882
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.001441 seconds
+Probability Computation Time : 0 seconds
+
+39510	10572
+Number of Candidate Paths : 3
+39510	9091	1970768579	0.76611
+9091	306	1766839601	0.839594
+306	39057	1343306096	0.486441
+39057	13729	2000935500	0.832921
+13729	36112	876787654	0.214789
+36112	11650	1618267305	0.205182
+11650	13349	2006446160	0.800537
+13349	10572	1416541452	0.803402
+Length of MPSP : 12999892347
+Probability of MPSP : 0.00738688
+Candidate Generation Time : 0.95259 seconds
+Probability Computation Time : 0.003499 seconds
+
+13223	20973
+Number of Candidate Paths : 1
+13223	34609	1755356467	0.228641
+34609	18467	49844342	0.808996
+18467	37321	256758611	0.970136
+37321	21422	1500644385	0.31171
+21422	23966	2119385335	0.182679
+23966	6151	116421434	0.899578
+6151	13240	2004134844	0.957087
+13240	20973	1642850584	0.100667
+Length of MPSP : 9445396002
+Probability of MPSP : 0.000885627
+Candidate Generation Time : 0.329272 seconds
+Probability Computation Time : 0.000311 seconds
+
+24650	4274
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.018823 seconds
+Probability Computation Time : 0 seconds
+
+17033	30964
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.076925 seconds
+Probability Computation Time : 0 seconds
+
+6172	4787
+Number of Candidate Paths : 2
+6172	9247	467448416	0.314294
+9247	9582	1513414592	0.223168
+9582	39154	912982465	0.513345
+39154	29803	1441149347	0.525058
+29803	28530	687240953	0.334551
+28530	3892	1338111793	0.860468
+3892	5243	1279901450	0.109911
+5243	4787	1708970842	0.886387
+Length of MPSP : 9349219858
+Probability of MPSP : 0.000530207
+Candidate Generation Time : 0.2178 seconds
+Probability Computation Time : 0.000613 seconds
+
+29874	14262
+Number of Candidate Paths : 1
+29874	33774	405320167	0.37678
+33774	18039	719556259	0.354599
+18039	30937	2081853234	0.336926
+30937	1313	1281838031	0.936907
+1313	28286	100008884	0.852828
+28286	22835	556182108	0.868354
+22835	2627	1722318761	0.977897
+2627	14262	1605904314	0.208219
+Length of MPSP : 8472981758
+Probability of MPSP : 0.00635956
+Candidate Generation Time : 0.059999 seconds
+Probability Computation Time : 0.000308 seconds
+
+35900	15063
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.032809 seconds
+Probability Computation Time : 0 seconds
+
+31745	6744
+Number of Candidate Paths : 1
+31745	16993	962181326	0.0918034
+16993	3547	1711624975	0.0965156
+3547	33983	59332646	0.639031
+33983	31949	1621844343	0.232623
+31949	19023	1617343397	0.253995
+19023	30454	1077584275	0.868515
+30454	15917	1122282913	0.736173
+15917	6744	1916962330	0.810728
+Length of MPSP : 10089156205
+Probability of MPSP : 0.000173416
+Candidate Generation Time : 0.003306 seconds
+Probability Computation Time : 0.000312 seconds
+
+6421	36698
+Number of Candidate Paths : 5
+6421	27413	125584804	0.613771
+27413	16740	241002915	0.783486
+16740	33341	2014936565	0.768505
+33341	34660	1708961930	0.877788
+34660	25264	60957068	0.551915
+25264	33579	615049055	0.719522
+33579	6395	1147789403	0.42605
+6395	20832	765195234	0.760138
+20832	24795	94204321	0.902135
+24795	39502	432248992	0.991253
+39502	13213	1914157609	0.357441
+13213	37927	925634421	0.924301
+37927	33984	55796954	0.806197
+33984	8169	1231764888	0.855978
+8169	21639	943819505	0.279681
+21639	795	1376466982	0.807242
+795	23559	1498194082	0.0730795
+23559	8874	908348216	0.859838
+8874	36364	285515998	0.466038
+36364	22598	34568190	0.822816
+22598	28983	470226018	0.884354
+28983	36176	38510606	0.721428
+36176	20073	798085589	0.801552
+20073	9016	280523226	0.320046
+9016	26133	1504327826	0.824202
+26133	39635	658539787	0.44243
+39635	10125	919916363	0.868048
+10125	27100	195542259	0.908696
+27100	11960	1104029460	0.265462
+11960	39082	1421889045	0.719446
+39082	36698	1979041517	0.997082
+Length of MPSP : 25750828828
+Probability of MPSP : 4.1482e-07
+Candidate Generation Time : 1.00247 seconds
+Probability Computation Time : 0.009494 seconds
+
+36959	25823
+Number of Candidate Paths : 3
+36959	9015	699816514	0.609677
+9015	36497	1937305290	0.272495
+36497	22770	2050317895	0.589474
+22770	30753	2137281944	0.8469
+30753	11106	2037057577	0.786927
+11106	5700	1295575570	0.944643
+5700	21045	995033395	0.50689
+21045	25823	1253097616	0.133974
+Length of MPSP : 12405485801
+Probability of MPSP : 0.00418688
+Candidate Generation Time : 0.988401 seconds
+Probability Computation Time : 0.003494 seconds
+
+2394	32657
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.130467 seconds
+Probability Computation Time : 0 seconds
+
+5095	12276
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.131503 seconds
+Probability Computation Time : 0 seconds
+
+25776	6939
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.197189 seconds
+Probability Computation Time : 0 seconds
+
+1659	1375
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.041728 seconds
+Probability Computation Time : 0 seconds
+
+2373	21543
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.001773 seconds
+Probability Computation Time : 0 seconds
+
+29286	5129
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.061418 seconds
+Probability Computation Time : 0 seconds
+
+11636	15414
+Number of Candidate Paths : 3
+11636	13065	131407473	0.192138
+13065	538	882012985	0.726342
+538	37306	571295694	0.872318
+37306	37997	1136271130	0.307879
+37997	28471	717991336	0.755846
+28471	33442	982541818	0.311033
+33442	20820	1431464957	0.468866
+20820	15414	2110457872	0.193309
+Length of MPSP : 7963443265
+Probability of MPSP : 0.000798639
+Candidate Generation Time : 0.314626 seconds
+Probability Computation Time : 0.003552 seconds
+
+13713	36382
+Number of Candidate Paths : 6
+13713	15985	786352016	0.556879
+15985	31599	19869138	0.774261
+31599	12838	2076266368	0.186971
+12838	6456	510069079	0.955049
+6456	17773	903638767	0.538455
+17773	39563	1768473786	0.743156
+39563	18859	1592629263	0.323988
+18859	36382	198106301	0.820374
+Length of MPSP : 7855404718
+Probability of MPSP : 0.00818877
+Candidate Generation Time : 0.433509 seconds
+Probability Computation Time : 0.013201 seconds
+
+10168	29353
+Number of Candidate Paths : 1
+10168	22470	1620122224	0.957362
+22470	16107	505063372	0.244564
+16107	32931	2144574383	0.124772
+32931	39539	2122045436	0.835989
+39539	31727	1317033959	0.879442
+31727	29502	1505559740	0.200327
+29502	34275	677750389	0.290301
+34275	29353	1793633399	0.535274
+Length of MPSP : 11685782902
+Probability of MPSP : 0.000668588
+Candidate Generation Time : 0.007753 seconds
+Probability Computation Time : 0.000306 seconds
+
+31815	10269
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.039296 seconds
+Probability Computation Time : 0 seconds
+
+17674	8908
+Number of Candidate Paths : 1
+17674	10720	656137888	0.615993
+10720	6508	1180352751	0.235432
+6508	30466	792923959	0.249238
+30466	22432	1420831163	0.491247
+22432	3908	2004789030	0.370337
+3908	34212	324745465	0.422854
+34212	10905	70025687	0.280914
+10905	8908	973189005	0.738149
+Length of MPSP : 7422994948
+Probability of MPSP : 0.000576581
+Candidate Generation Time : 0.157886 seconds
+Probability Computation Time : 0.000307 seconds
+
+32927	17895
+Number of Candidate Paths : 3
+32927	24983	1249762428	0.887473
+24983	21657	2066335057	0.813069
+21657	14683	682896002	0.582256
+14683	36548	1898017781	0.766104
+36548	10673	1039126161	0.951076
+10673	418	1284379563	0.305359
+418	24626	1627054280	0.182325
+24626	18900	764191256	0.601265
+18900	26538	1293828542	0.716369
+26538	19794	559393626	0.994762
+19794	11924	435282113	0.847667
+11924	14179	942186709	0.691896
+14179	38913	1983870361	0.30991
+38913	5385	1753154753	0.535581
+5385	39733	73477877	0.204431
+39733	35222	186509191	0.580602
+35222	19795	1322410194	0.996886
+19795	9377	1303623059	0.567403
+9377	23064	334023910	0.842568
+23064	11663	38418354	0.468451
+11663	10028	1952128943	0.53797
+10028	14159	792704045	0.973379
+14159	27833	1368874161	0.381485
+27833	33888	1998494453	0.875526
+33888	30207	276764538	0.950099
+30207	33551	185754453	0.652018
+33551	11641	327839160	0.802386
+11641	4733	1052504852	0.947503
+4733	20992	194989778	0.853277
+20992	19969	644829119	0.984368
+19969	10911	384675588	0.948619
+10911	17063	1958328501	0.259312
+17063	39708	891803316	0.592064
+39708	35574	445186839	0.42909
+35574	5012	1140587410	0.429329
+5012	12733	1264694905	0.534809
+12733	6179	1776166995	0.813376
+6179	17598	1508338537	0.515131
+17598	10213	530247100	0.369987
+10213	17895	1247532373	0.832515
+Length of MPSP : 40780386283
+Probability of MPSP : 2.41364e-09
+Candidate Generation Time : 0.362234 seconds
+Probability Computation Time : 0.00349 seconds
+
+35109	5075
+Number of Candidate Paths : 2
+35109	38494	1095142630	0.395541
+38494	30494	1695340194	0.185626
+30494	23466	1067891267	0.992939
+23466	25090	1564339188	0.738664
+25090	35213	1208585770	0.0367993
+35213	39306	1897678156	0.68913
+39306	33644	595014434	0.0570909
+33644	5075	399954273	0.137776
+Length of MPSP : 9523945912
+Probability of MPSP : 1.07419e-05
+Candidate Generation Time : 0.342075 seconds
+Probability Computation Time : 0.000618 seconds
+
+27592	11760
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.001586 seconds
+Probability Computation Time : 0 seconds
+
+24597	30541
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.038418 seconds
+Probability Computation Time : 0 seconds
+
+12408	35983
+Number of Candidate Paths : 3
+12408	13490	1549414463	0.178879
+13490	35239	1349462131	0.185429
+35239	19648	1605436940	0.886254
+19648	3869	27962121	0.817218
+3869	27441	1079652778	0.943575
+27441	37868	770605269	0.715482
+37868	16136	1015910919	0.362378
+16136	35983	2146367019	0.170378
+Length of MPSP : 9544811640
+Probability of MPSP : 0.00100134
+Candidate Generation Time : 0.250658 seconds
+Probability Computation Time : 0.003515 seconds
+
+32405	38082
+Number of Candidate Paths : 1
+32405	32095	126345334	0.198492
+32095	12915	2061258708	0.804768
+12915	15887	1999977834	0.0602079
+15887	6948	1022346364	0.404409
+6948	25328	451587353	0.847519
+25328	25122	1303196799	0.549419
+25122	39670	1443395256	0.430875
+39670	38082	2101789329	0.890819
+Length of MPSP : 10509896977
+Probability of MPSP : 0.000695155
+Candidate Generation Time : 0.009375 seconds
+Probability Computation Time : 0.000312 seconds
+
+33776	5515
+Number of Candidate Paths : 4
+33776	3182	730589922	0.800232
+3182	15420	140316917	0.467731
+15420	38197	43788878	0.385066
+38197	8213	1374227465	0.971529
+8213	39019	497526893	0.639834
+39019	27070	1843395224	0.938034
+27070	32342	713259186	0.729819
+32342	21793	51745998	0.880872
+21793	6811	1093397768	0.32654
+6811	5705	1354978228	0.81565
+5705	1022	1614669443	0.303901
+1022	37849	645353313	0.888613
+37849	37018	93221300	0.820509
+37018	33438	2006503983	0.62019
+33438	36016	607220606	0.943492
+36016	12484	1288567617	0.335965
+12484	14970	883863558	0.574578
+14970	13661	1309371923	0.220497
+13661	5515	526595262	0.338939
+Length of MPSP : 16818593484
+Probability of MPSP : 2.69163e-05
+Candidate Generation Time : 0.323405 seconds
+Probability Computation Time : 0.006463 seconds
+
+37371	12961
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.001899 seconds
+Probability Computation Time : 0 seconds
+
+37087	10246
+Number of Candidate Paths : 5
+37087	9783	1327281129	0.833665
+9783	11397	2105966657	0.726085
+11397	301	1899072697	0.591863
+301	34242	1569645305	0.336003
+34242	26543	1559649320	0.936986
+26543	8437	628574047	0.932336
+8437	28296	491957184	0.427628
+28296	10246	600328139	0.382154
+Length of MPSP : 10182474478
+Probability of MPSP : 0.0171852
+Candidate Generation Time : 0.628949 seconds
+Probability Computation Time : 0.009515 seconds
+
+15701	20709
+Number of Candidate Paths : 4
+15701	29472	608639498	0.658206
+29472	26592	343983733	0.279709
+26592	1451	1551376826	0.744715
+1451	27445	720699500	0.761317
+27445	34603	15979643	0.89727
+34603	8151	1219432262	0.603674
+8151	8065	1593263542	0.659351
+8065	20709	1828313876	0.815668
+Length of MPSP : 7881688880
+Probability of MPSP : 0.0304075
+Candidate Generation Time : 0.332233 seconds
+Probability Computation Time : 0.006516 seconds
+
+4756	37788
+Number of Candidate Paths : 1
+4756	2041	930051564	0.093601
+2041	12513	1480326068	0.435811
+12513	8495	1679452377	0.567044
+8495	20695	235455576	0.727176
+20695	27609	1186469649	0.562698
+27609	31621	1023410077	0.968478
+31621	36682	848041655	0.774608
+36682	37788	1636168921	0.232201
+Length of MPSP : 9019375887
+Probability of MPSP : 0.00164872
+Candidate Generation Time : 0.002283 seconds
+Probability Computation Time : 0.000306 seconds
+
+22114	18886
+Number of Candidate Paths : 1
+22114	38252	292353196	0.322608
+38252	34	1455959495	0.633905
+34	87	258236370	0.476434
+87	3606	1122014726	0.652834
+3606	13752	1180406999	0.549567
+13752	20565	796171372	0.677388
+20565	38465	1934210368	0.983821
+38465	18886	1155673850	0.167555
+Length of MPSP : 8195026376
+Probability of MPSP : 0.00390333
+Candidate Generation Time : 0.038257 seconds
+Probability Computation Time : 0.000307 seconds
+
+35559	3877
+Number of Candidate Paths : 3
+35559	27237	438781319	0.870821
+27237	27539	1626639574	0.904188
+27539	21098	13887787	0.450536
+21098	11518	1131686153	0.942443
+11518	29050	256333272	0.285434
+29050	27427	1321841273	0.863592
+27427	28598	948038653	0.855835
+28598	23703	2042885375	0.800937
+23703	27189	1217043094	0.448156
+27189	17053	948452955	0.903086
+17053	35938	1231163073	0.76448
+35938	25148	836307012	0.866119
+25148	1375	967775995	0.665544
+1375	22165	1630749491	0.597284
+22165	20084	1898879789	0.728397
+20084	20140	1028602558	0.981987
+20140	36835	1660779460	0.832454
+36835	12313	800829799	0.628488
+12313	5187	5656404	0.32438
+5187	28543	760034011	0.669037
+28543	26318	984666570	0.23279
+26318	24682	1396250847	0.872723
+24682	37459	1811307708	0.958113
+37459	3877	252665766	0.183194
+Length of MPSP : 25211257938
+Probability of MPSP : 1.74277e-05
+Candidate Generation Time : 0.33534 seconds
+Probability Computation Time : 0.003509 seconds
+
+17908	20663
+Number of Candidate Paths : 11
+17908	29966	539776908	0.321444
+29966	246	792754240	0.414165
+246	16150	1107270485	0.576188
+16150	26132	1788239303	0.368277
+26132	9220	1996423905	0.196832
+9220	32454	1615800624	0.643361
+32454	34376	1813703309	0.526404
+34376	31661	1992963904	0.733303
+31661	18794	1962543205	0.723856
+18794	25597	1926632922	0.917576
+25597	11065	122273053	0.611154
+11065	20663	1944344634	0.465786
+Length of MPSP : 17602726492
+Probability of MPSP : 0.000261096
+Candidate Generation Time : 0.373662 seconds
+Probability Computation Time : 0.029193 seconds
+
+9366	25688
+Number of Candidate Paths : 1
+9366	35013	1816476291	0.910576
+35013	13595	789161204	0.866925
+13595	33977	276073977	0.408472
+33977	4553	1874706999	0.323519
+4553	14879	2048690602	0.945929
+14879	15574	1297666781	0.446845
+15574	36288	875018272	0.880325
+36288	25688	2021081292	0.628108
+Length of MPSP : 10998875418
+Probability of MPSP : 0.024381
+Candidate Generation Time : 0.0766 seconds
+Probability Computation Time : 0.000319 seconds
+
+2387	17639
+Number of Candidate Paths : 2
+2387	16717	843477112	0.851103
+16717	1500	1456359753	0.871433
+1500	14097	1517223457	0.992902
+14097	30936	473085894	0.222711
+30936	37591	1312058943	0.71833
+37591	17385	1311912345	0.733911
+17385	10148	1123422371	0.702194
+10148	17639	1952292411	0.915467
+Length of MPSP : 9989832286
+Probability of MPSP : 0.0555814
+Candidate Generation Time : 0.035757 seconds
+Probability Computation Time : 0.000644 seconds
+
+22060	13661
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.027114 seconds
+Probability Computation Time : 0 seconds
+
+36120	2847
+Number of Candidate Paths : 3
+36120	13090	573962798	0.999609
+13090	36591	283196947	0.269415
+36591	37595	1734206910	0.617763
+37595	29826	1909256096	0.849667
+29826	14505	847302289	0.628438
+14505	3528	1738343271	0.989772
+3528	32385	1936363987	0.841293
+32385	2847	1831799660	0.759596
+Length of MPSP : 10854431958
+Probability of MPSP : 0.0561888
+Candidate Generation Time : 0.181229 seconds
+Probability Computation Time : 0.003504 seconds
+
+2136	2719
+Number of Candidate Paths : 1
+2136	6070	1838201994	0.849273
+6070	36820	716421900	0.284941
+36820	20928	1085426388	0.242085
+20928	1916	571917637	0.564656
+1916	279	1312587508	0.606624
+279	1640	1467320751	0.972914
+1640	21258	1949386359	0.642713
+21258	2719	1102604916	0.170371
+Length of MPSP : 10043867453
+Probability of MPSP : 0.00213776
+Candidate Generation Time : 0.154213 seconds
+Probability Computation Time : 0.000311 seconds
+
+497	17639
+Number of Candidate Paths : 10
+497	14606	1574267530	0.263525
+14606	20911	9243063	0.126651
+20911	5133	1941665565	0.161205
+5133	30936	37544221	0.769246
+30936	37591	1312058943	0.71833
+37591	17385	1311912345	0.733911
+17385	10148	1123422371	0.702194
+10148	17639	1952292411	0.915467
+Length of MPSP : 9262406449
+Probability of MPSP : 0.00140262
+Candidate Generation Time : 0.182447 seconds
+Probability Computation Time : 0.025766 seconds
+
+11105	30504
+Number of Candidate Paths : 0
+Length of MPSP : 0
+Probability of MPSP : 1
+Candidate Generation Time : 0.030411 seconds
+Probability Computation Time : 0 seconds
+
+Average Length of MPSP for 8 hops : 15188279733
+Average Probability of MPSP for 8 hops : 0.295805
+Average Candidate Generation Time for 8 hops : 0.242643 seconds
+Average Probability Computation Time for 8 hops : 0.00675478 seconds
+
+
