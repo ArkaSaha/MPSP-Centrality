@@ -21,6 +21,7 @@ def generate_queries(g, filename):
     n = g.number_of_nodes()
     m = g.number_of_edges() 
 
+    # 0 represents the completely random pairs, 2, 4, 6 and 8 will contain pairs that are 2, 4, 6, 8 hops apart
     queries = {0: set(), 2:set(), 4:set(), 6:set(), 8:set()}
 
     queries_per_category = 100
@@ -33,6 +34,8 @@ def generate_queries(g, filename):
             print("{} - {}, ".format(i, queries_so_far), end="", flush=True)
         s = random.randrange(n)
         t = random.randrange(n)
+        if s == t:
+            continue
         try:
             hops = nx.shortest_path_length(g, source=s, target=t)
             if hops != 0  and hops in queries  \
@@ -48,6 +51,9 @@ def generate_queries(g, filename):
         except nx.NetworkXNoPath:
             continue
     print()
+
+    # Write the queries to file.
+    # The first 100 are the random queries, then 100 two hops queries, ..., lastly 100 eight hop queries
     for hops in queries:
         for s, t in queries[hops]:
             q.write("{} {}\n".format(s, t))
@@ -56,6 +62,9 @@ def generate_queries(g, filename):
 
 
 
+# Another option to (faster) generate queries, but here the pairs won't be picked uniformly at random
+# First a start vertex is picked uniformly at random and then the end vertex is picked uniformly at random from
+# the vertices at a certain hop distance
 def generate_queries_skewed(g, filename):
     q = open(filename, "w")
     n = g.number_of_nodes()
@@ -91,6 +100,8 @@ def generate_queries_skewed(g, filename):
     while queries_so_far < queries_per_category:
         s = random.randrange(n)
         t = random.randrange(n)
+        if s == t:
+            continue
         try:
             if len(queries[0]) < queries_per_category and (s,t) not in queries[0]:
                 queries[0].add((s, t))

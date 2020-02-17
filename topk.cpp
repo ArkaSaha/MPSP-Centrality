@@ -15,134 +15,9 @@
  *                          
  */
 
+#include "topk.h"
 
-#include<iostream>
-#include<cmath>
-#include<cstdlib>
-#include<climits>
-#include<list>
-#include<map>
-#include<vector>
-#include<set>
-#include<utility>
-#include<random>
-#include<ctime>
-#include<boost/heap/fibonacci_heap.hpp>
-
-using namespace std;
-using namespace boost::heap;
-
-#define ull unsigned long long
-
-//mt19937 mersenne{static_cast<mt19937::result_type>(time(nullptr))};}
 mt19937 mersenne{static_cast<mt19937::result_type>(12345)};
-
-struct Edge
-{
-    int u, v;
-    int l;
-    double p;
-    int index;
-    bool available = true;
-
-    bool operator<(const Edge& rhs) const{
-        return this->index < rhs.index;
-    }
-
-    bool operator==(const Edge& rhs) const{
-        return this->index == rhs.index;
-    }
-    bool operator!=(const Edge& rhs) const{
-        return this->index != rhs.index;
-    }
-};
-
-struct Graph
-{
-    /*
-     * NB: When adj changes the pointers in incoming and index2edge are invalidated and should be recalculated
-     */
-	int n, m;
-    vector< vector<Edge> > adj;
-    vector< vector<Edge *> > incoming;
-    vector<Edge *> index2edge;
-
-    Graph(int n, int m, vector<vector<Edge> > adj, vector<vector<Edge *>> incoming, vector<Edge *> index2edge) : n(n), m(m), adj(adj), incoming(incoming), index2edge(index2edge) {} ;
-    Graph(int n, int m) : Graph(n, m, vector<vector<Edge>>(n, vector<Edge>()), vector<vector<Edge *>>(n, vector<Edge*>()), vector<Edge *>(m)) {} ;
-    Graph(){};
-
-    void update_incoming_index2edge(){
-        for(int i=0; i<this->n;i++){
-            this->incoming[i] = vector<Edge *>();
-            for(uint j=0; j<this->adj[i].size(); j++){
-                this->incoming[this->adj[i][j].v].push_back(&this->adj[i][j]);
-                this->index2edge[this->adj[i][j].index] = &this->adj[i][j];
-            } 
-        }
-    }
-};
-
-
-struct Path
-{
-    vector<Edge> edges;
-    double LB, UB; 
-    Path(vector<Edge> edges) : edges(edges){
-        LB = 0.0;
-        UB = 1.0;
-    }
-
-    int len(){
-        int res = 0;
-        for(Edge e: edges){
-            res += e.l;
-        }
-        return res;
-    }
-
-    void print() const{
-        if(edges.size() > 0){
-            cout << edges[0].u;
-            for(Edge e: edges){
-                cout << " -> " << e.v;
-            }
-        }
-        else{
-            cout << "Empty Path";
-        }
-    }
-
-    double probability() const{
-        if(edges.size() == 0) return 0.0;
-        double prob = 1.0;
-        for(Edge e: edges){
-            prob *= e.p;
-        }
-        return prob;
-    }
-
-    ull len() const{
-        if(edges.size() == 0) return 0;
-        ull len = 0;
-        for(Edge e: edges){
-            len += e.l;
-        }
-        return len;
-    }
-
-    bool operator==(const Path& rhs) const{
-        // Paths are equal if all the edges are the same
-        if(this->edges.size() != rhs.edges.size()) return false;
-        for(uint i=0; i<this->edges.size(); i++){
-            if(this->edges[i] != rhs.edges[i]) return false;
-        }
-        return true; 
-    }
-
-    bool operator!=(const Path& rhs) const{
-        return !((*this) == rhs); 
-    }
-};
 
 set<Edge> p_minus_q(Path p, Path q){
     set<Edge> res = set<Edge>(p.edges.begin(), p.edges.end());
@@ -169,7 +44,7 @@ double LB1(vector<Path> &paths, int n){
         }
         LB_prob *= (1.0 - prod_of_probs);
     }
-    cout << "LB1 of path " << n << " : " << LB_prob << endl;
+    //cout << "LB1 of path " << n << " : " << LB_prob << endl;
     return LB_prob;
 }
 
@@ -283,8 +158,8 @@ vector<set<Edge>> find_pairwise_independend_set_covers(const vector<Path> &paths
 double LB2(const vector<Path> &paths, int n){
     // Given a sorted vector of the top n shortest paths
     // computes LB2 of the nth path as in Theorem 2 in [WISE 2011]
-    cout << "Computing LB2  of path " << n << " : ";
-    paths[n].print(); cout << endl;
+    //cout << "Computing LB2  of path " << n << " : ";
+    //paths[n].print(); cout << endl;
 
     if(n == 0) return 0.0;
 
@@ -312,11 +187,13 @@ void update_LB(vector<Path> &paths, int n){
     // Given a sorted vector of the top n shortest paths, computes and updates the LB value of the nth path
     double LB1_prob = LB1(paths, n);
     double LB2_prob = LB2(paths, n);
+    /*
     cout << "LB1 : " << LB1_prob << endl;
     cout << "LB2 : " << LB2_prob << endl;
     if(LB2_prob > LB1_prob){
         cout << "LB2 was better!" << endl;
     }
+    */
     paths[n].LB = max(LB1_prob, LB2_prob);
 }
 
@@ -329,7 +206,7 @@ double UB(const vector<Path> &paths, int n){
     for(int i=0; i<n; i++){
         UB_prob -= paths[i].LB;
     }
-    cout << "UB " << n << " : " << UB_prob << endl;
+    //cout << "UB " << n << " : " << UB_prob << endl;
     return UB_prob;
 }
 
@@ -341,6 +218,10 @@ void update_UB(vector<Path> &paths, int n){
 Path dijkstra(const Graph &g, int s, int t){
     // Computes the shortest path between nodes s and t in graph g using Dijkstra's shortest path algorithm
     
+    if(s == t){
+        return Path({});
+    }
+
 	struct node
 	{
         int u;
@@ -393,7 +274,7 @@ Path dijkstra(const Graph &g, int s, int t){
     }
 
     if(D[t] == ULLONG_MAX){
-        cout << "There is no path between s = " << s << " and t = " << t << endl;
+        //cout << "There is no path between s = " << s << " and t = " << t << endl;
         // disconnected
         return Path({});
     }
@@ -521,14 +402,14 @@ double kth_largest(const set<double> &elts, int k){
     return *elt;
 }
 
-vector<Path> yen(Graph &g, int s, int t, int k){
+vector<Path> yen(Graph &g, int s, int t, int k, ostream & ofs){
     // Computes the top k_prime shortest paths using Yen's algorithm where k_prime depends on a stop condition
     // instead of being a fixed parameter
     //
     // The stop condition is that the 
     // UB(prob(k_prime'th shortest path)) < k'th largest LB(prob(path Pn is shortest path))
     // where Pn are the top n shortest paths
-    cout << "\n\n\nYEN\n\n\n" << endl;
+    //cerr << "\n\n\nYEN\n\n\n" << endl;
     Path p1 = dijkstra(g, s, t);
 
     vector<Path> A = {p1};
@@ -539,9 +420,14 @@ vector<Path> yen(Graph &g, int s, int t, int k){
 
     set<double> LBs = {A[0].LB};
 
+    int THRESHOLD_NR_OF_CANDIDATES = 20*k;
     int k_prime = 0;
     while(k_prime < k || A[k_prime].UB >= kth_largest(LBs, k)){
-        cout << "\nk_prime : " << k_prime << endl << endl;
+        if(k_prime >= THRESHOLD_NR_OF_CANDIDATES){
+            ofs << "** STOPPED YEN : Generated more than " << THRESHOLD_NR_OF_CANDIDATES << " candidates" << endl;
+            break;
+        }
+        //cout << "\nk_prime : " << k_prime << endl << endl;
         for(uint i=0; i<A.back().edges.size(); i++){
             // we are going find a new path, diverting from the old path from the spurNode
             int spurNode = A.back().edges[i].u;
@@ -623,22 +509,25 @@ vector<Path> yen(Graph &g, int s, int t, int k){
 
         k_prime++;
 
-        cout << "New path : "; A[k_prime].print(); cout << endl;
         // compute the LB and UB for the new path
         update_LB(A, k_prime);
         update_UB(A, k_prime);
         LBs.insert(A[k_prime].LB);
-        cout << "Current UB     : " << A[k_prime].UB << endl;
-        cout << "kth largest LB : " << kth_largest(LBs, k) << endl;
+
+        //cout << "New path : "; A[k_prime].print(); cout << endl;
+        //cout << "Current UB     : " << A[k_prime].UB << endl;
+        //cout << "kth largest LB : " << kth_largest(LBs, k) << endl;
     }
     if(A[k_prime].UB < kth_largest(LBs, k)){
         A.pop_back();
     }
+    /*
     cout << "Done with yen, found " << A.size() << " paths" << endl;
     for(uint i=0; i<A.size(); i++){
         cout << "Path " << i << " : ";
         A[i].print(); cout << endl;
     }
+    */
     return A;
 }
 
@@ -706,20 +595,23 @@ double Luby_Karp(const vector<Path> &paths, int n, ull N){
     return (1-p_tilde) * paths[n].probability();
 }
 
-vector<pair<Path,double>> topk(Graph &g, int s, int t, int k){
+vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, clock_t &candidate_time, clock_t &probability_time, ostream & ofs = cout){
     /* Computes the topk most probably shortest paths. Consists of two steps
      * 1) Use Yen's algorithm with a modified stopping rule to find a set of candidates.
      * 2) Use Luby-Karp Mote Carlo sampling to compute probabilities 
      */
 
-    vector<Path> candidates = yen(g, s, t, k);
+    clock_t start = clock();
+    vector<Path> candidates = yen(g, s, t, k, ofs);
+    ofs << "Nr of candidates : " << candidates.size() << endl;
+    candidate_time = clock() - start;
 
-    cout << "Found " << candidates.size() << " candidates" << endl;
+    clock_t start2 = clock();
 
     // for every path, use Luby-Karp to estimate the probability of it being the shortest path
     vector<pair<double, int>> LK_probabilities = vector<pair<double, int>>(candidates.size()); 
     for(uint i=0; i<candidates.size(); i++){
-        double LK = Luby_Karp(candidates, i, 1000000);
+        double LK = Luby_Karp(candidates, i, 10000);
         LK_probabilities[i] = {LK, i};
     }
 
@@ -736,150 +628,12 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k){
         int index = LK_probabilities[i].second;
         topk_mpsp.push_back({candidates[index], LK_probabilities[i].first});
     }
+
+    probability_time = clock() - start2;
     return topk_mpsp;
 }
 
-Graph read_from_stdin(){
-    // Reads a graph from stdin, file containing graph should look the following
-    // First a line with two space separated integers n and m
-    // Here n is the number of nodes and m is the number of edges
-    // Then follow m lines with of the form 'u v l p' 
-    // u, v, l are integers and p is a double
-    // representing an edge from node u to node v of length l with probability p
-    int n, m;
-    cin >> n >> m;
-    Graph G = Graph({n, m});
-    int u, v, l; double p;
-    for(int i=0; i<m; i++){
-        cin >> u >> v >> l >> p;
 
-        G.adj[u].push_back(Edge({u, v, l, p, i}));
-    }
-
-    G.update_incoming_index2edge();
-
-    return G;
-}
-
-
-bool testLB1_UB(){
-    vector<Path> paths = vector<Path>();
-    paths.push_back({{{0, 1, 3, 0.3, 0}, {1, 3, 1, 0.4, 3}}});
-    paths.push_back({{{0, 2, 1, 0.1, 1}, {2, 1, 1, 0.2, 2}, {1, 3, 1, 0.4, 3}}}); 
-    paths.push_back({{{0, 2, 1, 0.1, 1}, {2, 3, 2, 0.9, 5}}}); 
-
-    double res = LB1(paths, 1);
-    double true_ans =(0.1 * 0.2 * 0.4 * 0.7) ;
-    if(res != true_ans){
-        cerr << "ERROR, failed test #1" << endl;
-        cerr << "Output    : " << res << endl;
-        cerr << "Should be : " << true_ans << endl;
-        return false;
-    }
-    else{
-        cerr << "Passed test #1" << endl;
-    }
-
-    res = LB1(paths, 2);
-    true_ans = 0.1*0.9 * ((1-(0.2*0.4)) * (1-(0.3*0.4))) ;
-    if(abs(res - true_ans) > 0.000000001){
-        cerr << "ERROR, failed test #2" << endl;
-        cerr << "Output    : " << res << endl;
-        cerr << "Should be : " << true_ans << endl;
-        return false;
-    }
-    else{
-        cerr << "Passed test #2" << endl;
-    }
-
-    update_LB(paths, 0);
-    update_LB(paths, 1);
-    update_LB(paths, 2);
-    update_UB(paths, 0);
-    update_UB(paths, 1);
-    update_UB(paths, 2);
-
-    cout << paths[0].LB << endl;
-    cout << paths[0].UB << endl;
-    cout << paths[1].LB << endl;
-    cout << paths[1].UB << endl;
-    cout << paths[2].LB << endl;
-    cout << paths[2].UB << endl;
-
-    // TODO: check that these values are correct
-
-
-    return true;
-}
-
-
-int main(){
-    Graph G = read_from_stdin();
-
-    Path p = dijkstra(G, 0, 3);
-
-    for(int i=0; i<G.m; i++){
-        cout << "edge " << i << " : " << G.index2edge[i]->u << " - " << G.index2edge[i]->v << endl;
-    }
-
-    //testLB1_UB();
-
-    vector<Path> paths = yen(G, 0, 5, 4);
-
-    cout << "checkpoint1" << endl;
-
-    for(uint i=0; i<paths.size(); i++){
-        double prob = Luby_Karp(paths, i, 100000);
-        cout << i << "   : " << prob << endl;
-    }
-
-
-    cout << "random stuff" << endl;
-
-
-	clock_t t1 = clock();
-    // some random graph
-    Graph g_random(200000, 500000);
-
-    int MAX_EDGE_LENGTH = 10;
-    uniform_int_distribution<int> new_vertex(0, g_random.n-1); 
-    uniform_real_distribution<double> new_probability(0.9, 1.0); 
-    uniform_int_distribution<int> new_length(1, MAX_EDGE_LENGTH); 
-
-    set<pair<int, int>> generated_edges = set<pair<int, int>>();
-
-    for(int i=0; i<g_random.m; i++){
-        int u = new_vertex(mersenne);
-        int v = new_vertex(mersenne);
-
-        if(u == v || generated_edges.find({u, v}) != generated_edges.end()){
-            // skip this edge
-            i--;
-            continue;
-        } 
-
-        g_random.adj[u].push_back({u, v, new_length(mersenne), new_probability(mersenne), i});
-    }
-    g_random.update_incoming_index2edge();
-
-    clock_t t2 = clock();
-    cout << "Done generating in " << 1000.0 * (t2-t1) / CLOCKS_PER_SEC << " miliseconds" << endl;
-    
-    //vector<Path> paths11 = classic_yen(&g_random, 0, g_random.n - 1, 10);
-    //vector<Path> paths11 = yen(g_random, 0, g_random.n - 1, 3);
-    vector<pair<Path,double>> res = topk(g_random, 0, g_random.n-1, 1);
-
-    clock_t t3 = clock();
-    cout << "Done in " << 1000.0 * (t3-t2) / CLOCKS_PER_SEC << " miliseconds" << endl;
-
-    for(uint i= 0; i<res.size(); i++){
-        cout << "Path " << i+1 << " : probability : " << res[i].second << endl;
-        cout <<             "       : length      : " << res[i].first.len() << endl;
-        cout <<             "       : edges       : "; res[i].first.print(); cout << endl;
-    }
-
-	return 0;
-}
 
 
 

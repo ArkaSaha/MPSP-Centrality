@@ -1,0 +1,136 @@
+#include<iostream>
+#include<fstream>
+#include<cmath>
+#include<cstdlib>
+#include<climits>
+#include<list>
+#include<map>
+#include<vector>
+#include<set>
+#include<utility>
+#include<random>
+#include<ctime>
+
+#include<boost/heap/fibonacci_heap.hpp>
+
+
+using namespace std;
+using namespace boost::heap;
+
+
+#define ull unsigned long long
+
+
+struct Edge
+{
+    int u, v;
+    int l;
+    double p;
+    int index;
+    bool available = true;
+
+    bool operator<(const Edge& rhs) const{
+        return this->index < rhs.index;
+    }
+
+    bool operator==(const Edge& rhs) const{
+        return this->index == rhs.index;
+    }
+    bool operator!=(const Edge& rhs) const{
+        return this->index != rhs.index;
+    }
+};
+
+struct Graph
+{
+    /*
+     * NB: When adj changes the pointers in incoming and index2edge are invalidated and should be recalculated
+     */
+	int n, m;
+    vector< vector<Edge> > adj;
+    vector< vector<Edge *> > incoming;
+    vector<Edge *> index2edge;
+
+    Graph(int n, int m, vector<vector<Edge> > adj, vector<vector<Edge *> > incoming, vector<Edge *> index2edge) : n(n), m(m), adj(adj), incoming(incoming), index2edge(index2edge) {} ;
+    Graph(int n, int m) : Graph(n, m, vector<vector<Edge> >(n, vector<Edge>()), vector<vector<Edge *> >(n, vector<Edge*>()), vector<Edge *>(m)) {} ;
+    Graph(){};
+
+    void update_incoming_index2edge(){
+        for(int i=0; i<this->n;i++){
+            this->incoming[i] = vector<Edge *>();
+            for(uint j=0; j<this->adj[i].size(); j++){
+                this->incoming[this->adj[i][j].v].push_back(&this->adj[i][j]);
+                this->index2edge[this->adj[i][j].index] = &this->adj[i][j];
+            } 
+        }
+    }
+};
+
+
+struct Path
+{
+    vector<Edge> edges;
+    double LB, UB; 
+    Path(vector<Edge> edges) : edges(edges){
+        LB = 0.0;
+        UB = 1.0;
+    }
+
+    ull len(){
+        ull res = 0;
+        for(Edge e: edges){
+            res += e.l;
+        }
+        return res;
+    }
+
+    void print() const{
+        if(edges.size() > 0){
+            cout << edges[0].u;
+            for(Edge e: edges){
+                cout << " -> " << e.v;
+            }
+        }
+        else{
+            cout << "Empty Path";
+        }
+    }
+
+    double probability() const{
+        if(edges.size() == 0) return 0.0;
+        double prob = 1.0;
+        for(Edge e: edges){
+            prob *= e.p;
+        }
+        return prob;
+    }
+
+    ull len() const{
+        if(edges.size() == 0) return 0;
+        ull len = 0;
+        for(Edge e: edges){
+            len += e.l;
+        }
+        return len;
+    }
+
+    bool operator==(const Path& rhs) const{
+        // Paths are equal if all the edges are the same
+        if(this->edges.size() != rhs.edges.size()) return false;
+        for(uint i=0; i<this->edges.size(); i++){
+            if(this->edges[i] != rhs.edges[i]) return false;
+        }
+        return true; 
+    }
+
+    bool operator!=(const Path& rhs) const{
+        return !((*this) == rhs); 
+    }
+};
+
+
+// Function declaration
+vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, clock_t &candidate_time, clock_t &probability_time, ostream & ofs);
+
+
+
