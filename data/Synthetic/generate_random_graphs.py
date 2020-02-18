@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 import networkx as nx
 import random
@@ -22,7 +23,8 @@ def generate_queries(g, filename):
     m = g.number_of_edges() 
 
     # 0 represents the completely random pairs, 2, 4, 6 and 8 will contain pairs that are 2, 4, 6, 8 hops apart
-    queries = {0: set(), 2:set(), 4:set(), 6:set(), 8:set()}
+    hops_dists = [0, 2, 4, 6, 8]
+    queries = {h : set() for h in hops_dists}
 
     queries_per_category = 100
     queries_so_far = 0
@@ -54,7 +56,7 @@ def generate_queries(g, filename):
 
     # Write the queries to file.
     # The first 100 are the random queries, then 100 two hops queries, ..., lastly 100 eight hop queries
-    for hops in queries:
+    for hops in hops_dists:
         for s, t in queries[hops]:
             q.write("{} {}\n".format(s, t))
 
@@ -116,96 +118,102 @@ def generate_queries_skewed(g, filename):
     q.close()
 
 
-graph_sizes = [10000, 20000, 40000, 80000]
 
 
-print("Generating ER graphs")
-# Random graph with n vertices and m = 2*n edges, store in ER folder
-# https://networkx.github.io/documentation/stable/reference/generated/networkx.generators.random_graphs.gnm_random_graph.html
-for n in graph_sizes:
-    m = 2*n
+def ER(graph_sizes):
+    print("Generating ER graphs")
+    # Random graph with n vertices and m = 2*n edges, store in ER folder
+    # https://networkx.github.io/documentation/stable/reference/generated/networkx.generators.random_graphs.gnm_random_graph.html
+    for n in graph_sizes:
+        m = 2*n
 
-    print("Generating ER graph with {} nodes and {} edges".format(n, m))
-    g = nx.gnm_random_graph(n, m, directed=True)
+        print("Generating ER graph with {} nodes and {} edges".format(n, m))
+        g = nx.gnm_random_graph(n, m, directed=True)
 
-    f = open("ER/ER_{}_{}.graph".format(n, m), "w")
-    f.write("{} {}\n".format(n, m))
-    for u, v in g.edges:
-        f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
-    f.close()
+        f = open("ER/ER_{}_{}.graph".format(n, m), "w")
+        f.write("{} {}\n".format(n, m))
+        for u, v in g.edges:
+            f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
+        f.close()
 
-    generate_queries(g, "ER/ER_{}_{}.queries".format(n, m))
-
-
-
-print("Generating BA graphs")
-# https://igraph.org/python/doc/igraph.GraphBase-class.html#Barabasi
-for n in graph_sizes:
-    BA_m = 20 
-
-    print("Generating BA graph with {} nodes".format(n))
-    igraph_g = igraph.Graph.Barabasi(n, BA_m , directed=True)
-    g = nx.DiGraph(igraph_g.get_edgelist())
-
-    m = g.number_of_edges()
-
-    print("Graph has {} edges".format(m))
-
-    f = open("BA/BA_{}_{}.graph".format(n, m), "w")
-    f.write("{} {}\n".format(n, m))
-    for u, v in g.edges:
-        f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
-    f.close()
-
-    generate_queries(g, "BA/BA_{}_{}.queries".format(n, m))
-
-
-print("Generating BP graphs")
-for n in graph_sizes:
-    m = 2*n 
-
-    print("Generating BP graph with {} nodes and {} edges".format(n, m))
-
-    g = nx.algorithms.bipartite.generators.gnmk_random_graph(n//2, n//2, m, directed=True)
-
-    m = g.number_of_edges()
-
-    # also add the reverse edges
-    g.add_edges_from([(v,u) for (u,v) in g.edges])
-
-    m = g.number_of_edges()
-
-    print("Graph has {} edges".format(m))
-    f = open("BP/BP_{}_{}.graph".format(n, m), "w")
-    f.write("{} {}\n".format(n, m))
-    for u, v in g.edges:
-        f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
-        f.write("{} {} {} {}\n".format(v, u, random.randint(1, MAX_EDGE_LENGTH), random.random()))
-    f.close()
-
-    generate_queries(g, "BP/BP_{}_{}.queries".format(n, m))
-
-
-print("Generating SF graphs")
-# https://igraph.org/python/doc/igraph.GraphBase-class.html
-for n in graph_sizes:
-
-    print("Generating SF graph with {} nodes".format(n))
-    g = nx.scale_free_graph(n)
-    m = g.number_of_edges()
-
-    print("Graph has {} edges".format(m))
-
-    f = open("SF/SF_{}_{}.graph".format(n, m), "w")
-    f.write("{} {}\n".format(n, m))
-    for u, v, _ in g.edges:
-        f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
-    f.close()
-
-    generate_queries(g, "SF/SF_{}_{}.queries".format(n, m))
+        generate_queries(g, "ER/ER_{}_{}.queries".format(n, m))
 
 
 
+def BA(graph_sizes):
+    print("Generating BA graphs")
+    # https://igraph.org/python/doc/igraph.GraphBase-class.html#Barabasi
+    for n in graph_sizes:
+        BA_m = 20 
+
+        print("Generating BA graph with {} nodes".format(n))
+        igraph_g = igraph.Graph.Barabasi(n, BA_m , directed=True)
+        g = nx.DiGraph(igraph_g.get_edgelist())
+
+        m = g.number_of_edges()
+
+        print("Graph has {} edges".format(m))
+
+        f = open("BA/BA_{}_{}.graph".format(n, m), "w")
+        f.write("{} {}\n".format(n, m))
+        for u, v in g.edges:
+            f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
+        f.close()
+
+        generate_queries(g, "BA/BA_{}_{}.queries".format(n, m))
+
+def BP(graph_sizes):
+    print("Generating BP graphs")
+    for n in graph_sizes:
+        m = 2*n 
+
+        print("Generating BP graph with {} nodes and {} edges".format(n, m))
+
+        g = nx.algorithms.bipartite.generators.gnmk_random_graph(n//2, n//2, m, directed=True)
+
+        m = g.number_of_edges()
+
+        # also add the reverse edges
+        g.add_edges_from([(v,u) for (u,v) in g.edges])
+
+        m = g.number_of_edges()
+
+        print("Graph has {} edges".format(m))
+        f = open("BP/BP_{}_{}.graph".format(n, m), "w")
+        f.write("{} {}\n".format(n, m))
+        for u, v in g.edges:
+            f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
+            f.write("{} {} {} {}\n".format(v, u, random.randint(1, MAX_EDGE_LENGTH), random.random()))
+        f.close()
+
+        generate_queries(g, "BP/BP_{}_{}.queries".format(n, m))
+
+def SF(graph_sizes):
+    print("Generating SF graphs")
+    # https://igraph.org/python/doc/igraph.GraphBase-class.html
+    for n in graph_sizes:
+
+        print("Generating SF graph with {} nodes".format(n))
+        g = nx.scale_free_graph(n)
+        m = g.number_of_edges()
+
+        print("Graph has {} edges".format(m))
+
+        f = open("SF/SF_{}_{}.graph".format(n, m), "w")
+        f.write("{} {}\n".format(n, m))
+        for u, v, _ in g.edges:
+            f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
+        f.close()
+
+        generate_queries(g, "SF/SF_{}_{}.queries".format(n, m))
+
+
+graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
+
+ER(graph_sizes)
+#BA(graph_sizes)
+#BP(graph_sizes)
+#SF(graph_sizes)
 
     
 
