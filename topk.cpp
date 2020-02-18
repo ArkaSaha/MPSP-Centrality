@@ -514,9 +514,9 @@ vector<Path> yen(Graph &g, int s, int t, int k, ostream & ofs){
         update_UB(A, k_prime);
         LBs.insert(A[k_prime].LB);
 
-        //cout << "New path : "; A[k_prime].print(); cout << endl;
-        //cout << "Current UB     : " << A[k_prime].UB << endl;
-        //cout << "kth largest LB : " << kth_largest(LBs, k) << endl;
+        //cerr << "New path : "; A[k_prime].print(); cout << endl;
+        //cerr << "Current UB     : " << A[k_prime].UB << endl;
+        //cerr << "kth largest LB : " << kth_largest(LBs, k) << endl;
     }
     if(A[k_prime].UB < kth_largest(LBs, k)){
         A.pop_back();
@@ -600,6 +600,7 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, clock_t &candidate
      * 1) Use Yen's algorithm with a modified stopping rule to find a set of candidates.
      * 2) Use Luby-Karp Mote Carlo sampling to compute probabilities 
      */
+    //cerr << "inside topk" << endl;
 
     clock_t start = clock();
     vector<Path> candidates = yen(g, s, t, k, ofs);

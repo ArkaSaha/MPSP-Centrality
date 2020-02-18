@@ -46,6 +46,15 @@ Graph read_graph_from_file(string filename)
 
 
 void do_queries(string graph_file, string query_file, string output_file){
+    if(!filesystem::exists(graph_file)){
+        cerr << "ERROR: Graph file " << graph_file << " does not exist" <<endl;
+        return; 
+    }
+    if(!filesystem::exists(query_file)){
+        cerr << "ERROR: Query file " << query_file << " does not exist" <<endl;
+        return; 
+    }
+
     Graph G = read_graph_from_file(graph_file);
     
     ifstream queries;
@@ -98,19 +107,19 @@ int main(){
 
     string folder = "data/Synthetic/";
     vector<string> graph_names = {
-                                  "ER/ER_10000_20000", 
+                                  //"ER/ER_10000_20000", 
                                   //"ER/ER_20000_40000", 
                                   //"ER/ER_40000_80000", 
                                   //"ER/ER_80000_160000",
-                                  "BA/BA_10000_199790",
+                                  //"BA/BA_10000_199790",
                                   //"BA/BA_20000_399790",
                                   //"BA/BA_40000_799790",
                                   //"BA/BA_80000_1599790",
-                                  "BP/BP_10000_40000",
+                                  //"BP/BP_10000_40000",
                                   //"BP/BP_20000_80000",
                                   //"BP/BP_40000_160000",
                                   //"BP/BP_80000_320000",
-                                  "SF/SF_10000_21752",
+                                  //"SF/SF_10000_21752",
                                   //"SF/SF_20000_43813",
                                   //"SF/SF_40000_87008",
                                   //"SF/SF_80000_173923"
@@ -119,6 +128,8 @@ int main(){
     for(string graph_name: graph_names){
         do_queries(folder + graph_name);
     }
+
+    do_queries("data/graph_er_40k.txt", "queries/queries_er_40k.txt", "graph_er_40k_output.txt");
 
     return 0;
 }
