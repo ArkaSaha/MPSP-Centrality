@@ -402,7 +402,7 @@ double kth_largest(const set<double> &elts, int k){
     return *elt;
 }
 
-vector<Path> yen(Graph &g, int s, int t, int k, ostream & ofs){
+vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs){
     // Computes the top k_prime shortest paths using Yen's algorithm where k_prime depends on a stop condition
     // instead of being a fixed parameter
     //
@@ -410,6 +410,10 @@ vector<Path> yen(Graph &g, int s, int t, int k, ostream & ofs){
     // UB(prob(k_prime'th shortest path)) < k'th largest LB(prob(path Pn is shortest path))
     // where Pn are the top n shortest paths
     //cerr << "\n\n\nYEN\n\n\n" << endl;
+    
+
+    clock_t start = clock();
+
     Path p1 = dijkstra(g, s, t);
 
     vector<Path> A = {p1};
@@ -420,11 +424,14 @@ vector<Path> yen(Graph &g, int s, int t, int k, ostream & ofs){
 
     set<double> LBs = {A[0].LB};
 
-    int THRESHOLD_NR_OF_CANDIDATES = 20*k;
+    int THRESHOLD_NR_OF_SECONDS = 1;
     int k_prime = 0;
     while(k_prime < k || A[k_prime].UB >= kth_largest(LBs, k)){
-        if(k_prime >= THRESHOLD_NR_OF_CANDIDATES){
-            ofs << "** STOPPED YEN : Generated more than " << THRESHOLD_NR_OF_CANDIDATES << " candidates" << endl;
+        clock_t end = clock();
+        int seconds_elapsed = (end - start)/ (CLOCKS_PER_SEC);
+        if(seconds_elapsed >= THRESHOLD_NR_OF_SECONDS){
+            ofs << "** STOPPED YEN : Generated candiates for " << seconds_elapsed << " seconds" << endl;
+            stats.candidate_generation_timeout = true;
             break;
         }
         //cout << "\nk_prime : " << k_prime << endl << endl;
@@ -528,9 +535,119 @@ vector<Path> yen(Graph &g, int s, int t, int k, ostream & ofs){
         A[i].print(); cout << endl;
     }
     */
+
     return A;
 }
 
+
+vector<Path> yen(Graph &g, Path p, ostream & ofs){
+    // Computes all the paths shortest than p using Yen's algorithm
+    //
+    cerr << "\n\n\nYEN with path stopping criterion\n\n\n" << endl;
+    
+    int s = p.edges[0].u;
+    int t = p.edges[p.edges.size()-1].v;
+
+    Path p1 = dijkstra(g, s, t);
+
+    vector<Path> A = {p1};
+    vector<Path> B = vector<Path>();
+
+    while(A[A.size()-1] != p){
+        for(uint i=0; i<A.back().edges.size(); i++){
+            // we are going find a new path, diverting from the old path from the spurNode
+            int spurNode = A.back().edges[i].u;
+            Path rootPath = Path({A.back().edges.begin(), A.back().edges.begin() + i});
+
+
+            // nodes we want to avoid
+            vector<int> nodes_to_delete = vector<int>();
+            for(Edge e: rootPath.edges){
+                if(e.u != spurNode){
+                    nodes_to_delete.push_back(e.u);
+
+                    for(Edge *e2:  g.incoming[e.u]){
+                        e2->available = false;
+                    }
+                    for(Edge e2: g.adj[e.u]){
+                        e2.available = false;
+                    }
+                }
+            }
+
+            // edges we want to avoid
+            vector<int> edges_to_delete = vector<int>();
+            for(uint j=0; j<A.size();j++){
+                if(subpath_of(rootPath, A[j])){
+                    edges_to_delete.push_back(A[j].edges[i].index);
+
+                    g.index2edge[A[j].edges[i].index]->available = false;
+                }
+            }
+
+            // compute the shortest path in the new graph from the spurnode to the terminal node
+            Path spurPath = dijkstra(g, spurNode, t);
+
+            if(spurPath.edges.size() > 0){
+                // if we found a path, concatenate it to the rootpath and add it to the set B
+                rootPath.edges.insert(rootPath.edges.end(), spurPath.edges.begin(), spurPath.edges.end());
+                if(find(B.begin(), B.end(), rootPath) == B.end()){
+                    // only if this path was not in B yet
+                    B.push_back(rootPath);
+                }
+            }
+
+            // restore graph
+            for(int elt: nodes_to_delete){
+                for(Edge *e : g.incoming[elt]){
+                    e->available = true;
+                }
+                for(Edge e : g.adj[elt]){
+                    e.available = true;
+                }
+            }
+            for(int index: edges_to_delete){
+                g.index2edge[index]->available = true;
+            }
+
+
+        }
+
+        if(B.size() == 0){
+            // there are not enough paths
+            break;
+        }
+
+        // Get shortest path in B
+        int indexmin = 0;
+        int lenmin = B[0].len();
+        for(uint j=1; j<B.size(); j++){
+            int curlen = B[j].len();
+            if(curlen < lenmin){
+                lenmin = curlen;
+                indexmin = j;
+            }
+        }
+
+        // add the shortest path from B to A as the kth shortst path
+        A.push_back(B[indexmin]);
+        B.erase(B.begin() + indexmin);
+
+        //cerr << "New path : "; A[k_prime].print(); cout << endl;
+        //cerr << "Current UB     : " << A[k_prime].UB << endl;
+        //cerr << "kth largest LB : " << kth_largest(LBs, k) << endl;
+    }
+
+    /*
+    cout << "Done with yen, found " << A.size() << " paths" << endl;
+    for(uint i=0; i<A.size(); i++){
+        cout << "Path " << i << " : ";
+        A[i].print(); cout << endl;
+    }
+    */
+
+    return A;
+}
 
 double Luby_Karp(const vector<Path> &paths, int n, ull N){
     // Implementation of Luby Karp as in section 7 of [WISE 2011]
@@ -549,6 +666,7 @@ double Luby_Karp(const vector<Path> &paths, int n, ull N){
         }
         S += PEPi_Pn[i];
     }
+
     discrete_distribution<int> dist(PEPi_Pn.begin(), PEPi_Pn.end());
     uniform_real_distribution<double> coin(0.0, 1.0); 
     for(ull i=0; i<N; i++){
@@ -595,7 +713,7 @@ double Luby_Karp(const vector<Path> &paths, int n, ull N){
     return (1-p_tilde) * paths[n].probability();
 }
 
-vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, clock_t &candidate_time, clock_t &probability_time, ostream & ofs = cout){
+vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs = cout){
     /* Computes the topk most probably shortest paths. Consists of two steps
      * 1) Use Yen's algorithm with a modified stopping rule to find a set of candidates.
      * 2) Use Luby-Karp Mote Carlo sampling to compute probabilities 
@@ -603,9 +721,9 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, clock_t &candidate
     //cerr << "inside topk" << endl;
 
     clock_t start = clock();
-    vector<Path> candidates = yen(g, s, t, k, ofs);
+    vector<Path> candidates = yen(g, s, t, k, stats, ofs);
     ofs << "Nr of candidates : " << candidates.size() << endl;
-    candidate_time = clock() - start;
+    stats.candidate_generation = clock() - start;
 
     clock_t start2 = clock();
 
@@ -630,11 +748,70 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, clock_t &candidate
         topk_mpsp.push_back({candidates[index], LK_probabilities[i].first});
     }
 
-    probability_time = clock() - start2;
+    stats.probability_computation = clock() - start2;
     return topk_mpsp;
 }
 
 
+double exact_probability(Graph &g, const Path p, ostream & ofs = cout){
+    /* Computes the probably that p is a shortest path exactly
+     * First we compute all shorter paths than p
+     *
+     * Then we use equations (6) & (7) on p. 76 to compute the exact probability
+     */
+    //cerr << "inside topk" << endl;
+
+    vector<Path> candidates = yen(g, p, ofs);
+
+
+    assert(candidates[candidates.size()-1] == p);
+    ofs << "Nr of candidates : " << candidates.size() << endl;
+
+    int n = candidates.size();
+    if(n == 1){
+        return p.probability();
+    }
+
+    double P = 0.0;
+    // we iterate over the powerset of the set of paths
+    vector<int> I = vector<int>(n, 0);
+    int k = 0;
+    while(true){
+        if(I[k] < n-1){
+            I[k+1] = I[k] + 1;
+            k++;
+        }
+        else{
+            I[k-1]++;
+            k--;
+        }
+        if(k == 0) break;
+
+        /*
+        for(int i=1; i<=k; i++){
+            cout << I[i] << " ";
+        }
+        cout << endl;
+        */
+
+        set<Edge> E = p_minus_q(candidates[I[1]-1], p);
+        for(int i = 2; i<=k; i++){
+            for(Edge e: candidates[I[i]-1].edges){
+                E.erase(e);
+            }
+        }
+
+        double curP = (k%2 == 0) ? -1 : 1;
+        for(Edge e: E){
+            curP *= e.p;
+        }
+
+        P += curP;
+    }
+
+
+    return (1 - P) * p.probability();
+}
 
 
 

@@ -1,6 +1,7 @@
 
 #include "topk.h"
 #include <fstream>
+#include <filesystem>
 
 Graph read_from_stdin(){
     // Reads a graph from stdin, file containing graph should look the following
@@ -69,22 +70,24 @@ void do_queries(string graph_file, string query_file, string output_file){
 		cerr << "k = " << k << endl;
 		ofs << "Number of hops = " << k * 2 << endl << endl;
 		ull a_w = 0;
+        Statistics stats;
 		double t_c = 0, t_p = 0, a_p = 0;
         int s, t;
+        int candidate_generation_timeout = 0;
 		for (int i = 1; i <= 100; i++){
             cerr << i << " ";
 			queries >> s >> t;
 			ofs << s << "\t" << t << endl;
-			clock_t candidate_time = 0, prob_time = 0;
-			auto topk_outcome = topk(G, s, t, 1, candidate_time, prob_time, ofs);
+			auto topk_outcome = topk(G, s, t, 1, stats, ofs);
 			a_w += topk_outcome[0].first.len();
 			a_p += topk_outcome[0].second;
-			t_c += candidate_time;
-			t_p += prob_time;
+			t_c += stats.candidate_generation;
+			t_p += stats.probability_computation;
+            candidate_generation_timeout += stats.candidate_generation_timeout; // NB: adding a boolean to an int
 			ofs << "Length of MPSP : " << topk_outcome[0].first.len() << endl;
 			ofs << "Probability of MPSP : " << topk_outcome[0].second << endl;
-			ofs <<fixed << "Candidate Generation Time : " << (1.0*candidate_time)/CLOCKS_PER_SEC << " seconds" << endl;
-			ofs << fixed << "Probability Computation Time : " << (1.0*prob_time)/CLOCKS_PER_SEC << " seconds" << endl;
+			ofs <<fixed << "Candidate Generation Time : " << (1.0*stats.candidate_generation)/CLOCKS_PER_SEC << " seconds" << endl;
+			ofs << fixed << "Probability Computation Time : " << (1.0*stats.probability_computation)/CLOCKS_PER_SEC << " seconds" << endl;
 			ofs << endl;
 		}
         cerr << endl;
@@ -92,6 +95,7 @@ void do_queries(string graph_file, string query_file, string output_file){
 		ofs << "Average Probability of MPSP for " << k*2 << " hops : " << a_p/100 << endl;
 		ofs << "Average Candidate Generation Time for " << k * 2 << " hops : " << (1.0*t_c)/(CLOCKS_PER_SEC*100) << " seconds" << endl;
 		ofs << "Average Probability Computation Time for " << k * 2 << " hops : " << (1.0*t_p)/(100*CLOCKS_PER_SEC) << " seconds" << endl;
+		ofs << "Number of candidate generation timeouts : " << candidate_generation_timeout << endl;
 		ofs << endl << endl;
 	}
 	queries.close();
@@ -129,7 +133,42 @@ int main(){
         do_queries(folder + graph_name);
     }
 
-    do_queries("data/graph_er_40k.txt", "queries/queries_er_40k.txt", "graph_er_40k_output.txt");
+
+    
+    cout << "bla" << endl;
+    Graph G = read_graph_from_file("data/Synthetic/ER/ER_10000_20000.graph");
+    Statistics stats;
+    auto paths = yen(G, 0, 1000, 1, stats, cout);
+
+    int n = 15;
+    if(paths.size() > 20){
+        paths = vector<Path>(paths.begin(), paths.begin() + (n+1));
+    }
+    cout << paths.size() << endl;
+    for(Path p: paths){
+        p.print(); cout << endl;
+    }
+
+    cout << "\n**\n" << endl;
+    auto paths2 = yen(G, paths[n], cout);
+    for(Path p: paths2){
+        p.print(); cout << endl;
+    }
+
+    for(int i=0; i<=n; i++){
+        assert(paths[i] == paths2[i]);
+    }
+
+    cout << "The Path:" << endl;
+    paths[n].print();
+
+    double exact = exact_probability(G, paths[n], cout);
+    cout << "Exact     Probability : " << exact  << endl;
+
+    double LK = Luby_Karp(paths2, n , 100000);
+    cout << "Luby Karp Probability : " << LK << endl;
+
+
 
     return 0;
 }

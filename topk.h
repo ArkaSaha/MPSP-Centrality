@@ -13,6 +13,8 @@
 
 #include<boost/heap/fibonacci_heap.hpp>
 
+#include "statistics.h"
+
 
 using namespace std;
 using namespace boost::heap;
@@ -90,9 +92,10 @@ struct Path
             for(Edge e: edges){
                 cout << " -> " << e.v;
             }
+            cout << endl;
         }
         else{
-            cout << "Empty Path";
+            cout << "Empty Path" << endl;
         }
     }
 
@@ -126,11 +129,21 @@ struct Path
     bool operator!=(const Path& rhs) const{
         return !((*this) == rhs); 
     }
+
 };
 
 
 // Function declaration
-vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, clock_t &candidate_time, clock_t &probability_time, ostream & ofs);
+vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs);
+vector<Path> yen(Graph &g, Path p, ostream & ofs);
+
+vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs);
+
+double exact_probability(Graph &g, Path p, ostream & ofs);
+
+double Luby_Karp(const vector<Path> & ptahs, int n, ull N);
+
+
 
 
 
