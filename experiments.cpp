@@ -168,6 +168,9 @@ int main(){
     double LK = Luby_Karp(paths2, n , 100000);
     cout << "Luby Karp Probability : " << LK << endl;
 
+    double LK2 = Luby_Karp(G, paths[n], 100000);
+    cout << "Luby Karp Probability2: " << LK2 << endl;
+    
 
 
     return 0;

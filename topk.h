@@ -141,7 +141,9 @@ vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, Statistics & stat
 
 double exact_probability(Graph &g, Path p, ostream & ofs);
 
-double Luby_Karp(const vector<Path> & ptahs, int n, ull N);
+double Luby_Karp(const vector<Path> & paths, int n, ull N);
+
+double Luby_Karp(Graph &g, Path p, ull N);
 
 
 

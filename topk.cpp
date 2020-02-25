@@ -402,6 +402,85 @@ double kth_largest(const set<double> &elts, int k){
     return *elt;
 }
 
+
+void yen_core(Graph &g, vector<Path> & A, vector<Path> &B, int t){
+        for(uint i=0; i<A.back().edges.size(); i++){
+            // we are going find a new path, diverting from the old path from the spurNode
+            int spurNode = A.back().edges[i].u;
+            Path rootPath = Path({A.back().edges.begin(), A.back().edges.begin() + i});
+
+
+            // nodes we want to avoid
+            vector<int> nodes_to_delete = vector<int>();
+            for(Edge e: rootPath.edges){
+                if(e.u != spurNode){
+                    nodes_to_delete.push_back(e.u);
+
+                    for(Edge *e2:  g.incoming[e.u]){
+                        e2->available = false;
+                    }
+                    for(Edge e2: g.adj[e.u]){
+                        e2.available = false;
+                    }
+                }
+            }
+
+            // edges we want to avoid
+            vector<int> edges_to_delete = vector<int>();
+            for(uint j=0; j<A.size();j++){
+                if(subpath_of(rootPath, A[j])){
+                    edges_to_delete.push_back(A[j].edges[i].index);
+
+                    g.index2edge[A[j].edges[i].index]->available = false;
+                }
+            }
+
+            // compute the shortest path in the new graph from the spurnode to the terminal node
+            Path spurPath = dijkstra(g, spurNode, t);
+
+            if(spurPath.edges.size() > 0){
+                // if we found a path, concatenate it to the rootpath and add it to the set B
+                rootPath.edges.insert(rootPath.edges.end(), spurPath.edges.begin(), spurPath.edges.end());
+                if(find(B.begin(), B.end(), rootPath) == B.end()){
+                    // only if this path was not in B yet
+                    B.push_back(rootPath);
+                }
+            }
+
+            // restore graph
+            for(int elt: nodes_to_delete){
+                for(Edge *e : g.incoming[elt]){
+                    e->available = true;
+                }
+                for(Edge e : g.adj[elt]){
+                    e.available = true;
+                }
+            }
+            for(int index: edges_to_delete){
+                g.index2edge[index]->available = true;
+            }
+
+
+        }
+}
+
+void append_shortest_path_in_B_to_A(vector<Path> &A, vector<Path> &B){
+        // Get shortest path in B
+        int indexmin = 0;
+        int lenmin = B[0].len();
+        for(uint j=1; j<B.size(); j++){
+            int curlen = B[j].len();
+            if(curlen < lenmin){
+                lenmin = curlen;
+                indexmin = j;
+            }
+        }
+
+        // add the shortest path from B to A as the kth shortst path
+        A.push_back(B[indexmin]);
+        B.erase(B.begin() + indexmin);
+}
+
 vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs){
     // Computes the top k_prime shortest paths using Yen's algorithm where k_prime depends on a stop condition
     // instead of being a fixed parameter
@@ -435,84 +514,16 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
             break;
         }
         //cout << "\nk_prime : " << k_prime << endl << endl;
-        for(uint i=0; i<A.back().edges.size(); i++){
-            // we are going find a new path, diverting from the old path from the spurNode
-            int spurNode = A.back().edges[i].u;
-            Path rootPath = Path({A.back().edges.begin(), A.back().edges.begin() + i});
 
-
-            // nodes we want to avoid
-            vector<int> nodes_to_delete = vector<int>();
-            for(Edge e: rootPath.edges){
-                if(e.u != spurNode){
-                    nodes_to_delete.push_back(e.u);
-
-                    for(Edge *e2:  g.incoming[e.u]){
-                        e2->available = false;
-                    }
-                    for(Edge e2: g.adj[e.u]){
-                        e2.available = false;
-                    }
-                }
-            }
-
-            // edges we want to avoid
-            vector<int> edges_to_delete = vector<int>();
-            for(uint j=0; j<A.size();j++){
-                if(subpath_of(rootPath, A[j])){
-                    edges_to_delete.push_back(A[j].edges[i].index);
-
-                    g.index2edge[A[j].edges[i].index]->available = false;
-                }
-            }
-
-            // compute the shortest path in the new graph from the spurnode to the terminal node
-            Path spurPath = dijkstra(g, spurNode, t);
-
-            if(spurPath.edges.size() > 0){
-                // if we found a path, concatenate it to the rootpath and add it to the set B
-                rootPath.edges.insert(rootPath.edges.end(), spurPath.edges.begin(), spurPath.edges.end());
-                if(find(B.begin(), B.end(), rootPath) == B.end()){
-                    // only if this path was not in B yet
-                    B.push_back(rootPath);
-                }
-            }
-
-            // restore graph
-            for(int elt: nodes_to_delete){
-                for(Edge *e : g.incoming[elt]){
-                    e->available = true;
-                }
-                for(Edge e : g.adj[elt]){
-                    e.available = true;
-                }
-            }
-            for(int index: edges_to_delete){
-                g.index2edge[index]->available = true;
-            }
-
-
-        }
+        
+        yen_core(g, A, B, t);
 
         if(B.size() == 0){
             // there are not enough paths
             break;
         }
 
-        // Get shortest path in B
-        int indexmin = 0;
-        int lenmin = B[0].len();
-        for(uint j=1; j<B.size(); j++){
-            int curlen = B[j].len();
-            if(curlen < lenmin){
-                lenmin = curlen;
-                indexmin = j;
-            }
-        }
-
-        // add the shortest path from B to A as the kth shortst path
-        A.push_back(B[indexmin]);
-        B.erase(B.begin() + indexmin);
+        append_shortest_path_in_B_to_A(A, B);
 
         k_prime++;
 
@@ -528,22 +539,15 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
     if(A[k_prime].UB < kth_largest(LBs, k)){
         A.pop_back();
     }
-    /*
-    cout << "Done with yen, found " << A.size() << " paths" << endl;
-    for(uint i=0; i<A.size(); i++){
-        cout << "Path " << i << " : ";
-        A[i].print(); cout << endl;
-    }
-    */
 
     return A;
 }
 
 
-vector<Path> yen(Graph &g, Path p, ostream & ofs){
+vector<Path> yen(Graph &g, Path p, ostream & ofs = cout){
     // Computes all the paths shortest than p using Yen's algorithm
     //
-    cerr << "\n\n\nYEN with path stopping criterion\n\n\n" << endl;
+    //cerr << "\n\n\nYEN with path stopping criterion\n\n\n" << endl;
     
     int s = p.edges[0].u;
     int t = p.edges[p.edges.size()-1].v;
@@ -554,97 +558,17 @@ vector<Path> yen(Graph &g, Path p, ostream & ofs){
     vector<Path> B = vector<Path>();
 
     while(A[A.size()-1] != p){
-        for(uint i=0; i<A.back().edges.size(); i++){
-            // we are going find a new path, diverting from the old path from the spurNode
-            int spurNode = A.back().edges[i].u;
-            Path rootPath = Path({A.back().edges.begin(), A.back().edges.begin() + i});
 
-
-            // nodes we want to avoid
-            vector<int> nodes_to_delete = vector<int>();
-            for(Edge e: rootPath.edges){
-                if(e.u != spurNode){
-                    nodes_to_delete.push_back(e.u);
-
-                    for(Edge *e2:  g.incoming[e.u]){
-                        e2->available = false;
-                    }
-                    for(Edge e2: g.adj[e.u]){
-                        e2.available = false;
-                    }
-                }
-            }
-
-            // edges we want to avoid
-            vector<int> edges_to_delete = vector<int>();
-            for(uint j=0; j<A.size();j++){
-                if(subpath_of(rootPath, A[j])){
-                    edges_to_delete.push_back(A[j].edges[i].index);
-
-                    g.index2edge[A[j].edges[i].index]->available = false;
-                }
-            }
-
-            // compute the shortest path in the new graph from the spurnode to the terminal node
-            Path spurPath = dijkstra(g, spurNode, t);
-
-            if(spurPath.edges.size() > 0){
-                // if we found a path, concatenate it to the rootpath and add it to the set B
-                rootPath.edges.insert(rootPath.edges.end(), spurPath.edges.begin(), spurPath.edges.end());
-                if(find(B.begin(), B.end(), rootPath) == B.end()){
-                    // only if this path was not in B yet
-                    B.push_back(rootPath);
-                }
-            }
-
-            // restore graph
-            for(int elt: nodes_to_delete){
-                for(Edge *e : g.incoming[elt]){
-                    e->available = true;
-                }
-                for(Edge e : g.adj[elt]){
-                    e.available = true;
-                }
-            }
-            for(int index: edges_to_delete){
-                g.index2edge[index]->available = true;
-            }
-
-
-        }
+        yen_core(g, A, B, t);
 
         if(B.size() == 0){
             // there are not enough paths
             break;
         }
 
-        // Get shortest path in B
-        int indexmin = 0;
-        int lenmin = B[0].len();
-        for(uint j=1; j<B.size(); j++){
-            int curlen = B[j].len();
-            if(curlen < lenmin){
-                lenmin = curlen;
-                indexmin = j;
-            }
-        }
+        append_shortest_path_in_B_to_A(A, B);
 
-        // add the shortest path from B to A as the kth shortst path
-        A.push_back(B[indexmin]);
-        B.erase(B.begin() + indexmin);
-
-        //cerr << "New path : "; A[k_prime].print(); cout << endl;
-        //cerr << "Current UB     : " << A[k_prime].UB << endl;
-        //cerr << "kth largest LB : " << kth_largest(LBs, k) << endl;
     }
-
-    /*
-    cout << "Done with yen, found " << A.size() << " paths" << endl;
-    for(uint i=0; i<A.size(); i++){
-        cout << "Path " << i << " : ";
-        A[i].print(); cout << endl;
-    }
-    */
 
     return A;
 }
@@ -711,6 +635,12 @@ double Luby_Karp(const vector<Path> &paths, int n, ull N){
     double p_tilde = ((double)cnt)/((double)N) * S;
 
     return (1-p_tilde) * paths[n].probability();
+}
+
+double Luby_Karp(Graph & g, Path p, ull N){
+    vector<Path> paths = yen(g, p);
+    assert(paths[paths.size()-1] == p);
+    return Luby_Karp(paths, paths.size()-1, N);
 }
 
 vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs = cout){
