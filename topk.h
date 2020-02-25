@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<fstream>
 #include<cmath>
@@ -130,16 +131,25 @@ struct Path
         return !((*this) == rhs); 
     }
 
+    bool subpath_of(const Path & p2) const{
+        if(this->edges.size() > p2.edges.size()) return false;
+        for(uint i = 0; i<this->edges.size(); i++){
+            if(this->edges[i] != p2.edges[i]) return false;
+        }
+        return true;
+    }
+
 };
 
 
 // Function declaration
+Path dijkstra(const Graph & g, int s, int t);
 vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs);
-vector<Path> yen(Graph &g, Path p, ostream & ofs);
+vector<Path> yen(Graph &g, Path p);
 
 vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs);
 
-double exact_probability(Graph &g, Path p, ostream & ofs);
+double exact_probability(Graph &g, Path p);
 
 double Luby_Karp(const vector<Path> & paths, int n, ull N);
 

@@ -292,6 +292,7 @@ Path dijkstra(const Graph &g, int s, int t){
 }
 
 
+/*
 bool subpath_of(const Path &p1, const Path &p2){
     // Test if p1 is the same as the beginning of path p2
     for(uint i=0; i<p1.edges.size(); i++){
@@ -300,6 +301,7 @@ bool subpath_of(const Path &p1, const Path &p2){
     }
     return true;
 }
+*/
 
 
 vector<Path> classic_yen(Graph &g, int s, int t, int K){
@@ -320,7 +322,7 @@ vector<Path> classic_yen(Graph &g, int s, int t, int K){
             // edges we want to avoid
             set<int> edges_to_delete = set<int>();
             for(uint j=0; j<A.size();j++){
-                if(subpath_of(rootPath, A[j])){
+                if(rootPath.subpath_of(A[j])){
                     edges_to_delete.insert(A[j].edges[i].index);
                 }
             }
@@ -428,7 +430,7 @@ void yen_core(Graph &g, vector<Path> & A, vector<Path> &B, int t){
             // edges we want to avoid
             vector<int> edges_to_delete = vector<int>();
             for(uint j=0; j<A.size();j++){
-                if(subpath_of(rootPath, A[j])){
+                if(rootPath.subpath_of(A[j])){
                     edges_to_delete.push_back(A[j].edges[i].index);
 
                     g.index2edge[A[j].edges[i].index]->available = false;
@@ -544,7 +546,7 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
 }
 
 
-vector<Path> yen(Graph &g, Path p, ostream & ofs = cout){
+vector<Path> yen(Graph &g, Path p){
     // Computes all the paths shortest than p using Yen's algorithm
     //
     //cerr << "\n\n\nYEN with path stopping criterion\n\n\n" << endl;
@@ -683,7 +685,7 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, Statistics & stats
 }
 
 
-double exact_probability(Graph &g, const Path p, ostream & ofs = cout){
+double exact_probability(Graph &g, const Path p){
     /* Computes the probably that p is a shortest path exactly
      * First we compute all shorter paths than p
      *
@@ -691,11 +693,9 @@ double exact_probability(Graph &g, const Path p, ostream & ofs = cout){
      */
     //cerr << "inside topk" << endl;
 
-    vector<Path> candidates = yen(g, p, ofs);
-
+    vector<Path> candidates = yen(g, p);
 
     assert(candidates[candidates.size()-1] == p);
-    ofs << "Nr of candidates : " << candidates.size() << endl;
 
     int n = candidates.size();
     if(n == 1){
@@ -717,18 +717,13 @@ double exact_probability(Graph &g, const Path p, ostream & ofs = cout){
         }
         if(k == 0) break;
 
-        /*
-        for(int i=1; i<=k; i++){
-            cout << I[i] << " ";
-        }
-        cout << endl;
-        */
+        // The current subset consists of the elements I[1], I[2], ..., I[k]
+        // NB: they are 1-indexed, so we have to subtract 1 to get the right path
 
         set<Edge> E = p_minus_q(candidates[I[1]-1], p);
-        for(int i = 2; i<=k; i++){
-            for(Edge e: candidates[I[i]-1].edges){
-                E.erase(e);
-            }
+        for(int i=2; i<= k; i++){
+            set<Edge> EPiPn = p_minus_q(candidates[I[i]-1], p);
+            E.insert(EPiPn.begin(), EPiPn.end());
         }
 
         double curP = (k%2 == 0) ? -1 : 1;
@@ -738,7 +733,6 @@ double exact_probability(Graph &g, const Path p, ostream & ofs = cout){
 
         P += curP;
     }
-
 
     return (1 - P) * p.probability();
 }
