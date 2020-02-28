@@ -307,7 +307,7 @@ vector<double> betweenness(AdjGraph & g){
 
     for(int s=0; s<g.n; s++){
         clock_t t1 = clock();
-        cerr << (s);
+        cout << (s);
         for(int t=0; t<g.n; t++){
             if(s == t) continue;
             auto cur_mpsp = mpsp(&g, s, t, 1000, _t1, _t2);
@@ -322,8 +322,8 @@ vector<double> betweenness(AdjGraph & g){
             }
         }
         clock_t t2 = clock();
-        cerr << " : " << (double(t2-t1))/CLOCKS_PER_SEC << " seconds" << endl;
-        cerr << "remaining : " << (g.n-(s+1)) * (double(t2 - start))/((s+1) * CLOCKS_PER_SEC) << endl;
+        cout << " : " << (double(t2-t1))/CLOCKS_PER_SEC << " seconds" << endl;
+        cout << "remaining : " << (g.n-(s+1)) * (double(t2 - start))/((s+1) * CLOCKS_PER_SEC) << endl;
     }
 
     // normalize betweenness by size of graph
@@ -492,7 +492,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output){
 
     output.close();
     clock_t t2 = clock();
-    cerr << "Betweenness calculation took " << (double(t2 - t1))/CLOCKS_PER_SEC << " seconds" << endl;
+    cout << "Betweenness calculation took " << (double(t2 - t1))/CLOCKS_PER_SEC << " seconds" << endl;
 
 }
 
@@ -621,7 +621,6 @@ int main(int argc, char* argv[])
     else if(argc == 3){
         cout << "Doing betweenness experiment" << endl;
         experiment_betweenness(argv[1], argv[2]);
-        
     }
     else if(argc == 4){
         experiment(argv[1], argv[2], argv[3]);
