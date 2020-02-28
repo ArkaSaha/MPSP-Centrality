@@ -649,7 +649,8 @@ double Luby_Karp(const vector<Path> &paths, int n, ull N){
 
 double Luby_Karp(Graph & g, Path p, ull N){
     vector<Path> paths = yen(g, p);
-    assert(paths.back() == p);
+    if (paths.back() != p)
+        paths.push_back(p);
     return Luby_Karp(paths, paths.size()-1, N);
 }
 
