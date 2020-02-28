@@ -303,24 +303,27 @@ vector<double> betweenness(AdjGraph & g){
 
     vector<double> B = vector<double>(g.n, 0);
 
+    clock_t start = clock();
+
     for(int s=0; s<g.n; s++){
+        clock_t t1 = clock();
+        cerr << (s);
         for(int t=0; t<g.n; t++){
             if(s == t) continue;
             auto cur_mpsp = mpsp(&g, s, t, 1000, _t1, _t2);
 
             if(get<1>(cur_mpsp) > 0){
-                cout << "path between " << s << " and " << t << endl;
                 // this means that s and t are connected
                 // raise the betweenness of every inner node of the path by 1
                 list<edge> p = get<0>(cur_mpsp);
-                cout << "inner nodes : ";
                 for(auto it = next(p.begin()); it != p.end(); it++){
-                    cout << get<0>(*it) << " ";
                     B[get<0>(*it)]++;
                 }
-                cout << endl;
             }
         }
+        clock_t t2 = clock();
+        cerr << " : " << (double(t2-t1))/CLOCKS_PER_SEC << " seconds" << endl;
+        cerr << "remaining : " << (g.n-(s+1)) * (double(t2 - start))/((s+1) * CLOCKS_PER_SEC) << endl;
     }
 
     // normalize betweenness by size of graph
@@ -466,17 +469,15 @@ vector< tuple<int,int> > read_queries(int n, int d, char* file)
 }
 
 void experiment_betweenness(char* path_to_graph, char* path_to_output){
-    cout << "checkpoint1" << endl;
+
+    clock_t t1 = clock();
     AdjGraph g = read_graph(path_to_graph);
-    cout << "checkpoint2" << endl;
 
 	ofstream output;
 	output.open(path_to_output);
 
-    cout << "checkpoint" << endl;
     auto B = betweenness(g);
 
-    cout << "checkpoint" << endl;
     // sort B from highest to lowest betweenness
     vector<pair<double, int>> sorted_B = vector<pair<double, int>>(B.size());
     for(int i=0; i<B.size(); i++){
@@ -486,10 +487,13 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output){
 
     output << sorted_B.size() << endl;
     for(auto elt: sorted_B){
-        output << elt.second << " " << elt.first << endl;
+        output << fixed << elt.second << " " << elt.first << endl;
     }
 
     output.close();
+    clock_t t2 = clock();
+    cerr << "Betweenness calculation took " << (double(t2 - t1))/CLOCKS_PER_SEC << " seconds" << endl;
+
 }
 
 void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output){
@@ -554,7 +558,14 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 					}
 					path.edges.push_back(ee);
 				}
+
+                output << "LK start" << endl;
+                cout << "**" << endl;
+                path.print();
+                cout << path.len() << endl;
+                cout << "**" << endl;
 				prob = Luby_Karp(G, path, 10000);
+                output << "LK end" << endl;
 			}
 			for (edge e : p)
 			{
@@ -599,7 +610,6 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 int main(int argc, char* argv[])
 {
 
-    cerr << argc << endl;
 	if (argc < 3 or argc > 4)
 	{
         cerr << "For mpsp experiment" << endl;
