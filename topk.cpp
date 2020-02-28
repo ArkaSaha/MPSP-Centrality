@@ -404,7 +404,6 @@ double kth_largest(const set<double> &elts, int k){
     return *elt;
 }
 
-
 void yen_core(Graph &g, vector<Path> & A, vector<Path> &B, int t){
         for(uint i=0; i<A.back().edges.size(); i++){
             // we are going find a new path, diverting from the old path from the spurNode
@@ -548,7 +547,6 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
 
 vector<Path> yen(Graph &g, Path p){
     // Computes all the paths shortest than p using Yen's algorithm
-    //
     //cerr << "\n\n\nYEN with path stopping criterion\n\n\n" << endl;
     
     int s = p.edges[0].u;
@@ -559,7 +557,17 @@ vector<Path> yen(Graph &g, Path p){
     vector<Path> A = {p1};
     vector<Path> B = vector<Path>();
 
-    while(A[A.size()-1] != p){
+    clock_t start = clock();
+    int THRESHOLD_NR_OF_SECONDS = 5;
+
+    while(A.back() != p){
+        clock_t end = clock();
+        int seconds_elapsed = (end - start)/ (CLOCKS_PER_SEC);
+        if(seconds_elapsed >= THRESHOLD_NR_OF_SECONDS){
+            // ofs << "** STOPPED YEN : Generated candiates for " << seconds_elapsed << " seconds" << endl;
+            // stats.candidate_generation_timeout = true;
+            break;
+        }
 
         yen_core(g, A, B, t);
 
@@ -641,7 +649,7 @@ double Luby_Karp(const vector<Path> &paths, int n, ull N){
 
 double Luby_Karp(Graph & g, Path p, ull N){
     vector<Path> paths = yen(g, p);
-    assert(paths[paths.size()-1] == p);
+    assert(paths.back() == p);
     return Luby_Karp(paths, paths.size()-1, N);
 }
 

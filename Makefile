@@ -1,10 +1,11 @@
 
 CC = g++ 
-CCFLAGS = -Wall -Wextra -pedantic -std=gnu++17 -O2
+CCFLAGS = -Wall -Wextra -pedantic -std=gnu++17 -O3
 CCFLAGS_BAD_PRACTICE = -Wno-unused-parameter
 
 experiments: experiments.cpp topk.cpp 
 	$(CC) $(CCFLAGS) $(CCFLAGS_BAD_PRACTICE) experiments.cpp topk.cpp -o experiments
+
 
 test: test.cpp topk.cpp 
 	$(CC) $(CCFLAGS) test.cpp topk.cpp -o test
@@ -18,6 +19,5 @@ mpsp: mpsp.cpp
 all: experiments topk mpsp
 
 clean:
-	rm topk mpsp experiments test
+	rm -f topk mpsp experiments test
 	
-
