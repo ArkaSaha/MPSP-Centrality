@@ -13,8 +13,8 @@ test: test.cpp topk.cpp
 topk: topk.cpp 
 	$(CC) $(CCFLAGS) topk.cpp  -o topk
 
-mpsp: mpsp.cpp
-	$(CC) $(CCFLAGS) mpsp.cpp  -o mpsp
+mpsp: mpsp.cpp topk.cpp
+	$(CC) $(CCFLAGS) mpsp.cpp  topk.cpp -o mpsp
 
 all: experiments topk mpsp
 

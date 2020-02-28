@@ -137,7 +137,7 @@ tuple< list<edge>,long,double,double,bool > prob_dijkstra(AdjGraph* g, int s, in
 	return make_tuple(p, min_dist, prod * pr, pr, prune && lu.empty());
 }
 
-double approx_prob(AdjGraph* g, vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
+double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
 {
 	int C = 0, N = 10000, n = cp.size();
 	list<edge>* diff = new list<edge>[n];
@@ -271,7 +271,7 @@ tuple<list<edge>,int,int,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, do
 				n_p += freq;
 			else
 			{
-				double prob = approx_prob(g,cp,p,ub,prob_time);
+				double prob = approx_prob(cp,p,ub,prob_time);
 				cp.push_back(p);
 				if (prune && (prob < lb || prob > ub))
 					n_p += freq;
@@ -295,6 +295,42 @@ tuple<list<edge>,int,int,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, do
 		match = true;
 	return make_tuple(pp,cp.size(),f_max,match,n_r,n_p);
 }
+
+
+vector<double> betweenness(AdjGraph & g){
+
+    double _t1, _t2;
+
+    vector<double> B = vector<double>(g.n, 0);
+
+    for(int s=0; s<g.n; s++){
+        for(int t=0; t<g.n; t++){
+            if(s == t) continue;
+            auto cur_mpsp = mpsp(&g, s, t, 1000, _t1, _t2);
+
+            if(get<1>(cur_mpsp) > 0){
+                cout << "path between " << s << " and " << t << endl;
+                // this means that s and t are connected
+                // raise the betweenness of every inner node of the path by 1
+                list<edge> p = get<0>(cur_mpsp);
+                cout << "inner nodes : ";
+                for(auto it = next(p.begin()); it != p.end(); it++){
+                    cout << get<0>(*it) << " ";
+                    B[get<0>(*it)]++;
+                }
+                cout << endl;
+            }
+        }
+    }
+
+    // normalize betweenness by size of graph
+    for(uint i=0; i<B.size(); i++){
+        B[i] /= ((g.n-1) * (g.n-2));
+    }
+
+    return B;
+}
+
 
 int bfs(AdjGraph* g, int s, int d)
 {
@@ -429,17 +465,37 @@ vector< tuple<int,int> > read_queries(int n, int d, char* file)
 	return q;
 }
 
-int main(int argc, char* argv[])
-{
-	if (argc < 4)
-	{
-		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output>";
-		return 1;
-	}
-	srand(time(NULL));
+void experiment_betweenness(char* path_to_graph, char* path_to_output){
+    cout << "checkpoint1" << endl;
+    AdjGraph g = read_graph(path_to_graph);
+    cout << "checkpoint2" << endl;
+
+	ofstream output;
+	output.open(path_to_output);
+
+    cout << "checkpoint" << endl;
+    auto B = betweenness(g);
+
+    cout << "checkpoint" << endl;
+    // sort B from highest to lowest betweenness
+    vector<pair<double, int>> sorted_B = vector<pair<double, int>>(B.size());
+    for(int i=0; i<B.size(); i++){
+        sorted_B[i] = {B[i], i};
+    }
+    sort(sorted_B.rbegin(), sorted_B.rend());
+
+    output << sorted_B.size() << endl;
+    for(auto elt: sorted_B){
+        output << elt.second << " " << elt.first << endl;
+    }
+
+    output.close();
+}
+
+void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output){
+
 	int n = 100, d = 4;
-	// Graph g = generate_er(40000,80000,argv[1]);
-	AdjGraph g = read_graph(argv[1]);
+	AdjGraph g = read_graph(path_to_graph);
 	Graph G = Graph({g.n, g.m});
 	int num = 0;
 	for (int i = 0; i < g.n; i++)
@@ -455,9 +511,9 @@ int main(int argc, char* argv[])
 	}
 	G.update_incoming_index2edge();
 	// vector< tuple<int,int> > q = generate_queries(&g,n,d,argv[2]);
-	vector< tuple<int,int> > q = read_queries(n,d,argv[2]);
+	vector< tuple<int,int> > q = read_queries(n,d,path_to_queries);
 	ofstream output;
-	output.open(argv[3]);
+	output.open(path_to_output);
 	for (int k = d; k >= 0; k--)
 	{
 		// cerr << "k = " << k << endl;
@@ -537,5 +593,31 @@ int main(int argc, char* argv[])
 	}
 	output.close();
 	delete [] g.adj;
+
+}
+
+int main(int argc, char* argv[])
+{
+
+    cerr << argc << endl;
+	if (argc < 3 or argc > 4)
+	{
+        cerr << "For mpsp experiment" << endl;
+		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output>" << endl;
+        cerr << "For betweenness experiment" << endl;
+		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output>" << endl;
+		return 1;
+	}
+    else if(argc == 3){
+        cout << "Doing betweenness experiment" << endl;
+        experiment_betweenness(argv[1], argv[2]);
+        
+    }
+    else if(argc == 4){
+        experiment(argv[1], argv[2], argv[3]);
+    }
+	//srand(time(NULL));
+	// Graph g = generate_er(40000,80000,argv[1]);
+
 	return 0;
 }
