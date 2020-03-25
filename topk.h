@@ -144,10 +144,10 @@ struct Path
 
 // Function declaration
 Path dijkstra(const Graph & g, int s, int t);
-vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs);
-vector<Path> yen(Graph &g, Path p);
+vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs, int THRESHOLD_NR_OF_SECONDS);
+vector<Path> yen(Graph &g, Path p, int THRESHOLD_NR_OF_SECONDS);
 
-vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs);
+vector<pair<Path,double> > topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs, int THRESHOLD_NR_OF_SECONDS);
 
 double exact_probability(Graph &g, Path p);
 
