@@ -11,6 +11,7 @@
 # include <algorithm>
 # include <random>
 # include <ctime>
+# include <cmath>
 # include <boost/heap/fibonacci_heap.hpp>
 # include "topk.h"
 
@@ -26,7 +27,12 @@ struct AdjGraph
 	vector<adj_ent>* adj;
 };
 
-tuple< list<edge>,long,double,double,bool > prob_dijkstra(AdjGraph* g, int s, int t, bool prune, double lb, double& elapsed)
+double time_difference(timespec begin, timespec end)
+{
+	return (end.tv_sec - begin.tv_sec) + (end.tv_nsec - begin.tv_nsec) / pow(10,9);
+}
+
+tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed_prune, double& elapsed_noprune)
 {
 	struct node
 	{
@@ -48,7 +54,6 @@ tuple< list<edge>,long,double,double,bool > prob_dijkstra(AdjGraph* g, int s, in
 	bool* visited = new bool[g->n];
 	adj_ent* prev = new adj_ent[g->n];
 	double* prob = new double[g->n];
-	unordered_set<int> lu = unordered_set<int>();
 	for (int i = 0; i < g->n; i++)
 	{
 		exist[i] = false;
@@ -61,39 +66,45 @@ tuple< list<edge>,long,double,double,bool > prob_dijkstra(AdjGraph* g, int s, in
 	long min_dist = 0;
 	double prod = 1;
 	list<edge> p = list<edge>();
-	lu.insert(s);
-	clock_t begin = clock();
-	while (! (heap.empty() || (prune && lu.empty())))
+	double d_time = 0, lb_time = 0;
+	timespec begin, end;
+	while (! heap.empty())
 	{
+		clock_gettime(CLOCK_MONOTONIC,&begin);
 		node n = heap.top();
 		int u = n.vertex;
 		long d = n.distance;
 		heap.pop();
 		exist[u] = false;
 		visited[u] = true;
+		clock_gettime(CLOCK_MONOTONIC,&end);
+		d_time += time_difference(begin,end);
 		if (u == t)
 		{
 			min_dist = d;
 			break;
 		}
-		bool leaf = true;
 		for (adj_ent e : g->adj[u])
 		{
+			clock_gettime(CLOCK_MONOTONIC,&begin);
 			int v = get<0>(e);
+			clock_gettime(CLOCK_MONOTONIC,&end);
+			d_time += time_difference(begin,end);
 			if (! visited[v])
 			{
+				clock_gettime(CLOCK_MONOTONIC,&begin);
 				double r = (double)rand() / RAND_MAX, pr = get<2>(e);
+				clock_gettime(CLOCK_MONOTONIC,&end);
+				d_time += time_difference(begin,end);
 				if (r < pr)
 				{
-					leaf = false;
+					clock_gettime(CLOCK_MONOTONIC,&begin);
 					long w = get<1>(e);
 					long alt = d + w;
 					if (! exist[v])
 					{
 						prev[v] = make_tuple(u,w,pr);
 						prob[v] = prob[u] * pr;
-						if (prune && prob[v] >= lb)
-							lu.insert(v);
 						handles[v] = heap.push(node(v,alt));
 						exist[v] = true;
 					}
@@ -101,49 +112,50 @@ tuple< list<edge>,long,double,double,bool > prob_dijkstra(AdjGraph* g, int s, in
 					{
 						prev[v] = make_tuple(u,w,pr);
 						prob[v] = prob[u] * pr;
-						if (prune && prob[v] >= lb)
-							lu.insert(v);
 						heap.update(handles[v],node(v,alt));
 					}
+					clock_gettime(CLOCK_MONOTONIC,&end);
+					d_time += time_difference(begin,end);
 				}
 				else
+				{
+					clock_gettime(CLOCK_MONOTONIC,&begin);
 					prod *= (1 - pr);
+					clock_gettime(CLOCK_MONOTONIC,&end);
+					d_time += time_difference(begin,end);
+				}
 			}
 		}
-		if (prune && !leaf)
-			lu.erase(u);
 	}
-	clock_t end = clock();
+	elapsed_noprune += d_time;
+	elapsed_prune += (d_time + lb_time);
 	if (min_dist != 0)
 	{
-		if (prob[t] >= lb)
+		int v = t;
+		while (v != s)
 		{
-			int v = t;
-			while (v != s)
-			{
-				adj_ent res = prev[v];
-				p.push_front(make_tuple(get<0>(res),v,get<1>(res),get<2>(res)));
-				v = get<0>(res);
-			}
+			adj_ent res = prev[v];
+			p.push_front(make_tuple(get<0>(res),v,get<1>(res),get<2>(res)));
+			v = get<0>(res);
 		}
 	}
-	elapsed += ((double)(end - begin) / CLOCKS_PER_SEC);
 	double pr = prob[t];
 	delete [] handles;
 	delete [] exist;
 	delete [] visited;
 	delete [] prev;
 	delete [] prob;
-	return make_tuple(p, min_dist, prod * pr, pr, prune && lu.empty());
+	return make_tuple(p, min_dist, prod * pr, pr);
 }
 
 double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
 {
-	int C = 0, N = 1000000, n = cp.size();
+	int C = 0, N = 1000, n = cp.size();
 	list<edge>* diff = new list<edge>[n];
 	vector<double> pr = vector<double>(n);
 	double S = 0;
-	clock_t begin = clock();
+	timespec begin, end, m1, m2;
+	clock_gettime(CLOCK_MONOTONIC,&begin);
 	for (int i = 0; i < n; i++)
 	{
 		list<edge> p = cp[i];
@@ -157,11 +169,11 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 		diff[i] = l;
 		pr[i] = prob;
 	}
-	clock_t m1 = clock();
+	clock_gettime(CLOCK_MONOTONIC,&m1);
 	random_device rd;
 	mt19937 gen(rd());
 	discrete_distribution<> d(pr.begin(), pr.end());
-	clock_t m2 = clock();
+	clock_gettime(CLOCK_MONOTONIC,&m2);
 	for (int k = 1; k <= N; k++)
 	{
 		int i = d(gen);
@@ -187,17 +199,17 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 		if (f1)
 			C++;
 	}
-	clock_t end = clock();
-	elapsed += ((double)(end - m2 + m1 - begin) / CLOCKS_PER_SEC);
+	clock_gettime(CLOCK_MONOTONIC,&end);
+	elapsed += (time_difference(begin,end) - time_difference(m1,m2));
 	delete [] diff;
 	return (1 - C * S / N) * exist;
 }
 
-tuple<list<edge>,int,int,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, double& candidate_time, double& prob_time)
+tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
 {
-	double lb_max = 0, p_max = 0;
+	double lb_max = 0, p_max_p = 0, p_max_np = 0;
 	int f_max = 1, n_s = 0, n_d = 0, n_r = 1000, n_p = 0;
-	bool match = false, prune = false;
+	bool match_p = false, match_np = false;
 	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
 	for (int i = 1; i <= n_r; i++)
 	{
@@ -209,15 +221,9 @@ tuple<list<edge>,int,int,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, do
 		list<edge> p;
 		long w;
 		double lb, ub;
-		bool pruned;
-		if (!prune && n_d >= 0)
-			prune = true;
-		tie(p,w,lb,ub,pruned) = prob_dijkstra(g,s,t,prune,lb_max,candidate_time);
+		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,candidate_time_prune,candidate_time_noprune);
 		if (p.empty())
-		{
-			n_p += pruned;
 			continue;
-		}
 		n_s++;
 		if (lb_max < lb)
 			lb_max = lb;
@@ -255,8 +261,8 @@ tuple<list<edge>,int,int,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, do
 		}
 	}
 	f_max = 1;
-	list<edge> pp = list<edge>();
-	vector< list<edge> > cp = vector< list<edge> >();
+	list<edge> pp_p, pp_np = list<edge>();
+	vector< list<edge> > cp_p = vector< list<edge> >(), cp_np = vector< list<edge> >();
 	map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
 	for (auto x = paths.begin(); x != paths.end(); x++)
 	{
@@ -267,33 +273,39 @@ tuple<list<edge>,int,int,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, do
 			double lb = get<1>(tt);
 			double ub = get<2>(tt);
 			int freq = get<3>(tt);
-			if (prune && ub < lb_max)
+			double prob_np = approx_prob(cp_np,p,ub,prob_time_noprune);
+			cp_np.push_back(p);
+			if (prob_np > p_max_np)
+			{
+				p_max_np = prob_np;
+				pp_np = p;
+			}
+			if (ub < lb_max)
 				n_p += freq;
 			else
 			{
-				double prob = approx_prob(cp,p,ub,prob_time);
-				cp.push_back(p);
-				if (prune && (prob < lb || prob > ub))
+				double prob_p = approx_prob(cp_p,p,ub,prob_time_prune);
+				cp_p.push_back(p);
+				if (prob_p < lb || prob_p > ub)
 					n_p += freq;
-				else
+				if (prob_p > p_max_p)
 				{
-					if (prob > p_max)
-					{
-						p_max = prob;
-						pp = p;
-					}
+					p_max_p = prob_p;
+					pp_p = p;
 				}
-				if (fp.find(freq) == fp.end())
-					fp[freq] = set< list<edge> >();
-				fp[freq].insert(pp);
-				if (freq > f_max)
-					f_max = freq;
 			}
+			if (fp.find(freq) == fp.end())
+				fp[freq] = set< list<edge> >();
+			fp[freq].insert(p);
+			if (freq > f_max)
+				f_max = freq;
 		}
 	}
-	if (fp[f_max].find(pp) != fp[f_max].end())
-		match = true;
-	return make_tuple(pp,cp.size(),f_max,match,n_r,n_p);
+	if (fp[f_max].find(pp_p) != fp[f_max].end())
+		match_p = true;
+	if (fp[f_max].find(pp_np) != fp[f_max].end())
+		match_np = true;
+	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),f_max,p_max_p,p_max_np,match_p,match_np,n_r,n_p);
 }
 
 
@@ -303,37 +315,37 @@ vector<double> betweenness(AdjGraph & g)
 
     vector<double> B = vector<double>(g.n, 0);
 
-    clock_t start = clock();
+//     clock_t start = clock();
 
-    for(int s=0; s<g.n; s++)
-    {
-        clock_t t1 = clock();
-        cout << (s);
-        for(int t=0; t<g.n; t++)
-        {
-            if(s == t) continue;
-            auto cur_mpsp = mpsp(&g, s, t, 1000, _t1, _t2);
+//     for(int s=0; s<g.n; s++)
+//     {
+//         clock_t t1 = clock();
+//         cout << (s);
+//         for(int t=0; t<g.n; t++)
+//         {
+//             if(s == t) continue;
+//             auto cur_mpsp = mpsp(&g, s, t, 1000, _t1, _t2);
 
-            if(get<1>(cur_mpsp) > 0)
-            {
-                // this means that s and t are connected
-                // raise the betweenness of every inner node of the path by 1
-                list<edge> p = get<0>(cur_mpsp);
-                for(auto it = next(p.begin()); it != p.end(); it++){
-                    B[get<0>(*it)]++;
-                }
-            }
-        }
-        clock_t t2 = clock();
-        cout << " : " << (double(t2-t1))/CLOCKS_PER_SEC << " seconds" << endl;
-        cout << "remaining : " << (g.n-(s+1)) * (double(t2 - start))/((s+1) * CLOCKS_PER_SEC) << endl;
-    }
+//             if(get<1>(cur_mpsp) > 0)
+//             {
+//                 // this means that s and t are connected
+//                 // raise the betweenness of every inner node of the path by 1
+//                 list<edge> p = get<0>(cur_mpsp);
+//                 for(auto it = next(p.begin()); it != p.end(); it++){
+//                     B[get<0>(*it)]++;
+//                 }
+//             }
+//         }
+//         clock_t t2 = clock();
+//         cout << " : " << (double(t2-t1))/CLOCKS_PER_SEC << " seconds" << endl;
+//         cout << "remaining : " << (g.n-(s+1)) * (double(t2 - start))/((s+1) * CLOCKS_PER_SEC) << endl;
+//     }
 
-    // normalize betweenness by size of graph
-    for(uint i=0; i<B.size(); i++)
-    {
-        B[i] /= ((g.n-1) * (g.n-2));
-    }
+//     // normalize betweenness by size of graph
+//     for(uint i=0; i<B.size(); i++)
+//     {
+//         B[i] /= ((g.n-1) * (g.n-2));
+//     }
 
     return B;
 }
@@ -528,9 +540,9 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 	{
 		// cerr << "k = " << k << endl;
 		output << "Number of hops = " << k * 2 << endl << endl;
-		long a_w = 0;
-		double t_c = 0, t_p = 0, a_p = 0, a_r = 0, a_pr = 0;
-		int n_m = 0, num = 0;
+		long a_w_p = 0, a_w_np = 0;
+		double t_c_p = 0, t_c_np = 0, t_p_p = 0, t_p_np = 0, a_c_p = 0, a_c_np = 0, a_p_p = 0, a_p_np = 0, a_r = 0, a_pr = 0;
+		int n_m_p = 0, n_m_np = 0, num = 0;
 		for (int i = 1; i <= n; i++)
 		{
 			// cerr << "i = " << i << endl;
@@ -538,75 +550,121 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			tie(s,t) = q.back();
 			q.pop_back();
 			output << s << "\t" << t << endl;
-			long wt = 0;
-			double candidate_time = 0, prob_time = 0, pr = 1, prob = 0;
-			list<edge> p;
-			int c, f, pruned;
-			bool m;
-			tie(p,c,f,m,r,pruned) = mpsp(&g, s, t, 1000, candidate_time, prob_time);
-			if (! p.empty())
+			long wt_p = 0, wt_np = 0;
+			double candidate_time_prune = 0, candidate_time_noprune = 0, prob_time_prune = 0, prob_time_noprune = 0, pr_p = 1, pr_np = 1, prob_p = 0, prob_np = 0;
+			list<edge> p_p, p_np;
+			int c_p, c_np, f, pruned;
+			bool m_p, m_np;
+			tie(p_p,p_np,c_p,c_np,f,prob_p,prob_np,m_p,m_np,r,pruned) = mpsp(&g, s, t, 1000, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
+			if (! p_p.empty())
 			{
 				num++;
-				Path path = Path({});
-				for (edge e : p)
-				{
-					Edge ee;
-					ee.u = get<0>(e);
-					ee.v = get<1>(e);
-					ee.l = (int)get<2>(e);
-					ee.p = get<3>(e);
-					for (Edge eee : G.adj[ee.u])
-					{
-						if (eee.v == ee.v)
-						{
-							ee.index = eee.index;
-							break;
-						}
-					}
-					path.edges.push_back(ee);
-				}
-                // output << "LK start" << endl;
-                // cout << "**" << endl;
-                // path.print();
-                // cout << path.len() << endl;
-                // cout << "**" << endl;
-				prob = Luby_Karp(G, path, 10000);
-                // output << "LK end" << endl;
-                for (edge e : p)
+				// Path path = Path({});
+				// for (edge e : p_p)
+				// {
+				// 	Edge ee;
+				// 	ee.u = get<0>(e);
+				// 	ee.v = get<1>(e);
+				// 	ee.l = (int)get<2>(e);
+				// 	ee.p = get<3>(e);
+				// 	for (Edge eee : G.adj[ee.u])
+				// 	{
+				// 		if (eee.v == ee.v)
+				// 		{
+				// 			ee.index = eee.index;
+				// 			break;
+				// 		}
+				// 	}
+				// 	path.edges.push_back(ee);
+				// }
+				// prob_p = Luby_Karp(G, path, 1000);
+				output << "With Pruning" << endl;
+                for (edge e : p_p)
 				{
 					output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
-					wt += get<2>(e);
-					pr *= get<3>(e);
+					wt_p += get<2>(e);
+					pr_p *= get<3>(e);
 				}
-				a_w += wt;
-				a_p += pr;
+				a_c_p += c_p;
+				a_w_p += wt_p;
+				a_p_p += pr_p;
 				a_r += r;
 				a_pr += pruned;
-				t_c += candidate_time;
-				t_p += prob_time;
-				n_m += m;
+				t_c_p += candidate_time_prune;
+				t_p_p += prob_time_prune;
+				n_m_p += m_p;
+			}
+			if (! p_np.empty())
+			{
+				// Path path = Path({});
+				// for (edge e : p_np)
+				// {
+				// 	Edge ee;
+				// 	ee.u = get<0>(e);
+				// 	ee.v = get<1>(e);
+				// 	ee.l = (int)get<2>(e);
+				// 	ee.p = get<3>(e);
+				// 	for (Edge eee : G.adj[ee.u])
+				// 	{
+				// 		if (eee.v == ee.v)
+				// 		{
+				// 			ee.index = eee.index;
+				// 			break;
+				// 		}
+				// 	}
+				// 	path.edges.push_back(ee);
+				// }
+				// prob_np = Luby_Karp(G, path, 1000);
+				output << "Without Pruning" << endl;
+                for (edge e : p_np)
+				{
+					output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
+					wt_np += get<2>(e);
+					pr_np *= get<3>(e);
+				}
+				a_c_np += c_np;
+				a_w_np += wt_np;
+				a_p_np += pr_np;
+				t_c_np += candidate_time_noprune;
+				t_p_np += prob_time_noprune;
+				n_m_np += m_np;
 			}
 			output << "Number of Dijkstra Runs : " << r << endl;
 			output << "Number of Samples Pruned : " << pruned << endl;
-			output << "Number of Distinct Non-Pruned Candidate Paths : " << c << endl;
+			output << "Number of Distinct Candidate Paths with Pruning : " << c_p << endl;
+			output << "Number of Distinct Candidate Paths without Pruning : " << c_np << endl;
 			output << "Frequency of Modal Candidate Path : " << f << endl;
-			output << "MPSP matches Modal Candidate Path : " << m << endl;
-			output << "Length of MPSP : " << wt << endl;
-			output << "Probability of MPSP : " << pr << endl;
-			output << "Probability of MPSP being the Shortest Path: " << prob << endl;
-			output << "Candidate Generation Time : " << candidate_time << " seconds" << endl;
-			output << "Probability Computation Time : " << prob_time << " seconds" << endl;
+			output << "MPSP matches Modal Candidate Path with Pruning : " << m_p << endl;
+			output << "MPSP matches Modal Candidate Path without Pruning : " << m_np << endl;
+			output << "Length of MPSP with Pruning : " << wt_p << endl;
+			output << "Length of MPSP without Pruning : " << wt_np << endl;
+			output << "Probability of MPSP with Pruning : " << pr_p << endl;
+			output << "Probability of MPSP without Pruning : " << pr_np << endl;
+			output << "Probability of MPSP being the Shortest Path with Pruning : " << prob_p << endl;
+			output << "Probability of MPSP being the Shortest Path without Pruning : " << prob_np << endl;
+			output << "Candidate Generation Time with Pruning : " << candidate_time_prune << " seconds" << endl;
+			output << "Candidate Generation Time without Pruning : " << candidate_time_noprune << " seconds" << endl;
+			output << "Probability Computation Time with Pruning : " << prob_time_prune << " seconds" << endl;
+			output << "Probability Computation Time without Pruning : " << prob_time_noprune << " seconds" << endl;
 			output << endl;
 		}
 		output << "Number of Non-Empty Paths for " << k * 2 << " hops : " << num << endl;
-		output << "Number of Path Matches for " << k * 2 << " hops : " << n_m << endl;
-		output << "Average Length of MPSP for " << k * 2 << " hops : " << a_w / num << endl;
-		output << "Average Probability of MPSP for " << k * 2 << " hops : " << a_p / num << endl;
+		output << "Number of Path Matches with Pruning for " << k * 2 << " hops : " << n_m_p << endl;
+		output << "Number of Path Matches without Pruning for " << k * 2 << " hops : " << n_m_np << endl;
+		output << "Average Length of MPSP with Pruning for " << k * 2 << " hops : " << a_w_p / num << endl;
+		output << "Average Length of MPSP without Pruning for " << k * 2 << " hops : " << a_w_np / num << endl;
+		output << "Average Probability of MPSP with Pruning for " << k * 2 << " hops : " << a_p_p / num << endl;
+		output << "Average Probability of MPSP without Pruning for " << k * 2 << " hops : " << a_p_np / num << endl;
 		output << "Average Number of Dijkstra Runs for " << k * 2 << " hops : " << a_r / num << endl;
 		output << "Average Number of Samples Pruned for " << k * 2 << " hops : " << a_pr / num << endl;
-		output << "Average Candidate Generation Time for " << k * 2 << " hops : " << t_c / num << " seconds" << endl;
-		output << "Average Probability Computation Time for " << k * 2 << " hops : " << t_p / num << " seconds" << endl;
-		output << "Average Total Time for " << k * 2 << " hops : " << (t_c + t_p) / num << " seconds" << endl;
+		output << "Average Number of Distinct Candidate Paths with Pruning for " << k * 2 << " hops : " << a_c_p / num << endl;
+		output << "Average Number of Distinct Candidate Paths without Pruning for " << k * 2 << " hops : " << a_c_np / num << endl;
+		output << "Average Candidate Generation Time with Pruning for " << k * 2 << " hops : " << t_c_p / num << " seconds" << endl;
+		output << "Average Candidate Generation Time without Pruning for " << k * 2 << " hops : " << t_c_np / num << " seconds" << endl;
+		output << "Average Probability Computation Time with Pruning for " << k * 2 << " hops : " << t_p_p / num << " seconds" << endl;
+		output << "Average Probability Computation Time without Pruning for " << k * 2 << " hops : " << t_p_np / num << " seconds" << endl;
+		output << "Average Total Time with Pruning for " << k * 2 << " hops : " << (t_c_p + t_p_p) / num << " seconds" << endl;
+		output << "Average Total Time without Pruning for " << k * 2 << " hops : " << (t_c_np + t_p_np) / num << " seconds" << endl;
 		output << endl << endl;
 	}
 	output.close();
