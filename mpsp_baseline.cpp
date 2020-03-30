@@ -213,11 +213,6 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
 	for (int i = 1; i <= n_r; i++)
 	{
-		if (n_s >= 10 && f_max >= 0.8 * n_s)
-		{
-			n_r = i;
-			break;
-		}
 		list<edge> p;
 		long w;
 		double lb, ub;
