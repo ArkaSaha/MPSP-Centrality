@@ -139,7 +139,7 @@ tuple< list<edge>,long,double,double,bool > prob_dijkstra(AdjGraph* g, int s, in
 
 double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
 {
-	int C = 0, N = 1000000, n = cp.size();
+	int C = 0, N = 1000, n = cp.size();
 	list<edge>* diff = new list<edge>[n];
 	vector<double> pr = vector<double>(n);
 	double S = 0;

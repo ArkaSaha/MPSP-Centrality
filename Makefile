@@ -9,14 +9,11 @@ experiments: experiments.cpp topk.cpp
 test: test.cpp topk.cpp 
 	$(CC) $(CCFLAGS) test.cpp topk.cpp -o test
 
-topk: topk.cpp 
-	$(CC) $(CCFLAGS) topk.cpp  -o topk
-
 mpsp: mpsp.cpp topk.cpp
 	$(CC) $(CCFLAGS) mpsp.cpp  topk.cpp -o mpsp
 
-all: experiments topk mpsp
+all: experiments mpsp test
 
 clean:
-	rm -f topk mpsp experiments test
+	rm -f mpsp experiments test
 	

@@ -669,7 +669,7 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, Statistics & stats
     // for every path, use Luby-Karp to estimate the probability of it being the shortest path
     vector<pair<double, int>> LK_probabilities = vector<pair<double, int>>(candidates.size()); 
     for(uint i=0; i<candidates.size(); i++){
-        double LK = Luby_Karp(candidates, i, 1000000);
+        double LK = Luby_Karp(candidates, i, 1000);
         LK_probabilities[i] = {LK, i};
     }
 

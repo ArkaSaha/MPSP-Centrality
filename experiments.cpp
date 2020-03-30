@@ -42,15 +42,20 @@ void do_queries(string graph_file, string query_file, string output_file, int TH
 			t_c += stats.candidate_generation;
 			t_p += stats.probability_computation;
 			candidate_generation_timeout += stats.candidate_generation_timeout; // NB: adding a boolean to an int
+			ofs << "MPSP:" << endl;
+			for(auto e: topk_outcome[0].first.edges){
+				ofs << e.u << " " << e.v << " " << e.l << " " << e.p << endl;
+			}
 			ofs << "Length of MPSP : " << topk_outcome[0].first.len() << endl;
 			ofs << "Probability of MPSP : " << topk_outcome[0].second << endl;
+			ofs << "Probability of being MPSP : " << topk_outcome[0].second << endl;
 			ofs <<fixed << "Candidate Generation Time : " << (1.0*stats.candidate_generation)/CLOCKS_PER_SEC << " seconds" << endl;
 			ofs << fixed << "Probability Computation Time : " << (1.0*stats.probability_computation)/CLOCKS_PER_SEC << " seconds" << endl;
 			ofs << endl;
 		}
 		// cerr << endl;]
 		ofs << "Average Length of MPSP for " << k*2 << " hops : " << a_w/100 << endl;
-		ofs << "Average Probability of MPSP for " << k*2 << " hops : " << a_p/100 << endl;
+		ofs << "Average Probability of being MPSP for " << k*2 << " hops : " << a_p/100 << endl;
 		ofs << "Average Candidate Generation Time for " << k * 2 << " hops : " << (1.0*t_c)/(CLOCKS_PER_SEC*100) << " seconds" << endl;
 		ofs << "Average Probability Computation Time for " << k * 2 << " hops : " << (1.0*t_p)/(100*CLOCKS_PER_SEC) << " seconds" << endl;
 		ofs << "Average Total Time for " << k * 2 << " hops : " << (1.0*(t_c+t_p))/(100*CLOCKS_PER_SEC) << " seconds" << endl;
@@ -68,7 +73,7 @@ int main(int argc, char* argv[]){
 		string graph_type = graph_name.substr(0, 2);
 		string graph = "data/Synthetic/" + graph_type + "/" + argv[1] + ".graph";
 		string queries = "data/Synthetic/" + graph_type + "/" + argv[1] + ".queries";
-		string output = "output/" + graph_type + "/" + argv[1] + "_" + argv[2] + ".output";
+		string output = "output/" + graph_type + "/" + argv[1] + "_WISE_" + argv[2] + ".output";
 		cout << "Graph  file : " << graph << endl;
 		cout << "Query  file : " << queries << endl;
 		cout << "Output file : " << output << endl;

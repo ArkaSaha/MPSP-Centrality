@@ -42,7 +42,7 @@ int main(){
     double exact_tolerance = 0.000001;
     double LK_tolerance = 0.001;
 
-    vector<Path> paths = yen(G, p3);
+    vector<Path> paths = yen(G, p3, 1000);
     for(uint i=0; i<paths.size(); i++){
         Path p = paths[i];
 
