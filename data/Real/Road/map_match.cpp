@@ -36,7 +36,7 @@ void parse_beijing(char* file, EngineConfig& config)
 		if (path.substr(path.size()-4) == ".txt")
 		{
 			MatchParameters params;
-			engine::api::ResultT result = Object();
+      osrm::engine::api::ResultT result = Object();
 			trajectory.open(path);
 			string line;
 			getline(trajectory,line);
@@ -106,7 +106,7 @@ void parse_sf(char* file, EngineConfig& config)
 		{
 			cerr << path << endl;
 			MatchParameters params;
-			engine::api::ResultT result = Object();
+      osrm::engine::api::ResultT result = Object();
 			trajectory.open(path);
 			vector< tuple<double,double,unsigned long> > v = vector< tuple<double,double,unsigned long> >();
 			string line;
@@ -183,7 +183,7 @@ void parse_porto(char* file, EngineConfig& config)
 	while (line != "")
 	{
 		MatchParameters params;
-		engine::api::ResultT result = Object();
+    osrm::engine::api::ResultT result = Object();
 		stringstream lineStream(line);
 		string cell;
 		int num = 0;
