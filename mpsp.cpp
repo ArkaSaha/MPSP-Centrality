@@ -32,6 +32,77 @@ double time_difference(timespec begin, timespec end)
 	return (end.tv_sec - begin.tv_sec) + (end.tv_nsec - begin.tv_nsec) / pow(10,9);
 }
 
+double dijkstra(AdjGraph* g, int s, int t)
+{
+	struct node
+	{
+		int vertex;
+		long distance;
+		node(const int& v, long d) : vertex(v), distance(d) {}
+	};
+	struct compare_node
+	{
+		bool operator()(const node& n1, const node& n2) const
+		{
+			return n1.distance > n2.distance;
+		}
+	};
+	fibonacci_heap< node, compare<compare_node> > heap = fibonacci_heap< node, compare<compare_node> >();
+	typedef fibonacci_heap< node, compare<compare_node> >::handle_type handle_t;
+	handle_t* handles = new handle_t[g->n];
+	bool* exist = new bool[g->n];
+	bool* visited = new bool[g->n];
+	double* prob = new double[g->n];
+	for (int i = 0; i < g->n; i++)
+	{
+		exist[i] = false;
+		visited[i] = false;
+	}
+	handles[s] = heap.push(node(s,0));
+	exist[s] = true;
+	prob[s] = 1;
+	prob[t] = 0;
+	list<edge> p = list<edge>();
+	while (! heap.empty())
+	{
+		node n = heap.top();
+		int u = n.vertex;
+		long d = n.distance;
+		heap.pop();
+		exist[u] = false;
+		visited[u] = true;
+		if (u == t)
+			break;
+		for (adj_ent e : g->adj[u])
+		{
+			int v = get<0>(e);
+			if (! visited[v])
+			{
+				double pr = get<2>(e);
+				long w = get<1>(e);
+				long alt = d + w;
+				if (! exist[v])
+				{
+					prob[v] = prob[u] * pr;
+					handles[v] = heap.push(node(v,alt));
+					exist[v] = true;
+				}
+				else if (alt < (*handles[v]).distance)
+				{
+					prob[v] = prob[u] * pr;
+					heap.update(handles[v],node(v,alt));
+				}
+			}
+		}
+	}
+	double pr = prob[t];
+	delete [] handles;
+	delete [] exist;
+	delete [] visited;
+	delete [] prob;
+	return pr;
+}
+
 tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed_prune, double& elapsed_noprune)
 {
 	struct node
@@ -559,25 +630,6 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			if (! p_p.empty())
 			{
 				num++;
-				// Path path = Path({});
-				// for (edge e : p_p)
-				// {
-				// 	Edge ee;
-				// 	ee.u = get<0>(e);
-				// 	ee.v = get<1>(e);
-				// 	ee.l = (int)get<2>(e);
-				// 	ee.p = get<3>(e);
-				// 	for (Edge eee : G.adj[ee.u])
-				// 	{
-				// 		if (eee.v == ee.v)
-				// 		{
-				// 			ee.index = eee.index;
-				// 			break;
-				// 		}
-				// 	}
-				// 	path.edges.push_back(ee);
-				// }
-				// prob_p = Luby_Karp(G, path, 1000);
 				output << "With Pruning" << endl;
                 for (edge e : p_p)
 				{
@@ -593,28 +645,30 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 				t_c_p += candidate_time_prune;
 				t_p_p += prob_time_prune;
 				n_m_p += m_p;
+				Path path = Path({});
+				for (edge e : p_p)
+				{
+					Edge ee;
+					ee.u = get<0>(e);
+					ee.v = get<1>(e);
+					ee.l = (int)get<2>(e);
+					ee.p = get<3>(e);
+					for (Edge eee : G.adj[ee.u])
+					{
+						if (eee.v == ee.v)
+						{
+							ee.index = eee.index;
+							break;
+						}
+					}
+					path.edges.push_back(ee);
+				}
+				prob_p = Luby_Karp(G, path, 1000);
 			}
+			else
+				prob_p = dijkstra(&g,s,t);
 			if (! p_np.empty())
 			{
-				// Path path = Path({});
-				// for (edge e : p_np)
-				// {
-				// 	Edge ee;
-				// 	ee.u = get<0>(e);
-				// 	ee.v = get<1>(e);
-				// 	ee.l = (int)get<2>(e);
-				// 	ee.p = get<3>(e);
-				// 	for (Edge eee : G.adj[ee.u])
-				// 	{
-				// 		if (eee.v == ee.v)
-				// 		{
-				// 			ee.index = eee.index;
-				// 			break;
-				// 		}
-				// 	}
-				// 	path.edges.push_back(ee);
-				// }
-				// prob_np = Luby_Karp(G, path, 1000);
 				output << "Without Pruning" << endl;
                 for (edge e : p_np)
 				{
@@ -628,7 +682,33 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 				t_c_np += candidate_time_noprune;
 				t_p_np += prob_time_noprune;
 				n_m_np += m_np;
+				if (p_np != p_p)
+				{
+					Path path = Path({});
+					for (edge e : p_np)
+					{
+						Edge ee;
+						ee.u = get<0>(e);
+						ee.v = get<1>(e);
+						ee.l = (int)get<2>(e);
+						ee.p = get<3>(e);
+						for (Edge eee : G.adj[ee.u])
+						{
+							if (eee.v == ee.v)
+							{
+								ee.index = eee.index;
+								break;
+							}
+						}
+						path.edges.push_back(ee);
+					}
+					prob_np = Luby_Karp(G, path, 1000);
+				}
+				else
+					prob_np = prob_p;
 			}
+			else
+				prob_np = prob_p;
 			output << "Number of Dijkstra Runs : " << r << endl;
 			output << "Number of Samples Pruned : " << pruned << endl;
 			output << "Number of Distinct Candidate Paths with Pruning : " << c_p << endl;
