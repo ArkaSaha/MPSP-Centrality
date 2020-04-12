@@ -137,19 +137,16 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 	long min_dist = 0;
 	double prod = 1;
 	list<edge> p = list<edge>();
-	double d_time = 0, lb_time = 0;
 	timespec begin, end;
+	clock_gettime(CLOCK_MONOTONIC,&begin);
 	while (! heap.empty())
 	{
-		clock_gettime(CLOCK_MONOTONIC,&begin);
 		node n = heap.top();
 		int u = n.vertex;
 		long d = n.distance;
 		heap.pop();
 		exist[u] = false;
 		visited[u] = true;
-		clock_gettime(CLOCK_MONOTONIC,&end);
-		d_time += time_difference(begin,end);
 		if (u == t)
 		{
 			min_dist = d;
@@ -157,19 +154,12 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 		}
 		for (adj_ent e : g->adj[u])
 		{
-			clock_gettime(CLOCK_MONOTONIC,&begin);
 			int v = get<0>(e);
-			clock_gettime(CLOCK_MONOTONIC,&end);
-			d_time += time_difference(begin,end);
 			if (! visited[v])
 			{
-				clock_gettime(CLOCK_MONOTONIC,&begin);
 				double r = (double)rand() / RAND_MAX, pr = get<2>(e);
-				clock_gettime(CLOCK_MONOTONIC,&end);
-				d_time += time_difference(begin,end);
 				if (r < pr)
 				{
-					clock_gettime(CLOCK_MONOTONIC,&begin);
 					long w = get<1>(e);
 					long alt = d + w;
 					if (! exist[v])
@@ -185,21 +175,16 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 						prob[v] = prob[u] * pr;
 						heap.update(handles[v],node(v,alt));
 					}
-					clock_gettime(CLOCK_MONOTONIC,&end);
-					d_time += time_difference(begin,end);
 				}
 				else
-				{
-					clock_gettime(CLOCK_MONOTONIC,&begin);
 					prod *= (1 - pr);
-					clock_gettime(CLOCK_MONOTONIC,&end);
-					d_time += time_difference(begin,end);
-				}
 			}
 		}
 	}
-	elapsed_noprune += d_time;
-	elapsed_prune += (d_time + lb_time);
+	clock_gettime(CLOCK_MONOTONIC,&end);
+	double time = time_difference(begin,end);
+	elapsed_noprune += time;
+	elapsed_prune += time;
 	if (min_dist != 0)
 	{
 		int v = t;
