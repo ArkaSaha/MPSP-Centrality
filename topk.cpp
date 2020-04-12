@@ -482,7 +482,7 @@ void append_shortest_path_in_B_to_A(vector<Path> &A, vector<Path> &B){
         B.erase(B.begin() + indexmin);
 }
 
-vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs, int THRESHOLD_NR_OF_SECONDS){
+vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs, double THRESHOLD_NR_OF_SECONDS){
     // Computes the top k_prime shortest paths using Yen's algorithm where k_prime depends on a stop condition
     // instead of being a fixed parameter
     //
@@ -507,7 +507,7 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
     int k_prime = 0;
     while(k_prime < k || A[k_prime].UB >= kth_largest(LBs, k)){
         clock_t end = clock();
-        int seconds_elapsed = (end - start)/ (CLOCKS_PER_SEC);
+        double seconds_elapsed = (double)(end - start)/ (CLOCKS_PER_SEC);
         if(seconds_elapsed >= THRESHOLD_NR_OF_SECONDS){
             ofs << "** STOPPED YEN : Generated candidates for " << seconds_elapsed << " seconds" << endl;
             stats.candidate_generation_timeout = true;
@@ -544,7 +544,7 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
 }
 
 
-vector<Path> yen(Graph &g, Path p, int THRESHOLD_NR_OF_SECONDS){
+vector<Path> yen(Graph &g, Path p, double THRESHOLD_NR_OF_SECONDS){
     // Computes all the paths shortest than p using Yen's algorithm
     //cerr << "\n\n\nYEN with path stopping criterion\n\n\n" << endl;
     
@@ -560,7 +560,7 @@ vector<Path> yen(Graph &g, Path p, int THRESHOLD_NR_OF_SECONDS){
 
     while(A.back() != p){
         clock_t end = clock();
-        int seconds_elapsed = (end - start)/ (CLOCKS_PER_SEC);
+        double seconds_elapsed = (double)(end - start)/ (CLOCKS_PER_SEC);
         if(seconds_elapsed >= THRESHOLD_NR_OF_SECONDS){
             // ofs << "** STOPPED YEN : Generated candiates for " << seconds_elapsed << " seconds" << endl;
             // stats.candidate_generation_timeout = true;
@@ -652,7 +652,7 @@ double Luby_Karp(Graph & g, Path p, ull N){
     return Luby_Karp(paths, paths.size()-1, N);
 }
 
-vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs, int THRESHOLD_NR_OF_SECONDS){
+pair< vector< pair<Path,double> >, vector<int> > topk(Graph &g, int s, int t, int k, Statistics & stats, ostream & ofs, double THRESHOLD_NR_OF_SECONDS){
     /* Computes the topk most probably shortest paths. Consists of two steps
      * 1) Use Yen's algorithm with a modified stopping rule to find a set of candidates.
      * 2) Use Luby-Karp Mote Carlo sampling to compute probabilities 
@@ -682,13 +682,15 @@ vector<pair<Path,double>> topk(Graph &g, int s, int t, int k, Statistics & stats
 
     // take the top k
     vector<pair<Path, double>> topk_mpsp= vector<pair<Path, double>>();
+    vector<int> ranks = vector<int>();
     for(int i=0; i<k; i++){
         int index = LK_probabilities[i].second;
         topk_mpsp.push_back({candidates[index], LK_probabilities[i].first});
+        ranks.push_back(index);
     }
 
     stats.probability_computation = clock() - start2;
-    return topk_mpsp;
+    return {topk_mpsp, ranks};
 }
 
 
