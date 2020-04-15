@@ -2,7 +2,9 @@
 #include "topk.h" 
 
 #include <fstream>
-#include <experimental/filesystem>
+#include <filesystem>
+#include <algorithm>
+#include <cmath>
 
 Graph read_from_stdin(){
     // Reads a graph from stdin, file containing graph should look the following
@@ -36,14 +38,25 @@ Graph read_graph_from_file(string filename)
     int n, m;
     graph_in >> n >> m;
     Graph G = Graph({n, m});
-    int u, v, l; double p;
+    int u, v, l, m_l = 0; double p;
     for(int i=0; i<m; i++){
         graph_in >> u >> v >> l >> p;
         assert(u >= 0 and u < n);
         assert(v >= 0 and v < n);
         assert(p >= 0.0 and p <= 1.0);
+        if (m_l < l)
+            m_l = l;
 
         G.adj[u].push_back(Edge({u, v, l, p, i}));
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (size_t j = 0; j < G.adj[i].size(); j++)
+        {
+            G.adj[i][j].p = pow((double)G.adj[i][j].l/m_l,100);
+            // G.adj[i][j].p = 1.0/G.adj[i][j].l;
+            // G.adj[i][j].p = 1.0/max(G.adj[i].size(),G.adj[G.adj[i][j].v].size());
+        }
     }
 
     G.update_incoming_index2edge();
