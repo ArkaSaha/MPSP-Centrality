@@ -25,17 +25,19 @@ void do_queries(string graph_file, string query_file, string output_file, double
 
 	// cerr << graph_file << endl;
 
-	for (int k = 0; k <= 4; k++){
+	for (int k = 1; k <= 3; k++){
 		// cerr << "k = " << k << endl;
-		ofs << "Number of hops = " << k * 2 << endl << endl;
+		ofs << "Number of hops = " << k * 2 << endl;
 		ull a_w = 0;
 		Statistics stats;
 		double t_c = 0, t_p = 0, a_p = 0;
-		int s, t, n[6];
+		int s, t, n[6], n_q;
 		int candidate_generation_timeout = 0;
 		for (int i = 0; i < 6; i++)
 			n[i] = 0;
-		for (int i = 1; i <= 100; i++){
+		queries >> n_q;
+		ofs << "Number of queries = " << n_q << endl << endl;
+		for (int i = 1; i <= n_q; i++){
 			// cerr << i << " ";
 			queries >> s >> t;
 			ofs << s << "\t" << t << endl;
@@ -61,11 +63,11 @@ void do_queries(string graph_file, string query_file, string output_file, double
 			ofs << endl;
 		}
 		// cerr << endl;]
-		ofs << "Average Length of MPSP for " << k * 2 << " hops : " << a_w/100 << endl;
-		ofs << "Average Probability of being MPSP for " << k * 2 << " hops : " << a_p/100 << endl;
-		ofs << "Average Candidate Generation Time for " << k * 2 << " hops : " << (1.0*t_c)/(CLOCKS_PER_SEC*100) << " seconds" << endl;
-		ofs << "Average Probability Computation Time for " << k * 2 << " hops : " << (1.0*t_p)/(100*CLOCKS_PER_SEC) << " seconds" << endl;
-		ofs << "Average Total Time for " << k * 2 << " hops : " << (1.0*(t_c+t_p))/(100*CLOCKS_PER_SEC) << " seconds" << endl;
+		ofs << "Average Length of MPSP for " << k * 2 << " hops : " << a_w/n_q << endl;
+		ofs << "Average Probability of being MPSP for " << k * 2 << " hops : " << a_p/n_q << endl;
+		ofs << "Average Candidate Generation Time for " << k * 2 << " hops : " << (1.0*t_c)/(CLOCKS_PER_SEC*n_q) << " seconds" << endl;
+		ofs << "Average Probability Computation Time for " << k * 2 << " hops : " << (1.0*t_p)/(n_q*CLOCKS_PER_SEC) << " seconds" << endl;
+		ofs << "Average Total Time for " << k * 2 << " hops : " << (1.0*(t_c+t_p))/(n_q*CLOCKS_PER_SEC) << " seconds" << endl;
 		ofs << "Number of candidate generation timeouts for " << k * 2 << " hops : " << candidate_generation_timeout << endl;
 		ofs << "Number of returned paths at each rank for " << k * 2 << " hops : ";
 		for (int i = 0; i < 6; i++)

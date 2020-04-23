@@ -49,15 +49,6 @@ Graph read_graph_from_file(string filename)
 
         G.adj[u].push_back(Edge({u, v, l, p, i}));
     }
-    for (int i = 0; i < n; i++)
-    {
-        for (size_t j = 0; j < G.adj[i].size(); j++)
-        {
-            G.adj[i][j].p = pow((double)G.adj[i][j].l/m_l,100);
-            // G.adj[i][j].p = 1.0/G.adj[i][j].l;
-            // G.adj[i][j].p = 1.0/max(G.adj[i].size(),G.adj[G.adj[i][j].v].size());
-        }
-    }
 
     G.update_incoming_index2edge();
     graph_in.close();
