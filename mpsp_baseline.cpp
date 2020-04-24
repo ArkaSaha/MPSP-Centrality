@@ -449,16 +449,20 @@ vector< tuple<int,int> > generate_queries(AdjGraph* g, int n, int d, char* file)
 	return q;
 }
 
-vector< tuple<int,int> > read_queries(int n, int d, char* file)
+vector< tuple<int,int> > read_queries(int* n, int d, char* file)
 {
 	ifstream queries;
 	queries.open(file);
 	vector< tuple<int,int> > q = vector< tuple<int,int> >();
-	for (int i = 1; i <= (d + 1) * n; i++)
+	for (int k = 1; k <= d; k++)
 	{
-		int s, t;
-		queries >> s >> t;
-		q.push_back(make_tuple(s,t));
+		queries >> n[k-1];
+		for (int i = 1; i <= n[k-1]; i++)
+		{
+			int s, t;
+			queries >> s >> t;
+			q.push_back(make_tuple(s,t));
+		}
 	}
 	queries.close();
 	return q;
@@ -496,10 +500,10 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
 
 void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output)
 {
-	int n = 100, d = 4;
+	int num = 0, d = 3;
 	AdjGraph g = read_graph(path_to_graph);
 	Graph G = Graph({g.n, g.m});
-	int num = 0;
+	int* n = new int[d];
 	for (int i = 0; i < g.n; i++)
 	{
 		for (adj_ent t : g.adj[i])
@@ -516,14 +520,15 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 	vector< tuple<int,int> > q = read_queries(n,d,path_to_queries);
 	ofstream output;
 	output.open(path_to_output);
-	for (int k = d; k >= 0; k--)
+	for (int k = d; k >= 1; k--)
 	{
 		// cerr << "k = " << k << endl;
-		output << "Number of hops = " << k * 2 << endl << endl;
+		output << "Number of hops = " << k * 2 << endl;
+		output << "Number of queries = " << n[k-1] << endl << endl;
 		long a_w_p = 0, a_w_np = 0;
 		double t_c_p = 0, t_c_np = 0, t_p_p = 0, t_p_np = 0, a_c_p = 0, a_c_np = 0, a_p_p = 0, a_p_np = 0, a_r = 0, a_pr = 0;
 		int n_m_p = 0, n_m_np = 0, num = 0;
-		for (int i = 1; i <= n; i++)
+		for (int i = 1; i <= n[k-1]; i++)
 		{
 			// cerr << "i = " << i << endl;
 			int r, s, t;
@@ -649,6 +654,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 	}
 	output.close();
 	delete [] g.adj;
+	delete [] n;
 }
 
 int main(int argc, char* argv[])
