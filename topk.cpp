@@ -520,6 +520,7 @@ vector<Path> yen(Graph &g, int s, int t, int k, Statistics & stats, ostream & of
 
         if(B.size() == 0){
             // there are not enough paths
+            ofs << "Not enough paths" << endl;
             break;
         }
 
