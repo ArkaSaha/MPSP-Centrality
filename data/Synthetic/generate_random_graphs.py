@@ -129,7 +129,7 @@ def generate_queries_skewed(g, filename):
     m = g.number_of_edges() 
 
 
-    queries = {2:set(), 4:set(), 6:set()}
+    queries = {0:set(), 2:set(), 4:set(), 6:set()}
 
     queries_per_category = 100
     queries_so_far = 0
@@ -165,22 +165,22 @@ def generate_queries_skewed(g, filename):
         print("Done for {} hops".format(h))
 
     # generate completely random queries
-    # queries_so_far = 0
-    # node_pairs = set()
-    # while queries_so_far < queries_per_category and len(node_pairs) < n*(n-1)/2:
-    #     s = random.randrange(n)
-    #     t = random.randrange(n)
-    #     if s == t:
-    #         continue
-    #     node_pairs.add((s,t))
-    #     try:
-    #         hops = nx.shortest_path_length(g, source=s, target=t)
-    #         if not any([((s,t) in queries[h]) for h in queries]):
-    #             queries[0].add((s, t))
-    #             queries_so_far += 1
-    #     except nx.NetworkXNoPath:
-    #         continue
-    # print("Done for 0 hops")
+    queries_so_far = 0
+    node_pairs = set()
+    while queries_so_far < queries_per_category and len(node_pairs) < n*(n-1)/2:
+        s = random.randrange(n)
+        t = random.randrange(n)
+        if s == t:
+            continue
+        node_pairs.add((s,t))
+        try:
+            hops = nx.shortest_path_length(g, source=s, target=t)
+            if not any([((s,t) in queries[h]) for h in queries]):
+                queries[0].add((s, t))
+                queries_so_far += 1
+        except nx.NetworkXNoPath:
+            continue
+    print("Done for 0 hops")
 
     for hops in queries:
         q.write("{}\n".format(len(queries[hops])))
@@ -206,8 +206,8 @@ def ER(graph_sizes):
         f.write("{} {}\n".format(n, m))
         for u, v in g.edges:
             l = random.randint(1, MAX_EDGE_LENGTH)
-            # f.write("{} {} {} {}\n".format(u, v, l, random.random()))
-            f.write("{} {} {} {}\n".format(u, v, l, l / MAX_EDGE_LENGTH))
+            f.write("{} {} {} {}\n".format(u, v, l, random.random()))
+            # f.write("{} {} {} {}\n".format(u, v, l, l / MAX_EDGE_LENGTH))
         f.close()
 
         generate_queries_skewed(g, "ER/ER_{}_{}.queries".format(n, m))
@@ -239,8 +239,8 @@ def BA(graph_sizes):
         f.write("{} {}\n".format(n, m))
         for u, v in g.edges:
             l = random.randint(1, MAX_EDGE_LENGTH)
-            # p = random.random()
-            p = l / MAX_EDGE_LENGTH
+            p = random.random()
+            # p = l / MAX_EDGE_LENGTH
             f.write("{} {} {} {}\n".format(u, v, l, p))
         f.close()
 
@@ -353,7 +353,4 @@ graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 ER(graph_sizes)
 BA(graph_sizes)
 # BP(graph_sizes)
-
-
-    
 
