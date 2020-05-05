@@ -25,7 +25,7 @@ void do_queries(string graph_file, string query_file, string output_file, double
 
 	// cerr << graph_file << endl;
 
-	for (int k = 1; k <= 3; k++){
+	for (int k = 0; k <= 3; k++){
 		// cerr << "k = " << k << endl;
 		ofs << "Number of hops = " << k * 2 << endl;
 		ull a_w = 0;
