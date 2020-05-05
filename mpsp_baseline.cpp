@@ -161,6 +161,7 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 	clock_gettime(CLOCK_MONOTONIC,&m2);
 	for (int k = 1; k <= N; k++)
 	{
+		map<edge,bool> sampled = map<edge,bool>();
 		int i = d(gen);
 		bool f1 = false;
 		for (int j = 0; j < i; j++)
@@ -168,8 +169,16 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 			bool f2 = true;
 			for (edge e : diff[j])
 			{
-				double r = (double)rand() / RAND_MAX;
-				if (r > get<2>(e))
+				bool s = false;
+				map<edge,bool>::iterator it = sampled.find(e);
+				if (it == sampled.end())
+				{
+					double r = (double)rand() / RAND_MAX;
+					s = sampled[e] = (r < get<2>(e));
+				}
+				else
+					s = it->second;
+				if (!s)
 				{
 					f2 = false;
 					break;
@@ -193,7 +202,7 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
 {
 	double lb_max = 0, p_max_p = 0, p_max_np = 0;
-	int f_max = 1, n_s = 0, n_d = 0, n_r = 1000, n_p = 0;
+	int f_max = 1, n_s = 0, n_d = 0, n_r = 20, n_p = 0;
 	bool match_p = false, match_np = false;
 	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
 	for (int i = 1; i <= n_r; i++)
@@ -250,7 +259,7 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 		for (tuple<list<edge>,double,double,int> tt : vv)
 		{
 			list<edge> p = get<0>(tt);
-			double lb = get<1>(tt);
+			// double lb = get<1>(tt);
 			double ub = get<2>(tt);
 			int freq = get<3>(tt);
 			double prob_np = approx_prob(cp_np,p,ub,prob_time_noprune);
@@ -261,13 +270,13 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 				pp_np = p;
 			}
 			if (ub < lb_max)
-				n_p += freq;
+				n_p++;
 			else
 			{
 				double prob_p = approx_prob(cp_p,p,ub,prob_time_prune);
 				cp_p.push_back(p);
-				if (prob_p < lb || prob_p > ub)
-					n_p += freq;
+				// if (prob_p < lb || prob_p > ub)
+				// 	n_p += freq;
 				if (prob_p > p_max_p)
 				{
 					p_max_p = prob_p;
