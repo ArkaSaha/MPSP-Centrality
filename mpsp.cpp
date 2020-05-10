@@ -415,78 +415,6 @@ vector<double> betweenness(AdjGraph & g)
     return B;
 }
 
-
-int bfs(AdjGraph* g, int s, int d)
-{
-	bool* visited = new bool[g->n];
-	for (int i=0; i<g->n; i++)
-		visited[i] = false;
-	queue< tuple<int,int> > q = queue< tuple<int,int> >();
-	q.push(make_tuple(s,0));
-	while (! q.empty())
-	{
-		int t, h;
-		tie(t,h) = q.front();
-		q.pop();
-		visited[t] = true;
-		if (h == d)
-		{
-			delete [] visited;
-			return t;
-		}
-		for (adj_ent e : g->adj[t])
-		{
-			int v = get<0>(e);
-			if (! visited[v])
-				q.push(make_tuple(v,h+1));
-		}
-	}
-	delete [] visited;
-	return -1;
-}
-
-AdjGraph generate_er(int n, int m, char* file)
-{
-	ofstream graph;
-	graph.open(file);
-	AdjGraph g;
-	g.n = n;
-	g.m = m;
-	graph << g.n << " " << g.m << endl;
-	g.adj = new vector<adj_ent>[g.n];
-	for (int i=0; i<g.n; i++)
-		g.adj[i] = vector<adj_ent>();
-	for (int i=0; i<g.m; i++)
-	{
-		int u = (int)((double)rand() / RAND_MAX * g.n), v = (int)((double)rand() / RAND_MAX * g.n);
-		if (u == v || u == g.n || v == g.n)
-		{
-			i--;
-			continue;
-		}
-		bool f = true;
-		for (adj_ent e : g.adj[u])
-		{
-			if (get<0>(e) == v)
-			{
-				f = false;
-				break;
-			}
-		}
-		if (f && v != g.n)
-		{
-			long w = rand() % 1000 + 1;
-			double p = (double)rand() / RAND_MAX;
-			g.adj[u].push_back(make_tuple(v, w, p));
-			graph << u << " " << v << " " << w << " " << p << endl;
-		}
-		else
-			i--;
-	}
-	graph.close();
-	return g;
-}
-
 AdjGraph read_graph(char* file)
 {
 	ifstream graph;
@@ -506,51 +434,6 @@ AdjGraph read_graph(char* file)
 	}
 	graph.close();
 	return g;
-}
-
-vector< tuple<int,int> > generate_queries(AdjGraph* g, int n, int d, char* file)
-{
-	ofstream queries;
-	queries.open(file);
-	vector< tuple<int,int> > q = vector< tuple<int,int> >();
-	for (int k = 1; k <= d; k++)
-	{
-		for (int i = 1; i <= n; i++)
-		{
-			int s = (int)((double)rand() / RAND_MAX * (g->n - 1));
-			while (g->adj[s].empty())
-				s = (int)((double)rand() / RAND_MAX * (g->n - 1));
-			int t = bfs(g, s, k * 2);
-			if (t == -1)
-			{
-				i--;
-				continue;
-			}
-			queries << s << " " << t << endl;
-			q.push_back(make_tuple(s,t));
-		}
-	}
-	queries.close();
-	return q;
-}
-
-vector< tuple<int,int> > read_queries(int* n, int d, char* file)
-{
-	ifstream queries;
-	queries.open(file);
-	vector< tuple<int,int> > q = vector< tuple<int,int> >();
-	for (int k = 1; k <= d; k++)
-	{
-		queries >> n[k-1];
-		for (int i = 1; i <= n[k-1]; i++)
-		{
-			int s, t;
-			queries >> s >> t;
-			q.push_back(make_tuple(s,t));
-		}
-	}
-	queries.close();
-	return q;
 }
 
 void experiment_betweenness(char* path_to_graph, char* path_to_output)
@@ -585,10 +468,9 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
 
 void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output)
 {
-	int num = 0, d = 3;
+	int num = 0, d;
 	AdjGraph g = read_graph(path_to_graph);
 	Graph G = Graph({g.n, g.m});
-	int* n = new int[d];
 	for (int i = 0; i < g.n; i++)
 	{
 		for (adj_ent t : g.adj[i])
@@ -601,24 +483,26 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 		}
 	}
 	G.update_incoming_index2edge();
-	// vector< tuple<int,int> > q = generate_queries(&g,n,d,argv[2]);
-	vector< tuple<int,int> > q = read_queries(n,d,path_to_queries);
+	ifstream queries;
+	queries.open(path_to_queries);
 	ofstream output;
 	output.open(path_to_output);
-	for (int k = d; k >= 1; k--)
+	queries >> d;
+	for (int k = 1; k <= d; k++)
 	{
 		// cerr << "k = " << k << endl;
-		output << "Number of hops = " << k * 2 << endl;
-		output << "Number of queries = " << n[k-1] << endl << endl;
+		int h, n;
+		queries >> h >> n;
+		output << "Number of hops = " << h << endl;
+		output << "Number of queries = " << n << endl << endl;
 		long a_w_p = 0, a_w_np = 0;
 		double t_c_p = 0, t_c_np = 0, t_p_p = 0, t_p_np = 0, a_c_p = 0, a_c_np = 0, a_p_p = 0, a_p_np = 0, a_r = 0, a_pr = 0;
 		int n_m_p = 0, n_m_np = 0, num = 0;
-		for (int i = 1; i <= n[k-1]; i++)
+		for (int i = 1; i <= n; i++)
 		{
 			// cerr << "i = " << i << endl;
 			int r, s, t;
-			tie(s,t) = q.back();
-			q.pop_back();
+			queries >> s >> t;
 			output << s << "\t" << t << endl;
 			long wt_p = 0, wt_np = 0;
 			double candidate_time_prune = 0, candidate_time_noprune = 0, prob_time_prune = 0, prob_time_noprune = 0, pr_p = 1, pr_np = 1, prob_p = 0, prob_np = 0;
@@ -727,28 +611,28 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			output << "Probability Computation Time without Pruning : " << prob_time_noprune << " seconds" << endl;
 			output << endl;
 		}
-		output << "Number of Non-Empty Paths for " << k * 2 << " hops : " << num << endl;
-		output << "Number of Path Matches with Pruning for " << k * 2 << " hops : " << n_m_p << endl;
-		output << "Number of Path Matches without Pruning for " << k * 2 << " hops : " << n_m_np << endl;
-		output << "Average Length of MPSP with Pruning for " << k * 2 << " hops : " << a_w_p / num << endl;
-		output << "Average Length of MPSP without Pruning for " << k * 2 << " hops : " << a_w_np / num << endl;
-		output << "Average Probability of MPSP with Pruning for " << k * 2 << " hops : " << a_p_p / num << endl;
-		output << "Average Probability of MPSP without Pruning for " << k * 2 << " hops : " << a_p_np / num << endl;
-		output << "Average Number of Dijkstra Runs for " << k * 2 << " hops : " << a_r / num << endl;
-		output << "Average Number of Paths Pruned for " << k * 2 << " hops : " << a_pr / num << endl;
-		output << "Average Number of Distinct Candidate Paths with Pruning for " << k * 2 << " hops : " << a_c_p / num << endl;
-		output << "Average Number of Distinct Candidate Paths without Pruning for " << k * 2 << " hops : " << a_c_np / num << endl;
-		output << "Average Candidate Generation Time with Pruning for " << k * 2 << " hops : " << t_c_p / num << " seconds" << endl;
-		output << "Average Candidate Generation Time without Pruning for " << k * 2 << " hops : " << t_c_np / num << " seconds" << endl;
-		output << "Average Probability Computation Time with Pruning for " << k * 2 << " hops : " << t_p_p / num << " seconds" << endl;
-		output << "Average Probability Computation Time without Pruning for " << k * 2 << " hops : " << t_p_np / num << " seconds" << endl;
-		output << "Average Total Time with Pruning for " << k * 2 << " hops : " << (t_c_p + t_p_p) / num << " seconds" << endl;
-		output << "Average Total Time without Pruning for " << k * 2 << " hops : " << (t_c_np + t_p_np) / num << " seconds" << endl;
+		output << "Number of Non-Empty Paths for " << h << " hops : " << num << endl;
+		output << "Number of Path Matches with Pruning for " << h << " hops : " << n_m_p << endl;
+		output << "Number of Path Matches without Pruning for " << h << " hops : " << n_m_np << endl;
+		output << "Average Length of MPSP with Pruning for " << h << " hops : " << a_w_p / num << endl;
+		output << "Average Length of MPSP without Pruning for " << h << " hops : " << a_w_np / num << endl;
+		output << "Average Probability of MPSP with Pruning for " << h << " hops : " << a_p_p / num << endl;
+		output << "Average Probability of MPSP without Pruning for " << h << " hops : " << a_p_np / num << endl;
+		output << "Average Number of Dijkstra Runs for " << h << " hops : " << a_r / num << endl;
+		output << "Average Number of Paths Pruned for " << h << " hops : " << a_pr / num << endl;
+		output << "Average Number of Distinct Candidate Paths with Pruning for " << h << " hops : " << a_c_p / num << endl;
+		output << "Average Number of Distinct Candidate Paths without Pruning for " << h << " hops : " << a_c_np / num << endl;
+		output << "Average Candidate Generation Time with Pruning for " << h << " hops : " << t_c_p / num << " seconds" << endl;
+		output << "Average Candidate Generation Time without Pruning for " << h << " hops : " << t_c_np / num << " seconds" << endl;
+		output << "Average Probability Computation Time with Pruning for " << h << " hops : " << t_p_p / num << " seconds" << endl;
+		output << "Average Probability Computation Time without Pruning for " << h << " hops : " << t_p_np / num << " seconds" << endl;
+		output << "Average Total Time with Pruning for " << h << " hops : " << (t_c_p + t_p_p) / num << " seconds" << endl;
+		output << "Average Total Time without Pruning for " << h << " hops : " << (t_c_np + t_p_np) / num << " seconds" << endl;
 		output << endl << endl;
 	}
+	queries.close();
 	output.close();
 	delete [] g.adj;
-	delete [] n;
 }
 
 int main(int argc, char* argv[])
