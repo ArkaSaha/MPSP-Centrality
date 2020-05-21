@@ -3,14 +3,14 @@
 import networkx as nx
 import random
 import os
-from tqdm import tqdm
+# from tqdm import tqdm
 
 import igraph
 
 # create directories
-for dir_name in ["ER", "BA", "SF", "BP"]:
-    if not os.path.isdir(dir_name):
-        os.mkdir(dir_name)
+# for dir_name in ["ER", "BA", "SF", "BP"]:
+#     if not os.path.isdir(dir_name):
+#         os.mkdir(dir_name)
 
 
 SEED = 12345
@@ -244,7 +244,7 @@ def BA(graph_sizes):
             f.write("{} {} {} {}\n".format(u, v, l, p))
         f.close()
 
-        generate_queries_skewed(g, "BA/BA_{}_{}.queries".format(n, m))
+        generate_queries_skewed(g, "BA_{}_{}.queries".format(n, m))
 
         # test_hop_distance("BA/BA_{}_{}".format(n, m))
 
