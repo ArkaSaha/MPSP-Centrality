@@ -202,7 +202,7 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
 {
 	double lb_max = 0, p_max_p = 0, p_max_np = 0;
-	int f_max = 1, n_s = 0, n_d = 0, n_r = 20, n_p = 0;
+	int f_max = 1, n_s = 0, n_d = 0, n_r = m, n_p = 0;
 	bool match_p = false, match_np = false;
 	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
 	for (int i = 1; i <= n_r; i++)
@@ -433,7 +433,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			list<edge> p_p, p_np;
 			int c_p, c_np, f, pruned;
 			bool m_p, m_np;
-			tie(p_p,p_np,c_p,c_np,f,prob_p,prob_np,m_p,m_np,r,pruned) = mpsp(&g, s, t, 1000, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
+			tie(p_p,p_np,c_p,c_np,f,prob_p,prob_np,m_p,m_np,r,pruned) = mpsp(&g, s, t, 20, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
 			if (! p_p.empty())
 			{
 				num++;
