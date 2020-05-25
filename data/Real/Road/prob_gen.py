@@ -5,6 +5,8 @@ from os import popen
 import re
 
 # sys.argv[1] is the .osm file and sys.argv[2] is the .log file
+# if there is a sys.argv[3] then the length of an edge is the milliseconds it takes to travel it,
+# otherwise it is the distance in meters
 
 f = open(sys.argv[1],'r')
 coord = {}
@@ -40,14 +42,27 @@ for line in f:
             edges[(u,v)] = []
         edges[(u,v)].append(s)
 
+
+DEFAULT_SPEED = 30
 probs = []
 print("{} {}".format(len(vertices), len(edges)))
 for u, v in edges:
     #print("{} {}".format(u, v))
     length = round(distance(coord[u], coord[v]).km * 1000)
+    max_speed = DEFAULT_SPEED if max(edges[(u,v)]) == 0 else max(edges[(u,v)])
+    milliseconds = round(length/max_speed * 3600)
     prob = 1 if sum(edges[(u,v)]) == 0 else sum(edges[(u,v)]) / (max(edges[(u,v)]) * len(edges[(u,v)]))
     probs.append(prob)
-    print("{} {} {} {:.6f}".format(vertices[u], vertices[v], length, prob))
+    if len(sys.argv) > 3:
+        print("{} {} {:d} {:.6f}".format(vertices[u], vertices[v], milliseconds, prob))
+    else:
+        print("{} {} {:d} {:.6f}".format(vertices[u], vertices[v], length, prob))
+
+if True:
+    # print coordinates of vertices
+    for v in vertices:
+        print("{} {} {}".format(vertices[v], coord[v][0], coord[v][1]))
+
 
 f.close()
 
