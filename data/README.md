@@ -12,15 +12,8 @@ u, v and l are integers while p is a double
 
 ### Query files
 
-Query files consist of 500 lines of two (space separated) integers u and v.
-
-The first 100 pairs are random nodes u and v.
-
-The next 100 pairs are nodes which are 2 hops apart
-
-The next 100 pairs are nodes which are 4 hops apart
-
-The next 100 pairs are nodes which are 6 hops apart
-
-The next 100 pairs are nodes which are 8 hops apart
+The query files first contain a line with an integer H.
+Then the following repeats for H times.
+A line with two integer h and n. h stands for how many hops the query nodes are apart and n is the number of queries.
+Then n lines follow with two integere u and v, indicating a query for finding a path from node u to v.
 
