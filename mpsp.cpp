@@ -207,11 +207,12 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
 {
 	int C = 0, N = 1000, n = cp.size();
-	list<edge>* diff = new list<edge>[n];
+  auto diff = vector<list<edge> >(n);
 	vector<double> pr = vector<double>(n);
 	double S = 0;
 	timespec begin, end, m1, m2;
 	clock_gettime(CLOCK_MONOTONIC,&begin);
+
 	for (int i = 0; i < n; i++)
 	{
 		list<edge> p = cp[i];
@@ -225,6 +226,7 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 		diff[i] = l;
 		pr[i] = prob;
 	}
+
 	clock_gettime(CLOCK_MONOTONIC,&m1);
 	random_device rd;
 	mt19937 gen(rd());
@@ -264,9 +266,10 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 		if (f1)
 			C++;
 	}
+
 	clock_gettime(CLOCK_MONOTONIC,&end);
 	elapsed += (time_difference(begin,end) - time_difference(m1,m2));
-	delete [] diff;
+
 	return (1 - C * S / N) * exist;
 }
 
