@@ -57,7 +57,7 @@ def generate_queries_skewed(g, filename, H = [0, 2, 3, 4, 5, 6]):
                 continue
             try:
                 hops = nx.shortest_path_length(g, source=s, target=t)
-                if (s,t) not in queries[0]:
+                if not any([((s,t) in queries[h]) for h in queries]):
                     queries[0].add((s, t))
                     queries_so_far += 1
             except nx.NetworkXNoPath:

@@ -91,18 +91,23 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 				{
 					long w = get<1>(e);
 					long alt = d + w;
+					double ch = prob[u] * pr;
 					if (! exist[v])
 					{
 						prev[v] = make_tuple(u,w,pr);
-						prob[v] = prob[u] * pr;
+						prob[v] = ch;
 						handles[v] = heap.push(node(v,alt));
 						exist[v] = true;
 					}
-					else if (alt < (*handles[v]).distance)
+					else
 					{
-						prev[v] = make_tuple(u,w,pr);
-						prob[v] = prob[u] * pr;
-						heap.update(handles[v],node(v,alt));
+						long dist = (*handles[v]).distance;
+						if (alt < dist || (alt == dist && ch > prob[v]))
+						{
+							prev[v] = make_tuple(u,w,pr);
+							prob[v] = ch;
+							heap.update(handles[v],node(v,alt));
+						}
 					}
 				}
 				else
@@ -136,7 +141,7 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
 {
 	int C = 0, N = 1000, n = cp.size();
-	list<edge>* diff = new list<edge>[n];
+	auto diff = vector< list<edge> >(n);
 	vector<double> pr = vector<double>(n);
 	double S = 0;
 	timespec begin, end, m1, m2;
@@ -195,7 +200,6 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 	}
 	clock_gettime(CLOCK_MONOTONIC,&end);
 	elapsed += (time_difference(begin,end) - time_difference(m1,m2));
-	delete [] diff;
 	return (1 - C * S / N) * exist;
 }
 
@@ -518,8 +522,8 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			output << "Length of MPSP without Pruning : " << wt_np << endl;
 			output << "Probability of MPSP with Pruning : " << pr_p << endl;
 			output << "Probability of MPSP without Pruning : " << pr_np << endl;
-			output << "Probability of MPSP being the Shortest Path with Pruning : " << prob_p << endl;
-			output << "Probability of MPSP being the Shortest Path without Pruning : " << prob_np << endl;
+			output << scientific << "Probability of MPSP being the Shortest Path with Pruning : " << prob_p << endl;
+			output << scientific << "Probability of MPSP being the Shortest Path without Pruning : " << prob_np << endl;
 			output << "Candidate Generation Time with Pruning : " << candidate_time_prune << " seconds" << endl;
 			output << "Candidate Generation Time without Pruning : " << candidate_time_noprune << " seconds" << endl;
 			output << "Probability Computation Time with Pruning : " << prob_time_prune << " seconds" << endl;
