@@ -18,9 +18,7 @@
 # include <string>
 # include <utility>
 # include <iomanip>
-
 # include <cstdlib>
-# include <string>
 
 using namespace std;
 using namespace osrm;
@@ -39,11 +37,10 @@ void parse_beijing(char* file, EngineConfig& config)
 			engine::api::ResultT result = Object();
 			trajectory.open(path);
 			string line;
-			getline(trajectory,line);
-			while (line != "")
+			while (getline(trajectory,line))
 			{
 				string::size_type p1, p2;
-				int id = stoi(line,&p1);
+				stoi(line,&p1);
 				tm t = {};
 				istringstream ss(line.substr(p1+1,19));
 				if (ss >> get_time(&t, "%Y-%m-%d %H:%M:%S"))
@@ -51,7 +48,6 @@ void parse_beijing(char* file, EngineConfig& config)
 				double longitude = stod(line.substr(p1+21),&p2);
 				double latitude = stod(line.substr(p1+21+p2+1),nullptr);
 				params.coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
-				getline(trajectory,line);
 			}
 			trajectory.close();
 			params.annotations = true;
@@ -63,7 +59,7 @@ void parse_beijing(char* file, EngineConfig& config)
 				auto& matches = json_result.values["matchings"].get<Array>();
 				double max_conf = 0;
 				int max_conf_idx = 0;
-				for (int j = 0; j < matches.values.size(); j++)
+				for (size_t j = 0; j < matches.values.size(); j++)
 				{
 					double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
 					if (conf > max_conf)
@@ -95,7 +91,7 @@ void parse_beijing(char* file, EngineConfig& config)
 	}
 }
 
-void parse_sf(char* file, EngineConfig& config)
+void parse_sf_csd(char* file, EngineConfig& config)
 {
 	ifstream trajectory;
 	const OSRM osrm{config};
@@ -110,16 +106,13 @@ void parse_sf(char* file, EngineConfig& config)
 			trajectory.open(path);
 			vector< tuple<double,double,unsigned long> > v = vector< tuple<double,double,unsigned long> >();
 			string line;
-			getline(trajectory,line);
-			while (line != "")
+			while (getline(trajectory,line))
 			{
 				string::size_type p1, p2;
 				double latitude = stod(line,&p1);
 				double longitude = stod(line.substr(p1+1),&p2);
-				params.coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
 				unsigned long time = stoul(line.substr(p1+1+p2+3,10),nullptr);
 				v.push_back(make_tuple(latitude,longitude,time));
-				getline(trajectory,line);
 			}
 			trajectory.close();
 			while (! v.empty())
@@ -140,7 +133,73 @@ void parse_sf(char* file, EngineConfig& config)
 				auto& matches = json_result.values["matchings"].get<Array>();
 				double max_conf = 0;
 				int max_conf_idx = 0;
-				for (int j = 0; j < matches.values.size(); j++)
+				for (size_t j = 0; j < matches.values.size(); j++)
+				{
+					double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
+					if (conf > max_conf)
+					{
+						max_conf = conf;
+						max_conf_idx = j;
+					}
+				}
+				for (auto& matching : matches.values.at(max_conf_idx).get<Object>().values["legs"].get<Array>().values)
+				{
+					auto& match = matching.get<Object>().values["annotation"].get<Object>();
+					for (auto& node : match.values["nodes"].get<Array>().values)
+						cout << (unsigned long) node.get<Number>().value << "\t";
+					cout << endl;
+					for (auto& speed : match.values["speed"].get<Array>().values)
+						cout << speed.get<Number>().value * 3.6 << "\t";
+					cout << endl;
+				}
+			}
+			else
+			{
+				cerr << path << endl;
+				const auto code = json_result.values["code"].get<String>().value;
+				const auto message = json_result.values["message"].get<String>().value;
+				cerr << "Code: " << code << endl;
+				cerr << "Message: " << message << endl;
+			}
+		}
+	}
+}
+
+void parse_sf_mcd(string file, EngineConfig& config)
+{
+	ifstream trajectory;
+	const OSRM osrm{config};
+	for (string dir : {"NB_veh_files","SB_veh_files","GPS_logs"})
+	{
+		for (auto& entry : filesystem::directory_iterator(file+dir))
+		{
+			string path = entry.path().string();
+			cerr << path << endl;
+			MatchParameters params;
+			engine::api::ResultT result = Object();
+			trajectory.open(path);
+			string line;
+			getline(trajectory,line);
+			while (getline(trajectory,line))
+			{
+				string::size_type p1, p2;
+				unsigned long time = stoul(line,&p1);
+				params.timestamps.push_back(time / ((dir == "GPS_logs") ? 1000 : 1));
+				double latitude = stod(line.substr(p1+1),&p2);
+				double longitude = stod(line.substr(p1+1+p2+1),nullptr);
+				params.coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
+			}
+			trajectory.close();
+			params.annotations = true;
+			params.annotations_type = RouteParameters::AnnotationsType::All;
+			const auto status = osrm.Match(params,result);
+			auto& json_result = result.get<Object>();
+			if (status == Status::Ok)
+			{
+				auto& matches = json_result.values["matchings"].get<Array>();
+				double max_conf = 0;
+				int max_conf_idx = 0;
+				for (size_t j = 0; j < matches.values.size(); j++)
 				{
 					double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
 					if (conf > max_conf)
@@ -179,8 +238,7 @@ void parse_porto(char* file, EngineConfig& config)
 	trajectory.open(strcat(file,"Porto_taxi_data_training.csv"));
 	string line;
 	getline(trajectory,line);
-	getline(trajectory,line);
-	while (line != "")
+	while (getline(trajectory,line))
 	{
 		MatchParameters params;
 		engine::api::ResultT result = Object();
@@ -213,7 +271,7 @@ void parse_porto(char* file, EngineConfig& config)
 			auto& matches = json_result.values["matchings"].get<Array>();
 			double max_conf = 0;
 			int max_conf_idx = 0;
-			for (int j = 0; j < matches.values.size(); j++)
+			for (size_t j = 0; j < matches.values.size(); j++)
 			{
 				double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
 				if (conf > max_conf)
@@ -240,7 +298,6 @@ void parse_porto(char* file, EngineConfig& config)
 			cerr << "Code: " << code << endl;
 			cerr << "Message: " << message << endl;
 		}
-		getline(trajectory,line);
 	}
 	trajectory.close();
 }
@@ -256,8 +313,9 @@ int main(int argc, char* argv[])
 	config.storage_config = {argv[1]};
 	config.use_shared_memory = false;
 	config.algorithm = EngineConfig::Algorithm::MLD;
-	parse_porto(argv[2],config);
+	// parse_porto(argv[2],config);
 	// parse_beijing(argv[2],config);
-	// parse_sf(argv[2],config);
+	// parse_sf_csd(argv[2],config);
+	parse_sf_mcd(argv[2],config);
 	return EXIT_SUCCESS;
 }
