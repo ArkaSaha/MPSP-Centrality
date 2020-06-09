@@ -3,17 +3,7 @@
 #include <algorithm>
 
 
-namespace fs = std::filesystem;
-
 void do_queries(string graph_file, string query_file, string threshold_file, string output_file, double factor){
-	if(!fs::exists(graph_file)){
-		cerr << "ERROR: Graph file " << graph_file << " does not exist" <<endl;
-		return; 
-	}
-	if(!fs::exists(query_file)){
-		cerr << "ERROR: Query file " << query_file << " does not exist" <<endl;
-		return; 
-	}
 
 	Graph G = read_graph_from_file(graph_file);
 
