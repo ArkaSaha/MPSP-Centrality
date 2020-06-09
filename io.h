@@ -3,6 +3,8 @@
 
 #include <fstream>
 #include <filesystem>
+#include <algorithm>
+#include <cmath>
 
 Graph read_from_stdin(){
     // Reads a graph from stdin, file containing graph should look the following
@@ -36,12 +38,14 @@ Graph read_graph_from_file(string filename)
     int n, m;
     graph_in >> n >> m;
     Graph G = Graph({n, m});
-    int u, v, l; double p;
+    int u, v, l, m_l = 0; double p;
     for(int i=0; i<m; i++){
         graph_in >> u >> v >> l >> p;
         assert(u >= 0 and u < n);
         assert(v >= 0 and v < n);
         assert(p >= 0.0 and p <= 1.0);
+        if (m_l < l)
+            m_l = l;
 
         G.adj[u].push_back(Edge({u, v, l, p, i}));
     }

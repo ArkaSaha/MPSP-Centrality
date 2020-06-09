@@ -3,14 +3,14 @@
 import networkx as nx
 import random
 import os
-from tqdm import tqdm
+# from tqdm import tqdm
 
 import igraph
 
 # create directories
-for dir_name in ["ER", "BA", "SF", "BP"]:
-    if not os.path.isdir(dir_name):
-        os.mkdir(dir_name)
+# for dir_name in ["ER", "BA", "SF", "BP"]:
+#     if not os.path.isdir(dir_name):
+#         os.mkdir(dir_name)
 
 
 SEED = 12345
@@ -123,22 +123,26 @@ def generate_queries(g, filename):
 # First a start vertex is picked uniformly at random and then the end vertex is picked uniformly at random from
 # the vertices at a certain hop distance
 def generate_queries_skewed(g, filename):
+    print("Generating queries for {}".format(filename))
     q = open(filename, "w")
     n = g.number_of_nodes()
     m = g.number_of_edges() 
 
 
-    queries = {0: set(), 2:set(), 4:set(), 6:set(), 8:set()}
+    queries = {0:set(), 2:set(), 4:set(), 6:set()}
 
     queries_per_category = 100
     queries_so_far = 0
     i = 0
 
     # generate queries at certain hop distance
-    for h in [2, 4, 6, 8]:
+    for h in [2, 4, 6]:
         queries_so_far = 0
-        while queries_so_far < queries_per_category:
+        nodes = set()
+        backups = set()
+        while queries_so_far < queries_per_category and len(nodes) < n:
             s = random.randrange(n)
+            nodes.add(s)
 
             nodes_at_dist_at_most_h = nx.single_source_shortest_path_length(g, source=s, cutoff=h)
 
@@ -151,22 +155,35 @@ def generate_queries_skewed(g, filename):
             if (s,t) not in queries[h]:
                 queries[h].add((s,t))
                 queries_so_far += 1
+            backups.update([(s,v) for v in t_options if v != t])
+
+        while queries_so_far < queries_per_category and backups:
+            s, t = random.choice(backups)
+            backups.discard((s,t))
+            queries[h].add((s,t))
+
+        print("Done for {} hops".format(h))
 
     # generate completely random queries
     queries_so_far = 0
-    while queries_so_far < queries_per_category:
+    node_pairs = set()
+    while queries_so_far < queries_per_category and len(node_pairs) < n*(n-1)/2:
         s = random.randrange(n)
         t = random.randrange(n)
         if s == t:
             continue
+        node_pairs.add((s,t))
         try:
             hops = nx.shortest_path_length(g, source=s, target=t)
-            if (s,t) not in queries[0]:
+            if not any([((s,t) in queries[h]) for h in queries]):
                 queries[0].add((s, t))
                 queries_so_far += 1
         except nx.NetworkXNoPath:
             continue
+    print("Done for 0 hops")
+
     for hops in queries:
+        q.write("{}\n".format(len(queries[hops])))
         for s, t in queries[hops]:
             q.write("{} {}\n".format(s, t))
 
@@ -180,7 +197,7 @@ def ER(graph_sizes):
     # Random graph with n vertices and m = 2*n edges, store in ER folder
     # https://networkx.github.io/documentation/stable/reference/generated/networkx.generators.random_graphs.gnm_random_graph.html
     for n in graph_sizes:
-        m = 2*n
+        m = 10*n
 
         print("Generating ER graph with {} nodes and {} edges".format(n, m))
         g = nx.gnm_random_graph(n, m, directed=True)
@@ -188,19 +205,21 @@ def ER(graph_sizes):
         f = open("ER/ER_{}_{}.graph".format(n, m), "w")
         f.write("{} {}\n".format(n, m))
         for u, v in g.edges:
-            f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
+            l = random.randint(1, MAX_EDGE_LENGTH)
+            f.write("{} {} {} {}\n".format(u, v, l, random.random()))
+            # f.write("{} {} {} {}\n".format(u, v, l, l / MAX_EDGE_LENGTH))
         f.close()
 
-        generate_queries(g, "ER/ER_{}_{}.queries".format(n, m))
+        generate_queries_skewed(g, "ER/ER_{}_{}.queries".format(n, m))
 
-        test_hop_distance("ER/ER_{}_{}".format(n, m))
+        # test_hop_distance("ER/ER_{}_{}".format(n, m))
 
 
 def BA(graph_sizes):
     print("Generating BA graphs")
     # https://igraph.org/python/doc/igraph.GraphBase-class.html#Barabasi
     for n in graph_sizes:
-        BA_m = 2
+        BA_m = 10
 
         print("Generating BA graph with {} nodes".format(n))
         igraph_g = igraph.Graph.Barabasi(n, BA_m , directed=True)
@@ -221,12 +240,13 @@ def BA(graph_sizes):
         for u, v in g.edges:
             l = random.randint(1, MAX_EDGE_LENGTH)
             p = random.random()
+            # p = l / MAX_EDGE_LENGTH
             f.write("{} {} {} {}\n".format(u, v, l, p))
         f.close()
 
-        generate_queries(g, "BA/BA_{}_{}.queries".format(n, m))
+        generate_queries_skewed(g, "BA_{}_{}.queries".format(n, m))
 
-        test_hop_distance("BA/BA_{}_{}".format(n, m))
+        # test_hop_distance("BA/BA_{}_{}".format(n, m))
 
 def BP(graph_sizes):
     print("Generating BP graphs")
@@ -327,13 +347,10 @@ def test_hop_distance(graph_name):
 
 
 
-graph_sizes = [10000, 20000, 50000, 100000] #, 500000, 1000000, 5000000, 10000000]
+graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 
 
 ER(graph_sizes)
 BA(graph_sizes)
-BP(graph_sizes)
-
-
-    
+# BP(graph_sizes)
 

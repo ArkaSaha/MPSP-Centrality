@@ -1,0 +1,7110 @@
+Number of hops = 0
+
+26850	4039
+Nr of candidates : 1
+MPSP:
+26850 20189 81 0.167532
+20189 12534 413 0.959522
+12534 4039 947 0.310545
+Length of MPSP : 1441
+Probability of MPSP : 0.0499204
+Probability of being MPSP : 0.0499204
+Candidate Generation Time : 0.022306 seconds
+Probability Computation Time : 0.000001 seconds
+
+51405	390
+Nr of candidates : 1
+MPSP:
+51405 39239 212 0.027111
+39239 16817 745 0.609806
+16817 3154 709 0.197498
+3154 3087 726 0.434705
+3087 2078 753 0.533222
+2078 390 135 0.415715
+Length of MPSP : 3280
+Probability of MPSP : 0.000315
+Probability of being MPSP : 0.000315
+Candidate Generation Time : 0.015885 seconds
+Probability Computation Time : 0.000001 seconds
+
+87868	454
+Nr of candidates : 1
+MPSP:
+87868 25097 746 0.234508
+25097 14327 322 0.641603
+14327 6899 988 0.611119
+6899 4073 384 0.506614
+4073 454 395 0.150659
+Length of MPSP : 2835
+Probability of MPSP : 0.007018
+Probability of being MPSP : 0.007018
+Candidate Generation Time : 0.013753 seconds
+Probability Computation Time : 0.000001 seconds
+
+88653	1
+Nr of candidates : 1
+MPSP:
+88653 32669 267 0.894901
+32669 1 601 0.788196
+Length of MPSP : 868
+Probability of MPSP : 0.705357
+Probability of being MPSP : 0.705357
+Candidate Generation Time : 0.006977 seconds
+Probability Computation Time : 0.000001 seconds
+
+361410	61
+Nr of candidates : 1
+MPSP:
+361410 244543 823 0.280301
+244543 145845 593 0.837618
+145845 7629 249 0.017797
+7629 2671 444 0.175300
+2671 1820 70 0.851477
+1820 907 249 0.526726
+907 358 800 0.141829
+358 61 826 0.457780
+Length of MPSP : 4054
+Probability of MPSP : 0.000021
+Probability of being MPSP : 0.000021
+Candidate Generation Time : 0.020213 seconds
+Probability Computation Time : 0.000001 seconds
+
+201027	4820
+Nr of candidates : 1
+MPSP:
+201027 170739 102 0.403257
+170739 53431 550 0.148495
+53431 41652 616 0.879981
+41652 6820 503 0.513740
+6820 4820 815 0.448640
+Length of MPSP : 2586
+Probability of MPSP : 0.012145
+Probability of being MPSP : 0.012145
+Candidate Generation Time : 0.012730 seconds
+Probability Computation Time : 0.000001 seconds
+
+293508	430
+Nr of candidates : 1
+MPSP:
+293508 80746 35 0.407072
+80746 51022 826 0.192607
+51022 1097 227 0.404385
+1097 992 852 0.718063
+992 430 149 0.530642
+Length of MPSP : 2089
+Probability of MPSP : 0.012081
+Probability of being MPSP : 0.012081
+Candidate Generation Time : 0.013571 seconds
+Probability Computation Time : 0.000001 seconds
+
+258978	1
+Nr of candidates : 7
+MPSP:
+258978 54 237 0.510571
+54 21 693 0.286938
+21 1 255 0.786836
+Length of MPSP : 1185
+Probability of MPSP : 0.108520
+Probability of being MPSP : 0.108520
+Candidate Generation Time : 0.069437 seconds
+Probability Computation Time : 0.001051 seconds
+
+114402	3
+Nr of candidates : 3
+MPSP:
+114402 43400 714 0.074092
+43400 622 819 0.186390
+622 399 127 0.241909
+399 86 118 0.948768
+86 3 257 0.509155
+Length of MPSP : 2035
+Probability of MPSP : 0.001614
+Probability of being MPSP : 0.001614
+Candidate Generation Time : 0.041942 seconds
+Probability Computation Time : 0.000254 seconds
+
+282556	1
+Nr of candidates : 63
+MPSP:
+282556 91209 322 0.408181
+91209 11813 326 0.773128
+11813 3196 604 0.194278
+3196 1102 221 0.927565
+1102 1 527 0.599931
+Length of MPSP : 2000
+Probability of MPSP : 0.030796
+Probability of being MPSP : 0.030796
+Candidate Generation Time : 1.485930 seconds
+Probability Computation Time : 0.066743 seconds
+
+373582	3
+Nr of candidates : 4
+MPSP:
+373582 178153 754 0.570699
+178153 146178 642 0.545916
+146178 27192 416 0.103671
+27192 15299 192 0.963575
+15299 304 133 0.259912
+304 7 93 0.191139
+7 3 458 0.729111
+Length of MPSP : 2688
+Probability of MPSP : 0.001127
+Probability of being MPSP : 0.001127
+Candidate Generation Time : 0.098373 seconds
+Probability Computation Time : 0.000643 seconds
+
+362850	59
+Nr of candidates : 1
+MPSP:
+362850 207785 36 0.821389
+207785 63849 109 0.547303
+63849 8959 286 0.113843
+8959 4380 453 0.520603
+4380 311 728 0.747933
+311 249 901 0.545881
+249 74 633 0.507659
+74 59 213 0.342890
+Length of MPSP : 3359
+Probability of MPSP : 0.001894
+Probability of being MPSP : 0.001894
+Candidate Generation Time : 0.023454 seconds
+Probability Computation Time : 0.000002 seconds
+
+406154	9
+Nr of candidates : 19
+MPSP:
+406154 148633 197 0.818867
+148633 62205 812 0.400632
+62205 17505 77 0.889894
+17505 137 994 0.381262
+137 27 380 0.113528
+27 21 183 0.145746
+21 15 366 0.840278
+15 9 409 0.423637
+Length of MPSP : 3418
+Probability of MPSP : 0.000655
+Probability of being MPSP : 0.000655
+Candidate Generation Time : 0.439622 seconds
+Probability Computation Time : 0.009591 seconds
+
+108670	15
+Nr of candidates : 11
+MPSP:
+108670 4171 336 0.307969
+4171 3968 271 0.646928
+3968 2977 305 0.798597
+2977 1928 777 0.765190
+1928 27 713 0.812256
+27 21 183 0.145746
+21 15 366 0.840278
+Length of MPSP : 2951
+Probability of MPSP : 0.012111
+Probability of being MPSP : 0.012111
+Candidate Generation Time : 0.241498 seconds
+Probability Computation Time : 0.003272 seconds
+
+17259	2973
+Nr of candidates : 1
+MPSP:
+17259 11781 189 0.294106
+11781 2973 842 0.434980
+Length of MPSP : 1031
+Probability of MPSP : 0.127930
+Probability of being MPSP : 0.127930
+Candidate Generation Time : 0.007684 seconds
+Probability Computation Time : 0.000001 seconds
+
+310474	430
+Nr of candidates : 1
+MPSP:
+310474 107748 54 0.704932
+107748 8864 549 0.491709
+8864 4241 32 0.896756
+4241 430 692 0.561591
+Length of MPSP : 1327
+Probability of MPSP : 0.174562
+Probability of being MPSP : 0.174562
+Candidate Generation Time : 0.012811 seconds
+Probability Computation Time : 0.000001 seconds
+
+475941	33
+Nr of candidates : 1
+MPSP:
+475941 183657 675 0.544667
+183657 177597 832 0.811074
+177597 94448 613 0.429477
+94448 14225 498 0.827477
+14225 1729 43 0.299202
+1729 1084 123 0.806768
+1084 274 39 0.791747
+274 33 309 0.864434
+Length of MPSP : 3132
+Probability of MPSP : 0.025937
+Probability of being MPSP : 0.025937
+Candidate Generation Time : 0.023079 seconds
+Probability Computation Time : 0.000001 seconds
+
+121163	19
+Nr of candidates : 3
+MPSP:
+121163 462 683 0.467804
+462 108 95 0.411853
+108 44 60 0.894574
+44 23 566 0.138155
+23 19 438 0.478000
+Length of MPSP : 1842
+Probability of MPSP : 0.011382
+Probability of being MPSP : 0.011382
+Candidate Generation Time : 0.062288 seconds
+Probability Computation Time : 0.000283 seconds
+
+463373	11287
+Nr of candidates : 1
+MPSP:
+463373 99329 79 0.889106
+99329 55615 973 0.282087
+55615 11287 248 0.004864
+Length of MPSP : 1300
+Probability of MPSP : 0.001220
+Probability of being MPSP : 0.001220
+Candidate Generation Time : 0.010398 seconds
+Probability Computation Time : 0.000002 seconds
+
+270173	3
+Nr of candidates : 1
+MPSP:
+270173 128762 902 0.508944
+128762 27002 744 0.315186
+27002 3851 277 0.896527
+3851 256 737 0.698201
+256 196 152 0.119283
+196 44 712 0.269762
+44 3 894 0.624189
+Length of MPSP : 4418
+Probability of MPSP : 0.002017
+Probability of being MPSP : 0.002017
+Candidate Generation Time : 0.020728 seconds
+Probability Computation Time : 0.000001 seconds
+
+444226	568
+Nr of candidates : 1
+MPSP:
+444226 5660 712 0.939132
+5660 568 447 0.621766
+Length of MPSP : 1159
+Probability of MPSP : 0.583920
+Probability of being MPSP : 0.583920
+Candidate Generation Time : 0.007791 seconds
+Probability Computation Time : 0.000000 seconds
+
+430819	135
+Nr of candidates : 1
+MPSP:
+430819 167161 601 0.131621
+167161 23601 242 0.226391
+23601 4443 150 0.555953
+4443 1471 979 0.563046
+1471 787 763 0.630664
+787 135 598 0.971325
+Length of MPSP : 3333
+Probability of MPSP : 0.005714
+Probability of being MPSP : 0.005714
+Candidate Generation Time : 0.018007 seconds
+Probability Computation Time : 0.000001 seconds
+
+494757	28
+Nr of candidates : 1
+MPSP:
+494757 45630 664 0.410496
+45630 32529 942 0.046014
+32529 10768 187 0.574283
+10768 28 917 0.141883
+Length of MPSP : 2710
+Probability of MPSP : 0.001539
+Probability of being MPSP : 0.001539
+Candidate Generation Time : 0.012839 seconds
+Probability Computation Time : 0.000001 seconds
+
+428273	213
+Nr of candidates : 1
+MPSP:
+428273 249057 547 0.685898
+249057 6738 144 0.349356
+6738 367 419 0.821684
+367 213 702 0.359154
+Length of MPSP : 1812
+Probability of MPSP : 0.070715
+Probability of being MPSP : 0.070715
+Candidate Generation Time : 0.012834 seconds
+Probability Computation Time : 0.000001 seconds
+
+421078	29
+Nr of candidates : 9
+MPSP:
+421078 261173 456 0.754605
+261173 89050 568 0.403596
+89050 4628 793 0.286352
+4628 29 909 0.314680
+Length of MPSP : 2726
+Probability of MPSP : 0.027443
+Probability of being MPSP : 0.027443
+Candidate Generation Time : 0.204346 seconds
+Probability Computation Time : 0.002256 seconds
+
+440595	0
+Nr of candidates : 23
+MPSP:
+440595 13410 494 0.213929
+13410 516 680 0.339263
+516 9 655 0.888211
+9 0 694 0.678984
+Length of MPSP : 2523
+Probability of MPSP : 0.039754
+Probability of being MPSP : 0.039754
+Candidate Generation Time : 0.378658 seconds
+Probability Computation Time : 0.011204 seconds
+
+317069	2334
+Nr of candidates : 1
+MPSP:
+317069 42172 256 0.323402
+42172 2936 707 0.413449
+2936 2334 225 0.863692
+Length of MPSP : 1188
+Probability of MPSP : 0.115484
+Probability of being MPSP : 0.115484
+Candidate Generation Time : 0.010090 seconds
+Probability Computation Time : 0.000001 seconds
+
+159435	45
+Nr of candidates : 2
+MPSP:
+159435 5894 28 0.862435
+5894 163 853 0.679497
+163 120 225 0.993192
+120 45 52 0.801604
+Length of MPSP : 1158
+Probability of MPSP : 0.466559
+Probability of being MPSP : 0.466559
+Candidate Generation Time : 0.025219 seconds
+Probability Computation Time : 0.000141 seconds
+
+217890	1333
+Nr of candidates : 1
+MPSP:
+217890 47636 196 0.209602
+47636 1333 402 0.489001
+Length of MPSP : 598
+Probability of MPSP : 0.102496
+Probability of being MPSP : 0.102496
+Candidate Generation Time : 0.007462 seconds
+Probability Computation Time : 0.000001 seconds
+
+395264	1747
+Nr of candidates : 1
+MPSP:
+395264 173743 715 0.056295
+173743 33416 428 0.242853
+33416 32186 595 0.362747
+32186 8514 611 0.059967
+8514 7259 428 0.825501
+7259 1747 926 0.460915
+Length of MPSP : 3703
+Probability of MPSP : 0.000113
+Probability of being MPSP : 0.000113
+Candidate Generation Time : 0.017532 seconds
+Probability Computation Time : 0.000001 seconds
+
+67093	8
+Nr of candidates : 2
+MPSP:
+67093 10525 645 0.867335
+10525 654 557 0.392723
+654 8 306 0.810730
+Length of MPSP : 1508
+Probability of MPSP : 0.276153
+Probability of being MPSP : 0.276153
+Candidate Generation Time : 0.019954 seconds
+Probability Computation Time : 0.000039 seconds
+
+8178	6
+Nr of candidates : 1
+MPSP:
+8178 6393 240 0.438737
+6393 1547 942 0.014403
+1547 6 613 0.535266
+Length of MPSP : 1795
+Probability of MPSP : 0.003382
+Probability of being MPSP : 0.003382
+Candidate Generation Time : 0.010047 seconds
+Probability Computation Time : 0.000001 seconds
+
+344363	59
+Nr of candidates : 1
+MPSP:
+344363 2380 34 0.715830
+2380 1488 652 0.982202
+1488 838 611 0.288626
+838 249 724 0.097132
+249 74 633 0.507659
+74 59 213 0.342890
+Length of MPSP : 2867
+Probability of MPSP : 0.003431
+Probability of being MPSP : 0.003431
+Candidate Generation Time : 0.017710 seconds
+Probability Computation Time : 0.000001 seconds
+
+398981	1499
+Nr of candidates : 1
+MPSP:
+398981 41606 142 0.420557
+41606 26351 179 0.487693
+26351 23910 409 0.935303
+23910 23036 972 0.221492
+23036 20429 446 0.514964
+20429 1499 929 0.167273
+Length of MPSP : 3077
+Probability of MPSP : 0.003660
+Probability of being MPSP : 0.003660
+Candidate Generation Time : 0.017613 seconds
+Probability Computation Time : 0.000001 seconds
+
+416932	733
+Nr of candidates : 1
+MPSP:
+416932 7900 75 0.092168
+7900 955 299 0.099868
+955 733 260 0.428238
+Length of MPSP : 634
+Probability of MPSP : 0.003942
+Probability of being MPSP : 0.003942
+Candidate Generation Time : 0.010000 seconds
+Probability Computation Time : 0.000001 seconds
+
+490863	12795
+Nr of candidates : 1
+MPSP:
+490863 241919 629 0.193538
+241919 80133 173 0.228269
+80133 29946 560 0.991254
+29946 23590 248 0.657189
+23590 12795 217 0.688914
+Length of MPSP : 1827
+Probability of MPSP : 0.019827
+Probability of being MPSP : 0.019827
+Candidate Generation Time : 0.015084 seconds
+Probability Computation Time : 0.000001 seconds
+
+336357	7
+Nr of candidates : 1
+MPSP:
+336357 170460 416 0.366671
+170460 11734 704 0.952659
+11734 6675 781 0.208626
+6675 7 557 0.008971
+Length of MPSP : 2458
+Probability of MPSP : 0.000654
+Probability of being MPSP : 0.000654
+Candidate Generation Time : 0.012401 seconds
+Probability Computation Time : 0.000001 seconds
+
+188840	10
+Nr of candidates : 8
+MPSP:
+188840 663 268 0.792598
+663 547 142 0.593063
+547 23 770 0.378601
+23 19 438 0.478000
+19 10 923 0.497374
+Length of MPSP : 2541
+Probability of MPSP : 0.042310
+Probability of being MPSP : 0.042310
+Candidate Generation Time : 0.204361 seconds
+Probability Computation Time : 0.001730 seconds
+
+211773	52834
+Nr of candidates : 1
+MPSP:
+211773 80573 659 0.545603
+80573 71020 243 0.022359
+71020 52834 37 0.992928
+Length of MPSP : 939
+Probability of MPSP : 0.012113
+Probability of being MPSP : 0.012113
+Candidate Generation Time : 0.010095 seconds
+Probability Computation Time : 0.000002 seconds
+
+439686	23
+Nr of candidates : 5
+MPSP:
+439686 85 532 0.541556
+85 27 992 0.927752
+27 23 336 0.711563
+Length of MPSP : 1860
+Probability of MPSP : 0.343403
+Probability of being MPSP : 0.343403
+Candidate Generation Time : 0.057373 seconds
+Probability Computation Time : 0.000864 seconds
+
+120764	978
+Nr of candidates : 1
+MPSP:
+120764 62213 977 0.727420
+62213 9434 333 0.898089
+9434 5529 980 0.968527
+5529 2947 525 0.366759
+2947 2150 853 0.060250
+2150 978 41 0.742620
+Length of MPSP : 3709
+Probability of MPSP : 0.010383
+Probability of being MPSP : 0.010383
+Candidate Generation Time : 0.017417 seconds
+Probability Computation Time : 0.000001 seconds
+
+465989	105
+Nr of candidates : 1
+MPSP:
+465989 113512 857 0.915401
+113512 2048 295 0.435828
+2048 1195 172 0.480064
+1195 791 207 0.842717
+791 202 186 0.770214
+202 105 754 0.058703
+Length of MPSP : 2471
+Probability of MPSP : 0.007298
+Probability of being MPSP : 0.007298
+Candidate Generation Time : 0.017470 seconds
+Probability Computation Time : 0.000001 seconds
+
+65069	12996
+Nr of candidates : 1
+MPSP:
+65069 59164 459 0.702817
+59164 12996 298 0.719537
+Length of MPSP : 757
+Probability of MPSP : 0.505703
+Probability of being MPSP : 0.505703
+Candidate Generation Time : 0.007434 seconds
+Probability Computation Time : 0.000001 seconds
+
+180712	6025
+Nr of candidates : 1
+MPSP:
+180712 6025 128 0.431850
+Length of MPSP : 128
+Probability of MPSP : 0.431850
+Probability of being MPSP : 0.431850
+Candidate Generation Time : 0.004995 seconds
+Probability Computation Time : 0.000001 seconds
+
+151586	76
+Nr of candidates : 1
+MPSP:
+151586 92725 714 0.825627
+92725 76 568 0.360744
+Length of MPSP : 1282
+Probability of MPSP : 0.297840
+Probability of being MPSP : 0.297840
+Candidate Generation Time : 0.007498 seconds
+Probability Computation Time : 0.000001 seconds
+
+226504	316
+Nr of candidates : 1
+MPSP:
+226504 63669 686 0.974873
+63669 9390 598 0.537920
+9390 2643 560 0.820271
+2643 316 280 0.488667
+Length of MPSP : 2124
+Probability of MPSP : 0.210201
+Probability of being MPSP : 0.210201
+Candidate Generation Time : 0.012467 seconds
+Probability Computation Time : 0.000001 seconds
+
+488328	120
+Nr of candidates : 1
+MPSP:
+488328 295180 60 0.728592
+295180 255699 229 0.327191
+255699 94032 242 0.504150
+94032 18724 808 0.307674
+18724 15534 570 0.174203
+15534 4356 273 0.575920
+4356 163 284 0.783404
+163 120 225 0.993192
+Length of MPSP : 2691
+Probability of MPSP : 0.002887
+Probability of being MPSP : 0.002887
+Candidate Generation Time : 0.022641 seconds
+Probability Computation Time : 0.000001 seconds
+
+279317	28
+Nr of candidates : 1
+MPSP:
+279317 232552 927 0.673247
+232552 4329 852 0.068207
+4329 1257 202 0.199854
+1257 945 471 0.672827
+945 61 469 0.681705
+61 28 644 0.598582
+Length of MPSP : 3565
+Probability of MPSP : 0.002520
+Probability of being MPSP : 0.002520
+Candidate Generation Time : 0.017622 seconds
+Probability Computation Time : 0.000001 seconds
+
+416485	376
+Nr of candidates : 1
+MPSP:
+416485 35637 474 0.233694
+35637 19591 526 0.921871
+19591 376 300 0.389239
+Length of MPSP : 1300
+Probability of MPSP : 0.083856
+Probability of being MPSP : 0.083856
+Candidate Generation Time : 0.009965 seconds
+Probability Computation Time : 0.000001 seconds
+
+488243	376
+Nr of candidates : 1
+MPSP:
+488243 384898 66 0.213061
+384898 284938 680 0.202917
+284938 18075 755 0.274499
+18075 11022 753 0.483482
+11022 8018 340 0.123922
+8018 1755 159 0.564583
+1755 1167 56 0.137395
+1167 1117 304 0.590126
+1117 696 332 0.488305
+696 376 539 0.236161
+Length of MPSP : 3984
+Probability of MPSP : 0.000004
+Probability of being MPSP : 0.000004
+Candidate Generation Time : 0.027647 seconds
+Probability Computation Time : 0.000001 seconds
+
+263680	177
+Nr of candidates : 1
+MPSP:
+263680 202528 324 0.399153
+202528 10258 999 0.090138
+10258 9400 5 0.901164
+9400 808 894 0.570659
+808 412 484 0.620981
+412 177 581 0.498839
+Length of MPSP : 3287
+Probability of MPSP : 0.005731
+Probability of being MPSP : 0.005731
+Candidate Generation Time : 0.017515 seconds
+Probability Computation Time : 0.000001 seconds
+
+308606	50
+Nr of candidates : 1
+MPSP:
+308606 13929 823 0.469866
+13929 1572 170 0.251471
+1572 171 452 0.071939
+171 50 368 0.581779
+Length of MPSP : 1813
+Probability of MPSP : 0.004945
+Probability of being MPSP : 0.004945
+Candidate Generation Time : 0.012437 seconds
+Probability Computation Time : 0.000001 seconds
+
+147542	0
+Nr of candidates : 85
+MPSP:
+147542 4 145 0.798048
+4 1 10 0.618808
+1 0 758 0.634208
+Length of MPSP : 913
+Probability of MPSP : 0.313196
+Probability of being MPSP : 0.313196
+Candidate Generation Time : 1.965088 seconds
+Probability Computation Time : 0.050655 seconds
+
+405797	75
+Nr of candidates : 1
+MPSP:
+405797 227676 136 0.417993
+227676 1283 261 0.928923
+1283 963 884 0.010078
+963 454 838 0.672084
+454 170 816 0.211333
+170 75 561 0.238985
+Length of MPSP : 3496
+Probability of MPSP : 0.000133
+Probability of being MPSP : 0.000133
+Candidate Generation Time : 0.015209 seconds
+Probability Computation Time : 0.000001 seconds
+
+172437	8
+Nr of candidates : 1
+MPSP:
+172437 1186 654 0.899999
+1186 1000 900 0.703132
+1000 233 654 0.783043
+233 128 661 0.458346
+128 8 319 0.289497
+Length of MPSP : 3188
+Probability of MPSP : 0.065751
+Probability of being MPSP : 0.065751
+Candidate Generation Time : 0.012838 seconds
+Probability Computation Time : 0.000002 seconds
+
+431170	44
+Nr of candidates : 1
+MPSP:
+431170 165761 253 0.793856
+165761 71560 924 0.947110
+71560 24390 293 0.432785
+24390 2787 693 0.113316
+2787 1354 128 0.595656
+1354 979 737 0.036657
+979 550 6 0.410505
+550 365 50 0.115605
+365 273 220 0.270028
+273 44 133 0.528460
+Length of MPSP : 3437
+Probability of MPSP : 0.000005
+Probability of being MPSP : 0.000005
+Candidate Generation Time : 0.023480 seconds
+Probability Computation Time : 0.000001 seconds
+
+30706	425
+Nr of candidates : 1
+MPSP:
+30706 5631 140 0.635544
+5631 5036 172 0.810274
+5036 546 255 0.724826
+546 425 520 0.644209
+Length of MPSP : 1087
+Probability of MPSP : 0.240457
+Probability of being MPSP : 0.240457
+Candidate Generation Time : 0.010619 seconds
+Probability Computation Time : 0.000001 seconds
+
+223642	358
+Nr of candidates : 1
+MPSP:
+223642 60650 860 0.376851
+60650 7142 274 0.920591
+7142 3027 100 0.762896
+3027 907 258 0.535329
+907 358 800 0.141829
+Length of MPSP : 2292
+Probability of MPSP : 0.020095
+Probability of being MPSP : 0.020095
+Candidate Generation Time : 0.012749 seconds
+Probability Computation Time : 0.000001 seconds
+
+298233	10
+Nr of candidates : 6
+MPSP:
+298233 8571 409 0.977556
+8571 4789 62 0.072673
+4789 44 77 0.911266
+44 23 566 0.138155
+23 19 438 0.478000
+19 10 923 0.497374
+Length of MPSP : 2475
+Probability of MPSP : 0.002126
+Probability of being MPSP : 0.002126
+Candidate Generation Time : 0.101268 seconds
+Probability Computation Time : 0.001229 seconds
+
+330755	99
+Nr of candidates : 1
+MPSP:
+330755 197359 973 0.983483
+197359 183 461 0.614907
+183 99 111 0.542013
+Length of MPSP : 1545
+Probability of MPSP : 0.327783
+Probability of being MPSP : 0.327783
+Candidate Generation Time : 0.010305 seconds
+Probability Computation Time : 0.000001 seconds
+
+346335	9
+Nr of candidates : 33
+MPSP:
+346335 114684 117 0.321501
+114684 6375 752 0.459125
+6375 1773 260 0.332867
+1773 346 235 0.821773
+346 9 667 0.999229
+Length of MPSP : 2031
+Probability of MPSP : 0.040178
+Probability of being MPSP : 0.040178
+Candidate Generation Time : 0.883144 seconds
+Probability Computation Time : 0.028927 seconds
+
+158109	94528
+Nr of candidates : 1
+MPSP:
+158109 94528 147 0.445309
+Length of MPSP : 147
+Probability of MPSP : 0.445309
+Probability of being MPSP : 0.445309
+Candidate Generation Time : 0.005109 seconds
+Probability Computation Time : 0.000002 seconds
+
+263780	39829
+Nr of candidates : 1
+MPSP:
+263780 258940 760 0.558000
+258940 197995 241 0.944643
+197995 135168 974 0.899904
+135168 49576 412 0.711809
+49576 39829 795 0.929374
+Length of MPSP : 3182
+Probability of MPSP : 0.313799
+Probability of being MPSP : 0.313799
+Candidate Generation Time : 0.015370 seconds
+Probability Computation Time : 0.000001 seconds
+
+228960	33
+Nr of candidates : 1
+MPSP:
+228960 35620 753 0.212767
+35620 12861 755 0.767903
+12861 12289 403 0.543768
+12289 7324 939 0.132185
+7324 33 337 0.514233
+Length of MPSP : 3187
+Probability of MPSP : 0.006039
+Probability of being MPSP : 0.006039
+Candidate Generation Time : 0.015416 seconds
+Probability Computation Time : 0.000002 seconds
+
+461530	15
+Nr of candidates : 3
+MPSP:
+461530 23723 516 0.503616
+23723 8189 295 0.011004
+8189 2515 954 0.671731
+2515 86 104 0.823955
+86 36 379 0.104273
+36 34 929 0.953109
+34 21 996 0.438540
+21 15 366 0.840278
+Length of MPSP : 4539
+Probability of MPSP : 0.000112
+Probability of being MPSP : 0.000112
+Candidate Generation Time : 0.059381 seconds
+Probability Computation Time : 0.000399 seconds
+
+456634	21
+Nr of candidates : 2
+MPSP:
+456634 125789 201 0.371364
+125789 50066 139 0.055354
+50066 13857 972 0.792151
+13857 2251 86 0.115181
+2251 675 941 0.665069
+675 40 497 0.009418
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 4806
+Probability of MPSP : 0.000002
+Probability of being MPSP : 0.000002
+Candidate Generation Time : 0.054434 seconds
+Probability Computation Time : 0.000073 seconds
+
+60149	2
+Nr of candidates : 3
+MPSP:
+60149 196 218 0.848247
+196 29 529 0.208275
+29 2 707 0.651586
+Length of MPSP : 1454
+Probability of MPSP : 0.115115
+Probability of being MPSP : 0.115115
+Candidate Generation Time : 0.039239 seconds
+Probability Computation Time : 0.000288 seconds
+
+395331	491
+Nr of candidates : 1
+MPSP:
+395331 168894 259 0.731246
+168894 8575 406 0.904370
+8575 491 799 0.688216
+Length of MPSP : 1464
+Probability of MPSP : 0.455129
+Probability of being MPSP : 0.455129
+Candidate Generation Time : 0.010441 seconds
+Probability Computation Time : 0.000001 seconds
+
+51998	220
+Nr of candidates : 1
+MPSP:
+51998 37636 658 0.982479
+37636 5794 447 0.826228
+5794 5527 630 0.669910
+5527 4060 813 0.485514
+4060 3334 545 0.787018
+3334 747 266 0.699669
+747 220 667 0.660363
+Length of MPSP : 4026
+Probability of MPSP : 0.096007
+Probability of being MPSP : 0.096007
+Candidate Generation Time : 0.020685 seconds
+Probability Computation Time : 0.000002 seconds
+
+133967	4
+Nr of candidates : 48
+MPSP:
+133967 44238 416 0.795227
+44238 21077 755 0.760597
+21077 400 352 0.865781
+400 19 894 0.297321
+19 10 923 0.497374
+10 4 314 0.770590
+Length of MPSP : 3654
+Probability of MPSP : 0.051429
+Probability of being MPSP : 0.051429
+Candidate Generation Time : 1.203607 seconds
+Probability Computation Time : 0.069364 seconds
+
+304972	5525
+Nr of candidates : 1
+MPSP:
+304972 105609 656 0.018392
+105609 5525 478 0.310539
+Length of MPSP : 1134
+Probability of MPSP : 0.005711
+Probability of being MPSP : 0.005711
+Candidate Generation Time : 0.006947 seconds
+Probability Computation Time : 0.000001 seconds
+
+424959	1661
+Nr of candidates : 1
+MPSP:
+424959 401347 141 0.073444
+401347 137553 564 0.215399
+137553 44467 80 0.886856
+44467 40246 35 0.052303
+40246 24293 18 0.603071
+24293 1661 160 0.871730
+Length of MPSP : 998
+Probability of MPSP : 0.000386
+Probability of being MPSP : 0.000386
+Candidate Generation Time : 0.018050 seconds
+Probability Computation Time : 0.000001 seconds
+
+247440	9
+Nr of candidates : 2
+MPSP:
+247440 53033 7 0.324126
+53033 15856 94 0.935465
+15856 3279 800 0.809015
+3279 420 341 0.295966
+420 33 498 0.355277
+33 9 542 0.301297
+Length of MPSP : 2282
+Probability of MPSP : 0.007771
+Probability of being MPSP : 0.007771
+Candidate Generation Time : 0.038919 seconds
+Probability Computation Time : 0.000179 seconds
+
+149005	249
+Nr of candidates : 1
+MPSP:
+149005 126678 168 0.216832
+126678 24980 305 0.487547
+24980 11735 591 0.220798
+11735 11598 671 0.504017
+11598 8633 404 0.579533
+8633 3270 121 0.497679
+3270 1777 847 0.432904
+1777 1488 301 0.455827
+1488 838 611 0.288626
+838 249 724 0.097132
+Length of MPSP : 4743
+Probability of MPSP : 0.000019
+Probability of being MPSP : 0.000019
+Candidate Generation Time : 0.028046 seconds
+Probability Computation Time : 0.000002 seconds
+
+458113	48
+Nr of candidates : 1
+MPSP:
+458113 438020 105 0.114765
+438020 270048 691 0.167012
+270048 48287 109 0.424275
+48287 41021 298 0.148900
+41021 723 307 0.756244
+723 713 302 0.618398
+713 48 28 0.608121
+Length of MPSP : 1840
+Probability of MPSP : 0.000344
+Probability of being MPSP : 0.000344
+Candidate Generation Time : 0.020410 seconds
+Probability Computation Time : 0.000001 seconds
+
+36298	19
+Nr of candidates : 7
+MPSP:
+36298 26235 869 0.080479
+26235 7223 212 0.307822
+7223 6031 688 0.485833
+6031 37 388 0.815714
+37 30 849 0.049946
+30 19 125 0.354617
+Length of MPSP : 3131
+Probability of MPSP : 0.000174
+Probability of being MPSP : 0.000174
+Candidate Generation Time : 0.164497 seconds
+Probability Computation Time : 0.001445 seconds
+
+242112	18
+Nr of candidates : 1
+MPSP:
+242112 167991 235 0.592175
+167991 69406 584 0.967049
+69406 66371 924 0.163749
+66371 4782 303 0.295578
+4782 719 833 0.356171
+719 306 596 0.311189
+306 18 621 0.814917
+Length of MPSP : 4096
+Probability of MPSP : 0.002503
+Probability of being MPSP : 0.002503
+Candidate Generation Time : 0.020525 seconds
+Probability Computation Time : 0.000002 seconds
+
+461344	487
+Nr of candidates : 1
+MPSP:
+461344 150218 493 0.026082
+150218 66512 803 0.055492
+66512 747 902 0.783503
+747 622 752 0.844778
+622 487 636 0.631282
+Length of MPSP : 3586
+Probability of MPSP : 0.000605
+Probability of being MPSP : 0.000605
+Candidate Generation Time : 0.015401 seconds
+Probability Computation Time : 0.000001 seconds
+
+20722	33
+Nr of candidates : 1
+MPSP:
+20722 1211 917 0.983849
+1211 214 919 0.823963
+214 89 773 0.982529
+89 74 35 0.333802
+74 59 213 0.342890
+59 33 502 0.226084
+Length of MPSP : 3359
+Probability of MPSP : 0.020611
+Probability of being MPSP : 0.020611
+Candidate Generation Time : 0.018105 seconds
+Probability Computation Time : 0.000000 seconds
+
+197769	0
+Nr of candidates : 225
+MPSP:
+197769 132009 109 0.343854
+132009 6967 770 0.703545
+6967 35 934 0.872653
+35 0 581 0.773612
+Length of MPSP : 2394
+Probability of MPSP : 0.146602
+Probability of being MPSP : 0.146602
+Candidate Generation Time : 6.627875 seconds
+Probability Computation Time : 1.124338 seconds
+
+363008	231
+Nr of candidates : 1
+MPSP:
+363008 33787 933 0.798925
+33787 26631 477 0.736168
+26631 3115 27 0.914664
+3115 1815 65 0.528299
+1815 907 826 0.953983
+907 231 856 0.097377
+Length of MPSP : 3184
+Probability of MPSP : 0.026401
+Probability of being MPSP : 0.026401
+Candidate Generation Time : 0.018970 seconds
+Probability Computation Time : 0.000001 seconds
+
+195115	116
+Nr of candidates : 1
+MPSP:
+195115 34099 812 0.965468
+34099 29022 638 0.787926
+29022 10765 683 0.477839
+10765 1101 51 0.557488
+1101 922 707 0.948919
+922 828 766 0.719808
+828 116 940 0.789361
+Length of MPSP : 4597
+Probability of MPSP : 0.109260
+Probability of being MPSP : 0.109260
+Candidate Generation Time : 0.021031 seconds
+Probability Computation Time : 0.000001 seconds
+
+442323	1
+Nr of candidates : 14
+MPSP:
+442323 5016 112 0.757909
+5016 607 606 0.439786
+607 312 25 0.882063
+312 1 927 0.804316
+Length of MPSP : 1670
+Probability of MPSP : 0.236475
+Probability of being MPSP : 0.236475
+Candidate Generation Time : 0.219510 seconds
+Probability Computation Time : 0.002926 seconds
+
+347584	2
+Nr of candidates : 9
+MPSP:
+347584 68380 410 0.054106
+68380 2459 717 0.271650
+2459 40 207 0.915973
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+21 15 366 0.840278
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 4860
+Probability of MPSP : 0.000138
+Probability of being MPSP : 0.000138
+Candidate Generation Time : 0.245671 seconds
+Probability Computation Time : 0.003384 seconds
+
+450510	103
+Nr of candidates : 1
+MPSP:
+450510 68510 234 0.049649
+68510 36312 921 0.673185
+36312 20102 749 0.282322
+20102 5201 363 0.250054
+5201 1104 385 0.319364
+1104 124 525 0.027783
+124 103 900 0.173173
+Length of MPSP : 4077
+Probability of MPSP : 0.000004
+Probability of being MPSP : 0.000004
+Candidate Generation Time : 0.020970 seconds
+Probability Computation Time : 0.000001 seconds
+
+367135	48
+Nr of candidates : 1
+MPSP:
+367135 44657 288 0.036692
+44657 3478 817 0.394327
+3478 568 341 0.151733
+568 190 614 0.507364
+190 101 322 0.851026
+101 48 56 0.675101
+Length of MPSP : 2438
+Probability of MPSP : 0.000640
+Probability of being MPSP : 0.000640
+Candidate Generation Time : 0.018388 seconds
+Probability Computation Time : 0.000001 seconds
+
+208607	44
+Nr of candidates : 1
+MPSP:
+208607 37093 280 0.853562
+37093 16398 708 0.310078
+16398 6214 680 0.769828
+6214 462 492 0.020714
+462 108 95 0.411853
+108 44 60 0.894574
+Length of MPSP : 2315
+Probability of MPSP : 0.001555
+Probability of being MPSP : 0.001555
+Candidate Generation Time : 0.018355 seconds
+Probability Computation Time : 0.000001 seconds
+
+375330	23
+Nr of candidates : 5
+MPSP:
+375330 181468 768 0.957023
+181468 166888 374 0.405709
+166888 116309 430 0.239473
+116309 33016 691 0.567794
+33016 3095 968 0.738523
+3095 213 74 0.487738
+213 23 34 0.406070
+Length of MPSP : 3339
+Probability of MPSP : 0.007580
+Probability of being MPSP : 0.007580
+Candidate Generation Time : 0.091984 seconds
+Probability Computation Time : 0.001073 seconds
+
+132772	94
+Nr of candidates : 2
+MPSP:
+132772 19145 732 0.549144
+19145 1016 24 0.285993
+1016 249 985 0.458061
+249 94 222 0.872916
+Length of MPSP : 1963
+Probability of MPSP : 0.062797
+Probability of being MPSP : 0.062797
+Candidate Generation Time : 0.031452 seconds
+Probability Computation Time : 0.000071 seconds
+
+386312	11162
+Nr of candidates : 1
+MPSP:
+386312 121907 325 0.798863
+121907 38279 235 0.370666
+38279 11162 536 0.786959
+Length of MPSP : 1096
+Probability of MPSP : 0.233028
+Probability of being MPSP : 0.233028
+Candidate Generation Time : 0.010486 seconds
+Probability Computation Time : 0.000002 seconds
+
+144244	44
+Nr of candidates : 2
+MPSP:
+144244 47570 939 0.664125
+47570 5997 465 0.657032
+5997 3322 451 0.050321
+3322 1471 769 0.879921
+1471 787 763 0.630664
+787 462 402 0.566899
+462 108 95 0.411853
+108 44 60 0.894574
+Length of MPSP : 3944
+Probability of MPSP : 0.002510
+Probability of being MPSP : 0.002510
+Candidate Generation Time : 0.042239 seconds
+Probability Computation Time : 0.000141 seconds
+
+311842	9385
+Nr of candidates : 1
+MPSP:
+311842 16150 780 0.378514
+16150 11621 794 0.481570
+11621 9385 146 0.665792
+Length of MPSP : 1720
+Probability of MPSP : 0.121361
+Probability of being MPSP : 0.121361
+Candidate Generation Time : 0.010539 seconds
+Probability Computation Time : 0.000002 seconds
+
+159645	968
+Nr of candidates : 1
+MPSP:
+159645 37643 244 0.284038
+37643 10423 454 0.417769
+10423 2278 510 0.529910
+2278 968 588 0.607315
+Length of MPSP : 1796
+Probability of MPSP : 0.038188
+Probability of being MPSP : 0.038188
+Candidate Generation Time : 0.013179 seconds
+Probability Computation Time : 0.000002 seconds
+
+215674	23
+Nr of candidates : 1
+MPSP:
+215674 12699 416 0.318694
+12699 5203 431 0.898119
+5203 3207 371 0.820525
+3207 2888 943 0.771387
+2888 632 404 0.701495
+632 294 710 0.607042
+294 90 949 0.969309
+90 23 315 0.019735
+Length of MPSP : 4539
+Probability of MPSP : 0.001476
+Probability of being MPSP : 0.001476
+Candidate Generation Time : 0.023738 seconds
+Probability Computation Time : 0.000001 seconds
+
+340387	23
+Nr of candidates : 5
+MPSP:
+340387 270393 575 0.851961
+270393 17559 827 0.313489
+17559 150 859 0.662397
+150 103 743 0.423784
+103 23 315 0.341394
+Length of MPSP : 3319
+Probability of MPSP : 0.023694
+Probability of being MPSP : 0.023694
+Candidate Generation Time : 0.079232 seconds
+Probability Computation Time : 0.000954 seconds
+
+271918	19
+Nr of candidates : 4
+MPSP:
+271918 222054 655 0.903461
+222054 19132 118 0.915062
+19132 1025 37 0.752102
+1025 293 247 0.536615
+293 23 960 0.970559
+23 19 438 0.478000
+Length of MPSP : 2455
+Probability of MPSP : 0.154792
+Probability of being MPSP : 0.154792
+Candidate Generation Time : 0.079063 seconds
+Probability Computation Time : 0.000496 seconds
+
+40164	27
+Nr of candidates : 1
+MPSP:
+40164 157 850 0.120465
+157 27 582 0.250667
+Length of MPSP : 1432
+Probability of MPSP : 0.030196
+Probability of being MPSP : 0.030196
+Candidate Generation Time : 0.007938 seconds
+Probability Computation Time : 0.000001 seconds
+
+353249	6
+Nr of candidates : 4
+MPSP:
+353249 287010 498 0.572255
+287010 209246 925 0.603041
+209246 105359 404 0.191030
+105359 54279 88 0.014908
+54279 11898 589 0.946496
+11898 654 472 0.489661
+654 8 306 0.810730
+8 6 104 0.636961
+Length of MPSP : 3386
+Probability of MPSP : 0.000235
+Probability of being MPSP : 0.000235
+Candidate Generation Time : 0.104519 seconds
+Probability Computation Time : 0.000406 seconds
+
+242385	249
+Nr of candidates : 1
+MPSP:
+242385 237548 140 0.957224
+237548 224381 807 0.849568
+224381 10291 11 0.544659
+10291 3358 165 0.660214
+3358 311 26 0.172863
+311 249 901 0.545881
+Length of MPSP : 2050
+Probability of MPSP : 0.027594
+Probability of being MPSP : 0.027594
+Candidate Generation Time : 0.018480 seconds
+Probability Computation Time : 0.000002 seconds
+
+412645	8
+Nr of candidates : 2
+MPSP:
+412645 41666 409 0.944264
+41666 7342 973 0.231631
+7342 2767 934 0.684315
+2767 8 614 0.130449
+Length of MPSP : 2930
+Probability of MPSP : 0.019521
+Probability of being MPSP : 0.019521
+Candidate Generation Time : 0.028917 seconds
+Probability Computation Time : 0.000209 seconds
+
+Average Length of MPSP for 0 hops : 2469
+Average Probability of being MPSP for 0 hops : 0.087473
+Average Candidate Generation Time for 0 hops : 0.164090 seconds
+Average Probability Computation Time for 0 hops : 0.013847 seconds
+Average Total Time for 0 hops : 0.177937 seconds
+Number of candidate generation timeouts : 0
+
+
+Number of hops = 2
+
+167054	2334
+Nr of candidates : 1
+MPSP:
+167054 5312 641 0.289047
+5312 2334 168 0.055082
+Length of MPSP : 809
+Probability of MPSP : 0.015921
+Probability of being MPSP : 0.015921
+Candidate Generation Time : 0.007798 seconds
+Probability Computation Time : 0.000001 seconds
+
+176687	9
+Nr of candidates : 4
+MPSP:
+176687 931 300 0.199765
+931 9 258 0.842029
+Length of MPSP : 558
+Probability of MPSP : 0.168208
+Probability of being MPSP : 0.168208
+Candidate Generation Time : 0.074174 seconds
+Probability Computation Time : 0.000155 seconds
+
+424453	1731
+Nr of candidates : 1
+MPSP:
+424453 23499 546 0.353472
+23499 1731 550 0.125503
+Length of MPSP : 1096
+Probability of MPSP : 0.044362
+Probability of being MPSP : 0.044362
+Candidate Generation Time : 0.007912 seconds
+Probability Computation Time : 0.000002 seconds
+
+412362	191
+Nr of candidates : 1
+MPSP:
+412362 49289 987 0.034390
+49289 191 718 0.838281
+Length of MPSP : 1705
+Probability of MPSP : 0.028829
+Probability of being MPSP : 0.028829
+Candidate Generation Time : 0.007950 seconds
+Probability Computation Time : 0.000001 seconds
+
+92483	3042
+Nr of candidates : 1
+MPSP:
+92483 3198 190 0.761076
+3198 3042 208 0.322922
+Length of MPSP : 398
+Probability of MPSP : 0.245768
+Probability of being MPSP : 0.245768
+Candidate Generation Time : 0.007909 seconds
+Probability Computation Time : 0.000001 seconds
+
+373640	1
+Nr of candidates : 1
+MPSP:
+373640 45 968 0.978380
+45 1 688 0.798802
+Length of MPSP : 1656
+Probability of MPSP : 0.781532
+Probability of being MPSP : 0.781532
+Candidate Generation Time : 0.007940 seconds
+Probability Computation Time : 0.000001 seconds
+
+187788	933
+Nr of candidates : 1
+MPSP:
+187788 15829 90 0.296931
+15829 933 520 0.600813
+Length of MPSP : 610
+Probability of MPSP : 0.178400
+Probability of being MPSP : 0.178400
+Candidate Generation Time : 0.007932 seconds
+Probability Computation Time : 0.000001 seconds
+
+474818	38115
+Nr of candidates : 1
+MPSP:
+474818 162160 560 0.860806
+162160 38115 164 0.875815
+Length of MPSP : 724
+Probability of MPSP : 0.753907
+Probability of being MPSP : 0.753907
+Candidate Generation Time : 0.007916 seconds
+Probability Computation Time : 0.000001 seconds
+
+434885	27
+Nr of candidates : 2
+MPSP:
+434885 604 948 0.645170
+604 27 502 0.223106
+Length of MPSP : 1450
+Probability of MPSP : 0.143941
+Probability of being MPSP : 0.143941
+Candidate Generation Time : 0.023716 seconds
+Probability Computation Time : 0.000070 seconds
+
+321470	4
+Nr of candidates : 11
+MPSP:
+321470 105514 597 0.608998
+105514 28247 382 0.153200
+28247 3206 192 0.366663
+3206 1803 722 0.468177
+1803 4 349 0.513815
+Length of MPSP : 2242
+Probability of MPSP : 0.008229
+Probability of being MPSP : 0.008229
+Candidate Generation Time : 0.241027 seconds
+Probability Computation Time : 0.002286 seconds
+
+344838	15
+Nr of candidates : 3
+MPSP:
+344838 45 463 0.735655
+45 15 819 0.025516
+Length of MPSP : 1282
+Probability of MPSP : 0.018707
+Probability of being MPSP : 0.018707
+Candidate Generation Time : 0.040025 seconds
+Probability Computation Time : 0.000241 seconds
+
+384518	336
+Nr of candidates : 1
+MPSP:
+384518 1350 150 0.347559
+1350 336 193 0.722703
+Length of MPSP : 343
+Probability of MPSP : 0.251182
+Probability of being MPSP : 0.251182
+Candidate Generation Time : 0.007892 seconds
+Probability Computation Time : 0.000001 seconds
+
+393853	1414
+Nr of candidates : 1
+MPSP:
+393853 6159 714 0.659681
+6159 1414 31 0.879447
+Length of MPSP : 745
+Probability of MPSP : 0.580155
+Probability of being MPSP : 0.580155
+Candidate Generation Time : 0.007874 seconds
+Probability Computation Time : 0.000001 seconds
+
+90276	10730
+Nr of candidates : 1
+MPSP:
+90276 85124 969 0.858211
+85124 10730 302 0.597500
+Length of MPSP : 1271
+Probability of MPSP : 0.512781
+Probability of being MPSP : 0.512781
+Candidate Generation Time : 0.007830 seconds
+Probability Computation Time : 0.000001 seconds
+
+104482	19
+Nr of candidates : 1
+MPSP:
+104482 400 44 0.877392
+400 19 894 0.297321
+Length of MPSP : 938
+Probability of MPSP : 0.260867
+Probability of being MPSP : 0.260867
+Candidate Generation Time : 0.007845 seconds
+Probability Computation Time : 0.000001 seconds
+
+41187	45
+Nr of candidates : 1
+MPSP:
+41187 108 157 0.934100
+108 45 693 0.448245
+Length of MPSP : 850
+Probability of MPSP : 0.418706
+Probability of being MPSP : 0.418706
+Candidate Generation Time : 0.007823 seconds
+Probability Computation Time : 0.000001 seconds
+
+123229	0
+Nr of candidates : 70
+MPSP:
+123229 1440 767 0.131734
+1440 0 293 0.445267
+Length of MPSP : 1060
+Probability of MPSP : 0.058657
+Probability of being MPSP : 0.058657
+Candidate Generation Time : 1.656519 seconds
+Probability Computation Time : 0.068046 seconds
+
+136498	400
+Nr of candidates : 1
+MPSP:
+136498 134734 618 0.179857
+134734 400 804 0.310672
+Length of MPSP : 1422
+Probability of MPSP : 0.055877
+Probability of being MPSP : 0.055877
+Candidate Generation Time : 0.007919 seconds
+Probability Computation Time : 0.000001 seconds
+
+313962	31029
+Nr of candidates : 1
+MPSP:
+313962 95871 360 0.231524
+95871 31029 567 0.058187
+Length of MPSP : 927
+Probability of MPSP : 0.013472
+Probability of being MPSP : 0.013472
+Candidate Generation Time : 0.015632 seconds
+Probability Computation Time : 0.000001 seconds
+
+467192	613
+Nr of candidates : 1
+MPSP:
+467192 3939 552 0.926841
+3939 613 818 0.461080
+Length of MPSP : 1370
+Probability of MPSP : 0.427347
+Probability of being MPSP : 0.427347
+Candidate Generation Time : 0.007790 seconds
+Probability Computation Time : 0.000001 seconds
+
+319219	167640
+Nr of candidates : 1
+MPSP:
+319219 180334 28 0.025085
+180334 167640 813 0.702057
+Length of MPSP : 841
+Probability of MPSP : 0.017611
+Probability of being MPSP : 0.017611
+Candidate Generation Time : 0.007855 seconds
+Probability Computation Time : 0.000001 seconds
+
+301893	0
+Nr of candidates : 111
+MPSP:
+301893 5 504 0.893383
+5 0 941 0.385735
+Length of MPSP : 1445
+Probability of MPSP : 0.344609
+Probability of being MPSP : 0.344609
+Candidate Generation Time : 2.845556 seconds
+Probability Computation Time : 0.138394 seconds
+
+163270	9615
+Nr of candidates : 1
+MPSP:
+163270 9792 632 0.405011
+9792 9615 796 0.849161
+Length of MPSP : 1428
+Probability of MPSP : 0.343920
+Probability of being MPSP : 0.343920
+Candidate Generation Time : 0.007837 seconds
+Probability Computation Time : 0.000001 seconds
+
+167086	44088
+Nr of candidates : 1
+MPSP:
+167086 136521 792 0.565786
+136521 44088 958 0.909011
+Length of MPSP : 1750
+Probability of MPSP : 0.514306
+Probability of being MPSP : 0.514306
+Candidate Generation Time : 0.007843 seconds
+Probability Computation Time : 0.000001 seconds
+
+422910	40
+Nr of candidates : 2
+MPSP:
+422910 31330 475 0.182732
+31330 40 417 0.234284
+Length of MPSP : 892
+Probability of MPSP : 0.042811
+Probability of being MPSP : 0.042811
+Candidate Generation Time : 0.015733 seconds
+Probability Computation Time : 0.000071 seconds
+
+482015	236
+Nr of candidates : 1
+MPSP:
+482015 2552 146 0.840267
+2552 236 472 0.967099
+Length of MPSP : 618
+Probability of MPSP : 0.812621
+Probability of being MPSP : 0.812621
+Candidate Generation Time : 0.007846 seconds
+Probability Computation Time : 0.000001 seconds
+
+229823	27
+Nr of candidates : 2
+MPSP:
+229823 55974 696 0.486614
+55974 27 79 0.402055
+Length of MPSP : 775
+Probability of MPSP : 0.195646
+Probability of being MPSP : 0.195646
+Candidate Generation Time : 0.012905 seconds
+Probability Computation Time : 0.000070 seconds
+
+482947	38
+Nr of candidates : 1
+MPSP:
+482947 361 433 0.440520
+361 38 593 0.053044
+Length of MPSP : 1026
+Probability of MPSP : 0.023367
+Probability of being MPSP : 0.023367
+Candidate Generation Time : 0.007832 seconds
+Probability Computation Time : 0.000001 seconds
+
+126389	135
+Nr of candidates : 1
+MPSP:
+126389 1246 421 0.270541
+1246 135 461 0.447877
+Length of MPSP : 882
+Probability of MPSP : 0.121169
+Probability of being MPSP : 0.121169
+Candidate Generation Time : 0.007836 seconds
+Probability Computation Time : 0.000002 seconds
+
+348973	2507
+Nr of candidates : 1
+MPSP:
+348973 83083 313 0.137368
+83083 2507 90 0.134770
+Length of MPSP : 403
+Probability of MPSP : 0.018513
+Probability of being MPSP : 0.018513
+Candidate Generation Time : 0.007859 seconds
+Probability Computation Time : 0.000001 seconds
+
+218351	2523
+Nr of candidates : 1
+MPSP:
+218351 154238 981 0.783145
+154238 2523 194 0.672270
+Length of MPSP : 1175
+Probability of MPSP : 0.526485
+Probability of being MPSP : 0.526485
+Candidate Generation Time : 0.007804 seconds
+Probability Computation Time : 0.000001 seconds
+
+449855	143080
+Nr of candidates : 1
+MPSP:
+449855 169037 8 0.868799
+169037 143080 41 0.584255
+Length of MPSP : 49
+Probability of MPSP : 0.507600
+Probability of being MPSP : 0.507600
+Candidate Generation Time : 0.007780 seconds
+Probability Computation Time : 0.000000 seconds
+
+71585	39255
+Nr of candidates : 1
+MPSP:
+71585 59471 982 0.935385
+59471 39255 751 0.709949
+Length of MPSP : 1733
+Probability of MPSP : 0.664076
+Probability of being MPSP : 0.664076
+Candidate Generation Time : 0.007788 seconds
+Probability Computation Time : 0.000001 seconds
+
+125315	36106
+Nr of candidates : 1
+MPSP:
+125315 98259 943 0.613548
+98259 36106 872 0.838777
+Length of MPSP : 1815
+Probability of MPSP : 0.514630
+Probability of being MPSP : 0.514630
+Candidate Generation Time : 0.007831 seconds
+Probability Computation Time : 0.000001 seconds
+
+409915	100268
+Nr of candidates : 1
+MPSP:
+409915 168115 435 0.874039
+168115 100268 152 0.864269
+Length of MPSP : 587
+Probability of MPSP : 0.755405
+Probability of being MPSP : 0.755405
+Candidate Generation Time : 0.007820 seconds
+Probability Computation Time : 0.000001 seconds
+
+426779	1197
+Nr of candidates : 1
+MPSP:
+426779 33353 369 0.845400
+33353 1197 710 0.468492
+Length of MPSP : 1079
+Probability of MPSP : 0.396063
+Probability of being MPSP : 0.396063
+Candidate Generation Time : 0.007803 seconds
+Probability Computation Time : 0.000001 seconds
+
+298507	114615
+Nr of candidates : 1
+MPSP:
+298507 223003 310 0.911699
+223003 114615 826 0.972945
+Length of MPSP : 1136
+Probability of MPSP : 0.887033
+Probability of being MPSP : 0.887033
+Candidate Generation Time : 0.007794 seconds
+Probability Computation Time : 0.000001 seconds
+
+452027	98774
+Nr of candidates : 1
+MPSP:
+452027 223889 392 0.172067
+223889 98774 163 0.430588
+Length of MPSP : 555
+Probability of MPSP : 0.074090
+Probability of being MPSP : 0.074090
+Candidate Generation Time : 0.007769 seconds
+Probability Computation Time : 0.000001 seconds
+
+451189	27694
+Nr of candidates : 1
+MPSP:
+451189 186010 386 0.890770
+186010 27694 315 0.490451
+Length of MPSP : 701
+Probability of MPSP : 0.436879
+Probability of being MPSP : 0.436879
+Candidate Generation Time : 0.007715 seconds
+Probability Computation Time : 0.000001 seconds
+
+26419	2748
+Nr of candidates : 1
+MPSP:
+26419 3911 877 0.551863
+3911 2748 978 0.294782
+Length of MPSP : 1855
+Probability of MPSP : 0.162679
+Probability of being MPSP : 0.162679
+Candidate Generation Time : 0.007766 seconds
+Probability Computation Time : 0.000001 seconds
+
+228030	4406
+Nr of candidates : 1
+MPSP:
+228030 78052 420 0.682103
+78052 4406 54 0.719561
+Length of MPSP : 474
+Probability of MPSP : 0.490815
+Probability of being MPSP : 0.490815
+Candidate Generation Time : 0.007796 seconds
+Probability Computation Time : 0.000001 seconds
+
+180360	26204
+Nr of candidates : 1
+MPSP:
+180360 171211 125 0.374834
+171211 26204 294 0.247097
+Length of MPSP : 419
+Probability of MPSP : 0.092620
+Probability of being MPSP : 0.092620
+Candidate Generation Time : 0.007789 seconds
+Probability Computation Time : 0.000001 seconds
+
+477708	3101
+Nr of candidates : 1
+MPSP:
+477708 332087 551 0.917456
+332087 3101 363 0.541293
+Length of MPSP : 914
+Probability of MPSP : 0.496613
+Probability of being MPSP : 0.496613
+Candidate Generation Time : 0.007814 seconds
+Probability Computation Time : 0.000001 seconds
+
+79850	8009
+Nr of candidates : 1
+MPSP:
+79850 47269 224 0.422312
+47269 8009 856 0.703205
+Length of MPSP : 1080
+Probability of MPSP : 0.296972
+Probability of being MPSP : 0.296972
+Candidate Generation Time : 0.007787 seconds
+Probability Computation Time : 0.000001 seconds
+
+254651	436
+Nr of candidates : 1
+MPSP:
+254651 1332 572 0.182694
+1332 436 778 0.042974
+Length of MPSP : 1350
+Probability of MPSP : 0.007851
+Probability of being MPSP : 0.007851
+Candidate Generation Time : 0.007824 seconds
+Probability Computation Time : 0.000001 seconds
+
+266319	441
+Nr of candidates : 1
+MPSP:
+266319 76859 854 0.584731
+76859 441 684 0.554727
+Length of MPSP : 1538
+Probability of MPSP : 0.324366
+Probability of being MPSP : 0.324366
+Candidate Generation Time : 0.007770 seconds
+Probability Computation Time : 0.000001 seconds
+
+303243	143071
+Nr of candidates : 1
+MPSP:
+303243 277339 267 0.989449
+277339 143071 507 0.112130
+Length of MPSP : 774
+Probability of MPSP : 0.110947
+Probability of being MPSP : 0.110947
+Candidate Generation Time : 0.007767 seconds
+Probability Computation Time : 0.000001 seconds
+
+232018	1102
+Nr of candidates : 1
+MPSP:
+232018 135301 627 0.247719
+135301 1102 508 0.178201
+Length of MPSP : 1135
+Probability of MPSP : 0.044144
+Probability of being MPSP : 0.044144
+Candidate Generation Time : 0.007822 seconds
+Probability Computation Time : 0.000001 seconds
+
+375959	268951
+Nr of candidates : 1
+MPSP:
+375959 366476 214 0.219638
+366476 268951 804 0.245261
+Length of MPSP : 1018
+Probability of MPSP : 0.053869
+Probability of being MPSP : 0.053869
+Candidate Generation Time : 0.007845 seconds
+Probability Computation Time : 0.000001 seconds
+
+258235	48
+Nr of candidates : 1
+MPSP:
+258235 1379 173 0.802189
+1379 48 781 0.311390
+Length of MPSP : 954
+Probability of MPSP : 0.249794
+Probability of being MPSP : 0.249794
+Candidate Generation Time : 0.007853 seconds
+Probability Computation Time : 0.000001 seconds
+
+176381	108
+Nr of candidates : 1
+MPSP:
+176381 462 318 0.081436
+462 108 95 0.411853
+Length of MPSP : 413
+Probability of MPSP : 0.033540
+Probability of being MPSP : 0.033540
+Candidate Generation Time : 0.007821 seconds
+Probability Computation Time : 0.000001 seconds
+
+13792	4031
+Nr of candidates : 1
+MPSP:
+13792 8934 734 0.559359
+8934 4031 912 0.499379
+Length of MPSP : 1646
+Probability of MPSP : 0.279332
+Probability of being MPSP : 0.279332
+Candidate Generation Time : 0.007806 seconds
+Probability Computation Time : 0.000000 seconds
+
+398222	3150
+Nr of candidates : 1
+MPSP:
+398222 8840 338 0.010898
+8840 3150 702 0.256467
+Length of MPSP : 1040
+Probability of MPSP : 0.002795
+Probability of being MPSP : 0.002795
+Candidate Generation Time : 0.007724 seconds
+Probability Computation Time : 0.000001 seconds
+
+461971	1259
+Nr of candidates : 1
+MPSP:
+461971 51417 698 0.584568
+51417 1259 830 0.014365
+Length of MPSP : 1528
+Probability of MPSP : 0.008397
+Probability of being MPSP : 0.008397
+Candidate Generation Time : 0.007846 seconds
+Probability Computation Time : 0.000001 seconds
+
+351525	3144
+Nr of candidates : 1
+MPSP:
+351525 4014 531 0.888958
+4014 3144 869 0.352548
+Length of MPSP : 1400
+Probability of MPSP : 0.313400
+Probability of being MPSP : 0.313400
+Candidate Generation Time : 0.007859 seconds
+Probability Computation Time : 0.000001 seconds
+
+127552	5844
+Nr of candidates : 1
+MPSP:
+127552 71519 548 0.336816
+71519 5844 784 0.681930
+Length of MPSP : 1332
+Probability of MPSP : 0.229685
+Probability of being MPSP : 0.229685
+Candidate Generation Time : 0.007823 seconds
+Probability Computation Time : 0.000001 seconds
+
+346166	32347
+Nr of candidates : 1
+MPSP:
+346166 63526 654 0.411622
+63526 32347 157 0.859078
+Length of MPSP : 811
+Probability of MPSP : 0.353615
+Probability of being MPSP : 0.353615
+Candidate Generation Time : 0.007824 seconds
+Probability Computation Time : 0.000001 seconds
+
+248270	2529
+Nr of candidates : 1
+MPSP:
+248270 103271 720 0.234147
+103271 2529 696 0.304906
+Length of MPSP : 1416
+Probability of MPSP : 0.071393
+Probability of being MPSP : 0.071393
+Candidate Generation Time : 0.007809 seconds
+Probability Computation Time : 0.000001 seconds
+
+160311	2296
+Nr of candidates : 1
+MPSP:
+160311 8527 368 0.367419
+8527 2296 563 0.533151
+Length of MPSP : 931
+Probability of MPSP : 0.195890
+Probability of being MPSP : 0.195890
+Candidate Generation Time : 0.007804 seconds
+Probability Computation Time : 0.000001 seconds
+
+218590	8250
+Nr of candidates : 1
+MPSP:
+218590 12804 665 0.906238
+12804 8250 360 0.007436
+Length of MPSP : 1025
+Probability of MPSP : 0.006738
+Probability of being MPSP : 0.006738
+Candidate Generation Time : 0.007811 seconds
+Probability Computation Time : 0.000001 seconds
+
+409692	16907
+Nr of candidates : 1
+MPSP:
+409692 184018 889 0.723478
+184018 16907 347 0.184439
+Length of MPSP : 1236
+Probability of MPSP : 0.133437
+Probability of being MPSP : 0.133437
+Candidate Generation Time : 0.007879 seconds
+Probability Computation Time : 0.000001 seconds
+
+25045	479
+Nr of candidates : 1
+MPSP:
+25045 7698 244 0.138216
+7698 479 619 0.358021
+Length of MPSP : 863
+Probability of MPSP : 0.049484
+Probability of being MPSP : 0.049484
+Candidate Generation Time : 0.007833 seconds
+Probability Computation Time : 0.000001 seconds
+
+117079	0
+Nr of candidates : 22
+MPSP:
+117079 888 586 0.687020
+888 4 174 0.807149
+4 1 10 0.618808
+1 0 758 0.634208
+Length of MPSP : 1528
+Probability of MPSP : 0.207413
+Probability of being MPSP : 0.207413
+Candidate Generation Time : 0.340921 seconds
+Probability Computation Time : 0.005842 seconds
+
+236427	1582
+Nr of candidates : 1
+MPSP:
+236427 107617 587 0.505688
+107617 1582 524 0.820422
+Length of MPSP : 1111
+Probability of MPSP : 0.414877
+Probability of being MPSP : 0.414877
+Candidate Generation Time : 0.007811 seconds
+Probability Computation Time : 0.000001 seconds
+
+143581	4857
+Nr of candidates : 1
+MPSP:
+143581 143249 589 0.392031
+143249 4857 129 0.348658
+Length of MPSP : 718
+Probability of MPSP : 0.136685
+Probability of being MPSP : 0.136685
+Candidate Generation Time : 0.007801 seconds
+Probability Computation Time : 0.000001 seconds
+
+463421	57556
+Nr of candidates : 1
+MPSP:
+463421 154578 77 0.332925
+154578 57556 859 0.005122
+Length of MPSP : 936
+Probability of MPSP : 0.001705
+Probability of being MPSP : 0.001705
+Candidate Generation Time : 0.007808 seconds
+Probability Computation Time : 0.000001 seconds
+
+377196	195526
+Nr of candidates : 1
+MPSP:
+377196 277213 434 0.795770
+277213 195526 250 0.746634
+Length of MPSP : 684
+Probability of MPSP : 0.594149
+Probability of being MPSP : 0.594149
+Candidate Generation Time : 0.007860 seconds
+Probability Computation Time : 0.000001 seconds
+
+51592	785
+Nr of candidates : 1
+MPSP:
+51592 10253 734 0.436995
+10253 785 508 0.772041
+Length of MPSP : 1242
+Probability of MPSP : 0.337378
+Probability of being MPSP : 0.337378
+Candidate Generation Time : 0.007847 seconds
+Probability Computation Time : 0.000001 seconds
+
+311356	80473
+Nr of candidates : 1
+MPSP:
+311356 157396 464 0.094170
+157396 80473 694 0.916018
+Length of MPSP : 1158
+Probability of MPSP : 0.086262
+Probability of being MPSP : 0.086262
+Candidate Generation Time : 0.007839 seconds
+Probability Computation Time : 0.000001 seconds
+
+298402	108443
+Nr of candidates : 1
+MPSP:
+298402 143865 435 0.577085
+143865 108443 924 0.402634
+Length of MPSP : 1359
+Probability of MPSP : 0.232354
+Probability of being MPSP : 0.232354
+Candidate Generation Time : 0.007832 seconds
+Probability Computation Time : 0.000001 seconds
+
+484179	66962
+Nr of candidates : 1
+MPSP:
+484179 261355 922 0.273488
+261355 66962 954 0.495052
+Length of MPSP : 1876
+Probability of MPSP : 0.135391
+Probability of being MPSP : 0.135391
+Candidate Generation Time : 0.007714 seconds
+Probability Computation Time : 0.000001 seconds
+
+260867	31818
+Nr of candidates : 1
+MPSP:
+260867 31865 46 0.196651
+31865 31818 932 0.238371
+Length of MPSP : 978
+Probability of MPSP : 0.046876
+Probability of being MPSP : 0.046876
+Candidate Generation Time : 0.007859 seconds
+Probability Computation Time : 0.000000 seconds
+
+47031	29
+Nr of candidates : 5
+MPSP:
+47031 121 635 0.598939
+121 29 630 0.301191
+Length of MPSP : 1265
+Probability of MPSP : 0.180395
+Probability of being MPSP : 0.180395
+Candidate Generation Time : 0.075509 seconds
+Probability Computation Time : 0.000518 seconds
+
+75034	6818
+Nr of candidates : 1
+MPSP:
+75034 8374 624 0.049047
+8374 6818 1 0.835640
+Length of MPSP : 625
+Probability of MPSP : 0.040986
+Probability of being MPSP : 0.040986
+Candidate Generation Time : 0.007760 seconds
+Probability Computation Time : 0.000001 seconds
+
+408988	84757
+Nr of candidates : 1
+MPSP:
+408988 210658 146 0.251027
+210658 84757 555 0.675321
+Length of MPSP : 701
+Probability of MPSP : 0.169524
+Probability of being MPSP : 0.169524
+Candidate Generation Time : 0.007802 seconds
+Probability Computation Time : 0.000001 seconds
+
+288864	80460
+Nr of candidates : 1
+MPSP:
+288864 119104 162 0.340759
+119104 80460 998 0.646377
+Length of MPSP : 1160
+Probability of MPSP : 0.220259
+Probability of being MPSP : 0.220259
+Candidate Generation Time : 0.007669 seconds
+Probability Computation Time : 0.000001 seconds
+
+389561	829
+Nr of candidates : 1
+MPSP:
+389561 2780 172 0.506286
+2780 829 431 0.428249
+Length of MPSP : 603
+Probability of MPSP : 0.216816
+Probability of being MPSP : 0.216816
+Candidate Generation Time : 0.007805 seconds
+Probability Computation Time : 0.000001 seconds
+
+204027	6310
+Nr of candidates : 1
+MPSP:
+204027 66205 478 0.880554
+66205 6310 892 0.084676
+Length of MPSP : 1370
+Probability of MPSP : 0.074562
+Probability of being MPSP : 0.074562
+Candidate Generation Time : 0.007774 seconds
+Probability Computation Time : 0.000001 seconds
+
+95852	28
+Nr of candidates : 1
+MPSP:
+95852 255 976 0.362992
+255 28 393 0.557409
+Length of MPSP : 1369
+Probability of MPSP : 0.202335
+Probability of being MPSP : 0.202335
+Candidate Generation Time : 0.007775 seconds
+Probability Computation Time : 0.000001 seconds
+
+347334	19
+Nr of candidates : 1
+MPSP:
+347334 115 999 0.902855
+115 19 424 0.928409
+Length of MPSP : 1423
+Probability of MPSP : 0.838218
+Probability of being MPSP : 0.838218
+Candidate Generation Time : 0.007812 seconds
+Probability Computation Time : 0.000001 seconds
+
+434717	18087
+Nr of candidates : 1
+MPSP:
+434717 229424 891 0.900234
+229424 18087 910 0.303108
+Length of MPSP : 1801
+Probability of MPSP : 0.272868
+Probability of being MPSP : 0.272868
+Candidate Generation Time : 0.007885 seconds
+Probability Computation Time : 0.000000 seconds
+
+229081	529
+Nr of candidates : 1
+MPSP:
+229081 554 76 0.409944
+554 529 513 0.226290
+Length of MPSP : 589
+Probability of MPSP : 0.092766
+Probability of being MPSP : 0.092766
+Candidate Generation Time : 0.007825 seconds
+Probability Computation Time : 0.000001 seconds
+
+187538	9
+Nr of candidates : 10
+MPSP:
+187538 33 164 0.024163
+33 9 542 0.301297
+Length of MPSP : 706
+Probability of MPSP : 0.007280
+Probability of being MPSP : 0.007280
+Candidate Generation Time : 0.249400 seconds
+Probability Computation Time : 0.001936 seconds
+
+118631	12392
+Nr of candidates : 1
+MPSP:
+118631 109528 964 0.054966
+109528 12392 807 0.664643
+Length of MPSP : 1771
+Probability of MPSP : 0.036533
+Probability of being MPSP : 0.036533
+Candidate Generation Time : 0.007817 seconds
+Probability Computation Time : 0.000002 seconds
+
+144157	9285
+Nr of candidates : 1
+MPSP:
+144157 140595 956 0.551856
+140595 9285 361 0.217411
+Length of MPSP : 1317
+Probability of MPSP : 0.119980
+Probability of being MPSP : 0.119980
+Candidate Generation Time : 0.007818 seconds
+Probability Computation Time : 0.000001 seconds
+
+124655	152
+Nr of candidates : 1
+MPSP:
+124655 1732 947 0.267320
+1732 152 373 0.446315
+Length of MPSP : 1320
+Probability of MPSP : 0.119309
+Probability of being MPSP : 0.119309
+Candidate Generation Time : 0.007814 seconds
+Probability Computation Time : 0.000001 seconds
+
+457629	61
+Nr of candidates : 1
+MPSP:
+457629 362541 62 0.729021
+362541 61 158 0.943189
+Length of MPSP : 220
+Probability of MPSP : 0.687604
+Probability of being MPSP : 0.687604
+Candidate Generation Time : 0.007884 seconds
+Probability Computation Time : 0.000001 seconds
+
+400506	77599
+Nr of candidates : 1
+MPSP:
+400506 192044 645 0.754151
+192044 77599 641 0.519446
+Length of MPSP : 1286
+Probability of MPSP : 0.391740
+Probability of being MPSP : 0.391740
+Candidate Generation Time : 0.007896 seconds
+Probability Computation Time : 0.000001 seconds
+
+241645	5734
+Nr of candidates : 1
+MPSP:
+241645 159982 422 0.984958
+159982 5734 766 0.604012
+Length of MPSP : 1188
+Probability of MPSP : 0.594926
+Probability of being MPSP : 0.594926
+Candidate Generation Time : 0.007656 seconds
+Probability Computation Time : 0.000001 seconds
+
+165380	10103
+Nr of candidates : 1
+MPSP:
+165380 23772 699 0.329056
+23772 10103 979 0.455948
+Length of MPSP : 1678
+Probability of MPSP : 0.150033
+Probability of being MPSP : 0.150033
+Candidate Generation Time : 0.007794 seconds
+Probability Computation Time : 0.000001 seconds
+
+337465	0
+Nr of candidates : 12
+MPSP:
+337465 4 707 0.839255
+4 1 10 0.618808
+1 0 758 0.634208
+Length of MPSP : 1475
+Probability of MPSP : 0.321863
+Probability of being MPSP : 0.321863
+Candidate Generation Time : 0.162875 seconds
+Probability Computation Time : 0.002941 seconds
+
+170568	4423
+Nr of candidates : 1
+MPSP:
+170568 65577 971 0.546342
+65577 4423 299 0.796813
+Length of MPSP : 1270
+Probability of MPSP : 0.435333
+Probability of being MPSP : 0.435333
+Candidate Generation Time : 0.007823 seconds
+Probability Computation Time : 0.000001 seconds
+
+310295	569
+Nr of candidates : 1
+MPSP:
+310295 51717 332 0.374578
+51717 569 541 0.966681
+Length of MPSP : 873
+Probability of MPSP : 0.362097
+Probability of being MPSP : 0.362097
+Candidate Generation Time : 0.007842 seconds
+Probability Computation Time : 0.000001 seconds
+
+344813	22
+Nr of candidates : 1
+MPSP:
+344813 310 827 0.226006
+310 22 564 0.914524
+Length of MPSP : 1391
+Probability of MPSP : 0.206688
+Probability of being MPSP : 0.206688
+Candidate Generation Time : 0.007805 seconds
+Probability Computation Time : 0.000001 seconds
+
+156353	4341
+Nr of candidates : 1
+MPSP:
+156353 31835 415 0.750449
+31835 4341 314 0.454294
+Length of MPSP : 729
+Probability of MPSP : 0.340924
+Probability of being MPSP : 0.340924
+Candidate Generation Time : 0.007822 seconds
+Probability Computation Time : 0.000001 seconds
+
+463973	6526
+Nr of candidates : 1
+MPSP:
+463973 181117 858 0.109982
+181117 6526 237 0.691152
+Length of MPSP : 1095
+Probability of MPSP : 0.076014
+Probability of being MPSP : 0.076014
+Candidate Generation Time : 0.007756 seconds
+Probability Computation Time : 0.000001 seconds
+
+207488	9337
+Nr of candidates : 1
+MPSP:
+207488 202870 809 0.537021
+202870 9337 188 0.117037
+Length of MPSP : 997
+Probability of MPSP : 0.062851
+Probability of being MPSP : 0.062851
+Candidate Generation Time : 0.007859 seconds
+Probability Computation Time : 0.000000 seconds
+
+51043	3956
+Nr of candidates : 1
+MPSP:
+51043 16703 855 0.185636
+16703 3956 393 0.050454
+Length of MPSP : 1248
+Probability of MPSP : 0.009366
+Probability of being MPSP : 0.009366
+Candidate Generation Time : 0.007855 seconds
+Probability Computation Time : 0.000001 seconds
+
+414884	483
+Nr of candidates : 1
+MPSP:
+414884 3850 346 0.640361
+3850 483 641 0.845977
+Length of MPSP : 987
+Probability of MPSP : 0.541731
+Probability of being MPSP : 0.541731
+Candidate Generation Time : 0.007858 seconds
+Probability Computation Time : 0.000001 seconds
+
+229665	2975
+Nr of candidates : 1
+MPSP:
+229665 128791 601 0.620410
+128791 2975 994 0.014870
+Length of MPSP : 1595
+Probability of MPSP : 0.009225
+Probability of being MPSP : 0.009225
+Candidate Generation Time : 0.007868 seconds
+Probability Computation Time : 0.000001 seconds
+
+Average Length of MPSP for 2 hops : 1091
+Average Probability of being MPSP for 2 hops : 0.251474
+Average Candidate Generation Time for 2 hops : 0.064347 seconds
+Average Probability Computation Time for 2 hops : 0.002207 seconds
+Average Total Time for 2 hops : 0.066553 seconds
+Number of candidate generation timeouts : 0
+
+
+Number of hops = 4
+
+143667	9
+Nr of candidates : 1
+MPSP:
+143667 407 180 0.569155
+407 59 869 0.124983
+59 33 502 0.226084
+33 9 542 0.301297
+Length of MPSP : 2093
+Probability of MPSP : 0.004846
+Probability of being MPSP : 0.004846
+Candidate Generation Time : 0.013048 seconds
+Probability Computation Time : 0.000001 seconds
+
+298801	9
+Nr of candidates : 1
+MPSP:
+298801 74 660 0.456916
+74 59 213 0.342890
+59 33 502 0.226084
+33 9 542 0.301297
+Length of MPSP : 1917
+Probability of MPSP : 0.010672
+Probability of being MPSP : 0.010672
+Candidate Generation Time : 0.012963 seconds
+Probability Computation Time : 0.000001 seconds
+
+18604	0
+Nr of candidates : 68
+MPSP:
+18604 2789 619 0.798627
+2789 61 474 0.363044
+61 28 644 0.598582
+28 0 978 0.691784
+Length of MPSP : 2715
+Probability of MPSP : 0.081068
+Probability of being MPSP : 0.081068
+Candidate Generation Time : 1.572316 seconds
+Probability Computation Time : 0.081403 seconds
+
+299730	1147
+Nr of candidates : 1
+MPSP:
+299730 278990 796 0.192166
+278990 156065 558 0.523505
+156065 144437 808 0.609331
+144437 1147 311 0.909590
+Length of MPSP : 2473
+Probability of MPSP : 0.055756
+Probability of being MPSP : 0.055756
+Candidate Generation Time : 0.013010 seconds
+Probability Computation Time : 0.000002 seconds
+
+470665	4
+Nr of candidates : 5
+MPSP:
+470665 6363 354 0.559055
+6363 224 310 0.365156
+224 210 619 0.911654
+210 4 374 0.383867
+Length of MPSP : 1657
+Probability of MPSP : 0.071440
+Probability of being MPSP : 0.071440
+Candidate Generation Time : 0.075753 seconds
+Probability Computation Time : 0.000687 seconds
+
+165384	71
+Nr of candidates : 1
+MPSP:
+165384 12994 5 0.489359
+12994 4323 92 0.033746
+4323 2096 448 0.250250
+2096 71 166 0.146480
+Length of MPSP : 711
+Probability of MPSP : 0.000605
+Probability of being MPSP : 0.000605
+Candidate Generation Time : 0.012976 seconds
+Probability Computation Time : 0.000001 seconds
+
+35966	50
+Nr of candidates : 1
+MPSP:
+35966 707 163 0.593806
+707 625 554 0.178794
+625 171 31 0.359973
+171 50 368 0.581779
+Length of MPSP : 1116
+Probability of MPSP : 0.022234
+Probability of being MPSP : 0.022234
+Candidate Generation Time : 0.013009 seconds
+Probability Computation Time : 0.000001 seconds
+
+214358	597
+Nr of candidates : 1
+MPSP:
+214358 8525 280 0.858628
+8525 877 416 0.003913
+877 814 799 0.316106
+814 597 3 0.089846
+Length of MPSP : 1498
+Probability of MPSP : 0.000095
+Probability of being MPSP : 0.000095
+Candidate Generation Time : 0.013040 seconds
+Probability Computation Time : 0.000001 seconds
+
+478622	15617
+Nr of candidates : 1
+MPSP:
+478622 350167 710 0.547488
+350167 89592 786 0.454048
+89592 41681 718 0.442282
+41681 15617 509 0.421781
+Length of MPSP : 2723
+Probability of MPSP : 0.046373
+Probability of being MPSP : 0.046373
+Candidate Generation Time : 0.013115 seconds
+Probability Computation Time : 0.000001 seconds
+
+269190	146
+Nr of candidates : 1
+MPSP:
+269190 120978 794 0.865060
+120978 251 744 0.548257
+251 187 320 0.320889
+187 146 385 0.216154
+Length of MPSP : 2243
+Probability of MPSP : 0.032896
+Probability of being MPSP : 0.032896
+Candidate Generation Time : 0.012849 seconds
+Probability Computation Time : 0.000001 seconds
+
+173688	38
+Nr of candidates : 1
+MPSP:
+173688 35302 82 0.638343
+35302 1357 494 0.774234
+1357 81 21 0.082672
+81 38 148 0.979793
+Length of MPSP : 745
+Probability of MPSP : 0.040033
+Probability of being MPSP : 0.040033
+Candidate Generation Time : 0.013008 seconds
+Probability Computation Time : 0.000001 seconds
+
+207211	1878
+Nr of candidates : 1
+MPSP:
+207211 181863 548 0.034657
+181863 53885 292 0.643749
+53885 36978 549 0.643265
+36978 1878 122 0.905714
+Length of MPSP : 1511
+Probability of MPSP : 0.012998
+Probability of being MPSP : 0.012998
+Candidate Generation Time : 0.012999 seconds
+Probability Computation Time : 0.000001 seconds
+
+96986	2
+Nr of candidates : 13
+MPSP:
+96986 218 337 0.684305
+218 47 23 0.471276
+47 9 133 0.397433
+9 2 781 0.157618
+Length of MPSP : 1274
+Probability of MPSP : 0.020202
+Probability of being MPSP : 0.020202
+Candidate Generation Time : 0.391546 seconds
+Probability Computation Time : 0.004238 seconds
+
+14916	567
+Nr of candidates : 1
+MPSP:
+14916 13590 889 0.397176
+13590 10267 188 0.082143
+10267 1259 678 0.878814
+1259 567 116 0.907807
+Length of MPSP : 1871
+Probability of MPSP : 0.026028
+Probability of being MPSP : 0.026028
+Candidate Generation Time : 0.012987 seconds
+Probability Computation Time : 0.000002 seconds
+
+417928	10354
+Nr of candidates : 1
+MPSP:
+417928 123559 638 0.213480
+123559 40166 433 0.754106
+40166 18564 151 0.460406
+18564 10354 995 0.123014
+Length of MPSP : 2217
+Probability of MPSP : 0.009118
+Probability of being MPSP : 0.009118
+Candidate Generation Time : 0.012790 seconds
+Probability Computation Time : 0.000001 seconds
+
+456847	1705
+Nr of candidates : 1
+MPSP:
+456847 283009 81 0.414274
+283009 186177 701 0.917394
+186177 31037 328 0.812694
+31037 1705 340 0.337755
+Length of MPSP : 1450
+Probability of MPSP : 0.104321
+Probability of being MPSP : 0.104321
+Candidate Generation Time : 0.013104 seconds
+Probability Computation Time : 0.000001 seconds
+
+308329	261
+Nr of candidates : 1
+MPSP:
+308329 1460 202 0.872901
+1460 1018 753 0.564341
+1018 473 867 0.639912
+473 261 511 0.209520
+Length of MPSP : 2333
+Probability of MPSP : 0.066047
+Probability of being MPSP : 0.066047
+Candidate Generation Time : 0.013030 seconds
+Probability Computation Time : 0.000001 seconds
+
+416438	24
+Nr of candidates : 2
+MPSP:
+416438 304476 749 0.580166
+304476 1884 598 0.617830
+1884 77 930 0.691128
+77 24 785 0.511056
+Length of MPSP : 3062
+Probability of MPSP : 0.124301
+Probability of being MPSP : 0.124301
+Candidate Generation Time : 0.028552 seconds
+Probability Computation Time : 0.000151 seconds
+
+187526	1
+Nr of candidates : 89
+MPSP:
+187526 8060 35 0.412010
+8060 323 529 0.487956
+323 4 834 0.601978
+4 1 10 0.618808
+Length of MPSP : 1408
+Probability of MPSP : 0.066091
+Probability of being MPSP : 0.066091
+Candidate Generation Time : 2.121829 seconds
+Probability Computation Time : 0.149715 seconds
+
+224739	18431
+Nr of candidates : 1
+MPSP:
+224739 171245 903 0.039208
+171245 33993 720 0.001662
+33993 19838 905 0.599567
+19838 18431 946 0.720873
+Length of MPSP : 3474
+Probability of MPSP : 0.000028
+Probability of being MPSP : 0.000028
+Candidate Generation Time : 0.012959 seconds
+Probability Computation Time : 0.000002 seconds
+
+407952	430
+Nr of candidates : 1
+MPSP:
+407952 187106 140 0.102287
+187106 8864 381 0.823700
+8864 4241 32 0.896756
+4241 430 692 0.561591
+Length of MPSP : 1245
+Probability of MPSP : 0.042431
+Probability of being MPSP : 0.042431
+Candidate Generation Time : 0.013003 seconds
+Probability Computation Time : 0.000002 seconds
+
+265543	27
+Nr of candidates : 3
+MPSP:
+265543 35133 109 0.491805
+35133 173 148 0.296022
+173 111 918 0.726822
+111 27 738 0.229758
+Length of MPSP : 1913
+Probability of MPSP : 0.024312
+Probability of being MPSP : 0.024312
+Candidate Generation Time : 0.054618 seconds
+Probability Computation Time : 0.000203 seconds
+
+472542	361
+Nr of candidates : 2
+MPSP:
+472542 59962 470 0.116822
+59962 39804 27 0.499216
+39804 6712 128 0.065444
+6712 361 146 0.394488
+Length of MPSP : 771
+Probability of MPSP : 0.001506
+Probability of being MPSP : 0.001506
+Candidate Generation Time : 0.025885 seconds
+Probability Computation Time : 0.000070 seconds
+
+328845	1756
+Nr of candidates : 1
+MPSP:
+328845 249702 64 0.052884
+249702 86048 251 0.336287
+86048 8572 980 0.754687
+8572 1756 85 0.836979
+Length of MPSP : 1380
+Probability of MPSP : 0.011233
+Probability of being MPSP : 0.011233
+Candidate Generation Time : 0.012673 seconds
+Probability Computation Time : 0.000002 seconds
+
+46533	15
+Nr of candidates : 1
+MPSP:
+46533 736 826 0.297175
+736 217 184 0.169918
+217 45 736 0.264671
+45 15 819 0.025516
+Length of MPSP : 2565
+Probability of MPSP : 0.000341
+Probability of being MPSP : 0.000341
+Candidate Generation Time : 0.012973 seconds
+Probability Computation Time : 0.000001 seconds
+
+248620	74
+Nr of candidates : 3
+MPSP:
+248620 52117 186 0.775692
+52117 311 846 0.888829
+311 249 901 0.545881
+249 74 633 0.507659
+Length of MPSP : 2566
+Probability of MPSP : 0.172030
+Probability of being MPSP : 0.172030
+Candidate Generation Time : 0.038959 seconds
+Probability Computation Time : 0.000406 seconds
+
+16813	9
+Nr of candidates : 1
+MPSP:
+16813 290 868 0.699004
+290 45 302 0.615571
+45 15 819 0.025516
+15 9 409 0.423637
+Length of MPSP : 2398
+Probability of MPSP : 0.004651
+Probability of being MPSP : 0.004651
+Candidate Generation Time : 0.013174 seconds
+Probability Computation Time : 0.000001 seconds
+
+65924	0
+Nr of candidates : 66
+MPSP:
+65924 1131 366 0.197202
+1131 84 217 0.989291
+84 1 918 0.358502
+1 0 758 0.634208
+Length of MPSP : 2259
+Probability of MPSP : 0.042679
+Probability of being MPSP : 0.042679
+Candidate Generation Time : 1.345217 seconds
+Probability Computation Time : 0.089663 seconds
+
+168141	257
+Nr of candidates : 1
+MPSP:
+168141 12781 141 0.556334
+12781 11009 529 0.477454
+11009 5885 167 0.539062
+5885 257 773 0.421063
+Length of MPSP : 1610
+Probability of MPSP : 0.060291
+Probability of being MPSP : 0.060291
+Candidate Generation Time : 0.013050 seconds
+Probability Computation Time : 0.000002 seconds
+
+125039	3
+Nr of candidates : 1
+MPSP:
+125039 3754 846 0.755652
+3754 503 808 0.497919
+503 7 33 0.198911
+7 3 458 0.729111
+Length of MPSP : 2145
+Probability of MPSP : 0.054568
+Probability of being MPSP : 0.054568
+Candidate Generation Time : 0.013021 seconds
+Probability Computation Time : 0.000001 seconds
+
+360360	0
+Nr of candidates : 285
+MPSP:
+360360 68859 123 0.920655
+68859 6548 515 0.910837
+6548 4936 142 0.827429
+4936 66 570 0.965376
+66 1 94 0.806844
+1 0 758 0.634208
+Length of MPSP : 2202
+Probability of MPSP : 0.272472
+Probability of being MPSP : 0.272472
+Candidate Generation Time : 8.015831 seconds
+Probability Computation Time : 0.513973 seconds
+
+61749	2
+Nr of candidates : 4
+MPSP:
+61749 19271 516 0.536167
+19271 323 407 0.914264
+323 29 475 0.177071
+29 2 707 0.651586
+Length of MPSP : 2105
+Probability of MPSP : 0.056558
+Probability of being MPSP : 0.056558
+Candidate Generation Time : 0.066395 seconds
+Probability Computation Time : 0.000494 seconds
+
+133418	851
+Nr of candidates : 1
+MPSP:
+133418 120148 713 0.590985
+120148 108718 58 0.115337
+108718 3276 437 0.160967
+3276 851 698 0.317670
+Length of MPSP : 1906
+Probability of MPSP : 0.003485
+Probability of being MPSP : 0.003485
+Candidate Generation Time : 0.013034 seconds
+Probability Computation Time : 0.000001 seconds
+
+468167	2855
+Nr of candidates : 1
+MPSP:
+468167 6787 8 0.608168
+6787 4725 480 0.044059
+4725 3270 581 0.147739
+3270 2855 465 0.454332
+Length of MPSP : 1534
+Probability of MPSP : 0.001799
+Probability of being MPSP : 0.001799
+Candidate Generation Time : 0.013053 seconds
+Probability Computation Time : 0.000001 seconds
+
+31529	4
+Nr of candidates : 7
+MPSP:
+31529 1660 733 0.464455
+1660 115 138 0.127330
+115 37 15 0.815982
+37 4 157 0.840760
+Length of MPSP : 1043
+Probability of MPSP : 0.040572
+Probability of being MPSP : 0.040572
+Candidate Generation Time : 0.108617 seconds
+Probability Computation Time : 0.001176 seconds
+
+166930	232
+Nr of candidates : 1
+MPSP:
+166930 145362 316 0.729230
+145362 65864 385 0.528579
+65864 1867 971 0.332483
+1867 232 546 0.149984
+Length of MPSP : 2218
+Probability of MPSP : 0.019222
+Probability of being MPSP : 0.019222
+Candidate Generation Time : 0.013043 seconds
+Probability Computation Time : 0.000001 seconds
+
+88071	54
+Nr of candidates : 1
+MPSP:
+88071 66702 42 0.350686
+66702 294 840 0.603681
+294 90 949 0.969309
+90 54 485 0.803896
+Length of MPSP : 2316
+Probability of MPSP : 0.164964
+Probability of being MPSP : 0.164964
+Candidate Generation Time : 0.013113 seconds
+Probability Computation Time : 0.000001 seconds
+
+365112	0
+Nr of candidates : 204
+MPSP:
+365112 9656 736 0.903400
+9656 6013 686 0.440289
+6013 36 278 0.627884
+36 1 115 0.853295
+1 0 758 0.634208
+Length of MPSP : 2573
+Probability of MPSP : 0.118577
+Probability of being MPSP : 0.118577
+Candidate Generation Time : 5.442260 seconds
+Probability Computation Time : 0.512437 seconds
+
+468057	214
+Nr of candidates : 1
+MPSP:
+468057 110034 967 0.843808
+110034 78260 832 0.458731
+78260 7879 992 0.047715
+7879 214 719 0.510702
+Length of MPSP : 3510
+Probability of MPSP : 0.009432
+Probability of being MPSP : 0.009432
+Candidate Generation Time : 0.013016 seconds
+Probability Computation Time : 0.000001 seconds
+
+290437	29
+Nr of candidates : 1
+MPSP:
+290437 285 996 0.576528
+285 69 112 0.706553
+69 50 608 0.351622
+50 29 184 0.959484
+Length of MPSP : 1900
+Probability of MPSP : 0.137429
+Probability of being MPSP : 0.137429
+Candidate Generation Time : 0.013144 seconds
+Probability Computation Time : 0.000001 seconds
+
+420796	36
+Nr of candidates : 1
+MPSP:
+420796 40670 339 0.825886
+40670 3197 924 0.750996
+3197 86 266 0.768141
+86 36 379 0.104273
+Length of MPSP : 1908
+Probability of MPSP : 0.049679
+Probability of being MPSP : 0.049679
+Candidate Generation Time : 0.013100 seconds
+Probability Computation Time : 0.000001 seconds
+
+27789	2
+Nr of candidates : 2
+MPSP:
+27789 192 197 0.754253
+192 12 592 0.623337
+12 9 52 0.726295
+9 2 781 0.157618
+Length of MPSP : 1622
+Probability of MPSP : 0.053822
+Probability of being MPSP : 0.053822
+Candidate Generation Time : 0.028864 seconds
+Probability Computation Time : 0.000106 seconds
+
+130549	200
+Nr of candidates : 1
+MPSP:
+130549 8415 544 0.801819
+8415 504 575 0.676039
+504 219 787 0.467365
+219 200 254 0.237123
+Length of MPSP : 2160
+Probability of MPSP : 0.060073
+Probability of being MPSP : 0.060073
+Candidate Generation Time : 0.012944 seconds
+Probability Computation Time : 0.000002 seconds
+
+427738	40
+Nr of candidates : 1
+MPSP:
+427738 1449 479 0.341644
+1449 1388 553 0.915098
+1388 135 949 0.461835
+135 40 854 0.537977
+Length of MPSP : 2835
+Probability of MPSP : 0.077677
+Probability of being MPSP : 0.077677
+Candidate Generation Time : 0.013117 seconds
+Probability Computation Time : 0.000001 seconds
+
+248233	432
+Nr of candidates : 1
+MPSP:
+248233 32873 675 0.832871
+32873 2322 583 0.718297
+2322 1206 94 0.843227
+1206 432 696 0.849054
+Length of MPSP : 2048
+Probability of MPSP : 0.428314
+Probability of being MPSP : 0.428314
+Candidate Generation Time : 0.013077 seconds
+Probability Computation Time : 0.000002 seconds
+
+323214	1704
+Nr of candidates : 1
+MPSP:
+323214 234903 548 0.082327
+234903 97190 875 0.016191
+97190 3948 395 0.275249
+3948 1704 496 0.138438
+Length of MPSP : 2314
+Probability of MPSP : 0.000051
+Probability of being MPSP : 0.000051
+Candidate Generation Time : 0.013027 seconds
+Probability Computation Time : 0.000001 seconds
+
+16112	6
+Nr of candidates : 2
+MPSP:
+16112 4244 448 0.929721
+4244 310 774 0.785400
+310 22 564 0.914524
+22 6 697 0.095533
+Length of MPSP : 2483
+Probability of MPSP : 0.062191
+Probability of being MPSP : 0.062191
+Candidate Generation Time : 0.025957 seconds
+Probability Computation Time : 0.000142 seconds
+
+487767	30
+Nr of candidates : 2
+MPSP:
+487767 297417 669 0.220770
+297417 28300 251 0.115174
+28300 101 447 0.237359
+101 37 598 0.977659
+37 30 849 0.049946
+Length of MPSP : 2814
+Probability of MPSP : 0.000294
+Probability of being MPSP : 0.000294
+Candidate Generation Time : 0.026119 seconds
+Probability Computation Time : 0.000107 seconds
+
+120577	375
+Nr of candidates : 1
+MPSP:
+120577 62366 42 0.805105
+62366 33035 544 0.136242
+33035 2464 592 0.805073
+2464 375 612 0.969524
+Length of MPSP : 1790
+Probability of MPSP : 0.085617
+Probability of being MPSP : 0.085617
+Candidate Generation Time : 0.013025 seconds
+Probability Computation Time : 0.000001 seconds
+
+412949	3312
+Nr of candidates : 1
+MPSP:
+412949 114465 881 0.096013
+114465 28848 668 0.365381
+28848 8859 547 0.169097
+8859 3312 368 0.108249
+Length of MPSP : 2464
+Probability of MPSP : 0.000642
+Probability of being MPSP : 0.000642
+Candidate Generation Time : 0.012974 seconds
+Probability Computation Time : 0.000001 seconds
+
+136855	4
+Nr of candidates : 2
+MPSP:
+136855 2088 420 0.528197
+2088 19 454 0.858558
+19 10 923 0.497374
+10 4 314 0.770590
+Length of MPSP : 2111
+Probability of MPSP : 0.173809
+Probability of being MPSP : 0.173809
+Candidate Generation Time : 0.026336 seconds
+Probability Computation Time : 0.000106 seconds
+
+357839	29
+Nr of candidates : 1
+MPSP:
+357839 2561 79 0.076430
+2561 256 812 0.270708
+256 196 152 0.119283
+196 29 529 0.208275
+Length of MPSP : 1572
+Probability of MPSP : 0.000514
+Probability of being MPSP : 0.000514
+Candidate Generation Time : 0.012994 seconds
+Probability Computation Time : 0.000001 seconds
+
+248645	15
+Nr of candidates : 3
+MPSP:
+248645 1113 248 0.300957
+1113 28 316 0.869758
+28 21 825 0.036095
+21 15 366 0.840278
+Length of MPSP : 1755
+Probability of MPSP : 0.007901
+Probability of being MPSP : 0.007901
+Candidate Generation Time : 0.039294 seconds
+Probability Computation Time : 0.000236 seconds
+
+232154	4
+Nr of candidates : 35
+MPSP:
+232154 155659 467 0.896930
+155659 2358 969 0.802044
+2358 173 634 0.643177
+173 4 250 0.345305
+Length of MPSP : 2320
+Probability of MPSP : 0.159768
+Probability of being MPSP : 0.159768
+Candidate Generation Time : 0.892105 seconds
+Probability Computation Time : 0.023892 seconds
+
+268672	36
+Nr of candidates : 4
+MPSP:
+268672 190670 658 0.347494
+190670 135 574 0.702440
+135 40 854 0.537977
+40 36 45 0.438929
+Length of MPSP : 2131
+Probability of MPSP : 0.057639
+Probability of being MPSP : 0.057639
+Candidate Generation Time : 0.096569 seconds
+Probability Computation Time : 0.000367 seconds
+
+210057	384
+Nr of candidates : 1
+MPSP:
+210057 10649 922 0.367540
+10649 5990 773 0.274328
+5990 1618 606 0.885094
+1618 384 783 0.730125
+Length of MPSP : 3084
+Probability of MPSP : 0.065157
+Probability of being MPSP : 0.065157
+Candidate Generation Time : 0.013062 seconds
+Probability Computation Time : 0.000002 seconds
+
+427551	264
+Nr of candidates : 1
+MPSP:
+427551 1354 795 0.827814
+1354 979 737 0.036657
+979 550 6 0.410505
+550 264 921 0.451409
+Length of MPSP : 2459
+Probability of MPSP : 0.005623
+Probability of being MPSP : 0.005623
+Candidate Generation Time : 0.013015 seconds
+Probability Computation Time : 0.000001 seconds
+
+145897	34
+Nr of candidates : 1
+MPSP:
+145897 39350 732 0.898642
+39350 2334 345 0.756382
+2334 36 595 0.729480
+36 34 929 0.953109
+Length of MPSP : 2601
+Probability of MPSP : 0.472589
+Probability of being MPSP : 0.472589
+Candidate Generation Time : 0.013016 seconds
+Probability Computation Time : 0.000001 seconds
+
+5965	89
+Nr of candidates : 1
+MPSP:
+5965 1824 977 0.670839
+1824 829 426 0.378196
+829 463 428 0.195070
+463 89 660 0.289387
+Length of MPSP : 2491
+Probability of MPSP : 0.014322
+Probability of being MPSP : 0.014322
+Candidate Generation Time : 0.012969 seconds
+Probability Computation Time : 0.000001 seconds
+
+227378	4
+Nr of candidates : 37
+MPSP:
+227378 97889 606 0.985030
+97889 1332 316 0.738244
+1332 791 455 0.549841
+791 202 186 0.770214
+202 4 798 0.369481
+Length of MPSP : 2361
+Probability of MPSP : 0.113719
+Probability of being MPSP : 0.113719
+Candidate Generation Time : 0.955156 seconds
+Probability Computation Time : 0.040099 seconds
+
+316986	6
+Nr of candidates : 1
+MPSP:
+316986 116856 357 0.140585
+116856 1027 968 0.853747
+1027 8 245 0.032893
+8 6 104 0.636961
+Length of MPSP : 1674
+Probability of MPSP : 0.002515
+Probability of being MPSP : 0.002515
+Candidate Generation Time : 0.013061 seconds
+Probability Computation Time : 0.000001 seconds
+
+68735	2442
+Nr of candidates : 1
+MPSP:
+68735 17150 796 0.928693
+17150 16028 491 0.123568
+16028 13444 417 0.924073
+13444 2442 941 0.502633
+Length of MPSP : 2645
+Probability of MPSP : 0.053301
+Probability of being MPSP : 0.053301
+Candidate Generation Time : 0.012992 seconds
+Probability Computation Time : 0.000001 seconds
+
+289504	1
+Nr of candidates : 93
+MPSP:
+289504 237617 482 0.360772
+237617 44 902 0.906341
+44 3 894 0.624189
+3 1 254 0.864238
+Length of MPSP : 2532
+Probability of MPSP : 0.140765
+Probability of being MPSP : 0.140765
+Candidate Generation Time : 2.366596 seconds
+Probability Computation Time : 0.147243 seconds
+
+337995	618
+Nr of candidates : 1
+MPSP:
+337995 22716 189 0.217058
+22716 11261 408 0.172237
+11261 6793 476 0.356781
+6793 618 63 0.011412
+Length of MPSP : 1136
+Probability of MPSP : 0.000152
+Probability of being MPSP : 0.000152
+Candidate Generation Time : 0.012678 seconds
+Probability Computation Time : 0.000001 seconds
+
+449670	286
+Nr of candidates : 1
+MPSP:
+449670 78270 772 0.221716
+78270 17996 97 0.306609
+17996 1170 280 0.013645
+1170 286 945 0.775606
+Length of MPSP : 2094
+Probability of MPSP : 0.000719
+Probability of being MPSP : 0.000719
+Candidate Generation Time : 0.013044 seconds
+Probability Computation Time : 0.000002 seconds
+
+50712	44
+Nr of candidates : 1
+MPSP:
+50712 10547 563 0.162317
+10547 1069 646 0.738125
+1069 196 524 0.334226
+196 44 712 0.269762
+Length of MPSP : 2445
+Probability of MPSP : 0.010802
+Probability of being MPSP : 0.010802
+Candidate Generation Time : 0.013008 seconds
+Probability Computation Time : 0.000001 seconds
+
+198798	215
+Nr of candidates : 1
+MPSP:
+198798 93921 368 0.283035
+93921 28809 165 0.585122
+28809 2816 80 0.584887
+2816 215 812 0.131878
+Length of MPSP : 1425
+Probability of MPSP : 0.012774
+Probability of being MPSP : 0.012774
+Candidate Generation Time : 0.013054 seconds
+Probability Computation Time : 0.000001 seconds
+
+200092	7993
+Nr of candidates : 1
+MPSP:
+200092 152198 156 0.977217
+152198 8804 623 0.559988
+8804 8275 739 0.497981
+8275 7993 118 0.183758
+Length of MPSP : 1636
+Probability of MPSP : 0.050076
+Probability of being MPSP : 0.050076
+Candidate Generation Time : 0.013053 seconds
+Probability Computation Time : 0.000001 seconds
+
+396596	80
+Nr of candidates : 1
+MPSP:
+396596 540 234 0.620709
+540 242 367 0.301623
+242 98 732 0.206849
+98 80 354 0.033653
+Length of MPSP : 1687
+Probability of MPSP : 0.001303
+Probability of being MPSP : 0.001303
+Candidate Generation Time : 0.013067 seconds
+Probability Computation Time : 0.000001 seconds
+
+460851	41
+Nr of candidates : 1
+MPSP:
+460851 3735 6 0.949903
+3735 907 531 0.106987
+907 231 856 0.097377
+231 41 83 0.160749
+Length of MPSP : 1476
+Probability of MPSP : 0.001591
+Probability of being MPSP : 0.001591
+Candidate Generation Time : 0.012733 seconds
+Probability Computation Time : 0.000001 seconds
+
+247816	109
+Nr of candidates : 1
+MPSP:
+247816 224224 866 0.826078
+224224 9442 140 0.560457
+9442 313 141 0.416039
+313 109 91 0.001848
+Length of MPSP : 1238
+Probability of MPSP : 0.000356
+Probability of being MPSP : 0.000356
+Candidate Generation Time : 0.013150 seconds
+Probability Computation Time : 0.000002 seconds
+
+459524	15
+Nr of candidates : 4
+MPSP:
+459524 36 561 0.592667
+36 34 929 0.953109
+34 21 996 0.438540
+21 15 366 0.840278
+Length of MPSP : 2852
+Probability of MPSP : 0.207834
+Probability of being MPSP : 0.207834
+Candidate Generation Time : 0.076406 seconds
+Probability Computation Time : 0.000508 seconds
+
+14224	1
+Nr of candidates : 17
+MPSP:
+14224 2068 320 0.245778
+2068 10 170 0.278747
+10 4 314 0.770590
+4 1 10 0.618808
+Length of MPSP : 814
+Probability of MPSP : 0.032669
+Probability of being MPSP : 0.032669
+Candidate Generation Time : 0.301860 seconds
+Probability Computation Time : 0.006820 seconds
+
+231785	29
+Nr of candidates : 1
+MPSP:
+231785 6435 291 0.313879
+6435 637 999 0.850895
+637 445 514 0.041415
+445 29 380 0.692730
+Length of MPSP : 2184
+Probability of MPSP : 0.007662
+Probability of being MPSP : 0.007662
+Candidate Generation Time : 0.013021 seconds
+Probability Computation Time : 0.000001 seconds
+
+429582	111
+Nr of candidates : 1
+MPSP:
+429582 129814 451 0.576873
+129814 3443 813 0.547613
+3443 1381 548 0.876334
+1381 111 982 0.302846
+Length of MPSP : 2794
+Probability of MPSP : 0.083839
+Probability of being MPSP : 0.083839
+Candidate Generation Time : 0.012956 seconds
+Probability Computation Time : 0.000001 seconds
+
+269753	47
+Nr of candidates : 1
+MPSP:
+269753 20802 698 0.655333
+20802 4801 142 0.042395
+4801 938 258 0.868429
+938 47 368 0.258980
+Length of MPSP : 1466
+Probability of MPSP : 0.006249
+Probability of being MPSP : 0.006249
+Candidate Generation Time : 0.013066 seconds
+Probability Computation Time : 0.000001 seconds
+
+212602	364
+Nr of candidates : 1
+MPSP:
+212602 155477 415 0.341552
+155477 6927 937 0.216547
+6927 5616 966 0.746720
+5616 364 287 0.534568
+Length of MPSP : 2605
+Probability of MPSP : 0.029524
+Probability of being MPSP : 0.029524
+Candidate Generation Time : 0.013025 seconds
+Probability Computation Time : 0.000002 seconds
+
+280868	29
+Nr of candidates : 3
+MPSP:
+280868 34551 904 0.107868
+34551 4593 138 0.320229
+4593 50 905 0.469341
+50 29 184 0.959484
+Length of MPSP : 2131
+Probability of MPSP : 0.015555
+Probability of being MPSP : 0.015555
+Candidate Generation Time : 0.038949 seconds
+Probability Computation Time : 0.000339 seconds
+
+108899	10
+Nr of candidates : 1
+MPSP:
+108899 37 699 0.800106
+37 30 849 0.049946
+30 19 125 0.354617
+19 10 923 0.497374
+Length of MPSP : 2596
+Probability of MPSP : 0.007048
+Probability of being MPSP : 0.007048
+Candidate Generation Time : 0.013131 seconds
+Probability Computation Time : 0.000001 seconds
+
+443775	1591
+Nr of candidates : 1
+MPSP:
+443775 113051 320 0.409036
+113051 30034 560 0.652848
+30034 8004 973 0.356923
+8004 1591 859 0.508265
+Length of MPSP : 2712
+Probability of MPSP : 0.048444
+Probability of being MPSP : 0.048444
+Candidate Generation Time : 0.013034 seconds
+Probability Computation Time : 0.000001 seconds
+
+450422	449
+Nr of candidates : 1
+MPSP:
+450422 149975 607 0.322396
+149975 76483 955 0.607279
+76483 5036 159 0.857227
+5036 449 245 0.048498
+Length of MPSP : 1966
+Probability of MPSP : 0.008140
+Probability of being MPSP : 0.008140
+Candidate Generation Time : 0.012938 seconds
+Probability Computation Time : 0.000001 seconds
+
+18189	3
+Nr of candidates : 1
+MPSP:
+18189 5738 383 0.773422
+5738 769 949 0.002306
+769 372 202 0.279718
+372 3 712 0.064315
+Length of MPSP : 2246
+Probability of MPSP : 0.000032
+Probability of being MPSP : 0.000032
+Candidate Generation Time : 0.012785 seconds
+Probability Computation Time : 0.000001 seconds
+
+443953	29
+Nr of candidates : 4
+MPSP:
+443953 219348 187 0.996768
+219348 125173 743 0.352840
+125173 25583 7 0.391251
+25583 18045 391 0.767548
+18045 8922 883 0.515092
+8922 269 216 0.444280
+269 101 979 0.285610
+101 48 56 0.675101
+48 29 634 0.835239
+Length of MPSP : 4096
+Probability of MPSP : 0.003879
+Probability of being MPSP : 0.003879
+Candidate Generation Time : 0.076017 seconds
+Probability Computation Time : 0.000492 seconds
+
+95903	5
+Nr of candidates : 1
+MPSP:
+95903 3710 929 0.828705
+3710 1145 33 0.668402
+1145 885 582 0.203785
+885 5 76 0.264782
+Length of MPSP : 1620
+Probability of MPSP : 0.029888
+Probability of being MPSP : 0.029888
+Candidate Generation Time : 0.012813 seconds
+Probability Computation Time : 0.000001 seconds
+
+373281	15
+Nr of candidates : 2
+MPSP:
+373281 4364 701 0.694709
+4364 917 481 0.539036
+917 21 390 0.873996
+21 15 366 0.840278
+Length of MPSP : 1938
+Probability of MPSP : 0.275013
+Probability of being MPSP : 0.275013
+Candidate Generation Time : 0.028665 seconds
+Probability Computation Time : 0.000069 seconds
+
+133350	8611
+Nr of candidates : 1
+MPSP:
+133350 83590 474 0.755237
+83590 39201 653 0.880709
+39201 24918 618 0.989076
+24918 8611 480 0.990717
+Length of MPSP : 2225
+Probability of MPSP : 0.651772
+Probability of being MPSP : 0.651772
+Candidate Generation Time : 0.013093 seconds
+Probability Computation Time : 0.000001 seconds
+
+413132	4
+Nr of candidates : 15
+MPSP:
+413132 12936 195 0.322648
+12936 256 285 0.702594
+256 10 693 0.361428
+10 4 314 0.770590
+Length of MPSP : 1487
+Probability of MPSP : 0.063136
+Probability of being MPSP : 0.063136
+Candidate Generation Time : 0.349018 seconds
+Probability Computation Time : 0.003526 seconds
+
+262257	1104
+Nr of candidates : 1
+MPSP:
+262257 249501 861 0.425497
+249501 19346 369 0.403695
+19346 2440 775 0.035717
+2440 1104 273 0.954741
+Length of MPSP : 2278
+Probability of MPSP : 0.005858
+Probability of being MPSP : 0.005858
+Candidate Generation Time : 0.013070 seconds
+Probability Computation Time : 0.000001 seconds
+
+450547	532
+Nr of candidates : 1
+MPSP:
+450547 34049 767 0.142622
+34049 1547 775 0.233897
+1547 1467 370 0.901860
+1467 532 201 0.772172
+Length of MPSP : 2113
+Probability of MPSP : 0.023231
+Probability of being MPSP : 0.023231
+Candidate Generation Time : 0.013080 seconds
+Probability Computation Time : 0.000001 seconds
+
+426475	304
+Nr of candidates : 1
+MPSP:
+426475 117018 551 0.071353
+117018 3027 894 0.328200
+3027 1813 383 0.574994
+1813 304 196 0.037006
+Length of MPSP : 2024
+Probability of MPSP : 0.000498
+Probability of being MPSP : 0.000498
+Candidate Generation Time : 0.013143 seconds
+Probability Computation Time : 0.000001 seconds
+
+100823	8
+Nr of candidates : 1
+MPSP:
+100823 3648 215 0.886824
+3648 233 493 0.944502
+233 128 661 0.458346
+128 8 319 0.289497
+Length of MPSP : 1688
+Probability of MPSP : 0.111142
+Probability of being MPSP : 0.111142
+Candidate Generation Time : 0.013023 seconds
+Probability Computation Time : 0.000001 seconds
+
+368290	663
+Nr of candidates : 1
+MPSP:
+368290 227446 189 0.953038
+227446 31307 313 0.288467
+31307 7526 417 0.996745
+7526 663 390 0.097130
+Length of MPSP : 1309
+Probability of MPSP : 0.026616
+Probability of being MPSP : 0.026616
+Candidate Generation Time : 0.013033 seconds
+Probability Computation Time : 0.000001 seconds
+
+223638	4
+Nr of candidates : 6
+MPSP:
+223638 16606 970 0.035504
+16606 99 956 0.572251
+99 11 333 0.826663
+11 4 688 0.261549
+Length of MPSP : 2947
+Probability of MPSP : 0.004388
+Probability of being MPSP : 0.004388
+Candidate Generation Time : 0.101899 seconds
+Probability Computation Time : 0.000808 seconds
+
+104748	657
+Nr of candidates : 1
+MPSP:
+104748 9701 159 0.924534
+9701 3173 738 0.656679
+3173 1577 604 0.960456
+1577 657 849 0.071707
+Length of MPSP : 2350
+Probability of MPSP : 0.041813
+Probability of being MPSP : 0.041813
+Candidate Generation Time : 0.012440 seconds
+Probability Computation Time : 0.000001 seconds
+
+367516	5016
+Nr of candidates : 1
+MPSP:
+367516 73415 9 0.430333
+73415 27021 973 0.839979
+27021 22621 864 0.762636
+22621 5016 120 0.853102
+Length of MPSP : 1966
+Probability of MPSP : 0.235175
+Probability of being MPSP : 0.235175
+Candidate Generation Time : 0.011385 seconds
+Probability Computation Time : 0.000001 seconds
+
+320750	101
+Nr of candidates : 1
+MPSP:
+320750 303256 810 0.359925
+303256 2762 794 0.129238
+2762 269 91 0.879060
+269 101 979 0.285610
+Length of MPSP : 2674
+Probability of MPSP : 0.011679
+Probability of being MPSP : 0.011679
+Candidate Generation Time : 0.011371 seconds
+Probability Computation Time : 0.000001 seconds
+
+20202	15
+Nr of candidates : 1
+MPSP:
+20202 462 150 0.095106
+462 108 95 0.411853
+108 45 693 0.448245
+45 15 819 0.025516
+Length of MPSP : 1757
+Probability of MPSP : 0.000448
+Probability of being MPSP : 0.000448
+Candidate Generation Time : 0.011487 seconds
+Probability Computation Time : 0.000001 seconds
+
+295839	45
+Nr of candidates : 3
+MPSP:
+295839 74219 782 0.003241
+74219 2811 687 0.811153
+2811 944 135 0.062222
+944 45 278 0.361486
+Length of MPSP : 1882
+Probability of MPSP : 0.000059
+Probability of being MPSP : 0.000059
+Candidate Generation Time : 0.059556 seconds
+Probability Computation Time : 0.000352 seconds
+
+487859	2573
+Nr of candidates : 1
+MPSP:
+487859 311545 722 0.656200
+311545 108897 376 0.540537
+108897 8945 164 0.088797
+8945 2573 340 0.364790
+Length of MPSP : 1602
+Probability of MPSP : 0.011490
+Probability of being MPSP : 0.011490
+Candidate Generation Time : 0.011418 seconds
+Probability Computation Time : 0.000002 seconds
+
+165188	1
+Nr of candidates : 46
+MPSP:
+165188 48509 785 0.993798
+48509 5677 108 0.510035
+5677 6 217 0.941078
+6 1 230 0.687865
+Length of MPSP : 1340
+Probability of MPSP : 0.328115
+Probability of being MPSP : 0.328115
+Candidate Generation Time : 0.820456 seconds
+Probability Computation Time : 0.025499 seconds
+
+Average Length of MPSP for 4 hops : 2056
+Average Probability of being MPSP for 4 hops : 0.064687
+Average Candidate Generation Time for 4 hops : 0.264883 seconds
+Average Probability Computation Time for 4 hops : 0.016054 seconds
+Average Total Time for 4 hops : 0.280937 seconds
+Number of candidate generation timeouts : 0
+
+
+Number of hops = 6
+
+286920	2
+Nr of candidates : 6
+MPSP:
+286920 92937 499 0.659840
+92937 7000 307 0.571894
+7000 2559 36 0.173060
+2559 1352 217 0.227707
+1352 773 872 0.554477
+773 441 679 0.502083
+441 146 138 0.762974
+146 29 485 0.411253
+29 2 707 0.651586
+Length of MPSP : 3940
+Probability of MPSP : 0.000846
+Probability of being MPSP : 0.000846
+Candidate Generation Time : 0.140266 seconds
+Probability Computation Time : 0.001476 seconds
+
+29427	34
+Nr of candidates : 1
+MPSP:
+29427 8803 788 0.760606
+8803 2016 912 0.774917
+2016 441 426 0.993223
+441 40 321 0.567253
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 3421
+Probability of MPSP : 0.138924
+Probability of being MPSP : 0.138924
+Candidate Generation Time : 0.018261 seconds
+Probability Computation Time : 0.000002 seconds
+
+173930	27
+Nr of candidates : 1
+MPSP:
+173930 105839 887 0.508066
+105839 20955 577 0.258530
+20955 12930 695 0.043841
+12930 291 753 0.356251
+291 189 491 0.563057
+189 27 868 0.322782
+Length of MPSP : 4271
+Probability of MPSP : 0.000373
+Probability of being MPSP : 0.000373
+Candidate Generation Time : 0.018169 seconds
+Probability Computation Time : 0.000001 seconds
+
+124283	90
+Nr of candidates : 1
+MPSP:
+124283 17855 518 0.697886
+17855 13212 407 0.235992
+13212 6189 356 0.790742
+6189 3753 42 0.794158
+3753 1033 878 0.054929
+1033 90 940 0.197745
+Length of MPSP : 3141
+Probability of MPSP : 0.001123
+Probability of being MPSP : 0.001123
+Candidate Generation Time : 0.018219 seconds
+Probability Computation Time : 0.000001 seconds
+
+290905	17
+Nr of candidates : 1
+MPSP:
+290905 3112 81 0.432362
+3112 628 97 0.213090
+628 239 444 0.558635
+239 219 228 0.662708
+219 200 254 0.237123
+200 17 465 0.482490
+Length of MPSP : 1569
+Probability of MPSP : 0.003902
+Probability of being MPSP : 0.003902
+Candidate Generation Time : 0.018232 seconds
+Probability Computation Time : 0.000001 seconds
+
+286038	36
+Nr of candidates : 1
+MPSP:
+286038 10046 683 0.207583
+10046 219 124 0.229483
+219 200 254 0.237123
+200 167 504 0.671416
+167 86 543 0.440804
+86 36 379 0.104273
+Length of MPSP : 2487
+Probability of MPSP : 0.000349
+Probability of being MPSP : 0.000349
+Candidate Generation Time : 0.018334 seconds
+Probability Computation Time : 0.000001 seconds
+
+243419	445
+Nr of candidates : 1
+MPSP:
+243419 34986 351 0.373448
+34986 19774 66 0.730347
+19774 2842 945 0.927172
+2842 2493 816 0.299699
+2493 637 547 0.389040
+637 445 514 0.041415
+Length of MPSP : 3239
+Probability of MPSP : 0.001221
+Probability of being MPSP : 0.001221
+Candidate Generation Time : 0.018419 seconds
+Probability Computation Time : 0.000001 seconds
+
+300161	994
+Nr of candidates : 1
+MPSP:
+300161 86167 268 0.648175
+86167 33359 197 0.425939
+33359 25188 918 0.347510
+25188 8872 714 0.199901
+8872 2237 673 0.211132
+2237 994 209 0.757552
+Length of MPSP : 2979
+Probability of MPSP : 0.003068
+Probability of being MPSP : 0.003068
+Candidate Generation Time : 0.018445 seconds
+Probability Computation Time : 0.000002 seconds
+
+400805	30
+Nr of candidates : 1
+MPSP:
+400805 167811 655 0.925791
+167811 44354 8 0.565425
+44354 828 203 0.876392
+828 116 940 0.789361
+116 37 94 0.641952
+37 30 849 0.049946
+Length of MPSP : 2749
+Probability of MPSP : 0.011611
+Probability of being MPSP : 0.011611
+Candidate Generation Time : 0.018454 seconds
+Probability Computation Time : 0.000001 seconds
+
+291034	64
+Nr of candidates : 1
+MPSP:
+291034 186787 514 0.663833
+186787 89327 400 0.858046
+89327 22198 941 0.030845
+22198 3295 467 0.983892
+3295 265 675 0.053464
+265 64 644 0.694923
+Length of MPSP : 3641
+Probability of MPSP : 0.000642
+Probability of being MPSP : 0.000642
+Candidate Generation Time : 0.018401 seconds
+Probability Computation Time : 0.000001 seconds
+
+48755	12
+Nr of candidates : 1
+MPSP:
+48755 18338 906 0.124088
+18338 13974 751 0.545810
+13974 294 525 0.311487
+294 90 949 0.969309
+90 54 485 0.803896
+54 12 345 0.439962
+Length of MPSP : 3961
+Probability of MPSP : 0.007233
+Probability of being MPSP : 0.007233
+Candidate Generation Time : 0.018385 seconds
+Probability Computation Time : 0.000001 seconds
+
+229511	80
+Nr of candidates : 1
+MPSP:
+229511 97723 443 0.498520
+97723 3177 615 0.656570
+3177 1364 54 0.830664
+1364 242 857 0.422907
+242 98 732 0.206849
+98 80 354 0.033653
+Length of MPSP : 3055
+Probability of MPSP : 0.000800
+Probability of being MPSP : 0.000800
+Candidate Generation Time : 0.018378 seconds
+Probability Computation Time : 0.000001 seconds
+
+196286	1273
+Nr of candidates : 1
+MPSP:
+196286 112992 299 0.760457
+112992 21433 804 0.055004
+21433 13526 450 0.253187
+13526 12219 835 0.412451
+12219 5049 253 0.293204
+5049 1273 44 0.178950
+Length of MPSP : 2685
+Probability of MPSP : 0.000229
+Probability of being MPSP : 0.000229
+Candidate Generation Time : 0.018376 seconds
+Probability Computation Time : 0.000001 seconds
+
+97651	19
+Nr of candidates : 3
+MPSP:
+97651 4943 146 0.213207
+4943 1624 180 0.696629
+1624 313 758 0.761639
+313 32 453 0.927155
+32 27 74 0.273712
+27 23 336 0.711563
+23 19 438 0.478000
+Length of MPSP : 2385
+Probability of MPSP : 0.009764
+Probability of being MPSP : 0.009764
+Candidate Generation Time : 0.057761 seconds
+Probability Computation Time : 0.000414 seconds
+
+367514	22
+Nr of candidates : 4
+MPSP:
+367514 169268 137 0.602932
+169268 124553 829 0.609923
+124553 118097 972 0.889680
+118097 18851 625 0.299320
+18851 12640 290 0.199002
+12640 577 954 0.746525
+577 22 215 0.902560
+Length of MPSP : 4022
+Probability of MPSP : 0.013011
+Probability of being MPSP : 0.013011
+Candidate Generation Time : 0.096954 seconds
+Probability Computation Time : 0.000774 seconds
+
+489256	21
+Nr of candidates : 5
+MPSP:
+489256 3376 587 0.991904
+3376 1686 220 0.258135
+1686 846 451 0.301653
+846 135 880 0.272488
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 4962
+Probability of MPSP : 0.002072
+Probability of being MPSP : 0.002072
+Candidate Generation Time : 0.105403 seconds
+Probability Computation Time : 0.001098 seconds
+
+466733	390
+Nr of candidates : 1
+MPSP:
+466733 312413 143 0.707775
+312413 167669 698 0.786296
+167669 44431 571 0.220292
+44431 13496 248 0.134451
+13496 1138 847 0.056306
+1138 390 102 0.761556
+Length of MPSP : 2609
+Probability of MPSP : 0.000707
+Probability of being MPSP : 0.000707
+Candidate Generation Time : 0.018230 seconds
+Probability Computation Time : 0.000002 seconds
+
+234957	62
+Nr of candidates : 2
+MPSP:
+234957 101670 189 0.329950
+101670 52210 913 0.901892
+52210 29366 314 0.884854
+29366 1019 792 0.177538
+1019 263 651 0.802012
+263 62 420 0.083262
+Length of MPSP : 3279
+Probability of MPSP : 0.003012
+Probability of being MPSP : 0.003012
+Candidate Generation Time : 0.034547 seconds
+Probability Computation Time : 0.000142 seconds
+
+208532	15
+Nr of candidates : 2
+MPSP:
+208532 107558 212 0.984623
+107558 14320 481 0.646229
+14320 4223 878 0.729301
+4223 1617 534 0.351005
+1617 27 248 0.091079
+27 21 183 0.145746
+21 15 366 0.840278
+Length of MPSP : 2902
+Probability of MPSP : 0.001817
+Probability of being MPSP : 0.001817
+Candidate Generation Time : 0.036803 seconds
+Probability Computation Time : 0.000107 seconds
+
+79716	19
+Nr of candidates : 2
+MPSP:
+79716 58686 374 0.446488
+58686 55273 808 0.984483
+55273 12454 215 0.040971
+12454 2482 56 0.428231
+2482 85 877 0.394158
+85 27 992 0.927752
+27 23 336 0.711563
+23 19 438 0.478000
+Length of MPSP : 4096
+Probability of MPSP : 0.000941
+Probability of being MPSP : 0.000941
+Candidate Generation Time : 0.039461 seconds
+Probability Computation Time : 0.000071 seconds
+
+283102	2210
+Nr of candidates : 1
+MPSP:
+283102 151650 155 0.640659
+151650 49028 714 0.400766
+49028 8601 438 0.312278
+8601 7420 805 0.177862
+7420 6236 623 0.963790
+6236 2210 150 0.054262
+Length of MPSP : 2885
+Probability of MPSP : 0.000746
+Probability of being MPSP : 0.000746
+Candidate Generation Time : 0.018346 seconds
+Probability Computation Time : 0.000001 seconds
+
+84135	103
+Nr of candidates : 2
+MPSP:
+84135 58690 719 0.096251
+58690 24490 752 0.889848
+24490 10283 110 0.063861
+10283 1408 504 0.785230
+1408 150 445 0.953691
+150 103 743 0.423784
+Length of MPSP : 3273
+Probability of MPSP : 0.001736
+Probability of being MPSP : 0.001736
+Candidate Generation Time : 0.036570 seconds
+Probability Computation Time : 0.000071 seconds
+
+154910	37
+Nr of candidates : 1
+MPSP:
+154910 76965 613 0.954536
+76965 11095 14 0.476573
+11095 376 99 0.606581
+376 293 755 0.027412
+293 58 451 0.624854
+58 37 453 0.770782
+Length of MPSP : 2385
+Probability of MPSP : 0.003643
+Probability of being MPSP : 0.003643
+Candidate Generation Time : 0.018389 seconds
+Probability Computation Time : 0.000001 seconds
+
+495961	456
+Nr of candidates : 1
+MPSP:
+495961 296263 821 0.787766
+296263 73729 837 0.254560
+73729 61302 174 0.794750
+61302 41310 289 0.578861
+41310 19760 905 0.580816
+19760 456 800 0.678892
+Length of MPSP : 3826
+Probability of MPSP : 0.036377
+Probability of being MPSP : 0.036377
+Candidate Generation Time : 0.018289 seconds
+Probability Computation Time : 0.000001 seconds
+
+88229	2
+Nr of candidates : 13
+MPSP:
+88229 25785 869 0.547868
+25785 3181 938 0.635799
+3181 821 878 0.563225
+821 50 1000 0.970948
+50 29 184 0.959484
+29 2 707 0.651586
+Length of MPSP : 4576
+Probability of MPSP : 0.115793
+Probability of being MPSP : 0.115793
+Candidate Generation Time : 0.331598 seconds
+Probability Computation Time : 0.008658 seconds
+
+416933	2
+Nr of candidates : 1
+MPSP:
+416933 163 267 0.206513
+163 120 225 0.993192
+120 45 52 0.801604
+45 15 819 0.025516
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 2553
+Probability of MPSP : 0.000280
+Probability of being MPSP : 0.000280
+Candidate Generation Time : 0.018674 seconds
+Probability Computation Time : 0.000001 seconds
+
+435903	10
+Nr of candidates : 1
+MPSP:
+435903 95381 874 0.682162
+95381 111 319 0.612221
+111 27 738 0.229758
+27 23 336 0.711563
+23 19 438 0.478000
+19 10 923 0.497374
+Length of MPSP : 3628
+Probability of MPSP : 0.016233
+Probability of being MPSP : 0.016233
+Candidate Generation Time : 0.018561 seconds
+Probability Computation Time : 0.000002 seconds
+
+345341	21
+Nr of candidates : 11
+MPSP:
+345341 202332 158 0.281692
+202332 138713 677 0.358825
+138713 13875 535 0.550112
+13875 852 296 0.705704
+852 36 339 0.627566
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 3930
+Probability of MPSP : 0.010060
+Probability of being MPSP : 0.010060
+Candidate Generation Time : 0.239702 seconds
+Probability Computation Time : 0.003223 seconds
+
+452414	190
+Nr of candidates : 1
+MPSP:
+452414 294638 902 0.983110
+294638 64638 606 0.922769
+64638 6446 423 0.046836
+6446 1576 830 0.618128
+1576 296 556 0.719515
+296 190 45 0.584751
+Length of MPSP : 3362
+Probability of MPSP : 0.011050
+Probability of being MPSP : 0.011050
+Candidate Generation Time : 0.018226 seconds
+Probability Computation Time : 0.000002 seconds
+
+428819	61
+Nr of candidates : 1
+MPSP:
+428819 318581 348 0.290787
+318581 8238 484 0.857129
+8238 2198 643 0.335889
+2198 907 433 0.809736
+907 358 800 0.141829
+358 61 826 0.457780
+Length of MPSP : 3534
+Probability of MPSP : 0.004401
+Probability of being MPSP : 0.004401
+Candidate Generation Time : 0.018243 seconds
+Probability Computation Time : 0.000000 seconds
+
+72541	9
+Nr of candidates : 1
+MPSP:
+72541 7131 107 0.031546
+7131 100 184 0.130248
+100 84 65 0.722699
+84 45 472 0.634476
+45 15 819 0.025516
+15 9 409 0.423637
+Length of MPSP : 2056
+Probability of MPSP : 0.000020
+Probability of being MPSP : 0.000020
+Candidate Generation Time : 0.018432 seconds
+Probability Computation Time : 0.000001 seconds
+
+306376	19
+Nr of candidates : 1
+MPSP:
+306376 161613 281 0.886241
+161613 529 955 0.739594
+529 245 314 0.331420
+245 27 1000 0.713803
+27 23 336 0.711563
+23 19 438 0.478000
+Length of MPSP : 3324
+Probability of MPSP : 0.052740
+Probability of being MPSP : 0.052740
+Candidate Generation Time : 0.018335 seconds
+Probability Computation Time : 0.000001 seconds
+
+107549	409
+Nr of candidates : 1
+MPSP:
+107549 88493 777 0.189831
+88493 34377 648 0.124789
+34377 902 534 0.456850
+902 701 280 0.929706
+701 636 78 0.241896
+636 409 364 0.541022
+Length of MPSP : 2681
+Probability of MPSP : 0.001317
+Probability of being MPSP : 0.001317
+Candidate Generation Time : 0.018222 seconds
+Probability Computation Time : 0.000001 seconds
+
+111386	27
+Nr of candidates : 1
+MPSP:
+111386 4741 727 0.548123
+4741 1038 582 0.266463
+1038 742 822 0.335621
+742 313 753 0.265532
+313 32 453 0.927155
+32 27 74 0.273712
+Length of MPSP : 3411
+Probability of MPSP : 0.003303
+Probability of being MPSP : 0.003303
+Candidate Generation Time : 0.018212 seconds
+Probability Computation Time : 0.000002 seconds
+
+210907	1775
+Nr of candidates : 1
+MPSP:
+210907 5533 911 0.698660
+5533 5129 899 0.502869
+5129 3079 604 0.562219
+3079 2162 240 0.213693
+2162 2040 695 0.697250
+2040 1775 222 0.934357
+Length of MPSP : 3571
+Probability of MPSP : 0.027499
+Probability of being MPSP : 0.027499
+Candidate Generation Time : 0.018130 seconds
+Probability Computation Time : 0.000001 seconds
+
+425456	40
+Nr of candidates : 3
+MPSP:
+425456 21032 78 0.932647
+21032 14750 811 0.396287
+14750 4716 386 0.444257
+4716 4683 380 0.273134
+4683 3260 666 0.641973
+3260 40 645 0.936659
+Length of MPSP : 2966
+Probability of MPSP : 0.026967
+Probability of being MPSP : 0.026967
+Candidate Generation Time : 0.071044 seconds
+Probability Computation Time : 0.000511 seconds
+
+314242	11
+Nr of candidates : 1
+MPSP:
+314242 12987 992 0.954408
+12987 546 913 0.422038
+546 425 520 0.644209
+425 183 454 0.071880
+183 99 111 0.542013
+99 11 333 0.826663
+Length of MPSP : 3323
+Probability of MPSP : 0.008357
+Probability of being MPSP : 0.008357
+Candidate Generation Time : 0.018317 seconds
+Probability Computation Time : 0.000002 seconds
+
+345210	447
+Nr of candidates : 2
+MPSP:
+345210 148219 972 0.309028
+148219 78533 829 0.473291
+78533 8842 727 0.781268
+8842 1333 639 0.542938
+1333 734 309 0.281147
+734 447 265 0.017459
+Length of MPSP : 3741
+Probability of MPSP : 0.000305
+Probability of being MPSP : 0.000305
+Candidate Generation Time : 0.036573 seconds
+Probability Computation Time : 0.000039 seconds
+
+421303	12289
+Nr of candidates : 1
+MPSP:
+421303 100119 71 0.463974
+100119 53019 713 0.041062
+53019 26367 884 0.183240
+26367 16580 204 0.567504
+16580 12861 403 0.182657
+12861 12289 403 0.543768
+Length of MPSP : 2678
+Probability of MPSP : 0.000197
+Probability of being MPSP : 0.000197
+Candidate Generation Time : 0.018285 seconds
+Probability Computation Time : 0.000001 seconds
+
+37747	479
+Nr of candidates : 1
+MPSP:
+37747 18102 342 0.267228
+18102 13057 412 0.038481
+13057 10948 993 0.548533
+10948 9037 196 0.492467
+9037 873 438 0.540642
+873 479 213 0.174616
+Length of MPSP : 2594
+Probability of MPSP : 0.000262
+Probability of being MPSP : 0.000262
+Candidate Generation Time : 0.018357 seconds
+Probability Computation Time : 0.000001 seconds
+
+314998	2
+Nr of candidates : 1
+MPSP:
+314998 27541 968 0.960192
+27541 21692 853 0.098624
+21692 5561 914 0.197700
+5561 129 541 0.864249
+129 29 133 0.881720
+29 2 707 0.651586
+Length of MPSP : 4116
+Probability of MPSP : 0.009296
+Probability of being MPSP : 0.009296
+Candidate Generation Time : 0.018306 seconds
+Probability Computation Time : 0.000000 seconds
+
+82667	5
+Nr of candidates : 1
+MPSP:
+82667 64542 55 0.887785
+64542 1042 359 0.762793
+1042 249 51 0.691496
+249 74 633 0.507659
+74 59 213 0.342890
+59 5 31 0.514769
+Length of MPSP : 1342
+Probability of MPSP : 0.041961
+Probability of being MPSP : 0.041961
+Candidate Generation Time : 0.018376 seconds
+Probability Computation Time : 0.000001 seconds
+
+354820	27
+Nr of candidates : 3
+MPSP:
+354820 137361 151 0.849195
+137361 98331 537 0.067728
+98331 16954 961 0.434379
+16954 602 857 0.910025
+602 207 567 0.869843
+207 27 18 0.057586
+Length of MPSP : 3091
+Probability of MPSP : 0.001139
+Probability of being MPSP : 0.001139
+Candidate Generation Time : 0.062586 seconds
+Probability Computation Time : 0.000475 seconds
+
+108860	39
+Nr of candidates : 1
+MPSP:
+108860 16304 774 0.704085
+16304 8243 635 0.919748
+8243 7509 267 0.371767
+7509 7371 848 0.411654
+7371 983 342 0.985977
+983 39 207 0.214313
+Length of MPSP : 3073
+Probability of MPSP : 0.020942
+Probability of being MPSP : 0.020942
+Candidate Generation Time : 0.018435 seconds
+Probability Computation Time : 0.000001 seconds
+
+239323	66
+Nr of candidates : 1
+MPSP:
+239323 217276 799 0.115557
+217276 150202 648 0.995504
+150202 32915 737 0.595398
+32915 2410 617 0.443740
+2410 228 525 0.819444
+228 66 724 0.083590
+Length of MPSP : 4050
+Probability of MPSP : 0.002082
+Probability of being MPSP : 0.002082
+Candidate Generation Time : 0.018407 seconds
+Probability Computation Time : 0.000001 seconds
+
+118351	111
+Nr of candidates : 1
+MPSP:
+118351 69707 489 0.676455
+69707 35172 953 0.719406
+35172 1145 852 0.232150
+1145 885 582 0.203785
+885 428 501 0.840494
+428 111 249 0.352918
+Length of MPSP : 3626
+Probability of MPSP : 0.006829
+Probability of being MPSP : 0.006829
+Candidate Generation Time : 0.018281 seconds
+Probability Computation Time : 0.000001 seconds
+
+359412	27
+Nr of candidates : 3
+MPSP:
+359412 217079 625 0.103719
+217079 56496 421 0.343251
+56496 17260 41 0.696712
+17260 10376 262 0.125932
+10376 79 302 0.802724
+79 27 215 0.490627
+Length of MPSP : 1866
+Probability of MPSP : 0.001230
+Probability of being MPSP : 0.001230
+Candidate Generation Time : 0.068040 seconds
+Probability Computation Time : 0.000396 seconds
+
+60720	37
+Nr of candidates : 1
+MPSP:
+60720 58837 129 0.784967
+58837 36620 546 0.487346
+36620 8501 470 0.943075
+8501 1377 581 0.847493
+1377 62 966 0.804703
+62 37 963 0.657744
+Length of MPSP : 3655
+Probability of MPSP : 0.161832
+Probability of being MPSP : 0.161832
+Candidate Generation Time : 0.018300 seconds
+Probability Computation Time : 0.000001 seconds
+
+42035	19
+Nr of candidates : 2
+MPSP:
+42035 7865 869 0.450337
+7865 754 483 0.667687
+754 64 570 0.203627
+64 27 433 0.531549
+27 23 336 0.711563
+23 19 438 0.478000
+Length of MPSP : 3129
+Probability of MPSP : 0.011070
+Probability of being MPSP : 0.011070
+Candidate Generation Time : 0.034025 seconds
+Probability Computation Time : 0.000105 seconds
+
+97835	28
+Nr of candidates : 1
+MPSP:
+97835 19059 580 0.392952
+19059 6713 393 0.298535
+6713 3863 492 0.832131
+3863 461 135 0.982399
+461 61 279 0.823768
+61 28 644 0.598582
+Length of MPSP : 2523
+Probability of MPSP : 0.047287
+Probability of being MPSP : 0.047287
+Candidate Generation Time : 0.018213 seconds
+Probability Computation Time : 0.000001 seconds
+
+487829	140
+Nr of candidates : 1
+MPSP:
+487829 274780 2 0.020072
+274780 251764 288 0.665303
+251764 1562 173 0.054304
+1562 756 517 0.338775
+756 405 996 0.072957
+405 140 385 0.361739
+Length of MPSP : 2361
+Probability of MPSP : 0.000006
+Probability of being MPSP : 0.000006
+Candidate Generation Time : 0.018180 seconds
+Probability Computation Time : 0.000002 seconds
+
+120857	29
+Nr of candidates : 3
+MPSP:
+120857 9553 103 0.363627
+9553 4928 124 0.772012
+4928 764 8 0.471990
+764 568 541 0.713687
+568 190 614 0.507364
+190 101 322 0.851026
+101 48 56 0.675101
+48 29 634 0.835239
+Length of MPSP : 2402
+Probability of MPSP : 0.023023
+Probability of being MPSP : 0.023023
+Candidate Generation Time : 0.057888 seconds
+Probability Computation Time : 0.000584 seconds
+
+393555	19
+Nr of candidates : 9
+MPSP:
+393555 212161 112 0.836401
+212161 28460 527 0.520337
+28460 11135 75 0.669899
+11135 4462 944 0.682662
+4462 1667 460 0.294476
+1667 1025 685 0.403444
+1025 293 247 0.536615
+293 23 960 0.970559
+23 19 438 0.478000
+Length of MPSP : 4448
+Probability of MPSP : 0.005849
+Probability of being MPSP : 0.005849
+Candidate Generation Time : 0.203141 seconds
+Probability Computation Time : 0.002324 seconds
+
+121610	315
+Nr of candidates : 1
+MPSP:
+121610 23651 321 0.692028
+23651 20225 987 0.970333
+20225 4471 111 0.186442
+4471 2399 268 0.090206
+2399 1707 42 0.244509
+1707 315 31 0.759252
+Length of MPSP : 1760
+Probability of MPSP : 0.002097
+Probability of being MPSP : 0.002097
+Candidate Generation Time : 0.018322 seconds
+Probability Computation Time : 0.000002 seconds
+
+316116	8
+Nr of candidates : 1
+MPSP:
+316116 101969 384 0.708573
+101969 28030 175 0.446230
+28030 8630 707 0.365354
+8630 1875 141 0.429767
+1875 194 955 0.886017
+194 8 770 0.087067
+Length of MPSP : 3132
+Probability of MPSP : 0.003830
+Probability of being MPSP : 0.003830
+Candidate Generation Time : 0.018332 seconds
+Probability Computation Time : 0.000001 seconds
+
+486308	408
+Nr of candidates : 1
+MPSP:
+486308 83888 787 0.503760
+83888 70045 440 0.296564
+70045 25388 651 0.241430
+25388 23590 991 0.695503
+23590 12795 217 0.688914
+12795 408 628 0.373274
+Length of MPSP : 3714
+Probability of MPSP : 0.006451
+Probability of being MPSP : 0.006451
+Candidate Generation Time : 0.018310 seconds
+Probability Computation Time : 0.000001 seconds
+
+231592	6
+Nr of candidates : 3
+MPSP:
+231592 87841 60 0.166208
+87841 29750 914 0.431748
+29750 23282 903 0.875614
+23282 6814 743 0.331328
+6814 2427 454 0.063635
+2427 6 970 0.136361
+Length of MPSP : 4044
+Probability of MPSP : 0.000181
+Probability of being MPSP : 0.000181
+Candidate Generation Time : 0.068078 seconds
+Probability Computation Time : 0.000508 seconds
+
+244444	19
+Nr of candidates : 8
+MPSP:
+244444 23137 432 0.235041
+23137 5962 138 0.481226
+5962 5335 918 0.950338
+5335 532 240 0.138768
+532 432 91 0.983724
+432 27 988 0.930087
+27 23 336 0.711563
+23 19 438 0.478000
+Length of MPSP : 3581
+Probability of MPSP : 0.004633
+Probability of being MPSP : 0.004633
+Candidate Generation Time : 0.173568 seconds
+Probability Computation Time : 0.002222 seconds
+
+164595	8
+Nr of candidates : 2
+MPSP:
+164595 147661 372 0.750049
+147661 8653 77 0.666857
+8653 1471 794 0.969175
+1471 483 630 0.559055
+483 224 369 0.568978
+224 8 371 0.580408
+Length of MPSP : 2613
+Probability of MPSP : 0.089497
+Probability of being MPSP : 0.089497
+Candidate Generation Time : 0.036644 seconds
+Probability Computation Time : 0.000038 seconds
+
+304946	2
+Nr of candidates : 4
+MPSP:
+304946 24176 561 0.191134
+24176 178 171 0.502045
+178 21 625 0.173845
+21 15 366 0.840278
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 2913
+Probability of MPSP : 0.000936
+Probability of being MPSP : 0.000936
+Candidate Generation Time : 0.090034 seconds
+Probability Computation Time : 0.000454 seconds
+
+487481	274
+Nr of candidates : 1
+MPSP:
+487481 186388 559 0.249866
+186388 49528 487 0.526350
+49528 40007 803 0.096319
+40007 3629 980 0.613834
+3629 408 780 0.768214
+408 274 232 0.648841
+Length of MPSP : 3841
+Probability of MPSP : 0.003876
+Probability of being MPSP : 0.003876
+Candidate Generation Time : 0.018372 seconds
+Probability Computation Time : 0.000001 seconds
+
+470475	31
+Nr of candidates : 2
+MPSP:
+470475 425820 181 0.594049
+425820 8895 102 0.697943
+8895 6368 369 0.040777
+6368 2341 73 0.444934
+2341 123 83 0.995521
+123 99 845 0.564158
+99 31 618 0.292045
+Length of MPSP : 2271
+Probability of MPSP : 0.001234
+Probability of being MPSP : 0.001234
+Candidate Generation Time : 0.036743 seconds
+Probability Computation Time : 0.000141 seconds
+
+226847	241
+Nr of candidates : 1
+MPSP:
+226847 51873 496 0.597817
+51873 14885 858 0.254915
+14885 5133 603 0.840111
+5133 1085 200 0.452066
+1085 332 430 0.390195
+332 241 826 0.201702
+Length of MPSP : 3413
+Probability of MPSP : 0.004555
+Probability of being MPSP : 0.004555
+Candidate Generation Time : 0.018417 seconds
+Probability Computation Time : 0.000001 seconds
+
+490232	4365
+Nr of candidates : 1
+MPSP:
+490232 61204 872 0.799924
+61204 36690 440 0.917365
+36690 34959 649 0.352243
+34959 31399 691 0.312853
+31399 5525 802 0.539876
+5525 4365 874 0.860800
+Length of MPSP : 4328
+Probability of MPSP : 0.037581
+Probability of being MPSP : 0.037581
+Candidate Generation Time : 0.018269 seconds
+Probability Computation Time : 0.000001 seconds
+
+40893	2
+Nr of candidates : 3
+MPSP:
+40893 7911 942 0.283371
+7911 404 817 0.541742
+404 40 317 0.510159
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+21 15 366 0.840278
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 5602
+Probability of MPSP : 0.000800
+Probability of being MPSP : 0.000800
+Candidate Generation Time : 0.058798 seconds
+Probability Computation Time : 0.000292 seconds
+
+34241	10
+Nr of candidates : 4
+MPSP:
+34241 21599 218 0.733249
+21599 663 979 0.720842
+663 547 142 0.593063
+547 23 770 0.378601
+23 19 438 0.478000
+19 10 923 0.497374
+Length of MPSP : 3470
+Probability of MPSP : 0.028215
+Probability of being MPSP : 0.028215
+Candidate Generation Time : 0.092009 seconds
+Probability Computation Time : 0.000689 seconds
+
+337966	2
+Nr of candidates : 6
+MPSP:
+337966 122990 521 0.394103
+122990 917 855 0.541998
+917 21 390 0.873996
+21 15 366 0.840278
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 3322
+Probability of MPSP : 0.010475
+Probability of being MPSP : 0.010475
+Candidate Generation Time : 0.159185 seconds
+Probability Computation Time : 0.000665 seconds
+
+282970	12
+Nr of candidates : 1
+MPSP:
+282970 5192 685 0.790751
+5192 4100 654 0.583380
+4100 679 308 0.231626
+679 148 415 0.595854
+148 54 5 0.600163
+54 12 345 0.439962
+Length of MPSP : 2412
+Probability of MPSP : 0.016811
+Probability of being MPSP : 0.016811
+Candidate Generation Time : 0.018234 seconds
+Probability Computation Time : 0.000002 seconds
+
+414020	10
+Nr of candidates : 7
+MPSP:
+414020 329163 947 0.015861
+329163 305081 313 0.245177
+305081 36960 669 0.965629
+36960 400 796 0.416121
+400 19 894 0.297321
+19 10 923 0.497374
+Length of MPSP : 4542
+Probability of MPSP : 0.000231
+Probability of being MPSP : 0.000231
+Candidate Generation Time : 0.181146 seconds
+Probability Computation Time : 0.001147 seconds
+
+307050	36
+Nr of candidates : 1
+MPSP:
+307050 17742 686 0.448089
+17742 5123 749 0.618099
+5123 269 293 0.187585
+269 135 712 0.146312
+135 40 854 0.537977
+40 36 45 0.438929
+Length of MPSP : 3339
+Probability of MPSP : 0.001795
+Probability of being MPSP : 0.001795
+Candidate Generation Time : 0.018326 seconds
+Probability Computation Time : 0.000001 seconds
+
+411355	24
+Nr of candidates : 2
+MPSP:
+411355 257692 600 0.427082
+257692 21071 620 0.099506
+21071 6927 529 0.224569
+6927 166 977 0.259310
+166 77 218 0.991622
+77 24 785 0.511056
+Length of MPSP : 3729
+Probability of MPSP : 0.001254
+Probability of being MPSP : 0.001254
+Candidate Generation Time : 0.036572 seconds
+Probability Computation Time : 0.000241 seconds
+
+238641	33
+Nr of candidates : 1
+MPSP:
+238641 230891 615 0.661988
+230891 895 359 0.194185
+895 89 140 0.574657
+89 74 35 0.333802
+74 59 213 0.342890
+59 33 502 0.226084
+Length of MPSP : 1864
+Probability of MPSP : 0.001912
+Probability of being MPSP : 0.001912
+Candidate Generation Time : 0.018244 seconds
+Probability Computation Time : 0.000001 seconds
+
+36537	9
+Nr of candidates : 12
+MPSP:
+36537 34604 451 0.723289
+34604 10680 147 0.515211
+10680 3205 918 0.924280
+3205 2700 227 0.221400
+2700 80 553 0.926891
+80 12 100 0.338057
+12 9 52 0.726295
+Length of MPSP : 2448
+Probability of MPSP : 0.017354
+Probability of being MPSP : 0.017354
+Candidate Generation Time : 0.306974 seconds
+Probability Computation Time : 0.003579 seconds
+
+237990	9
+Nr of candidates : 4
+MPSP:
+237990 99436 95 0.888375
+99436 7369 864 0.082628
+7369 28 711 0.342655
+28 21 825 0.036095
+21 15 366 0.840278
+15 9 409 0.423637
+Length of MPSP : 3270
+Probability of MPSP : 0.000323
+Probability of being MPSP : 0.000323
+Candidate Generation Time : 0.105274 seconds
+Probability Computation Time : 0.000452 seconds
+
+67860	163
+Nr of candidates : 1
+MPSP:
+67860 15058 1000 0.382692
+15058 7026 507 0.424905
+7026 3037 256 0.859447
+3037 354 306 0.839647
+354 297 145 0.248965
+297 163 383 0.159984
+Length of MPSP : 2597
+Probability of MPSP : 0.004674
+Probability of being MPSP : 0.004674
+Candidate Generation Time : 0.018270 seconds
+Probability Computation Time : 0.000001 seconds
+
+115587	10
+Nr of candidates : 1
+MPSP:
+115587 944 545 0.495830
+944 69 408 0.078556
+69 37 517 0.042487
+37 30 849 0.049946
+30 19 125 0.354617
+19 10 923 0.497374
+Length of MPSP : 3367
+Probability of MPSP : 0.000015
+Probability of being MPSP : 0.000015
+Candidate Generation Time : 0.018358 seconds
+Probability Computation Time : 0.000001 seconds
+
+63301	135
+Nr of candidates : 2
+MPSP:
+63301 16110 767 0.446002
+16110 12815 122 0.163718
+12815 9916 48 0.406129
+9916 8412 769 0.004485
+8412 3744 483 0.812448
+3744 135 956 0.877332
+Length of MPSP : 3145
+Probability of MPSP : 0.000095
+Probability of being MPSP : 0.000095
+Candidate Generation Time : 0.033785 seconds
+Probability Computation Time : 0.000071 seconds
+
+109409	4
+Nr of candidates : 38
+MPSP:
+109409 7570 590 0.909105
+7570 5891 871 0.651744
+5891 536 380 0.966300
+536 104 661 0.744292
+104 37 336 0.433275
+37 4 157 0.840760
+Length of MPSP : 2995
+Probability of MPSP : 0.154736
+Probability of being MPSP : 0.154736
+Candidate Generation Time : 0.899682 seconds
+Probability Computation Time : 0.033501 seconds
+
+418425	2592
+Nr of candidates : 1
+MPSP:
+418425 10165 536 0.599822
+10165 8966 501 0.044557
+8966 5875 113 0.248047
+5875 5600 313 0.809492
+5600 5162 376 0.445587
+5162 2592 291 0.008341
+Length of MPSP : 2130
+Probability of MPSP : 0.000020
+Probability of being MPSP : 0.000020
+Candidate Generation Time : 0.018351 seconds
+Probability Computation Time : 0.000001 seconds
+
+75235	19
+Nr of candidates : 3
+MPSP:
+75235 55399 644 0.016380
+55399 1896 732 0.269526
+1896 367 101 0.171932
+367 213 702 0.359154
+213 23 34 0.406070
+23 19 438 0.478000
+Length of MPSP : 2651
+Probability of MPSP : 0.000053
+Probability of being MPSP : 0.000053
+Candidate Generation Time : 0.060562 seconds
+Probability Computation Time : 0.000228 seconds
+
+113403	31
+Nr of candidates : 1
+MPSP:
+113403 4389 140 0.936229
+4389 3016 115 0.205633
+3016 2354 554 0.882893
+2354 183 140 0.188234
+183 99 111 0.542013
+99 31 618 0.292045
+Length of MPSP : 1678
+Probability of MPSP : 0.005065
+Probability of being MPSP : 0.005065
+Candidate Generation Time : 0.018188 seconds
+Probability Computation Time : 0.000001 seconds
+
+456304	19
+Nr of candidates : 2
+MPSP:
+456304 34087 465 0.210552
+34087 31837 478 0.805428
+31837 462 537 0.848484
+462 108 95 0.411853
+108 44 60 0.894574
+44 23 566 0.138155
+23 19 438 0.478000
+Length of MPSP : 2639
+Probability of MPSP : 0.003501
+Probability of being MPSP : 0.003501
+Candidate Generation Time : 0.036784 seconds
+Probability Computation Time : 0.000178 seconds
+
+288534	10
+Nr of candidates : 2
+MPSP:
+288534 181393 784 0.825958
+181393 17164 407 0.440966
+17164 103 425 0.884647
+103 23 315 0.341394
+23 19 438 0.478000
+19 10 923 0.497374
+Length of MPSP : 3292
+Probability of MPSP : 0.026152
+Probability of being MPSP : 0.026152
+Candidate Generation Time : 0.034133 seconds
+Probability Computation Time : 0.000106 seconds
+
+394230	4707
+Nr of candidates : 1
+MPSP:
+394230 94675 638 0.557716
+94675 73240 367 0.076655
+73240 47928 418 0.863354
+47928 42410 71 0.756738
+42410 12280 879 0.013665
+12280 4707 329 0.221367
+Length of MPSP : 2702
+Probability of MPSP : 0.000084
+Probability of being MPSP : 0.000084
+Candidate Generation Time : 0.018190 seconds
+Probability Computation Time : 0.000001 seconds
+
+285850	59
+Nr of candidates : 1
+MPSP:
+285850 3546 827 0.199577
+3546 1488 50 0.898850
+1488 838 611 0.288626
+838 249 724 0.097132
+249 74 633 0.507659
+74 59 213 0.342890
+Length of MPSP : 3058
+Probability of MPSP : 0.000875
+Probability of being MPSP : 0.000875
+Candidate Generation Time : 0.018201 seconds
+Probability Computation Time : 0.000002 seconds
+
+402655	19
+Nr of candidates : 2
+MPSP:
+402655 57667 98 0.573563
+57667 256 980 0.252645
+256 196 152 0.119283
+196 44 712 0.269762
+44 23 566 0.138155
+23 19 438 0.478000
+Length of MPSP : 2946
+Probability of MPSP : 0.000308
+Probability of being MPSP : 0.000308
+Candidate Generation Time : 0.044145 seconds
+Probability Computation Time : 0.000174 seconds
+
+199505	29
+Nr of candidates : 2
+MPSP:
+199505 118366 202 0.277782
+118366 20722 104 0.462440
+20722 1238 157 0.311145
+1238 680 181 0.470001
+680 456 821 0.254330
+456 29 1000 0.491693
+Length of MPSP : 2465
+Probability of MPSP : 0.002349
+Probability of being MPSP : 0.002349
+Candidate Generation Time : 0.036523 seconds
+Probability Computation Time : 0.000039 seconds
+
+82971	249
+Nr of candidates : 1
+MPSP:
+82971 58711 980 0.593986
+58711 13528 372 0.498531
+13528 2280 242 0.748830
+2280 1067 698 0.059953
+1067 311 628 0.817213
+311 249 901 0.545881
+Length of MPSP : 3821
+Probability of MPSP : 0.005931
+Probability of being MPSP : 0.005931
+Candidate Generation Time : 0.018225 seconds
+Probability Computation Time : 0.000002 seconds
+
+110025	8
+Nr of candidates : 2
+MPSP:
+110025 9161 318 0.120309
+9161 5199 840 0.894532
+5199 1706 598 0.220374
+1706 483 728 0.660785
+483 224 369 0.568978
+224 8 371 0.580408
+Length of MPSP : 3224
+Probability of MPSP : 0.005175
+Probability of being MPSP : 0.005175
+Candidate Generation Time : 0.036369 seconds
+Probability Computation Time : 0.000039 seconds
+
+455467	2551
+Nr of candidates : 1
+MPSP:
+455467 131133 52 0.875433
+131133 103713 574 0.174228
+103713 43175 882 0.397040
+43175 15156 723 0.549648
+15156 5216 506 0.322456
+5216 2551 301 0.880254
+Length of MPSP : 3038
+Probability of MPSP : 0.009448
+Probability of being MPSP : 0.009448
+Candidate Generation Time : 0.018295 seconds
+Probability Computation Time : 0.000001 seconds
+
+249440	93
+Nr of candidates : 1
+MPSP:
+249440 14799 407 0.225973
+14799 4280 270 0.078819
+4280 1936 717 0.419726
+1936 534 788 0.942476
+534 244 521 0.104628
+244 93 620 0.714891
+Length of MPSP : 3323
+Probability of MPSP : 0.000527
+Probability of being MPSP : 0.000527
+Candidate Generation Time : 0.018299 seconds
+Probability Computation Time : 0.000001 seconds
+
+37104	82
+Nr of candidates : 1
+MPSP:
+37104 11413 859 0.589375
+11413 1857 760 0.782713
+1857 1204 292 0.662346
+1204 510 152 0.364326
+510 130 531 0.389107
+130 82 813 0.320083
+Length of MPSP : 3407
+Probability of MPSP : 0.013864
+Probability of being MPSP : 0.013864
+Candidate Generation Time : 0.018168 seconds
+Probability Computation Time : 0.000001 seconds
+
+88765	69
+Nr of candidates : 1
+MPSP:
+88765 13737 614 0.637277
+13737 9976 630 0.833956
+9976 5833 203 0.680565
+5833 1581 693 0.348688
+1581 504 950 0.451803
+504 69 83 0.870283
+Length of MPSP : 3173
+Probability of MPSP : 0.049589
+Probability of being MPSP : 0.049589
+Candidate Generation Time : 0.018176 seconds
+Probability Computation Time : 0.000001 seconds
+
+301196	22
+Nr of candidates : 1
+MPSP:
+301196 31309 425 0.801153
+31309 1577 9 0.147471
+1577 657 849 0.071707
+657 602 400 0.331596
+602 581 658 0.045816
+581 22 160 0.446252
+Length of MPSP : 2501
+Probability of MPSP : 0.000057
+Probability of being MPSP : 0.000057
+Candidate Generation Time : 0.018215 seconds
+Probability Computation Time : 0.000001 seconds
+
+212835	4
+Nr of candidates : 2
+MPSP:
+212835 35980 576 0.432153
+35980 32 414 0.508076
+32 27 74 0.273712
+27 23 336 0.711563
+23 19 438 0.478000
+19 10 923 0.497374
+10 4 314 0.770590
+Length of MPSP : 3075
+Probability of MPSP : 0.007076
+Probability of being MPSP : 0.007076
+Candidate Generation Time : 0.037185 seconds
+Probability Computation Time : 0.000107 seconds
+
+5652	2
+Nr of candidates : 2
+MPSP:
+5652 36 871 0.597293
+36 34 929 0.953109
+34 21 996 0.438540
+21 15 366 0.840278
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 4352
+Probability of MPSP : 0.012675
+Probability of being MPSP : 0.012675
+Candidate Generation Time : 0.040304 seconds
+Probability Computation Time : 0.000106 seconds
+
+140772	612
+Nr of candidates : 1
+MPSP:
+140772 24557 98 0.369209
+24557 9110 88 0.595417
+9110 4039 79 0.895254
+4039 3721 318 0.152597
+3721 2793 954 0.105661
+2793 612 411 0.258594
+Length of MPSP : 1948
+Probability of MPSP : 0.000821
+Probability of being MPSP : 0.000821
+Candidate Generation Time : 0.018300 seconds
+Probability Computation Time : 0.000001 seconds
+
+340461	167
+Nr of candidates : 1
+MPSP:
+340461 27030 176 0.029275
+27030 26191 62 0.851029
+26191 1597 166 0.954578
+1597 1448 742 0.893675
+1448 200 491 0.327932
+200 167 504 0.671416
+Length of MPSP : 2141
+Probability of MPSP : 0.004680
+Probability of being MPSP : 0.004680
+Candidate Generation Time : 0.018260 seconds
+Probability Computation Time : 0.000001 seconds
+
+364758	135
+Nr of candidates : 1
+MPSP:
+364758 36347 711 0.552389
+36347 7942 638 0.544483
+7942 2709 414 0.397831
+2709 941 258 0.366602
+941 534 811 0.391752
+534 135 547 0.884028
+Length of MPSP : 3379
+Probability of MPSP : 0.015192
+Probability of being MPSP : 0.015192
+Candidate Generation Time : 0.018281 seconds
+Probability Computation Time : 0.000001 seconds
+
+340159	10
+Nr of candidates : 19
+MPSP:
+340159 164138 96 0.439714
+164138 3778 868 0.871324
+3778 1416 475 0.419468
+1416 401 450 0.489347
+401 395 51 0.566345
+395 347 868 0.704866
+347 10 589 0.559866
+Length of MPSP : 3397
+Probability of MPSP : 0.017319
+Probability of being MPSP : 0.017319
+Candidate Generation Time : 0.461303 seconds
+Probability Computation Time : 0.008737 seconds
+
+Average Length of MPSP for 6 hops : 3154
+Average Probability of being MPSP for 6 hops : 0.014298
+Average Candidate Generation Time for 6 hops : 0.058166 seconds
+Average Probability Computation Time for 6 hops : 0.000743 seconds
+Average Total Time for 6 hops : 0.058908 seconds
+Number of candidate generation timeouts : 0
+
+
+Number of hops = 8
+
+203959	244
+Nr of candidates : 1
+MPSP:
+203959 86087 921 0.259561
+86087 60407 438 0.511833
+60407 3891 747 0.216508
+3891 1766 192 0.221133
+1766 1453 208 0.301720
+1453 941 57 0.833804
+941 534 811 0.391752
+534 244 521 0.104628
+Length of MPSP : 3895
+Probability of MPSP : 0.000066
+Probability of being MPSP : 0.000066
+Candidate Generation Time : 0.023549 seconds
+Probability Computation Time : 0.000001 seconds
+
+346571	33
+Nr of candidates : 1
+MPSP:
+346571 267853 476 0.795583
+267853 6823 782 0.614159
+6823 522 454 0.519944
+522 311 256 0.839533
+311 249 901 0.545881
+249 74 633 0.507659
+74 59 213 0.342890
+59 33 502 0.226084
+Length of MPSP : 4217
+Probability of MPSP : 0.004582
+Probability of being MPSP : 0.004582
+Candidate Generation Time : 0.023629 seconds
+Probability Computation Time : 0.000001 seconds
+
+433210	36
+Nr of candidates : 1
+MPSP:
+433210 83014 440 0.575790
+83014 17568 517 0.455840
+17568 711 43 0.922593
+711 219 120 0.292144
+219 200 254 0.237123
+200 167 504 0.671416
+167 86 543 0.440804
+86 36 379 0.104273
+Length of MPSP : 2800
+Probability of MPSP : 0.000518
+Probability of being MPSP : 0.000518
+Candidate Generation Time : 0.023464 seconds
+Probability Computation Time : 0.000001 seconds
+
+490700	11
+Nr of candidates : 1
+MPSP:
+490700 469779 806 0.095495
+469779 460310 635 0.365521
+460310 93893 426 0.033710
+93893 6409 14 0.602209
+6409 1813 810 0.812234
+1813 371 675 0.062940
+371 99 53 0.629074
+99 11 333 0.826663
+Length of MPSP : 3752
+Probability of MPSP : 0.000019
+Probability of being MPSP : 0.000019
+Candidate Generation Time : 0.023454 seconds
+Probability Computation Time : 0.000001 seconds
+
+145272	23
+Nr of candidates : 1
+MPSP:
+145272 7384 795 0.074726
+7384 2920 109 0.683916
+2920 2905 336 0.242984
+2905 1119 192 0.664927
+1119 291 608 0.459336
+291 189 491 0.563057
+189 27 868 0.322782
+27 23 336 0.711563
+Length of MPSP : 3735
+Probability of MPSP : 0.000490
+Probability of being MPSP : 0.000490
+Candidate Generation Time : 0.023585 seconds
+Probability Computation Time : 0.000001 seconds
+
+201638	79
+Nr of candidates : 1
+MPSP:
+201638 118109 612 0.770891
+118109 105301 391 0.270296
+105301 42870 66 0.099300
+42870 6450 577 0.368667
+6450 2612 423 0.245753
+2612 1213 217 0.758669
+1213 659 316 0.980594
+659 79 264 0.292191
+Length of MPSP : 2866
+Probability of MPSP : 0.000407
+Probability of being MPSP : 0.000407
+Candidate Generation Time : 0.023566 seconds
+Probability Computation Time : 0.000000 seconds
+
+269552	11
+Nr of candidates : 1
+MPSP:
+269552 36318 40 0.853855
+36318 3077 778 0.834375
+3077 2595 585 0.733231
+2595 1408 156 0.313107
+1408 677 876 0.047625
+677 183 700 0.688708
+183 99 111 0.542013
+99 11 333 0.826663
+Length of MPSP : 3579
+Probability of MPSP : 0.002404
+Probability of being MPSP : 0.002404
+Candidate Generation Time : 0.023484 seconds
+Probability Computation Time : 0.000001 seconds
+
+251729	61
+Nr of candidates : 1
+MPSP:
+251729 120526 750 0.020005
+120526 58326 587 0.130216
+58326 7644 664 0.990119
+7644 2664 560 0.577614
+2664 2312 288 0.047397
+2312 307 379 0.709435
+307 130 356 0.861826
+130 61 189 0.358288
+Length of MPSP : 3773
+Probability of MPSP : 0.000015
+Probability of being MPSP : 0.000015
+Candidate Generation Time : 0.023438 seconds
+Probability Computation Time : 0.000001 seconds
+
+399018	6
+Nr of candidates : 2
+MPSP:
+399018 99665 394 0.566140
+99665 22638 410 0.975841
+22638 9188 70 0.708570
+9188 1730 327 0.777661
+1730 81 950 0.258544
+81 38 148 0.979793
+38 22 556 0.560726
+22 6 697 0.095533
+Length of MPSP : 3552
+Probability of MPSP : 0.004121
+Probability of being MPSP : 0.004121
+Candidate Generation Time : 0.044455 seconds
+Probability Computation Time : 0.000141 seconds
+
+328403	34
+Nr of candidates : 1
+MPSP:
+328403 25987 947 0.154071
+25987 1067 812 0.100635
+1067 435 152 0.193424
+435 152 807 0.681292
+152 135 363 0.571047
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 4909
+Probability of MPSP : 0.000263
+Probability of being MPSP : 0.000263
+Candidate Generation Time : 0.023707 seconds
+Probability Computation Time : 0.000001 seconds
+
+46022	34
+Nr of candidates : 1
+MPSP:
+46022 32835 941 0.818980
+32835 2709 499 0.833905
+2709 941 258 0.366602
+941 534 811 0.391752
+534 135 547 0.884028
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 4884
+Probability of MPSP : 0.019515
+Probability of being MPSP : 0.019515
+Candidate Generation Time : 0.023674 seconds
+Probability Computation Time : 0.000001 seconds
+
+391856	21
+Nr of candidates : 7
+MPSP:
+391856 338496 600 0.377243
+338496 28492 5 0.454172
+28492 180 841 0.814689
+180 118 839 0.495516
+118 86 689 0.509628
+86 36 379 0.104273
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 5278
+Probability of MPSP : 0.001536
+Probability of being MPSP : 0.001536
+Candidate Generation Time : 0.184057 seconds
+Probability Computation Time : 0.002168 seconds
+
+73387	24
+Nr of candidates : 1
+MPSP:
+73387 10461 138 0.078461
+10461 4936 534 0.784937
+4936 2507 799 0.497035
+2507 582 325 0.779730
+582 269 646 0.578310
+269 101 979 0.285610
+101 48 56 0.675101
+48 24 30 0.158884
+Length of MPSP : 3507
+Probability of MPSP : 0.000423
+Probability of being MPSP : 0.000423
+Candidate Generation Time : 0.023461 seconds
+Probability Computation Time : 0.000002 seconds
+
+463272	34
+Nr of candidates : 2
+MPSP:
+463272 349610 358 0.995424
+349610 169965 337 0.502219
+169965 45119 496 0.624001
+45119 3951 202 0.419484
+3951 938 598 0.457880
+938 502 822 0.572774
+502 135 305 0.138398
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 4946
+Probability of MPSP : 0.001068
+Probability of being MPSP : 0.001068
+Candidate Generation Time : 0.049914 seconds
+Probability Computation Time : 0.000175 seconds
+
+396080	3
+Nr of candidates : 1
+MPSP:
+396080 318113 935 0.272781
+318113 317703 252 0.490806
+317703 26381 220 0.184737
+26381 4172 833 0.385897
+4172 2907 678 0.113134
+2907 985 969 0.234575
+985 372 203 0.394918
+372 3 712 0.064315
+Length of MPSP : 4802
+Probability of MPSP : 0.000006
+Probability of being MPSP : 0.000006
+Candidate Generation Time : 0.023511 seconds
+Probability Computation Time : 0.000001 seconds
+
+272083	59
+Nr of candidates : 1
+MPSP:
+272083 178864 327 0.167601
+178864 46048 972 0.976252
+46048 8805 572 0.075817
+8805 7846 843 0.143640
+7846 2038 559 0.240362
+2038 89 237 0.764196
+89 74 35 0.333802
+74 59 213 0.342890
+Length of MPSP : 3758
+Probability of MPSP : 0.000037
+Probability of being MPSP : 0.000037
+Candidate Generation Time : 0.023756 seconds
+Probability Computation Time : 0.000002 seconds
+
+394036	34
+Nr of candidates : 1
+MPSP:
+394036 16229 525 0.742830
+16229 12087 404 0.564512
+12087 369 862 0.821932
+369 180 542 0.777729
+180 118 839 0.495516
+118 86 689 0.509628
+86 36 379 0.104273
+36 34 929 0.953109
+Length of MPSP : 5169
+Probability of MPSP : 0.006727
+Probability of being MPSP : 0.006727
+Candidate Generation Time : 0.023656 seconds
+Probability Computation Time : 0.000001 seconds
+
+28403	15
+Nr of candidates : 2
+MPSP:
+28403 6807 258 0.462264
+6807 4457 866 0.712618
+4457 3699 407 0.678920
+3699 265 88 0.598838
+265 64 644 0.694923
+64 27 433 0.531549
+27 21 183 0.145746
+21 15 366 0.840278
+Length of MPSP : 3245
+Probability of MPSP : 0.006059
+Probability of being MPSP : 0.006059
+Candidate Generation Time : 0.044705 seconds
+Probability Computation Time : 0.000209 seconds
+
+38437	54
+Nr of candidates : 1
+MPSP:
+38437 27326 193 0.694680
+27326 2795 76 0.011449
+2795 2259 95 0.324909
+2259 575 131 0.575745
+575 483 512 0.132948
+483 294 653 0.067735
+294 90 949 0.969309
+90 54 485 0.803896
+Length of MPSP : 3094
+Probability of MPSP : 0.000010
+Probability of being MPSP : 0.000010
+Candidate Generation Time : 0.023493 seconds
+Probability Computation Time : 0.000001 seconds
+
+185071	59
+Nr of candidates : 1
+MPSP:
+185071 67915 962 0.171572
+67915 49373 378 0.671594
+49373 27464 899 0.884616
+27464 17585 177 0.365541
+17585 1916 168 0.539652
+1916 89 53 0.587756
+89 74 35 0.333802
+74 59 213 0.342890
+Length of MPSP : 2885
+Probability of MPSP : 0.001353
+Probability of being MPSP : 0.001353
+Candidate Generation Time : 0.023504 seconds
+Probability Computation Time : 0.000001 seconds
+
+243096	30
+Nr of candidates : 1
+MPSP:
+243096 106087 288 0.638404
+106087 685 419 0.777279
+685 447 946 0.309662
+447 376 511 0.641301
+376 293 755 0.027412
+293 58 451 0.624854
+58 37 453 0.770782
+37 30 849 0.049946
+Length of MPSP : 4672
+Probability of MPSP : 0.000065
+Probability of being MPSP : 0.000065
+Candidate Generation Time : 0.023533 seconds
+Probability Computation Time : 0.000001 seconds
+
+231890	192
+Nr of candidates : 1
+MPSP:
+231890 152728 594 0.783284
+152728 99679 761 0.259442
+99679 15961 80 0.082298
+15961 2349 842 0.386857
+2349 1314 645 0.695448
+1314 1004 715 0.336960
+1004 764 728 0.380546
+764 192 859 0.844785
+Length of MPSP : 5224
+Probability of MPSP : 0.000487
+Probability of being MPSP : 0.000487
+Candidate Generation Time : 0.023432 seconds
+Probability Computation Time : 0.000001 seconds
+
+378819	300
+Nr of candidates : 1
+MPSP:
+378819 138877 734 0.705200
+138877 95129 710 0.531058
+95129 33512 192 0.733842
+33512 5699 185 0.490935
+5699 3185 386 0.020406
+3185 462 956 0.286893
+462 374 739 0.891245
+374 300 524 0.510516
+Length of MPSP : 4426
+Probability of MPSP : 0.000359
+Probability of being MPSP : 0.000359
+Candidate Generation Time : 0.023493 seconds
+Probability Computation Time : 0.000001 seconds
+
+295719	33
+Nr of candidates : 1
+MPSP:
+295719 27614 745 0.650745
+27614 2811 906 0.890065
+2811 1429 919 0.061592
+1429 214 718 0.207895
+214 89 773 0.982529
+89 74 35 0.333802
+74 59 213 0.342890
+59 33 502 0.226084
+Length of MPSP : 4811
+Probability of MPSP : 0.000189
+Probability of being MPSP : 0.000189
+Candidate Generation Time : 0.023732 seconds
+Probability Computation Time : 0.000002 seconds
+
+81417	34
+Nr of candidates : 1
+MPSP:
+81417 9710 966 0.348129
+9710 4732 874 0.049861
+4732 1914 499 0.367930
+1914 269 178 0.877638
+269 135 712 0.146312
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 5057
+Probability of MPSP : 0.000185
+Probability of being MPSP : 0.000185
+Candidate Generation Time : 0.023879 seconds
+Probability Computation Time : 0.000001 seconds
+
+496318	61
+Nr of candidates : 1
+MPSP:
+496318 17543 409 0.996177
+17543 16240 693 0.195945
+16240 7629 346 0.851112
+7629 2671 444 0.175300
+2671 1820 70 0.851477
+1820 907 249 0.526726
+907 358 800 0.141829
+358 61 826 0.457780
+Length of MPSP : 3837
+Probability of MPSP : 0.000848
+Probability of being MPSP : 0.000848
+Candidate Generation Time : 0.023558 seconds
+Probability Computation Time : 0.000001 seconds
+
+479874	249
+Nr of candidates : 1
+MPSP:
+479874 102705 784 0.026474
+102705 95855 215 0.823873
+95855 5904 4 0.173726
+5904 5114 440 0.483969
+5114 1069 611 0.905162
+1069 472 232 0.662463
+472 311 205 0.289655
+311 249 901 0.545881
+Length of MPSP : 3392
+Probability of MPSP : 0.000174
+Probability of being MPSP : 0.000174
+Candidate Generation Time : 0.023494 seconds
+Probability Computation Time : 0.000001 seconds
+
+337605	59
+Nr of candidates : 2
+MPSP:
+337605 322022 320 0.722911
+322022 86161 146 0.542808
+86161 67375 66 0.710297
+67375 57015 258 0.184777
+57015 311 687 0.698473
+311 249 901 0.545881
+249 74 633 0.507659
+74 59 213 0.342890
+Length of MPSP : 3224
+Probability of MPSP : 0.003418
+Probability of being MPSP : 0.003418
+Candidate Generation Time : 0.049728 seconds
+Probability Computation Time : 0.000174 seconds
+
+289892	24
+Nr of candidates : 3
+MPSP:
+289892 82480 852 0.964308
+82480 50394 728 0.525823
+50394 1907 14 0.630715
+1907 1685 890 0.449858
+1685 575 739 0.793519
+575 98 159 0.489934
+98 80 354 0.033653
+80 24 681 0.762630
+Length of MPSP : 4417
+Probability of MPSP : 0.001434
+Probability of being MPSP : 0.001434
+Candidate Generation Time : 0.075756 seconds
+Probability Computation Time : 0.000647 seconds
+
+479654	27
+Nr of candidates : 1
+MPSP:
+479654 80022 408 0.239490
+80022 45981 287 0.849861
+45981 12170 984 0.514152
+12170 1973 664 0.138838
+1973 1772 474 0.027981
+1772 970 789 0.672071
+970 604 573 0.202001
+604 27 502 0.223106
+Length of MPSP : 4681
+Probability of MPSP : 0.000012
+Probability of being MPSP : 0.000012
+Candidate Generation Time : 0.023363 seconds
+Probability Computation Time : 0.000001 seconds
+
+151285	19
+Nr of candidates : 2
+MPSP:
+151285 94794 438 0.956422
+94794 5586 102 0.541097
+5586 1068 17 0.298785
+1068 550 383 0.015430
+550 365 50 0.115605
+365 27 383 0.101499
+27 23 336 0.711563
+23 19 438 0.478000
+Length of MPSP : 2147
+Probability of MPSP : 0.000010
+Probability of being MPSP : 0.000010
+Candidate Generation Time : 0.047310 seconds
+Probability Computation Time : 0.000071 seconds
+
+156922	21
+Nr of candidates : 1
+MPSP:
+156922 69905 89 0.324920
+69905 12773 65 0.507657
+12773 2004 219 0.532133
+2004 964 299 0.953133
+964 474 129 0.439409
+474 36 545 0.085040
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 3271
+Probability of MPSP : 0.001307
+Probability of being MPSP : 0.001307
+Candidate Generation Time : 0.023524 seconds
+Probability Computation Time : 0.000001 seconds
+
+114999	101
+Nr of candidates : 1
+MPSP:
+114999 65065 421 0.550706
+65065 63176 815 0.744321
+63176 17760 820 0.421031
+17760 1040 174 0.646023
+1040 428 713 0.908705
+428 296 441 0.248223
+296 190 45 0.584751
+190 101 322 0.851026
+Length of MPSP : 3751
+Probability of MPSP : 0.012515
+Probability of being MPSP : 0.012515
+Candidate Generation Time : 0.023367 seconds
+Probability Computation Time : 0.000001 seconds
+
+275962	30
+Nr of candidates : 1
+MPSP:
+275962 181041 572 0.352340
+181041 7560 258 0.736684
+7560 1700 423 0.218366
+1700 376 488 0.955959
+376 293 755 0.027412
+293 58 451 0.624854
+58 37 453 0.770782
+37 30 849 0.049946
+Length of MPSP : 4249
+Probability of MPSP : 0.000036
+Probability of being MPSP : 0.000036
+Candidate Generation Time : 0.023517 seconds
+Probability Computation Time : 0.000001 seconds
+
+391322	45
+Nr of candidates : 2
+MPSP:
+391322 158980 868 0.076958
+158980 98058 39 0.948502
+98058 82714 3 0.658254
+82714 46370 973 0.264616
+46370 373 459 0.672335
+373 130 375 0.727960
+130 82 813 0.320083
+82 45 916 0.986506
+Length of MPSP : 4446
+Probability of MPSP : 0.001963
+Probability of being MPSP : 0.001963
+Candidate Generation Time : 0.047012 seconds
+Probability Computation Time : 0.000244 seconds
+
+88164	29
+Nr of candidates : 2
+MPSP:
+88164 87753 229 0.302756
+87753 36603 522 0.068325
+36603 4864 686 0.198726
+4864 885 94 0.592723
+885 428 501 0.840494
+428 296 441 0.248223
+296 50 144 0.953944
+50 29 184 0.959484
+Length of MPSP : 2801
+Probability of MPSP : 0.000465
+Probability of being MPSP : 0.000465
+Candidate Generation Time : 0.049476 seconds
+Probability Computation Time : 0.000071 seconds
+
+369306	244
+Nr of candidates : 1
+MPSP:
+369306 87744 700 0.872921
+87744 86923 510 0.881366
+86923 43423 81 0.743516
+43423 18285 999 0.923824
+18285 2709 262 0.576887
+2709 941 258 0.366602
+941 534 811 0.391752
+534 244 521 0.104628
+Length of MPSP : 4142
+Probability of MPSP : 0.004581
+Probability of being MPSP : 0.004581
+Candidate Generation Time : 0.023579 seconds
+Probability Computation Time : 0.000001 seconds
+
+64552	86
+Nr of candidates : 1
+MPSP:
+64552 21751 172 0.749217
+21751 2728 910 0.155508
+2728 1569 102 0.860723
+1569 851 631 0.932061
+851 812 497 0.131184
+812 180 296 0.980433
+180 118 839 0.495516
+118 86 689 0.509628
+Length of MPSP : 4136
+Probability of MPSP : 0.003036
+Probability of being MPSP : 0.003036
+Candidate Generation Time : 0.023609 seconds
+Probability Computation Time : 0.000001 seconds
+
+281401	300
+Nr of candidates : 1
+MPSP:
+281401 259089 948 0.268239
+259089 101421 638 0.683686
+101421 23421 310 0.402034
+23421 14449 218 0.021949
+14449 4361 615 0.879991
+4361 462 438 0.472979
+462 374 739 0.891245
+374 300 524 0.510516
+Length of MPSP : 4430
+Probability of MPSP : 0.000306
+Probability of being MPSP : 0.000306
+Candidate Generation Time : 0.023573 seconds
+Probability Computation Time : 0.000001 seconds
+
+196386	23
+Nr of candidates : 1
+MPSP:
+196386 15322 124 0.854673
+15322 10829 227 0.969591
+10829 9111 364 0.839950
+9111 1400 817 0.747294
+1400 255 800 0.091042
+255 32 265 0.528567
+32 27 74 0.273712
+27 23 336 0.711563
+Length of MPSP : 3007
+Probability of MPSP : 0.004875
+Probability of being MPSP : 0.004875
+Candidate Generation Time : 0.023494 seconds
+Probability Computation Time : 0.000001 seconds
+
+446636	28
+Nr of candidates : 1
+MPSP:
+446636 324950 73 0.569364
+324950 53166 847 0.836652
+53166 24168 986 0.107064
+24168 19967 84 0.247800
+19967 5127 801 0.222313
+5127 901 781 0.270702
+901 347 261 0.672538
+347 28 802 0.661047
+Length of MPSP : 4635
+Probability of MPSP : 0.000338
+Probability of being MPSP : 0.000338
+Candidate Generation Time : 0.023376 seconds
+Probability Computation Time : 0.000001 seconds
+
+390089	205
+Nr of candidates : 1
+MPSP:
+390089 385409 397 0.829393
+385409 200374 769 0.762363
+200374 71505 538 0.639742
+71505 17808 921 0.702356
+17808 5414 454 0.373321
+5414 3430 19 0.711564
+3430 355 778 0.675251
+355 205 638 0.702984
+Length of MPSP : 4514
+Probability of MPSP : 0.035825
+Probability of being MPSP : 0.035825
+Candidate Generation Time : 0.023448 seconds
+Probability Computation Time : 0.000002 seconds
+
+434334	40
+Nr of candidates : 1
+MPSP:
+434334 39445 990 0.495955
+39445 6583 166 0.401643
+6583 6273 201 0.672294
+6273 5270 521 0.281889
+5270 2149 618 0.776295
+2149 475 773 0.345795
+475 441 240 0.282756
+441 40 321 0.567253
+Length of MPSP : 3830
+Probability of MPSP : 0.001625
+Probability of being MPSP : 0.001625
+Candidate Generation Time : 0.023499 seconds
+Probability Computation Time : 0.000001 seconds
+
+282521	33
+Nr of candidates : 2
+MPSP:
+282521 131213 376 0.534576
+131213 4956 895 0.172832
+4956 4903 358 0.522804
+4903 311 913 0.377733
+311 249 901 0.545881
+249 74 633 0.507659
+74 59 213 0.342890
+59 33 502 0.226084
+Length of MPSP : 4791
+Probability of MPSP : 0.000392
+Probability of being MPSP : 0.000392
+Candidate Generation Time : 0.046869 seconds
+Probability Computation Time : 0.000211 seconds
+
+75471	80
+Nr of candidates : 1
+MPSP:
+75471 16267 346 0.393186
+16267 11133 497 0.897685
+11133 8642 967 0.314537
+8642 6440 755 0.306334
+6440 3560 722 0.533149
+3560 609 402 0.783724
+609 316 335 0.693135
+316 80 155 0.954942
+Length of MPSP : 4179
+Probability of MPSP : 0.009406
+Probability of being MPSP : 0.009406
+Candidate Generation Time : 0.023405 seconds
+Probability Computation Time : 0.000001 seconds
+
+477643	108
+Nr of candidates : 1
+MPSP:
+477643 276924 111 0.949149
+276924 8355 515 0.596067
+8355 6996 593 0.151896
+6996 4443 436 0.918461
+4443 1471 979 0.563046
+1471 787 763 0.630664
+787 462 402 0.566899
+462 108 95 0.411853
+Length of MPSP : 3894
+Probability of MPSP : 0.006544
+Probability of being MPSP : 0.006544
+Candidate Generation Time : 0.023705 seconds
+Probability Computation Time : 0.000001 seconds
+
+64967	41
+Nr of candidates : 1
+MPSP:
+64967 10224 588 0.371775
+10224 7769 140 0.387340
+7769 3604 944 0.167094
+3604 2752 848 0.658824
+2752 952 65 0.450188
+952 907 292 0.106152
+907 231 856 0.097377
+231 41 83 0.160749
+Length of MPSP : 3816
+Probability of MPSP : 0.000012
+Probability of being MPSP : 0.000012
+Candidate Generation Time : 0.023621 seconds
+Probability Computation Time : 0.000001 seconds
+
+475227	59
+Nr of candidates : 2
+MPSP:
+475227 295380 337 0.859428
+295380 28511 463 0.795790
+28511 1069 233 0.617247
+1069 472 232 0.662463
+472 311 205 0.289655
+311 249 901 0.545881
+249 74 633 0.507659
+74 59 213 0.342890
+Length of MPSP : 3217
+Probability of MPSP : 0.007694
+Probability of being MPSP : 0.007694
+Candidate Generation Time : 0.047110 seconds
+Probability Computation Time : 0.000246 seconds
+
+373705	3
+Nr of candidates : 1
+MPSP:
+373705 34008 687 0.481732
+34008 5958 430 0.320393
+5958 879 115 0.282326
+879 501 82 0.962688
+501 180 190 0.593701
+180 118 839 0.495516
+118 86 689 0.509628
+86 3 257 0.509155
+Length of MPSP : 3289
+Probability of MPSP : 0.003202
+Probability of being MPSP : 0.003202
+Candidate Generation Time : 0.023397 seconds
+Probability Computation Time : 0.000001 seconds
+
+188573	80
+Nr of candidates : 1
+MPSP:
+188573 70814 559 0.107871
+70814 50265 538 0.872648
+50265 26554 266 0.382878
+26554 20390 317 0.782803
+20390 4692 814 0.917056
+4692 3933 404 0.067423
+3933 316 357 0.641555
+316 80 155 0.954942
+Length of MPSP : 3410
+Probability of MPSP : 0.001069
+Probability of being MPSP : 0.001069
+Candidate Generation Time : 0.023463 seconds
+Probability Computation Time : 0.000001 seconds
+
+197770	34
+Nr of candidates : 1
+MPSP:
+197770 4472 962 0.152869
+4472 1258 905 0.487948
+1258 655 457 0.047873
+655 302 538 0.446183
+302 135 596 0.502655
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 5286
+Probability of MPSP : 0.000180
+Probability of being MPSP : 0.000180
+Candidate Generation Time : 0.023612 seconds
+Probability Computation Time : 0.000001 seconds
+
+482416	305
+Nr of candidates : 1
+MPSP:
+482416 326453 392 0.263976
+326453 47258 554 0.515253
+47258 25019 566 0.044634
+25019 4396 688 0.893552
+4396 4212 344 0.456296
+4212 4074 617 0.687816
+4074 2663 495 0.216811
+2663 305 988 0.793945
+Length of MPSP : 4644
+Probability of MPSP : 0.000293
+Probability of being MPSP : 0.000293
+Candidate Generation Time : 0.023491 seconds
+Probability Computation Time : 0.000001 seconds
+
+225864	3
+Nr of candidates : 1
+MPSP:
+225864 55055 827 0.253839
+55055 2672 425 0.970573
+2672 1471 372 0.079412
+1471 787 763 0.630664
+787 462 402 0.566899
+462 108 95 0.411853
+108 44 60 0.894574
+44 3 894 0.624189
+Length of MPSP : 3838
+Probability of MPSP : 0.001609
+Probability of being MPSP : 0.001609
+Candidate Generation Time : 0.023476 seconds
+Probability Computation Time : 0.000001 seconds
+
+221266	135
+Nr of candidates : 1
+MPSP:
+221266 29022 500 0.667107
+29022 10765 683 0.477839
+10765 1101 51 0.557488
+1101 975 762 0.068582
+975 601 924 0.501427
+601 435 829 0.244405
+435 152 807 0.681292
+152 135 363 0.571047
+Length of MPSP : 4919
+Probability of MPSP : 0.000581
+Probability of being MPSP : 0.000581
+Candidate Generation Time : 0.023497 seconds
+Probability Computation Time : 0.000001 seconds
+
+148281	45
+Nr of candidates : 1
+MPSP:
+148281 69577 696 0.626569
+69577 4939 22 0.972532
+4939 4185 158 0.301263
+4185 2603 251 0.874431
+2603 1669 639 0.856076
+1669 244 702 0.385292
+244 93 620 0.714891
+93 45 256 0.274668
+Length of MPSP : 3344
+Probability of MPSP : 0.010397
+Probability of being MPSP : 0.010397
+Candidate Generation Time : 0.023447 seconds
+Probability Computation Time : 0.000001 seconds
+
+203649	456
+Nr of candidates : 1
+MPSP:
+203649 156946 381 0.275275
+156946 2587 553 0.234619
+2587 2428 751 0.622227
+2428 2196 509 0.025903
+2196 1676 821 0.704794
+1676 1107 201 0.991016
+1107 680 729 0.191597
+680 456 821 0.254330
+Length of MPSP : 4766
+Probability of MPSP : 0.000035
+Probability of being MPSP : 0.000035
+Candidate Generation Time : 0.023546 seconds
+Probability Computation Time : 0.000001 seconds
+
+399052	30
+Nr of candidates : 1
+MPSP:
+399052 20172 136 0.241001
+20172 8813 414 0.270720
+8813 1011 106 0.149571
+1011 296 529 0.527022
+296 190 45 0.584751
+190 101 322 0.851026
+101 37 598 0.977659
+37 30 849 0.049946
+Length of MPSP : 2999
+Probability of MPSP : 0.000125
+Probability of being MPSP : 0.000125
+Candidate Generation Time : 0.023591 seconds
+Probability Computation Time : 0.000001 seconds
+
+380412	142
+Nr of candidates : 2
+MPSP:
+380412 109077 202 0.646617
+109077 54879 248 0.440426
+54879 14899 79 0.885446
+14899 1918 681 0.834347
+1918 702 478 0.141854
+702 355 719 0.962662
+355 205 638 0.702984
+205 142 29 0.299644
+Length of MPSP : 3074
+Probability of MPSP : 0.006052
+Probability of being MPSP : 0.006052
+Candidate Generation Time : 0.044395 seconds
+Probability Computation Time : 0.000108 seconds
+
+158831	1060
+Nr of candidates : 1
+MPSP:
+158831 117238 1 0.484812
+117238 41322 17 0.867329
+41322 24449 375 0.613272
+24449 4499 669 0.745615
+4499 2349 671 0.246702
+2349 2022 542 0.705681
+2022 1179 502 0.072809
+1179 1060 749 0.698722
+Length of MPSP : 3526
+Probability of MPSP : 0.001703
+Probability of being MPSP : 0.001703
+Candidate Generation Time : 0.023627 seconds
+Probability Computation Time : 0.000001 seconds
+
+44281	21
+Nr of candidates : 1
+MPSP:
+44281 3218 67 0.456021
+3218 2408 854 0.172886
+2408 253 91 0.943341
+253 135 745 0.463550
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 4581
+Probability of MPSP : 0.003403
+Probability of being MPSP : 0.003403
+Candidate Generation Time : 0.023744 seconds
+Probability Computation Time : 0.000001 seconds
+
+322630	101
+Nr of candidates : 1
+MPSP:
+322630 180132 23 0.077887
+180132 51054 869 0.151858
+51054 20172 991 0.777801
+20172 8813 414 0.270720
+8813 1011 106 0.149571
+1011 296 529 0.527022
+296 190 45 0.584751
+190 101 322 0.851026
+Length of MPSP : 3299
+Probability of MPSP : 0.000098
+Probability of being MPSP : 0.000098
+Candidate Generation Time : 0.023460 seconds
+Probability Computation Time : 0.000001 seconds
+
+414363	24
+Nr of candidates : 1
+MPSP:
+414363 265315 154 0.944435
+265315 17434 646 0.742588
+17434 15303 632 0.869745
+15303 1009 269 0.098979
+1009 412 614 0.030331
+412 177 581 0.498839
+177 77 605 0.127535
+77 24 785 0.511056
+Length of MPSP : 4286
+Probability of MPSP : 0.000060
+Probability of being MPSP : 0.000060
+Candidate Generation Time : 0.023470 seconds
+Probability Computation Time : 0.000001 seconds
+
+250528	24
+Nr of candidates : 1
+MPSP:
+250528 172701 195 0.851028
+172701 48225 855 0.981430
+48225 12386 969 0.343731
+12386 9354 868 0.433950
+9354 269 279 0.093826
+269 101 979 0.285610
+101 48 56 0.675101
+48 24 30 0.158884
+Length of MPSP : 4231
+Probability of MPSP : 0.000358
+Probability of being MPSP : 0.000358
+Candidate Generation Time : 0.023781 seconds
+Probability Computation Time : 0.000001 seconds
+
+30193	21
+Nr of candidates : 1
+MPSP:
+30193 13023 928 0.496015
+13023 435 87 0.785956
+435 152 807 0.681292
+152 135 363 0.571047
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 5009
+Probability of MPSP : 0.014969
+Probability of being MPSP : 0.014969
+Candidate Generation Time : 0.023803 seconds
+Probability Computation Time : 0.000001 seconds
+
+286616	2
+Nr of candidates : 3
+MPSP:
+286616 53717 839 0.727785
+53717 515 806 0.626111
+515 100 370 0.300146
+100 84 65 0.722699
+84 45 472 0.634476
+45 15 819 0.025516
+15 9 409 0.423637
+9 2 781 0.157618
+Length of MPSP : 4561
+Probability of MPSP : 0.000107
+Probability of being MPSP : 0.000107
+Candidate Generation Time : 0.068668 seconds
+Probability Computation Time : 0.000489 seconds
+
+255080	27
+Nr of candidates : 1
+MPSP:
+255080 20438 156 0.426141
+20438 11365 491 0.773734
+11365 9239 112 0.551327
+9239 7368 164 0.883394
+7368 657 279 0.094527
+657 602 400 0.331596
+602 207 567 0.869843
+207 27 18 0.057586
+Length of MPSP : 2187
+Probability of MPSP : 0.000252
+Probability of being MPSP : 0.000252
+Candidate Generation Time : 0.023507 seconds
+Probability Computation Time : 0.000001 seconds
+
+152604	7
+Nr of candidates : 1
+MPSP:
+152604 137971 315 0.051045
+137971 127483 903 0.198208
+127483 1758 297 0.257553
+1758 504 991 0.068625
+504 219 787 0.467365
+219 200 254 0.237123
+200 167 504 0.671416
+167 7 858 0.446925
+Length of MPSP : 4909
+Probability of MPSP : 0.000006
+Probability of being MPSP : 0.000006
+Candidate Generation Time : 0.023547 seconds
+Probability Computation Time : 0.000001 seconds
+
+412974	59
+Nr of candidates : 1
+MPSP:
+412974 141572 127 0.627770
+141572 48751 615 0.357087
+48751 31937 693 0.195637
+31937 3570 473 0.242981
+3570 2878 687 0.719639
+2878 894 335 0.477223
+894 74 317 0.241295
+74 59 213 0.342890
+Length of MPSP : 3460
+Probability of MPSP : 0.000303
+Probability of being MPSP : 0.000303
+Candidate Generation Time : 0.023517 seconds
+Probability Computation Time : 0.000001 seconds
+
+452561	597
+Nr of candidates : 1
+MPSP:
+452561 253412 773 0.528440
+253412 188918 279 0.751129
+188918 129769 621 0.230793
+129769 15764 45 0.945608
+15764 1277 578 0.116485
+1277 877 641 0.671534
+877 814 799 0.316106
+814 597 3 0.089846
+Length of MPSP : 3739
+Probability of MPSP : 0.000192
+Probability of being MPSP : 0.000192
+Candidate Generation Time : 0.023411 seconds
+Probability Computation Time : 0.000001 seconds
+
+297829	41
+Nr of candidates : 1
+MPSP:
+297829 109750 679 0.325115
+109750 85043 760 0.454505
+85043 28913 166 0.405181
+28913 11124 123 0.614042
+11124 9717 294 0.073148
+9717 9108 87 0.621650
+9108 629 85 0.256288
+629 41 548 0.633307
+Length of MPSP : 2742
+Probability of MPSP : 0.000271
+Probability of being MPSP : 0.000271
+Candidate Generation Time : 0.023360 seconds
+Probability Computation Time : 0.000001 seconds
+
+420632	59
+Nr of candidates : 1
+MPSP:
+420632 12962 136 0.273616
+12962 8346 734 0.165616
+8346 3553 58 0.098996
+3553 2470 428 0.720233
+2470 838 698 0.769911
+838 249 724 0.097132
+249 74 633 0.507659
+74 59 213 0.342890
+Length of MPSP : 3624
+Probability of MPSP : 0.000042
+Probability of being MPSP : 0.000042
+Candidate Generation Time : 0.023476 seconds
+Probability Computation Time : 0.000001 seconds
+
+79476	1408
+Nr of candidates : 1
+MPSP:
+79476 39856 386 0.781748
+39856 16749 308 0.246015
+16749 9394 889 0.007158
+9394 5970 964 0.611658
+5970 3829 222 0.229875
+3829 3077 964 0.207838
+3077 2595 585 0.733231
+2595 1408 156 0.313107
+Length of MPSP : 4474
+Probability of MPSP : 0.000009
+Probability of being MPSP : 0.000009
+Candidate Generation Time : 0.023578 seconds
+Probability Computation Time : 0.000001 seconds
+
+280777	10
+Nr of candidates : 11
+MPSP:
+280777 58591 785 0.941975
+58591 11813 640 0.430708
+11813 3196 604 0.194278
+3196 1102 221 0.927565
+1102 322 494 0.776359
+322 115 627 0.526515
+115 19 424 0.928409
+19 10 923 0.497374
+Length of MPSP : 4718
+Probability of MPSP : 0.013800
+Probability of being MPSP : 0.013800
+Candidate Generation Time : 0.279032 seconds
+Probability Computation Time : 0.003575 seconds
+
+480586	24
+Nr of candidates : 2
+MPSP:
+480586 256389 234 0.413466
+256389 249450 846 0.524680
+249450 6440 370 0.448413
+6440 3560 722 0.533149
+3560 609 402 0.783724
+609 316 335 0.693135
+316 80 155 0.954942
+80 24 681 0.762630
+Length of MPSP : 3745
+Probability of MPSP : 0.020518
+Probability of being MPSP : 0.020518
+Candidate Generation Time : 0.049609 seconds
+Probability Computation Time : 0.000289 seconds
+
+227868	45
+Nr of candidates : 1
+MPSP:
+227868 195921 13 0.293617
+195921 108821 467 0.120768
+108821 6918 803 0.391031
+6918 2771 314 0.764495
+2771 587 917 0.679045
+587 379 460 0.487575
+379 93 904 0.053135
+93 45 256 0.274668
+Length of MPSP : 4134
+Probability of MPSP : 0.000051
+Probability of being MPSP : 0.000051
+Candidate Generation Time : 0.023511 seconds
+Probability Computation Time : 0.000001 seconds
+
+336643	34
+Nr of candidates : 2
+MPSP:
+336643 163073 661 0.542575
+163073 1326 2 0.831703
+1326 440 4 0.868765
+440 322 599 0.277234
+322 135 902 0.186386
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+Length of MPSP : 3996
+Probability of MPSP : 0.004559
+Probability of being MPSP : 0.004559
+Candidate Generation Time : 0.044442 seconds
+Probability Computation Time : 0.000178 seconds
+
+116535	190
+Nr of candidates : 1
+MPSP:
+116535 114488 700 0.796088
+114488 106391 667 0.109612
+106391 76773 967 0.659681
+76773 10700 623 0.623356
+10700 3015 993 0.307476
+3015 1344 902 0.071680
+1344 568 322 0.071984
+568 190 614 0.507364
+Length of MPSP : 5788
+Probability of MPSP : 0.000029
+Probability of being MPSP : 0.000029
+Candidate Generation Time : 0.023652 seconds
+Probability Computation Time : 0.000001 seconds
+
+1233	9
+Nr of candidates : 1
+MPSP:
+1233 372 553 0.513326
+372 135 756 0.920207
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+21 15 366 0.840278
+15 9 409 0.423637
+Length of MPSP : 4908
+Probability of MPSP : 0.016596
+Probability of being MPSP : 0.016596
+Candidate Generation Time : 0.024257 seconds
+Probability Computation Time : 0.000001 seconds
+
+412742	8
+Nr of candidates : 2
+MPSP:
+412742 143292 677 0.300461
+143292 62039 496 0.175351
+62039 33667 350 0.183191
+33667 17538 652 0.927456
+17538 1637 397 0.556290
+1637 483 511 0.661892
+483 224 369 0.568978
+224 8 371 0.580408
+Length of MPSP : 3823
+Probability of MPSP : 0.001088
+Probability of being MPSP : 0.001088
+Candidate Generation Time : 0.047290 seconds
+Probability Computation Time : 0.000039 seconds
+
+251435	37
+Nr of candidates : 1
+MPSP:
+251435 66855 998 0.347638
+66855 30875 485 0.232571
+30875 10768 660 0.000469
+10768 5300 84 0.813111
+5300 593 484 0.255030
+593 387 707 0.648014
+387 164 157 0.602714
+164 37 800 0.682595
+Length of MPSP : 4375
+Probability of MPSP : 0.000002
+Probability of being MPSP : 0.000002
+Candidate Generation Time : 0.023299 seconds
+Probability Computation Time : 0.000001 seconds
+
+326904	28
+Nr of candidates : 1
+MPSP:
+326904 68228 481 0.671915
+68228 27170 522 0.999192
+27170 25631 786 0.671363
+25631 14857 849 0.490385
+14857 893 895 0.891506
+893 137 169 0.753260
+137 61 992 0.225685
+61 28 644 0.598582
+Length of MPSP : 5338
+Probability of MPSP : 0.020052
+Probability of being MPSP : 0.020052
+Candidate Generation Time : 0.023631 seconds
+Probability Computation Time : 0.000001 seconds
+
+229488	61
+Nr of candidates : 1
+MPSP:
+229488 78936 904 0.942951
+78936 75488 837 0.014456
+75488 8983 511 0.284201
+8983 5073 590 0.860299
+5073 2312 120 0.709396
+2312 307 379 0.709435
+307 130 356 0.861826
+130 61 189 0.358288
+Length of MPSP : 3886
+Probability of MPSP : 0.000518
+Probability of being MPSP : 0.000518
+Candidate Generation Time : 0.023676 seconds
+Probability Computation Time : 0.000002 seconds
+
+308415	48
+Nr of candidates : 1
+MPSP:
+308415 110371 82 0.919086
+110371 9916 261 0.897028
+9916 7239 217 0.328533
+7239 1556 768 0.269516
+1556 1259 518 0.025671
+1259 567 116 0.907807
+567 154 796 0.004451
+154 48 603 0.091137
+Length of MPSP : 3361
+Probability of MPSP : 0.000001
+Probability of being MPSP : 0.000001
+Candidate Generation Time : 0.023409 seconds
+Probability Computation Time : 0.000001 seconds
+
+295759	33
+Nr of candidates : 1
+MPSP:
+295759 76023 743 0.077723
+76023 18152 478 0.708454
+18152 5213 546 0.482248
+5213 225 748 0.332890
+225 89 91 0.148689
+89 74 35 0.333802
+74 59 213 0.342890
+59 33 502 0.226084
+Length of MPSP : 3356
+Probability of MPSP : 0.000034
+Probability of being MPSP : 0.000034
+Candidate Generation Time : 0.023519 seconds
+Probability Computation Time : 0.000001 seconds
+
+239418	37
+Nr of candidates : 1
+MPSP:
+239418 46865 479 0.476987
+46865 27023 522 0.071059
+27023 3109 562 0.980723
+3109 1896 694 0.294899
+1896 1050 505 0.358994
+1050 72 504 0.014474
+72 65 458 0.592540
+65 37 224 0.703300
+Length of MPSP : 3948
+Probability of MPSP : 0.000021
+Probability of being MPSP : 0.000021
+Candidate Generation Time : 0.023462 seconds
+Probability Computation Time : 0.000001 seconds
+
+453791	22
+Nr of candidates : 1
+MPSP:
+453791 321617 571 0.149178
+321617 148923 81 0.534965
+148923 29423 789 0.156966
+29423 8167 544 0.223607
+8167 1727 347 0.896234
+1727 781 613 0.975126
+781 310 873 0.217892
+310 22 564 0.914524
+Length of MPSP : 4382
+Probability of MPSP : 0.000488
+Probability of being MPSP : 0.000488
+Candidate Generation Time : 0.023557 seconds
+Probability Computation Time : 0.000001 seconds
+
+46228	9
+Nr of candidates : 3
+MPSP:
+46228 19469 380 0.735598
+19469 6135 382 0.773376
+6135 5614 324 0.799540
+5614 4016 84 0.979831
+4016 2724 124 0.191066
+2724 894 661 0.788970
+894 74 317 0.241295
+74 59 213 0.342890
+59 33 502 0.226084
+33 9 542 0.301297
+Length of MPSP : 3529
+Probability of MPSP : 0.000379
+Probability of being MPSP : 0.000379
+Candidate Generation Time : 0.070834 seconds
+Probability Computation Time : 0.000579 seconds
+
+370491	101
+Nr of candidates : 1
+MPSP:
+370491 260110 786 0.949991
+260110 105013 439 0.827922
+105013 8974 13 0.831928
+8974 7958 28 0.637847
+7958 3465 85 0.031066
+3465 296 877 0.547705
+296 190 45 0.584751
+190 101 322 0.851026
+Length of MPSP : 2595
+Probability of MPSP : 0.003534
+Probability of being MPSP : 0.003534
+Candidate Generation Time : 0.023453 seconds
+Probability Computation Time : 0.000002 seconds
+
+338408	36
+Nr of candidates : 1
+MPSP:
+338408 23739 422 0.154975
+23739 975 109 0.042285
+975 601 924 0.501427
+601 435 829 0.244405
+435 152 807 0.681292
+152 135 363 0.571047
+135 40 854 0.537977
+40 36 45 0.438929
+Length of MPSP : 4353
+Probability of MPSP : 0.000074
+Probability of being MPSP : 0.000074
+Candidate Generation Time : 0.023504 seconds
+Probability Computation Time : 0.000001 seconds
+
+231068	82
+Nr of candidates : 1
+MPSP:
+231068 183650 580 0.306256
+183650 138709 528 0.031095
+138709 42624 15 0.792432
+42624 1918 463 0.074249
+1918 702 478 0.141854
+702 355 719 0.962662
+355 130 519 0.237509
+130 82 813 0.320083
+Length of MPSP : 4115
+Probability of MPSP : 0.000006
+Probability of being MPSP : 0.000006
+Candidate Generation Time : 0.023649 seconds
+Probability Computation Time : 0.000002 seconds
+
+388731	27
+Nr of candidates : 1
+MPSP:
+388731 369026 657 0.545936
+369026 91624 130 0.777023
+91624 51361 948 0.189402
+51361 31304 643 0.052222
+31304 16303 736 0.891593
+16303 2745 357 0.566549
+2745 157 668 0.141976
+157 27 582 0.250667
+Length of MPSP : 4721
+Probability of MPSP : 0.000075
+Probability of being MPSP : 0.000075
+Candidate Generation Time : 0.023499 seconds
+Probability Computation Time : 0.000001 seconds
+
+230692	79
+Nr of candidates : 1
+MPSP:
+230692 118109 487 0.891054
+118109 105301 391 0.270296
+105301 42870 66 0.099300
+42870 6450 577 0.368667
+6450 2612 423 0.245753
+2612 1213 217 0.758669
+1213 659 316 0.980594
+659 79 264 0.292191
+Length of MPSP : 2741
+Probability of MPSP : 0.000471
+Probability of being MPSP : 0.000471
+Candidate Generation Time : 0.023322 seconds
+Probability Computation Time : 0.000001 seconds
+
+323644	64
+Nr of candidates : 1
+MPSP:
+323644 109571 919 0.932525
+109571 45649 51 0.009969
+45649 10860 346 0.673522
+10860 1815 651 0.564065
+1815 907 826 0.953983
+907 231 856 0.097377
+231 138 440 0.469029
+138 64 156 0.496171
+Length of MPSP : 4245
+Probability of MPSP : 0.000076
+Probability of being MPSP : 0.000076
+Candidate Generation Time : 0.023504 seconds
+Probability Computation Time : 0.000002 seconds
+
+409697	21
+Nr of candidates : 3
+MPSP:
+409697 14887 752 0.698874
+14887 3980 612 0.269281
+3980 2726 370 0.354811
+2726 534 363 0.788395
+534 135 547 0.884028
+135 40 854 0.537977
+40 36 45 0.438929
+36 34 929 0.953109
+34 21 996 0.438540
+Length of MPSP : 5468
+Probability of MPSP : 0.004593
+Probability of being MPSP : 0.004593
+Candidate Generation Time : 0.071267 seconds
+Probability Computation Time : 0.000423 seconds
+
+247939	12
+Nr of candidates : 1
+MPSP:
+247939 207459 518 0.314085
+207459 107004 943 0.028583
+107004 47171 321 0.569108
+47171 6256 149 0.021964
+6256 813 636 0.885550
+813 316 848 0.638799
+316 80 155 0.954942
+80 12 100 0.338057
+Length of MPSP : 3670
+Probability of MPSP : 0.000020
+Probability of being MPSP : 0.000020
+Candidate Generation Time : 0.023437 seconds
+Probability Computation Time : 0.000001 seconds
+
+285168	9
+Nr of candidates : 4
+MPSP:
+285168 148177 27 0.398924
+148177 47075 883 0.632061
+47075 1747 162 0.479189
+1747 1182 934 0.438830
+1182 757 252 0.931198
+757 632 902 0.047894
+632 294 710 0.607042
+294 90 949 0.969309
+90 54 485 0.803896
+54 12 345 0.439962
+12 9 52 0.726295
+Length of MPSP : 5701
+Probability of MPSP : 0.000357
+Probability of being MPSP : 0.000357
+Candidate Generation Time : 0.107642 seconds
+Probability Computation Time : 0.000683 seconds
+
+445117	44
+Nr of candidates : 1
+MPSP:
+445117 336113 53 0.169978
+336113 130449 285 0.105089
+130449 13677 523 0.912871
+13677 1867 917 0.433486
+1867 232 546 0.149984
+232 215 816 0.272191
+215 108 520 0.744664
+108 44 60 0.894574
+Length of MPSP : 3720
+Probability of MPSP : 0.000192
+Probability of being MPSP : 0.000192
+Candidate Generation Time : 0.023460 seconds
+Probability Computation Time : 0.000002 seconds
+
+191034	30
+Nr of candidates : 1
+MPSP:
+191034 175010 74 0.609802
+175010 3546 280 0.257932
+3546 1527 374 0.257873
+1527 700 109 0.749941
+700 383 72 0.714984
+383 101 452 0.537915
+101 37 598 0.977659
+37 30 849 0.049946
+Length of MPSP : 2808
+Probability of MPSP : 0.000571
+Probability of being MPSP : 0.000571
+Candidate Generation Time : 0.023657 seconds
+Probability Computation Time : 0.000001 seconds
+
+116367	210
+Nr of candidates : 1
+MPSP:
+116367 17069 99 0.835095
+17069 6448 818 0.361237
+6448 6030 457 0.670412
+6030 5304 304 0.890534
+5304 1403 955 0.376925
+1403 483 127 0.051120
+483 224 369 0.568978
+224 210 619 0.911654
+Length of MPSP : 3748
+Probability of MPSP : 0.001800
+Probability of being MPSP : 0.001800
+Candidate Generation Time : 0.023701 seconds
+Probability Computation Time : 0.000001 seconds
+
+8759	24
+Nr of candidates : 1
+MPSP:
+8759 4234 987 0.126292
+4234 3624 977 0.566776
+3624 3465 83 0.117550
+3465 296 877 0.547705
+296 190 45 0.584751
+190 101 322 0.851026
+101 48 56 0.675101
+48 24 30 0.158884
+Length of MPSP : 3377
+Probability of MPSP : 0.000246
+Probability of being MPSP : 0.000246
+Candidate Generation Time : 0.023632 seconds
+Probability Computation Time : 0.000001 seconds
+
+Average Length of MPSP for 8 hops : 4003
+Average Probability of being MPSP for 8 hops : 0.002832
+Average Candidate Generation Time for 8 hops : 0.033533 seconds
+Average Probability Computation Time for 8 hops : 0.000108 seconds
+Average Total Time for 8 hops : 0.033641 seconds
+Number of candidate generation timeouts : 0
+
+
