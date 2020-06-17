@@ -304,41 +304,43 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 
 vector<double> betweenness(AdjGraph & g)
 {
-    double _t1, _t2;
+    double _t1_p, _t1_np, _t2_p, _t2_np;
 
     vector<double> B = vector<double>(g.n, 0);
 
-//     clock_t start = clock();
+    timespec start;
+    clock_gettime(CLOCK_MONOTONIC,&start);
 
-//     for(int s=0; s<g.n; s++)
-//     {
-//         clock_t t1 = clock();
-//         cout << (s);
-//         for(int t=0; t<g.n; t++)
-//         {
-//             if(s == t) continue;
-//             auto cur_mpsp = mpsp(&g, s, t, 1000, _t1, _t2);
+    for(int s=0; s<g.n; s++)
+    {
+        timespec t1, t2;
+        clock_gettime(CLOCK_MONOTONIC,&t1);
+        cout << (s);
+        for(int t=0; t<g.n; t++)
+        {
+            if(s == t) continue;
+            auto cur_mpsp = mpsp(&g, s, t, 20, _t1_p, _t1_np, _t2_p, _t2_np);
 
-//             if(get<1>(cur_mpsp) > 0)
-//             {
-//                 // this means that s and t are connected
-//                 // raise the betweenness of every inner node of the path by 1
-//                 list<edge> p = get<0>(cur_mpsp);
-//                 for(auto it = next(p.begin()); it != p.end(); it++){
-//                     B[get<0>(*it)]++;
-//                 }
-//             }
-//         }
-//         clock_t t2 = clock();
-//         cout << " : " << (double(t2-t1))/CLOCKS_PER_SEC << " seconds" << endl;
-//         cout << "remaining : " << (g.n-(s+1)) * (double(t2 - start))/((s+1) * CLOCKS_PER_SEC) << endl;
-//     }
+            if(get<2>(cur_mpsp) > 0)
+            {
+                // this means that s and t are connected
+                // raise the betweenness of every inner node of the path by 1
+                list<edge> p = get<0>(cur_mpsp);
+                for(auto it = next(p.begin()); it != p.end(); it++){
+                    B[get<0>(*it)]++;
+                }
+            }
+        }
+        clock_gettime(CLOCK_MONOTONIC,&t2);
+        cout << " : " << time_difference(t1,t2) << " seconds" << endl;
+        cout << "remaining : " << (g.n-(s+1)) * time_difference(start,t2)/(s+1) << endl;
+    }
 
-//     // normalize betweenness by size of graph
-//     for(uint i=0; i<B.size(); i++)
-//     {
-//         B[i] /= ((g.n-1) * (g.n-2));
-//     }
+    // normalize betweenness by size of graph
+    for(uint i=0; i<B.size(); i++)
+    {
+        B[i] /= ((g.n-1) * (g.n-2));
+    }
 
     return B;
 }
@@ -533,20 +535,23 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 		output << "Number of Non-Empty Paths for " << h << " hops : " << num << endl;
 		output << "Number of Path Matches with Pruning for " << h << " hops : " << n_m_p << endl;
 		output << "Number of Path Matches without Pruning for " << h << " hops : " << n_m_np << endl;
-		output << "Average Length of MPSP with Pruning for " << h << " hops : " << a_w_p / num << endl;
-		output << "Average Length of MPSP without Pruning for " << h << " hops : " << a_w_np / num << endl;
-		output << "Average Probability of MPSP with Pruning for " << h << " hops : " << a_p_p / num << endl;
-		output << "Average Probability of MPSP without Pruning for " << h << " hops : " << a_p_np / num << endl;
-		output << "Average Number of Dijkstra Runs for " << h << " hops : " << a_r / num << endl;
-		output << "Average Number of Samples Pruned for " << h << " hops : " << a_pr / num << endl;
-		output << "Average Number of Distinct Candidate Paths with Pruning for " << h << " hops : " << a_c_p / num << endl;
-		output << "Average Number of Distinct Candidate Paths without Pruning for " << h << " hops : " << a_c_np / num << endl;
-		output << "Average Candidate Generation Time with Pruning for " << h << " hops : " << t_c_p / num << " seconds" << endl;
-		output << "Average Candidate Generation Time without Pruning for " << h << " hops : " << t_c_np / num << " seconds" << endl;
-		output << "Average Probability Computation Time with Pruning for " << h << " hops : " << t_p_p / num << " seconds" << endl;
-		output << "Average Probability Computation Time without Pruning for " << h << " hops : " << t_p_np / num << " seconds" << endl;
-		output << "Average Total Time with Pruning for " << h << " hops : " << (t_c_p + t_p_p) / num << " seconds" << endl;
-		output << "Average Total Time without Pruning for " << h << " hops : " << (t_c_np + t_p_np) / num << " seconds" << endl;
+		if (num)
+		{
+			output << "Average Length of MPSP with Pruning for " << h << " hops : " << a_w_p / num << endl;
+			output << "Average Length of MPSP without Pruning for " << h << " hops : " << a_w_np / num << endl;
+			output << "Average Probability of MPSP with Pruning for " << h << " hops : " << a_p_p / num << endl;
+			output << "Average Probability of MPSP without Pruning for " << h << " hops : " << a_p_np / num << endl;
+			output << "Average Number of Dijkstra Runs for " << h << " hops : " << a_r / num << endl;
+			output << "Average Number of Samples Pruned for " << h << " hops : " << a_pr / num << endl;
+			output << "Average Number of Distinct Candidate Paths with Pruning for " << h << " hops : " << a_c_p / num << endl;
+			output << "Average Number of Distinct Candidate Paths without Pruning for " << h << " hops : " << a_c_np / num << endl;
+			output << "Average Candidate Generation Time with Pruning for " << h << " hops : " << t_c_p / num << " seconds" << endl;
+			output << "Average Candidate Generation Time without Pruning for " << h << " hops : " << t_c_np / num << " seconds" << endl;
+			output << "Average Probability Computation Time with Pruning for " << h << " hops : " << t_p_p / num << " seconds" << endl;
+			output << "Average Probability Computation Time without Pruning for " << h << " hops : " << t_p_np / num << " seconds" << endl;
+			output << "Average Total Time with Pruning for " << h << " hops : " << (t_c_p + t_p_p) / num << " seconds" << endl;
+			output << "Average Total Time without Pruning for " << h << " hops : " << (t_c_np + t_p_np) / num << " seconds" << endl;
+		}
 		output << endl << endl;
 	}
 	queries.close();

@@ -32,8 +32,11 @@ def generate_queries_skewed(g, filename, H = [0, 2, 3, 4, 5, 6]):
     # generate queries at certain hop distance
     for h in tqdm([x for x in H if x != 0]):
         queries_so_far = 0
-        while queries_so_far < queries_per_category:
+        nodes = set()
+        backups = set()
+        while queries_so_far < queries_per_category and len(nodes) < n:
             s = random.randrange(n)
+            nodes.add(s)
 
             nodes_at_dist_at_most_h = nx.single_source_shortest_path_length(g, source=s, cutoff=h)
 
@@ -46,15 +49,23 @@ def generate_queries_skewed(g, filename, H = [0, 2, 3, 4, 5, 6]):
             if (s,t) not in queries[h]:
                 queries[h].add((s,t))
                 queries_so_far += 1
+                backups.update([(s,v) for v in t_options if v != t])
+
+        while queries_so_far < queries_per_category and backups:
+            s, t = random.choice(tuple(backups))
+            backups.discard((s,t))
+            queries[h].add((s,t))
 
     if 0 in H:
         # generate completely random queries
         queries_so_far = 0
-        while queries_so_far < queries_per_category:
+        node_pairs = set()
+        while queries_so_far < queries_per_category and len(node_pairs) < n*(n-1)/2:
             s = random.randrange(n)
             t = random.randrange(n)
             if s == t:
                 continue
+            node_pairs.add((s,t))
             try:
                 hops = nx.shortest_path_length(g, source=s, target=t)
                 if not any([((s,t) in queries[h]) for h in queries]):

@@ -19,22 +19,24 @@
 # include <utility>
 # include <iomanip>
 # include <cstdlib>
+# include <unordered_map>
 
 using namespace std;
 using namespace osrm;
 using namespace json;
+using namespace filesystem;
 
 void parse_beijing_tdrive(char* file, EngineConfig& config)
 {
 	ifstream trajectory;
 	const OSRM osrm{config};
-	for (auto& entry : filesystem::recursive_directory_iterator(file))
+	for (auto& entry : recursive_directory_iterator(file))
 	{
 		string path = entry.path().string();
 		if (path.substr(path.size()-4) == ".txt")
 		{
 			MatchParameters params;
-      osrm::engine::api::ResultT result = Object();
+			osrm::engine::api::ResultT result = Object();
 			trajectory.open(path);
 			string line;
 			while (getline(trajectory,line))
@@ -91,11 +93,82 @@ void parse_beijing_tdrive(char* file, EngineConfig& config)
 	}
 }
 
+void parse_beijing_data(char* file, EngineConfig& config)
+{
+	ifstream trajectory;
+	const OSRM osrm{config};
+	for (auto& entry : directory_iterator(file))
+	{
+		string path = entry.path().string();
+		if (path.substr(path.size()-4) == ".csv")
+		{
+			unordered_map<int,MatchParameters> params = unordered_map<int,MatchParameters>();
+			trajectory.open(path);
+			string line;
+			while (getline(trajectory,line))
+			{
+				string::size_type p1, p2;
+				int id = stoi(line,&p1);
+				if (params.find(id) == params.end())
+					params[id] = MatchParameters();
+				unsigned long time = stoul(line.substr(p1+1,10),nullptr);
+				params[id].timestamps.push_back(time);
+				double latitude = stod(line.substr(p1+1+10+1),&p2);
+				double longitude = stod(line.substr(p1+1+10+1+p2+1),nullptr);
+				params[id].coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
+			}
+			trajectory.close();
+			for (auto& x : params)
+			{
+				MatchParameters& param = x.second;
+				param.annotations = true;
+				param.annotations_type = RouteParameters::AnnotationsType::All;
+				engine::api::ResultT result = Object();
+				const auto status = osrm.Match(param,result);
+				auto& json_result = result.get<Object>();
+				if (status == Status::Ok)
+				{
+					auto& matches = json_result.values["matchings"].get<Array>();
+					double max_conf = 0;
+					int max_conf_idx = 0;
+					for (size_t j = 0; j < matches.values.size(); j++)
+					{
+						double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
+						if (conf > max_conf)
+						{
+							max_conf = conf;
+							max_conf_idx = j;
+						}
+					}
+					for (auto& matching : matches.values.at(max_conf_idx).get<Object>().values["legs"].get<Array>().values)
+					{
+						auto& match = matching.get<Object>().values["annotation"].get<Object>();
+						for (auto& node : match.values["nodes"].get<Array>().values)
+							cout << (unsigned long) node.get<Number>().value << "\t";
+						cout << endl;
+						for (auto& speed : match.values["speed"].get<Array>().values)
+							cout << speed.get<Number>().value * 3.6 << "\t";
+						cout << endl;
+					}
+				}
+				else
+				{
+					cerr << path << "\t" << x.first << endl;
+					const auto code = json_result.values["code"].get<String>().value;
+					const auto message = json_result.values["message"].get<String>().value;
+					cerr << "Code: " << code << endl;
+					cerr << "Message: " << message << endl;
+				}
+			}
+		}
+	}
+}
+
 void parse_china_geolife(char* file, EngineConfig& config)
 {
 	ifstream trajectory;
 	const OSRM osrm{config};
-	for (auto& entry : filesystem::recursive_directory_iterator(file))
+	for (auto& entry : recursive_directory_iterator(file))
 	{
 		string path = entry.path().string();
 		if (path.substr(path.size()-4) == ".plt")
@@ -165,14 +238,13 @@ void parse_sf_csd(char* file, EngineConfig& config)
 {
 	ifstream trajectory;
 	const OSRM osrm{config};
-	for (auto& entry : filesystem::recursive_directory_iterator(file))
+	for (auto& entry : recursive_directory_iterator(file))
 	{
 		string path = entry.path().string();
 		if (path.substr(path.size()-9) != "_cabs.txt" && path.substr(path.size()-6) != "README")
 		{
-			cerr << path << endl;
 			MatchParameters params;
-      osrm::engine::api::ResultT result = Object();
+			osrm::engine::api::ResultT result = Object();
 			trajectory.open(path);
 			vector< tuple<double,double,unsigned long> > v = vector< tuple<double,double,unsigned long> >();
 			string line;
@@ -241,10 +313,9 @@ void parse_sf_mcd(string file, EngineConfig& config)
 	const OSRM osrm{config};
 	for (string dir : {"NB_veh_files","SB_veh_files","GPS_logs"})
 	{
-		for (auto& entry : filesystem::directory_iterator(file+dir))
+		for (auto& entry : directory_iterator(file+dir))
 		{
 			string path = entry.path().string();
-			cerr << path << endl;
 			MatchParameters params;
 			engine::api::ResultT result = Object();
 			trajectory.open(path);
@@ -305,13 +376,13 @@ void parse_porto(char* file, EngineConfig& config)
 {
 	ifstream trajectory;
 	const OSRM osrm{config};
-	trajectory.open(strcat(file,"Porto_taxi_data_training.csv"));
+	trajectory.open(file);
 	string line;
 	getline(trajectory,line);
 	while (getline(trajectory,line))
 	{
 		MatchParameters params;
-    osrm::engine::api::ResultT result = Object();
+		osrm::engine::api::ResultT result = Object();
 		stringstream lineStream(line);
 		string cell;
 		int num = 0;
@@ -322,7 +393,6 @@ void parse_porto(char* file, EngineConfig& config)
 			res.push_back(cell);
 		}
 		unsigned long time = stoul(res[5],nullptr);
-		params.timestamps.push_back(time);
 		while (getline(lineStream,cell,']') && cell != "" && cell != "[")
 		{
 			string::size_type p;
@@ -372,6 +442,224 @@ void parse_porto(char* file, EngineConfig& config)
 	trajectory.close();
 }
 
+void parse_czechia(string file, EngineConfig& config)
+{
+	auto compare = [](directory_entry i, directory_entry j)
+	{
+		return i.path() < j.path();
+	};
+	ifstream trajectory;
+	const OSRM osrm{config};
+	for (string dir : {"city_oneway","city_roadtrip"})
+	{
+		unordered_map<unsigned int,MatchParameters> params = unordered_map<unsigned int,MatchParameters>();
+		vector<directory_entry> v = vector<directory_entry>();
+		copy(directory_iterator(file+dir+"/1_simulator_fcd_raw/"), directory_iterator(), back_inserter(v));
+		sort(v.begin(), v.end(), compare);
+		for (auto& entry : v)
+		{
+			string path = entry.path().string();
+			trajectory.open(path);
+			string line;
+			getline(trajectory,line);
+			while (getline(trajectory,line))
+			{
+				string::size_type p1, p2;
+				unsigned int id = stoi(line,&p1);
+				if (params.find(id) == params.end())
+					params[id] = MatchParameters();
+				tm t = {};
+				istringstream ss(line.substr(p1+1,19));
+				if (ss >> get_time(&t, "%Y-%m-%dT%H:%M:%S"))
+					params[id].timestamps.push_back(static_cast<unsigned long>(mktime(&t)));
+				double latitude = stod(line.substr(p1+1+19+1),&p2);
+				double longitude = stod(line.substr(p1+1+19+1+p2+1),nullptr);
+				params[id].coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
+			}
+			trajectory.close();
+		}
+		for (auto& x : params)
+		{
+			MatchParameters& param = x.second;
+			param.annotations = true;
+			param.annotations_type = RouteParameters::AnnotationsType::All;
+			engine::api::ResultT result = Object();
+			const auto status = osrm.Match(param,result);
+			auto& json_result = result.get<Object>();
+			if (status == Status::Ok)
+			{
+				auto& matches = json_result.values["matchings"].get<Array>();
+				double max_conf = 0;
+				int max_conf_idx = 0;
+				for (size_t j = 0; j < matches.values.size(); j++)
+				{
+					double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
+					if (conf > max_conf)
+					{
+						max_conf = conf;
+						max_conf_idx = j;
+					}
+				}
+				for (auto& matching : matches.values.at(max_conf_idx).get<Object>().values["legs"].get<Array>().values)
+				{
+					auto& match = matching.get<Object>().values["annotation"].get<Object>();
+					for (auto& node : match.values["nodes"].get<Array>().values)
+						cout << (unsigned long) node.get<Number>().value << "\t";
+					cout << endl;
+					for (auto& speed : match.values["speed"].get<Array>().values)
+						cout << speed.get<Number>().value * 3.6 << "\t";
+					cout << endl;
+				}
+			}
+			else
+			{
+				cerr << x.first << endl;
+				const auto code = json_result.values["code"].get<String>().value;
+				const auto message = json_result.values["message"].get<String>().value;
+				cerr << "Code: " << code << endl;
+				cerr << "Message: " << message << endl;
+			}
+		}
+	}
+}
+
+void parse_rome(char* file, EngineConfig& config)
+{
+	ifstream trajectory;
+	const OSRM osrm{config};
+	trajectory.open(file);
+	string line;
+	unordered_map<unsigned int,MatchParameters> params = unordered_map<unsigned int,MatchParameters>();
+	while (getline(trajectory,line))
+	{
+		string::size_type p1, p2, p3;
+		unsigned int id = stoi(line,&p1);
+		if (params.find(id) == params.end())
+			params[id] = MatchParameters();
+		tm t = {};
+		istringstream ss(line.substr(p1+1,19));
+		if (ss >> get_time(&t, "%Y-%m-%d %H:%M:%S"))
+			params[id].timestamps.push_back(static_cast<unsigned long>(mktime(&t)));
+		stol(line.substr(p1+1+19+1),&p2);
+		if (line[p1+1+19] == '+')
+			p2 -= 3;
+		double latitude = stod(line.substr(p1+1+19+1+p2+10),&p3);
+		double longitude = stod(line.substr(p1+1+19+1+p2+10+p3+1),nullptr);
+		params[id].coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
+	}
+	for (auto& x : params)
+	{
+		MatchParameters& param = x.second;
+		param.annotations = true;
+		param.annotations_type = RouteParameters::AnnotationsType::All;
+		osrm::engine::api::ResultT result = Object();
+		const auto status = osrm.Match(param,result);
+		auto& json_result = result.get<Object>();
+		if (status == Status::Ok)
+		{
+			auto& matches = json_result.values["matchings"].get<Array>();
+			double max_conf = 0;
+			int max_conf_idx = 0;
+			for (size_t j = 0; j < matches.values.size(); j++)
+			{
+				double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
+				if (conf > max_conf)
+				{
+					max_conf = conf;
+					max_conf_idx = j;
+				}
+			}
+			for (auto& matching : matches.values.at(max_conf_idx).get<Object>().values["legs"].get<Array>().values)
+			{
+				auto& match = matching.get<Object>().values["annotation"].get<Object>();
+				for (auto& node : match.values["nodes"].get<Array>().values)
+					cout << (unsigned long) node.get<Number>().value << "\t";
+				cout << endl;
+				for (auto& speed : match.values["speed"].get<Array>().values)
+					cout << speed.get<Number>().value * 3.6 << "\t";
+				cout << endl;
+			}
+		}
+		else
+		{
+			cerr << x.first << endl;
+			const auto code = json_result.values["code"].get<String>().value;
+			const auto message = json_result.values["message"].get<String>().value;
+			cerr << "Code: " << code << endl;
+			cerr << "Message: " << message << endl;
+		}
+	}
+	trajectory.close();
+}
+
+void parse_aracaju(char* file, EngineConfig& config)
+{
+	ifstream trajectory;
+	const OSRM osrm{config};
+	trajectory.open(file);
+	string line;
+	unordered_map<int,MatchParameters> params = unordered_map<int,MatchParameters>();
+	getline(trajectory,line);
+	while (getline(trajectory,line))
+	{
+		string::size_type p1, p2, p3, p4;
+		stoi(line,&p1);
+		double latitude = stod(line.substr(p1+1),&p2);
+		double longitude = stod(line.substr(p1+1+p2+1),&p3);
+		int id = stoi(line.substr(p1+1+p2+1+p3+1),&p4);
+		if (params.find(id) == params.end())
+			params[id] = MatchParameters();
+		params[id].coordinates.push_back({util::FloatLongitude{longitude},util::FloatLatitude{latitude}});
+		tm t = {};
+		istringstream ss(line.substr(p1+1+p2+1+p3+1+p4+2,19));
+		if (ss >> get_time(&t, "%Y-%m-%d %H:%M:%S"))
+			params[id].timestamps.push_back(static_cast<unsigned long>(mktime(&t)));
+	}
+	for (auto& x : params)
+	{
+		MatchParameters& param = x.second;
+		param.annotations = true;
+		param.annotations_type = RouteParameters::AnnotationsType::All;
+		osrm::engine::api::ResultT result = Object();
+		const auto status = osrm.Match(param,result);
+		auto& json_result = result.get<Object>();
+		if (status == Status::Ok)
+		{
+			auto& matches = json_result.values["matchings"].get<Array>();
+			double max_conf = 0;
+			int max_conf_idx = 0;
+			for (size_t j = 0; j < matches.values.size(); j++)
+			{
+				double conf = matches.values.at(j).get<Object>().values["confidence"].get<Number>().value;
+				if (conf > max_conf)
+				{
+					max_conf = conf;
+					max_conf_idx = j;
+				}
+			}
+			for (auto& matching : matches.values.at(max_conf_idx).get<Object>().values["legs"].get<Array>().values)
+			{
+				auto& match = matching.get<Object>().values["annotation"].get<Object>();
+				for (auto& node : match.values["nodes"].get<Array>().values)
+					cout << (unsigned long) node.get<Number>().value << "\t";
+				cout << endl;
+				for (auto& speed : match.values["speed"].get<Array>().values)
+					cout << speed.get<Number>().value * 3.6 << "\t";
+				cout << endl;
+			}
+		}
+		else
+		{
+			cerr << x.first << endl;
+			const auto code = json_result.values["code"].get<String>().value;
+			const auto message = json_result.values["message"].get<String>().value;
+			cerr << "Code: " << code << endl;
+			cerr << "Message: " << message << endl;
+		}
+	}
+	trajectory.close();
+}
+
 int main(int argc, char* argv[])
 {
 	if (argc < 3)
@@ -383,10 +671,14 @@ int main(int argc, char* argv[])
 	config.storage_config = {argv[1]};
 	config.use_shared_memory = false;
 	config.algorithm = EngineConfig::Algorithm::MLD;
-	// parse_porto(argv[2],config);
 	// parse_beijing_tdrive(argv[2],config);
-	parse_china_geolife(argv[2],config);
+	// parse_beijing_data(argv[2],config);
+	// parse_china_geolife(argv[2],config);
 	// parse_sf_csd(argv[2],config);
 	// parse_sf_mcd(argv[2],config);
+	// parse_porto(argv[2],config);
+	parse_czechia(argv[2],config);
+	// parse_rome(argv[2],config);
+	// parse_aracaju(argv[2],config);
 	return EXIT_SUCCESS;
 }
