@@ -402,27 +402,29 @@ vector<double> betweenness(AdjGraph & g, ofstream& output)
             output << s << " " << t << endl;
             auto cur_mpsp = mpsp(&g, s, t, 20, _t1_p, _t1_np, _t2_p, _t2_np);
 
-            if(get<2>(cur_mpsp) >= 2) // path consists of at least 2 edges
+            if(get<0>(cur_mpsp).size() >= 2) // path consists of at least 2 edges
             {
-                // raise the betweenness of every inner node of the path by 1
                 list<edge> p = get<0>(cur_mpsp);
                 for (edge e : p)
                 	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
                 output << get<5>(cur_mpsp) << endl << endl;
+
+                // raise the betweenness of every inner node of the path by 1
                 for(auto it = next(p.begin()); it != p.end(); it++){
                     B[get<0>(*it)]++;
                 }
             }
         }
         clock_gettime(CLOCK_MONOTONIC,&t2);
-        cout << " : " << time_difference(t1,t2) << " seconds" << endl;
-        cout << "remaining : " << (g.n-(s+1)) * time_difference(start,t2)/(s+1) << endl;
+        //cout << "last iteration : " << time_difference(t1,t2) << " seconds" << endl;
+        //cout << "remaining : " << (g.n-(s+1)) * time_difference(start,t2)/(s+1) << endl;
     }
 
     // normalize betweenness by size of graph
     for(uint i=0; i<B.size(); i++)
     {
-        B[i] /= ((g.n-1) * (g.n-2));
+        //B[i] /= ((g.n-1) * (g.n-2));
+        B[i] /= ((g.n-1) * (g.n)); // this is the same normalization as Riondato
     }
 
     return B;
@@ -451,11 +453,9 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
         continue;
       }
 
-      if(sample % 100000 == 0) cerr << ".";
-
       list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 100, _t1, _t2, _t3, _t4));
 
-      if(mpsp_st.size() > 1)  // the path consists of at least 2 edges
+      if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
       {
         output << s << " -> " << t << " : ";
 
@@ -474,17 +474,16 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
 
 
 vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
-  double bound_on_VD = g.n;
+  double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
   double c = 0.5;
 
-  double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VD) - 2) + 1 + log(1/delta));
+  double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VC) - 2) + 1 + log(1/delta));
 
   output << "nr of samples : " << (int)samples << endl;
   output << "compared to : " << (g.n * (g.n-1)) << endl;
 
   return betweenness_sampling(g, (int) samples, output);
 }
-
 
 
 
@@ -518,13 +517,13 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
   output.open(path_to_output);
 
   clock_gettime(CLOCK_MONOTONIC,&t1);
-  auto B2 = riondato(g, 0.05, 0.1, output);
-  clock_gettime(CLOCK_MONOTONIC,&t2);
   auto B = betweenness(g, output);
+  clock_gettime(CLOCK_MONOTONIC,&t2);
+  auto B_sampling = riondato(g, 0.05, 0.1, output);
   clock_gettime(CLOCK_MONOTONIC,&t3);
 
   for(int i=0;i <g.n; i++){
-    std::cerr << i << " : " << B[i] << " - " << B2[i] << std::endl;
+    output << i << " : " << B[i] << " - " << B_sampling[i] << std::endl;
   }
 
 
@@ -543,12 +542,13 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
   output << fixed << elt.second << " " << elt.first << endl;
   }
   */
+  output << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
+  cerr << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
+  output << "Betweenness sampling calculation took " << time_difference(t2,t3) << " seconds" << endl;
+  cerr << "Betweenness sampling calculation took " << time_difference(t2,t3) << " seconds" << endl;
 
   output.close();
 
-  clock_gettime(CLOCK_MONOTONIC,&t2);
-  cout << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
-  cout << "Betweenness2 calculation took " << time_difference(t2,t3) << " seconds" << endl;
 }
 
 void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output)
