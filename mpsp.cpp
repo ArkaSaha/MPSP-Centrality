@@ -280,6 +280,7 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 	int f_max = 1, n_s = 0, n_d = 0, n_r = m, n_p = 0;
 	bool match_p = false, match_np = false;
 	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
+
 	for (int i = 1; i <= n_r; i++)
 	{
 		if (n_s >= 10 && f_max >= 0.5 * n_s)
@@ -329,10 +330,12 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 			}
 		}
 	}
+
 	f_max = 1;
 	list<edge> pp_p, pp_np = list<edge>();
 	vector< list<edge> > cp_p = vector< list<edge> >(), cp_np = vector< list<edge> >();
 	map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
+
 	for (auto x = paths.begin(); x != paths.end(); x++)
 	{
 		vector< tuple<list<edge>,double,double,int> > vv = x->second;
@@ -370,10 +373,12 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 				f_max = freq;
 		}
 	}
+
 	if (fp[f_max].find(pp_p) != fp[f_max].end())
 		match_p = true;
 	if (fp[f_max].find(pp_np) != fp[f_max].end())
 		match_np = true;
+
 	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),f_max,p_max_p,p_max_np,match_p,match_np,n_r,n_p);
 }
 
@@ -397,15 +402,14 @@ vector<double> betweenness(AdjGraph & g, ofstream& output)
             output << s << " " << t << endl;
             auto cur_mpsp = mpsp(&g, s, t, 20, _t1_p, _t1_np, _t2_p, _t2_np);
 
-            if(get<2>(cur_mpsp) > 0)
+            if(get<2>(cur_mpsp) >= 2) // path consists of at least 2 edges
             {
-                // this means that s and t are connected
                 // raise the betweenness of every inner node of the path by 1
                 list<edge> p = get<0>(cur_mpsp);
                 for (edge e : p)
                 	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
                 output << get<5>(cur_mpsp) << endl << endl;
-                for(auto it = next(p.begin()); it != prev(p.end()); it++){
+                for(auto it = next(p.begin()); it != p.end(); it++){
                     B[get<0>(*it)]++;
                 }
             }
@@ -423,6 +427,66 @@ vector<double> betweenness(AdjGraph & g, ofstream& output)
 
     return B;
 }
+
+
+vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
+{
+    double _t1, _t2, _t3, _t4;
+
+    double r = samples;
+
+    vector<double> B = vector<double>(g.n, 0);
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> random_node(0, g.n-1);
+
+    for(int sample = 0; sample < samples; sample++){
+      // sample s and t
+      int s = random_node(gen);
+      int t = random_node(gen);
+
+      if(s == t){ 
+        sample--; 
+        continue;
+      }
+
+      if(sample % 100000 == 0) cerr << ".";
+
+      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 100, _t1, _t2, _t3, _t4));
+
+      if(mpsp_st.size() > 1)  // the path consists of at least 2 edges
+      {
+        output << s << " -> " << t << " : ";
+
+        // raise the betweenness of every inner node of the path by 1/samples
+        for(auto it = next(mpsp_st.begin()); it != mpsp_st.end(); it++){
+          B[get<0>(*it)] += 1/r;
+          output << (get<0>(*it)) << " ";
+        }
+        output << endl;
+      }
+    }
+    output << endl;
+
+    return B;
+}
+
+
+vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
+  double bound_on_VD = g.n;
+  double c = 0.5;
+
+  double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VD) - 2) + 1 + log(1/delta));
+
+  output << "nr of samples : " << (int)samples << endl;
+  output << "compared to : " << (g.n * (g.n-1)) << endl;
+
+  return betweenness_sampling(g, (int) samples, output);
+}
+
+
+
 
 AdjGraph read_graph(char* file)
 {
@@ -447,33 +511,44 @@ AdjGraph read_graph(char* file)
 
 void experiment_betweenness(char* path_to_graph, char* path_to_output)
 {
-	timespec t1, t2;
-    clock_gettime(CLOCK_MONOTONIC,&t1);
-    AdjGraph g = read_graph(path_to_graph);
+  timespec t1, t2, t3;
+  AdjGraph g = read_graph(path_to_graph);
 
-	ofstream output;
-	output.open(path_to_output);
+  ofstream output;
+  output.open(path_to_output);
 
-    auto B = betweenness(g, output);
+  clock_gettime(CLOCK_MONOTONIC,&t1);
+  auto B2 = riondato(g, 0.05, 0.1, output);
+  clock_gettime(CLOCK_MONOTONIC,&t2);
+  auto B = betweenness(g, output);
+  clock_gettime(CLOCK_MONOTONIC,&t3);
 
-    // sort B from highest to lowest betweenness
-    vector<pair<double, size_t>> sorted_B = vector<pair<double, size_t>>(B.size());
-    for (size_t i=0; i<B.size(); i++)
-    {
-        sorted_B[i] = {B[i], i};
-    }
-    sort(sorted_B.rbegin(), sorted_B.rend());
+  for(int i=0;i <g.n; i++){
+    std::cerr << i << " : " << B[i] << " - " << B2[i] << std::endl;
+  }
 
-    output << sorted_B.size() << endl;
-    for (auto elt: sorted_B)
-    {
-        output << fixed << elt.second << " " << elt.first << endl;
-    }
 
-    output.close();
-    clock_gettime(CLOCK_MONOTONIC,&t2);
-    cout << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
+  /*
+  // sort B from highest to lowest betweenness
+  vector<pair<double, size_t>> sorted_B = vector<pair<double, size_t>>(B.size());
+  for (size_t i=0; i<B.size(); i++)
+  {
+  sorted_B[i] = {B[i], i};
+  }
+  sort(sorted_B.rbegin(), sorted_B.rend());
 
+  output << sorted_B.size() << endl;
+  for (auto elt: sorted_B)
+  {
+  output << fixed << elt.second << " " << elt.first << endl;
+  }
+  */
+
+  output.close();
+
+  clock_gettime(CLOCK_MONOTONIC,&t2);
+  cout << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
+  cout << "Betweenness2 calculation took " << time_difference(t2,t3) << " seconds" << endl;
 }
 
 void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output)
@@ -492,12 +567,14 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			num++;
 		}
 	}
+
 	G.update_incoming_index2edge();
 	ifstream queries;
 	queries.open(path_to_queries);
 	ofstream output;
 	output.open(path_to_output);
 	queries >> d;
+
 	for (int k = 1; k <= d; k++)
 	{
 		// cerr << "k = " << k << endl;
@@ -621,6 +698,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			output << "Probability Computation Time without Pruning : " << prob_time_noprune << " seconds" << endl;
 			output << endl;
 		}
+
 		output << "Number of Non-Empty Paths for " << h << " hops : " << num << endl;
 		output << "Number of Path Matches with Pruning for " << h << " hops : " << n_m_p << endl;
 		output << "Number of Path Matches without Pruning for " << h << " hops : " << n_m_np << endl;
@@ -643,6 +721,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 		}
 		output << endl << endl;
 	}
+
 	queries.close();
 	output.close();
 	delete [] g.adj;
