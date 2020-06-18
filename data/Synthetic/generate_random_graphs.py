@@ -129,14 +129,14 @@ def generate_queries_skewed(g, filename):
     m = g.number_of_edges() 
 
 
-    queries = {0:set(), 2:set(), 4:set(), 6:set()}
+    queries = {0:set(), 2:set(), 3:set(), 4:set(), 5:set(), 6:set()}
 
     queries_per_category = 100
     queries_so_far = 0
     i = 0
 
     # generate queries at certain hop distance
-    for h in [2, 4, 6]:
+    for h in [2, 3, 4, 5, 6]:
         queries_so_far = 0
         nodes = set()
         backups = set()
@@ -182,8 +182,9 @@ def generate_queries_skewed(g, filename):
             continue
     print("Done for 0 hops")
 
+    q.write("{}\n".format(len(queries)))
     for hops in queries:
-        q.write("{}\n".format(len(queries[hops])))
+        q.write("{} {}\n".format(hops, len(queries[hops])))
         for s, t in queries[hops]:
             q.write("{} {}\n".format(s, t))
 

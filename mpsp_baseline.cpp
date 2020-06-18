@@ -302,7 +302,7 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 }
 
 
-vector<double> betweenness(AdjGraph & g)
+vector<double> betweenness(AdjGraph & g, ofstream& output)
 {
     double _t1_p, _t1_np, _t2_p, _t2_np;
 
@@ -315,10 +315,10 @@ vector<double> betweenness(AdjGraph & g)
     {
         timespec t1, t2;
         clock_gettime(CLOCK_MONOTONIC,&t1);
-        cout << (s);
         for(int t=0; t<g.n; t++)
         {
             if(s == t) continue;
+            output << s << " " << t << endl;
             auto cur_mpsp = mpsp(&g, s, t, 20, _t1_p, _t1_np, _t2_p, _t2_np);
 
             if(get<2>(cur_mpsp) > 0)
@@ -326,7 +326,10 @@ vector<double> betweenness(AdjGraph & g)
                 // this means that s and t are connected
                 // raise the betweenness of every inner node of the path by 1
                 list<edge> p = get<0>(cur_mpsp);
-                for(auto it = next(p.begin()); it != p.end(); it++){
+                for (edge e : p)
+                	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
+                output << get<5>(cur_mpsp) << endl << endl;
+                for(auto it = next(p.begin()); it != prev(p.end()); it++){
                     B[get<0>(*it)]++;
                 }
             }
@@ -368,13 +371,14 @@ AdjGraph read_graph(char* file)
 
 void experiment_betweenness(char* path_to_graph, char* path_to_output)
 {
-    clock_t t1 = clock();
+    timespec t1, t2;
+    clock_gettime(CLOCK_MONOTONIC,&t1);
     AdjGraph g = read_graph(path_to_graph);
 
 	ofstream output;
 	output.open(path_to_output);
 
-    auto B = betweenness(g);
+    auto B = betweenness(g, output);
 
     // sort B from highest to lowest betweenness
     vector<pair<double, size_t>> sorted_B = vector<pair<double, size_t>>(B.size());
@@ -391,8 +395,8 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
     }
 
     output.close();
-    clock_t t2 = clock();
-    cout << "Betweenness calculation took " << (double(t2 - t1))/CLOCKS_PER_SEC << " seconds" << endl;
+    clock_gettime(CLOCK_MONOTONIC,&t2);
+    cout << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
 
 }
 
@@ -524,8 +528,8 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			output << "Length of MPSP without Pruning : " << wt_np << endl;
 			output << "Probability of MPSP with Pruning : " << pr_p << endl;
 			output << "Probability of MPSP without Pruning : " << pr_np << endl;
-			output << scientific << "Probability of MPSP being the Shortest Path with Pruning : " << prob_p << endl;
-			output << scientific << "Probability of MPSP being the Shortest Path without Pruning : " << prob_np << endl;
+			output << "Probability of MPSP being the Shortest Path with Pruning : " << prob_p << endl;
+			output << "Probability of MPSP being the Shortest Path without Pruning : " << prob_np << endl;
 			output << "Candidate Generation Time with Pruning : " << candidate_time_prune << " seconds" << endl;
 			output << "Candidate Generation Time without Pruning : " << candidate_time_noprune << " seconds" << endl;
 			output << "Probability Computation Time with Pruning : " << prob_time_prune << " seconds" << endl;
