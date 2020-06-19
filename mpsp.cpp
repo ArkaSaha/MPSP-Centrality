@@ -383,7 +383,7 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 }
 
 
-vector<double> betweenness(AdjGraph & g, ofstream& output)
+vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
 {
     double _t1_p, _t1_np, _t2_p, _t2_np;
 
@@ -472,7 +472,6 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
     return B;
 }
 
-
 vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
   double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
   double c = 0.5;
@@ -485,6 +484,90 @@ vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& out
   return betweenness_sampling(g, (int) samples, output);
 }
 
+vector<pair<int, double>> get_topk_from_betweenness(vector<double> B, int k){
+  auto index_B = vector<pair<int, double>>(B.size(), pair<int, double>());
+
+  for(int i=0; i < B.size(); i++) index_B[i] = {i, B[i]};
+
+  sort(index_B.begin(), index_B.end(), [](const pair<int, double> & a, const pair<int, double> & b){
+      return a.second > b.second; });   // sort on second element (the betweeness) in decreasing order
+  
+  if(k > index_B.size()) return index_B;
+  
+  return vector<pair<int, double>>(index_B.begin(), index_B.begin() + k);
+}
+
+vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
+  double samples = k * log(g.n) / (epsilon * epsilon);
+
+  double _t1, _t2, _t3, _t4;
+
+  vector<double> B = vector<double>(g.n, 0);
+
+  random_device rd;
+  mt19937 gen(rd());
+  uniform_int_distribution<int> random_node(0, g.n-1);
+
+  auto H = vector<vector<int>>();
+  auto samples_containing_vertex = vector<vector<int>>(g.n, vector<int>());
+  auto contained_in_nr_samples = vector<int>(g.n, 0);
+
+
+  // sampling part
+  for(int sample = 0; sample < samples; sample++){
+    // sample s and t
+    int s = random_node(gen);
+    int t = random_node(gen);
+
+    if(s == t){ 
+      sample--; 
+      continue;
+    }
+
+    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 100, _t1, _t2, _t3, _t4));
+
+    if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
+    {
+
+      auto h = vector<int>(mpsp_st.size() - 1);
+      // raise the betweenness of every inner node of the path by 1/samples
+      int index = 0;
+      for(auto it = next(mpsp_st.begin()); it != mpsp_st.end(); it++){
+        int u = get<0>(*it);
+        h[index++] = u;
+        contained_in_nr_samples[u]++;
+        samples_containing_vertex[u].push_back(H.size());
+      }
+      H.push_back(h);
+    }
+  }
+
+  vector<int> topk_nodes = vector<int>(k);
+
+  vector<bool> not_deleted = vector<bool>(H.size(), true);
+
+  // selecting topk node part
+  for(int i=0; i<k; i++){
+    auto max_elt = max_element(contained_in_nr_samples.begin(), contained_in_nr_samples.end());
+    int v = distance(contained_in_nr_samples.begin(), max_elt); 
+
+    topk_nodes[i] = v;
+
+    // updating information about samples h in H
+    for(auto h : samples_containing_vertex[v]){
+      if(not_deleted[h]){
+        not_deleted[h] = false;
+        for(auto elt: H[h]){
+          contained_in_nr_samples[elt]--;
+        }
+      }
+    }
+
+  }
+
+  return topk_nodes;
+
+}
 
 
 AdjGraph read_graph(char* file)
@@ -510,42 +593,42 @@ AdjGraph read_graph(char* file)
 
 void experiment_betweenness(char* path_to_graph, char* path_to_output)
 {
-  timespec t1, t2, t3;
+  timespec t1, t2, t3, t4;
   AdjGraph g = read_graph(path_to_graph);
 
   ofstream output;
   output.open(path_to_output);
 
+  int k = 10;
+
   clock_gettime(CLOCK_MONOTONIC,&t1);
-  auto B = betweenness(g, output);
+  auto B = betweenness_naive(g, output);
+  auto topk_naive = get_topk_from_betweenness(B, k);
   clock_gettime(CLOCK_MONOTONIC,&t2);
-  auto B_sampling = riondato(g, 0.05, 0.1, output);
+  auto B_riondato = riondato(g, 0.05, 0.1, output);
+  auto topk_riondato = get_topk_from_betweenness(B_riondato, k);
   clock_gettime(CLOCK_MONOTONIC,&t3);
+  auto topk_hedge = hedge(g, 0.1, k, output);
+  clock_gettime(CLOCK_MONOTONIC,&t4);
 
-  for(int i=0;i <g.n; i++){
-    output << i << " : " << B[i] << " - " << B_sampling[i] << std::endl;
+
+  cerr << "topk naive" << endl;
+  for(auto elt: topk_naive){
+    cerr << elt.first << endl;
+  }
+  cerr << "topk riondato" << endl;
+  for(auto elt: topk_riondato){
+    cerr << elt.first << endl;
+  }
+  cerr << "topk hedge" << endl;
+  for(auto elt: topk_hedge){
+    cerr << elt << endl;
   }
 
 
-  /*
-  // sort B from highest to lowest betweenness
-  vector<pair<double, size_t>> sorted_B = vector<pair<double, size_t>>(B.size());
-  for (size_t i=0; i<B.size(); i++)
-  {
-  sorted_B[i] = {B[i], i};
-  }
-  sort(sorted_B.rbegin(), sorted_B.rend());
-
-  output << sorted_B.size() << endl;
-  for (auto elt: sorted_B)
-  {
-  output << fixed << elt.second << " " << elt.first << endl;
-  }
-  */
-  output << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
-  cerr << "Betweenness calculation took " << time_difference(t1,t2) << " seconds" << endl;
-  output << "Betweenness sampling calculation took " << time_difference(t2,t3) << " seconds" << endl;
-  cerr << "Betweenness sampling calculation took " << time_difference(t2,t3) << " seconds" << endl;
+  cerr << "Betweenness naive    took " << time_difference(t1,t2) << " seconds" << endl;
+  cerr << "Betweenness riondato took " << time_difference(t2,t3) << " seconds" << endl;
+  cerr << "Betweenness hedge    took " << time_difference(t3,t4) << " seconds" << endl;
 
   output.close();
 
