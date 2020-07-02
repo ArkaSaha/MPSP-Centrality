@@ -14,6 +14,7 @@
 # include <cmath>
 # include <boost/heap/fibonacci_heap.hpp>
 # include "topk.h"
+# include "io.h"
 
 using namespace std;
 using namespace boost::heap;
@@ -47,12 +48,14 @@ double dijkstra(AdjGraph* g, int s, int t)
 			return n1.distance > n2.distance;
 		}
 	};
+
 	fibonacci_heap< node, compare<compare_node> > heap = fibonacci_heap< node, compare<compare_node> >();
 	typedef fibonacci_heap< node, compare<compare_node> >::handle_type handle_t;
 	handle_t* handles = new handle_t[g->n];
 	bool* exist = new bool[g->n];
 	bool* visited = new bool[g->n];
 	double* prob = new double[g->n];
+
 	for (int i = 0; i < g->n; i++)
 	{
 		exist[i] = false;
@@ -63,6 +66,7 @@ double dijkstra(AdjGraph* g, int s, int t)
 	prob[s] = 1;
 	prob[t] = 0;
 	list<edge> p = list<edge>();
+
 	while (! heap.empty())
 	{
 		node n = heap.top();
@@ -399,15 +403,17 @@ vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
         for(int t=0; t<g.n; t++)
         {
             if(s == t) continue;
-            output << s << " " << t << endl;
+            //output << s << " " << t << endl;
             auto cur_mpsp = mpsp(&g, s, t, 20, _t1_p, _t1_np, _t2_p, _t2_np);
 
             if(get<0>(cur_mpsp).size() >= 2) // path consists of at least 2 edges
             {
                 list<edge> p = get<0>(cur_mpsp);
+                /*
                 for (edge e : p)
                 	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
                 output << get<5>(cur_mpsp) << endl << endl;
+                */
 
                 // raise the betweenness of every inner node of the path by 1
                 for(auto it = next(p.begin()); it != p.end(); it++){
@@ -453,35 +459,122 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
         continue;
       }
 
-      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 100, _t1, _t2, _t3, _t4));
+      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 20, _t1, _t2, _t3, _t4));
 
       if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
       {
-        output << s << " -> " << t << " : ";
+        //output << s << " -> " << t << " : ";
 
         // raise the betweenness of every inner node of the path by 1/samples
         for(auto it = next(mpsp_st.begin()); it != mpsp_st.end(); it++){
           B[get<0>(*it)] += 1/r;
-          output << (get<0>(*it)) << " ";
+          //output << (get<0>(*it)) << " ";
         }
-        output << endl;
+        //output << endl;
       }
     }
-    output << endl;
+    //output << endl;
 
     return B;
 }
 
+
 vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
+  output << "Riondato" << endl;
   double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
   double c = 0.5;
 
-  double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VC) - 2) + 1 + log(1/delta));
+  double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VC - 2)) + 1 + log(1/delta));
 
-  output << "nr of samples : " << (int)samples << endl;
-  output << "compared to : " << (g.n * (g.n-1)) << endl;
+  output << "Nr of samples : " << (int)samples  << " (vs " << (g.n * (g.n-1)) << ")"<< endl;
 
   return betweenness_sampling(g, (int) samples, output);
+}
+
+vector<double> betweenness_sampling_deterministic(Graph & g, int samples, ofstream& output)
+{
+    double _t1, _t2, _t3, _t4;
+
+    double r = samples;
+
+    vector<double> B = vector<double>(g.n, 0);
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> random_node(0, g.n-1);
+
+    for(int sample = 0; sample < samples; sample++){
+      // sample s and t
+      int s = random_node(gen);
+      int t = random_node(gen);
+
+      if(s == t){ 
+        sample--; 
+        continue;
+      }
+
+      Path sp = dijkstra(g, s, t);
+
+      if(sp.edges.size() >= 2)  // the path consists of at least 2 edges
+      {
+        //output << s << " -> " << t << " : ";
+
+        // raise the betweenness of every inner node of the path by 1/samples
+        for(auto it = next(sp.edges.begin()); it != sp.edges.end(); it++){
+          B[(*it).u] += 1/r;
+          //output << (get<0>(*it)) << " ";
+        }
+        //output << endl;
+      }
+    }
+    //output << endl;
+
+    return B;
+}
+
+
+vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double delta, ofstream & output){
+    output << "Expected betweenness with Riondato deterministic" << endl;
+
+    int world_samples = ceil(2.0/(epsilon * epsilon) * log(2/delta));
+
+    output << "nr of worlds : " << world_samples << endl;
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<double> coin(0.0, 1.0); 
+
+    vector<double> B_total = vector<double>(g.n, 0);
+    for(int world = 0; world < world_samples; world++){
+        
+        // world a world by flipping a coin for every edge
+        for(auto &edge: g.index2edge){
+            if(coin(gen) < edge->p){
+                edge->available = true;
+            }
+            else{
+                edge->available = false;
+            }
+        }
+
+        // compute betweenness for this deterministic world
+        double bound_on_VC = g.n; // replace with bound on VD 
+        double c = 0.5;
+        double worlds = c/(epsilon * epsilon) *(floor(log2(bound_on_VC - 2)) + 1 + log(1/delta));
+        vector<double> B = betweenness_sampling_deterministic(g, (int) worlds, output);
+
+        for(int i=0; i <g.n; i++){
+            B_total[i] += B[i];
+        }
+    }
+
+    // normalize?
+    for(auto & elt: B_total){
+        elt /= world_samples;
+    }
+
+    return B_total;
+
 }
 
 vector<pair<int, double>> get_topk_from_betweenness(vector<double> B, int k){
@@ -498,7 +591,10 @@ vector<pair<int, double>> get_topk_from_betweenness(vector<double> B, int k){
 }
 
 vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
+  output << "Hedge" << endl;
   double samples = k * log(g.n) / (epsilon * epsilon);
+
+  output << "Nr of samples : " << samples << endl;
 
   double _t1, _t2, _t3, _t4;
 
@@ -524,7 +620,7 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
       continue;
     }
 
-    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 100, _t1, _t2, _t3, _t4));
+    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 20, _t1, _t2, _t3, _t4));
 
     if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
     {
@@ -554,15 +650,17 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
     topk_nodes[i] = v;
 
     // updating information about samples h in H
-    for(auto h : samples_containing_vertex[v]){
+    for(const auto &h : samples_containing_vertex[v]){
       if(not_deleted[h]){
         not_deleted[h] = false;
-        for(auto elt: H[h]){
+        for(const auto &elt: H[h]){
           contained_in_nr_samples[elt]--;
         }
       }
     }
 
+    // If we have picked a sample set it to -1, so it will never pop up as max_elt
+    contained_in_nr_samples[v]--; 
   }
 
   return topk_nodes;
@@ -593,42 +691,75 @@ AdjGraph read_graph(char* file)
 
 void experiment_betweenness(char* path_to_graph, char* path_to_output)
 {
-  timespec t1, t2, t3, t4;
   AdjGraph g = read_graph(path_to_graph);
+
+  Graph g2 = read_graph_from_file(path_to_graph);
 
   ofstream output;
   output.open(path_to_output);
+  output << scientific;
 
-  int k = 10;
 
-  clock_gettime(CLOCK_MONOTONIC,&t1);
-  auto B = betweenness_naive(g, output);
-  auto topk_naive = get_topk_from_betweenness(B, k);
-  clock_gettime(CLOCK_MONOTONIC,&t2);
+  timespec t_riondato_start, t_riondato_end, t_riondato_det_start, t_riondato_det_end, t_hedge_start, t_hedge_end, t_naive_start, t_naive_end;
+
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_start);
   auto B_riondato = riondato(g, 0.05, 0.1, output);
-  auto topk_riondato = get_topk_from_betweenness(B_riondato, k);
-  clock_gettime(CLOCK_MONOTONIC,&t3);
+  auto topk_riondato = get_topk_from_betweenness(B_riondato, g.n);
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_end);
+
+  output << "Riondato (epsilon = 0.05) took " << time_difference(t_riondato_start, t_riondato_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_riondato){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+
+    /*
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_start);
+  B_riondato = riondato(g, 0.01, 0.1, output);
+  topk_riondato = get_topk_from_betweenness(B_riondato, k);
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_end);
+
+  output << "Riondato (epsilon = 0.01) took " << time_difference(t_riondato_start, t_riondato_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_riondato){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+  */
+
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
+  auto B_riondato_det = exp_betweenness_with_riondato(g2, 0.05, 0.1, output);
+  auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, g.n);
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_end);
+
+  output << "Riondato det (epsilon = 0.05) took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_riondato_det){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+
+
+  int k = min(1000, g.n);
+  clock_gettime(CLOCK_MONOTONIC,&t_hedge_start);
   auto topk_hedge = hedge(g, 0.1, k, output);
-  clock_gettime(CLOCK_MONOTONIC,&t4);
+  clock_gettime(CLOCK_MONOTONIC,&t_hedge_end);
 
-
-  cerr << "topk naive" << endl;
-  for(auto elt: topk_naive){
-    cerr << elt.first << endl;
+  output << "Hedge took " << time_difference(t_hedge_start, t_hedge_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_hedge){
+    output << elt << endl;
   }
-  cerr << "topk riondato" << endl;
-  for(auto elt: topk_riondato){
-    cerr << elt.first << endl;
-  }
-  cerr << "topk hedge" << endl;
-  for(auto elt: topk_hedge){
-    cerr << elt << endl;
-  }
+  output << endl;
 
 
-  cerr << "Betweenness naive    took " << time_difference(t1,t2) << " seconds" << endl;
-  cerr << "Betweenness riondato took " << time_difference(t2,t3) << " seconds" << endl;
-  cerr << "Betweenness hedge    took " << time_difference(t3,t4) << " seconds" << endl;
+  clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
+  auto B_naive = betweenness_naive(g, output);
+  auto topk_naive = get_topk_from_betweenness(B_naive, g.n);
+  clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
+
+  output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_naive){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
 
   output.close();
 
