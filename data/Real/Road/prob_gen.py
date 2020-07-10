@@ -12,7 +12,6 @@ assert sys.argv[3] in ['yes','no']
 f = open(sys.argv[2],'r')
 vertices = {}
 edges = {}
-max_speed = 0
 num = 0
 for line in f:
     nodes = [int(x) for x in line.strip().split()]
@@ -27,10 +26,9 @@ for line in f:
         if (u,v) not in edges:
             edges[(u,v)] = []
         edges[(u,v)].append(s)
-        if max_speed < s:
-            max_speed = s
 f.close()
-mean_speed = mean([mean(l) for l in edges.values()])
+mean_speed = mean([max(l) for l in edges.values()])
+max_speed = max([mean(l) for l in edges.values()])
 
 coord = {}
 if sys.argv[3] == 'no':
