@@ -329,7 +329,7 @@ vector<double> betweenness(AdjGraph & g, ofstream& output)
                 for (edge e : p)
                 	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
                 output << get<5>(cur_mpsp) << endl << endl;
-                for(auto it = next(p.begin()); it != prev(p.end()); it++){
+                for(auto it = next(p.begin()); it != p.end(); it++){
                     B[get<0>(*it)]++;
                 }
             }
@@ -369,7 +369,7 @@ AdjGraph read_graph(char* file)
 	return g;
 }
 
-void experiment_betweenness(char* path_to_graph, char* path_to_output)
+void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 {
     timespec t1, t2;
     clock_gettime(CLOCK_MONOTONIC,&t1);
@@ -566,23 +566,23 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 int main(int argc, char* argv[])
 {
 	srand(time(NULL));
-	if (argc < 3 or argc > 4)
+	if (argc != 4)
 	{
         cerr << "For mpsp experiment" << endl;
 		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output>" << endl;
         cerr << "For betweenness experiment" << endl;
-		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output>" << endl;
-		return 1;
+		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k>" << endl;
+		return EXIT_FAILURE;
 	}
-    else if(argc == 3)
+    else if (string(argv[3]).find_first_not_of("0123456789") == std::string::npos)
     {
         cout << "Doing betweenness experiment" << endl;
-        experiment_betweenness(argv[1], argv[2]);
+        experiment_betweenness(argv[1], argv[2], atoi(argv[3]));
     }
     else if(argc == 4)
     {
         experiment(argv[1], argv[2], argv[3]);
     }
 
-	return 0;
+	return EXIT_SUCCESS;
 }

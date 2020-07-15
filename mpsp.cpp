@@ -488,13 +488,13 @@ vector<double> betweenness_hoeffding(AdjGraph &g, double epsilon, double delta, 
 }
 
 vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
-  output << "Riondato" << endl;
+  // output << "Riondato" << endl;
   double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
   double c = 0.5;
 
   double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VC - 2)) + 1 + log(1/delta));
 
-  output << "Nr of samples : " << (int)samples  << " (vs " << (g.n * (g.n-1)) << ")"<< endl;
+  // output << "Nr of samples : " << (int)samples  << " (vs " << (g.n * (g.n-1)) << ")"<< endl;
 
   return betweenness_sampling(g, (int) samples, output);
 }
@@ -541,11 +541,11 @@ vector<double> betweenness_sampling_deterministic(Graph & g, int samples, ofstre
 
 
 vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double delta, ofstream & output){
-    output << "Expected betweenness with Riondato deterministic" << endl;
+    // output << "Expected betweenness with Riondato deterministic" << endl;
 
     int world_samples = ceil(2.0/(epsilon * epsilon) * log(2/delta));
 
-    output << "nr of worlds : " << world_samples << endl;
+    // output << "nr of worlds : " << world_samples << endl;
 
     random_device rd;
     uniform_real_distribution<double> coin(0.0, 1.0); 
@@ -583,7 +583,7 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
 
 }
 
-vector<pair<int, double>> get_topk_from_betweenness(vector<double> B, int k){
+vector< pair<int, double> > get_topk_from_betweenness(vector<double> B, int k){
   auto index_B = vector<pair<int, double>>(B.size(), pair<int, double>());
 
   for(int i=0; i < B.size(); i++) index_B[i] = {i, B[i]};
@@ -593,14 +593,14 @@ vector<pair<int, double>> get_topk_from_betweenness(vector<double> B, int k){
   
   if(k > index_B.size()) return index_B;
   
-  return vector<pair<int, double>>(index_B.begin(), index_B.begin() + k);
+  return vector< pair<int, double> >(index_B.begin(), index_B.begin() + k);
 }
 
 vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
-  output << "Hedge" << endl;
+  // output << "Hedge" << endl;
   double samples = k * log(g.n) / (epsilon * epsilon);
 
-  output << "Nr of samples : " << samples << endl;
+  // output << "Nr of samples : " << samples << endl;
 
   double _t1, _t2, _t3, _t4;
 
@@ -609,8 +609,8 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
   random_device rd;
   uniform_int_distribution<int> random_node(0, g.n-1);
 
-  auto H = vector<vector<int>>();
-  auto samples_containing_vertex = vector<vector<int>>(g.n, vector<int>());
+  auto H = vector< vector<int> >();
+  auto samples_containing_vertex = vector< vector<int> >(g.n, vector<int>());
   auto contained_in_nr_samples = vector<int>(g.n, 0);
 
 
@@ -836,7 +836,7 @@ void finding_epsilon_delta(char* path_to_graph, char* path_to_output){
 
 }
 
-void experiment_betweenness(char* path_to_graph, char* path_to_output)
+void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 {
   AdjGraph g = read_graph(path_to_graph);
 
@@ -852,7 +852,19 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
 
   timespec t_riondato_start, t_riondato_end, t_riondato_det_start, t_riondato_det_end, t_hedge_start, t_hedge_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
 
+    /*
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_start);
+  auto B_riondato = riondato(g, epsilon, delta, output);
+  auto topk_riondato = get_topk_from_betweenness(B_riondato, min(k, g.n));
+  clock_gettime(CLOCK_MONOTONIC,&t_riondato_end);
 
+  // output << "Riondato (epsilon = 0.05) took " << time_difference(t_riondato_start, t_riondato_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_riondato){
+    output << elt.first << " ";
+  }
+  output << endl;
+
+    */
 
   clock_gettime(CLOCK_MONOTONIC,&t_h_start);
   auto B_hoeffding = riondato(g, epsilon, delta,  output);
@@ -872,7 +884,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
 
   output << "Expected betweenness with Riondato took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
   for(const auto &elt: topk_riondato_det){
-    output << elt.first << " " << elt.second << endl;
+    output << elt.first << " ";
   }
   output << endl;
 
@@ -1073,25 +1085,25 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 int main(int argc, char* argv[])
 {
 	srand(time(NULL));
-	if (argc < 3 or argc > 4)
+	if (argc != 4)
 	{
         cerr << "For mpsp experiment" << endl;
 		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output>" << endl;
         cerr << "For betweenness experiment" << endl;
-		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output>" << endl;
-		return 1;
+		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k>" << endl;
+		return EXIT_FAILURE;
 	}
-    else if(argc == 3)
+    else if (string(argv[3]).find_first_not_of("0123456789") == std::string::npos)
     {
         cout << "Doing betweenness experiment" << endl;
-        experiment_betweenness(argv[1], argv[2]);
+        experiment_betweenness(argv[1], argv[2], atoi(argv[3]));
         //finding_epsilon_delta(argv[1], argv[2]);
         
     }
-    else if(argc == 4)
+    else
     {
         experiment(argv[1], argv[2], argv[3]);
     }
 
-	return 0;
+	return EXIT_SUCCESS;
 }
