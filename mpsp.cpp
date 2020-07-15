@@ -16,6 +16,11 @@
 # include "topk.h"
 # include "io.h"
 
+mt19937 mersenne_mpsp{static_cast<mt19937::result_type>(12345)};
+
+#define DIJKSTRA_RUNS 20 
+
+
 using namespace std;
 using namespace boost::heap;
 
@@ -236,13 +241,12 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 	}
 	clock_gettime(CLOCK_MONOTONIC,&m1);
 	random_device rd;
-	mt19937 gen(rd());
 	discrete_distribution<> d(pr.begin(), pr.end());
 	clock_gettime(CLOCK_MONOTONIC,&m2);
 	for (int k = 1; k <= N; k++)
 	{
 		map<edge,bool> sampled = map<edge,bool>();
-		int i = d(gen);
+		int i = d(mersenne_mpsp);
 		bool f1 = false;
 		for (int j = 0; j < i; j++)
 		{
@@ -404,7 +408,7 @@ vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
         {
             if(s == t) continue;
             //output << s << " " << t << endl;
-            auto cur_mpsp = mpsp(&g, s, t, 20, _t1_p, _t1_np, _t2_p, _t2_np);
+            auto cur_mpsp = mpsp(&g, s, t, DIJKSTRA_RUNS, _t1_p, _t1_np, _t2_p, _t2_np);
 
             if(get<0>(cur_mpsp).size() >= 2) // path consists of at least 2 edges
             {
@@ -446,20 +450,19 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
     vector<double> B = vector<double>(g.n, 0);
 
     random_device rd;
-    mt19937 gen(rd());
     uniform_int_distribution<int> random_node(0, g.n-1);
 
     for(int sample = 0; sample < samples; sample++){
       // sample s and t
-      int s = random_node(gen);
-      int t = random_node(gen);
+      int s = random_node(mersenne_mpsp);
+      int t = random_node(mersenne_mpsp);
 
       if(s == t){ 
         sample--; 
         continue;
       }
 
-      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 20, _t1, _t2, _t3, _t4));
+      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, DIJKSTRA_RUNS, _t1, _t2, _t3, _t4));
 
       if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
       {
@@ -478,6 +481,11 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
     return B;
 }
 
+vector<double> betweenness_hoeffding(AdjGraph &g, double epsilon, double delta, ofstream& output){
+    double samples =  log(2*g.n / delta) / (2.0 * epsilon * epsilon);
+    output << "samples : " << samples << endl;
+    return betweenness_sampling(g, (int) samples, output);
+}
 
 vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
   output << "Riondato" << endl;
@@ -500,13 +508,12 @@ vector<double> betweenness_sampling_deterministic(Graph & g, int samples, ofstre
     vector<double> B = vector<double>(g.n, 0);
 
     random_device rd;
-    mt19937 gen(rd());
     uniform_int_distribution<int> random_node(0, g.n-1);
 
     for(int sample = 0; sample < samples; sample++){
       // sample s and t
-      int s = random_node(gen);
-      int t = random_node(gen);
+      int s = random_node(mersenne_mpsp);
+      int t = random_node(mersenne_mpsp);
 
       if(s == t){ 
         sample--; 
@@ -541,7 +548,6 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
     output << "nr of worlds : " << world_samples << endl;
 
     random_device rd;
-    mt19937 gen(rd());
     uniform_real_distribution<double> coin(0.0, 1.0); 
 
     vector<double> B_total = vector<double>(g.n, 0);
@@ -549,7 +555,7 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
         
         // world a world by flipping a coin for every edge
         for(auto &edge: g.index2edge){
-            if(coin(gen) < edge->p){
+            if(coin(mersenne_mpsp) < edge->p){
                 edge->available = true;
             }
             else{
@@ -601,7 +607,6 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
   vector<double> B = vector<double>(g.n, 0);
 
   random_device rd;
-  mt19937 gen(rd());
   uniform_int_distribution<int> random_node(0, g.n-1);
 
   auto H = vector<vector<int>>();
@@ -612,15 +617,15 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
   // sampling part
   for(int sample = 0; sample < samples; sample++){
     // sample s and t
-    int s = random_node(gen);
-    int t = random_node(gen);
+    int s = random_node(mersenne_mpsp);
+    int t = random_node(mersenne_mpsp);
 
     if(s == t){ 
       sample--; 
       continue;
     }
 
-    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, 20, _t1, _t2, _t3, _t4));
+    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, DIJKSTRA_RUNS, _t1, _t2, _t3, _t4));
 
     if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
     {
@@ -689,6 +694,148 @@ AdjGraph read_graph(char* file)
 	return g;
 }
 
+double jaccard(vector<pair<int, double>> const & list1, vector<pair<int, double>> const & list2, int k){
+    auto set1 = set<int>(),  set2 = set<int>();
+    k = min(min(k, (int)list1.size()), (int)list2.size());
+    for(int i=0; i<k; i++){
+        set1.insert(list1[i].first);
+        set2.insert(list2[i].first);
+    }
+    auto is = set<int>(), un = set<int>();
+    set_intersection(set1.begin(), set1.end(), set2.begin(), set2.end(), inserter(is, is.begin()));
+    set_union(set1.begin(), set1.end(), set2.begin(), set2.end(), inserter(un, un.begin()));
+
+    return (double) is.size() / (double)un.size();
+}
+
+double intersection_over_k(vector<pair<int, double>> const & list1, vector<pair<int, double>> const & list2, int k){
+    auto set1 = set<int>(),  set2 = set<int>();
+    k = min(min(k, (int)list1.size()), (int)list2.size());
+    for(int i=0; i<k; i++){
+        set1.insert(list1[i].first);
+        set2.insert(list2[i].first);
+    }
+    auto is = set<int>(), un = set<int>();
+    set_intersection(set1.begin(), set1.end(), set2.begin(), set2.end(), inserter(is, is.begin()));
+
+    return (double) is.size() / (double)k;
+}
+
+
+void finding_epsilon_delta(char* path_to_graph, char* path_to_output){
+  AdjGraph g = read_graph(path_to_graph);
+  ofstream output;
+  output.open(path_to_output);
+  //output << scientific;
+
+  timespec t_naive_start, t_naive_end, t_start, t_end; 
+
+  int repetitions = 3;
+  vector<int> Ks = {5, 10, 20, 50, 100};
+
+  clock_gettime(CLOCK_MONOTONIC, &t_naive_start);
+  auto B_naive = betweenness_naive(g, output);
+  auto topk_naive = get_topk_from_betweenness(B_naive, g.n);
+  clock_gettime(CLOCK_MONOTONIC, &t_naive_end);
+
+
+  output << endl;
+
+  auto jac_res = map<int, double>();
+  auto overk_res = map<int, double>();
+  for(auto k : Ks){
+    jac_res[k] = 0;
+    overk_res[k] = 0;
+  }
+  
+  clock_gettime(CLOCK_MONOTONIC, &t_start);
+  for(int i=0; i < repetitions; i++){
+      auto B_naive2 = betweenness_naive(g, output);
+      auto topk_naive2 = get_topk_from_betweenness(B_naive2, g.n);
+
+      for(auto k: Ks){
+        jac_res[k] += jaccard(topk_naive, topk_naive2, k)/repetitions;
+        overk_res[k] += intersection_over_k(topk_naive, topk_naive2, k)/repetitions;
+      }
+  }
+  clock_gettime(CLOCK_MONOTONIC, &t_end);
+  output << "computation took on average " << time_difference(t_start, t_end)/repetitions << " seconds" << endl;
+
+  output << "Jaccard - intersection/k" << endl;
+  for(auto k: Ks){
+      output << k << " : " << jac_res[k] << " - " << overk_res[k] << endl;
+
+  }
+
+    /*
+  output << "naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+  for(auto k: {5, 10, 20, 50, 100}){
+      output << k << " : " << jaccard(topk_naive, topk_naive2, k) << " - " << intersection_over_k(topk_naive, topk_naive2, k) << endl;
+
+  }
+
+*/
+  output << endl;
+
+  vector<pair<double, double>> parameters = {{0.05, 0.1}, {0.05, 0.05}, {0.05, 0.03}, {0.05, 0.01}, 
+                                             {0.04, 0.1}, {0.04, 0.05}, {0.04, 0.03}, {0.04, 0.01},
+                                             {0.03, 0.1}, {0.03, 0.05}, {0.03, 0.03}, {0.03, 0.01},
+                                             {0.02, 0.1}, {0.02, 0.05}, {0.02, 0.03}, {0.02, 0.01},
+                                             {0.01, 0.1}, {0.01, 0.05}, {0.01, 0.03}, {0.01, 0.01}};
+
+
+  for(auto const & params : parameters){
+      output << "epsilon : " << params.first << endl;
+      output << "delta   : " << params.second << endl;
+
+      auto jac_res = map<int, double>();
+      auto overk_res = map<int, double>();
+      for(auto k : Ks){
+        jac_res[k] = 0;
+        overk_res[k] = 0;
+      }
+      
+      clock_gettime(CLOCK_MONOTONIC, &t_start);
+      for(int i=0; i < repetitions; i++){
+          auto B = betweenness_hoeffding(g, params.first, params.second, output);
+          auto topk = get_topk_from_betweenness(B, g.n);
+
+          for(auto k: Ks){
+            jac_res[k] += jaccard(topk_naive, topk, k)/repetitions;
+            overk_res[k] += intersection_over_k(topk_naive, topk, k)/repetitions;
+          }
+      }
+      clock_gettime(CLOCK_MONOTONIC, &t_end);
+      output << "computation took on average " << time_difference(t_start, t_end)/repetitions << " seconds" << endl;
+
+      output << "Jaccard - intersection/k" << endl;
+      for(auto k: Ks){
+          output << k << " : " << jac_res[k] << " - " << overk_res[k] << endl;
+
+      }
+
+      output << endl <<  endl;
+  }
+
+
+    /*
+
+  output << "naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_naive){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+
+  output << "hoeffding (eps = 0.05, delta = 0.1) took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_005_01){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+  */
+
+
+}
+
 void experiment_betweenness(char* path_to_graph, char* path_to_output)
 {
   AdjGraph g = read_graph(path_to_graph);
@@ -699,67 +846,49 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output)
   output.open(path_to_output);
   output << scientific;
 
+  double epsilon = 0.03;
+  double delta = 0.01;
 
-  timespec t_riondato_start, t_riondato_end, t_riondato_det_start, t_riondato_det_end, t_hedge_start, t_hedge_end, t_naive_start, t_naive_end;
 
-  clock_gettime(CLOCK_MONOTONIC,&t_riondato_start);
-  auto B_riondato = riondato(g, 0.05, 0.1, output);
-  auto topk_riondato = get_topk_from_betweenness(B_riondato, g.n);
-  clock_gettime(CLOCK_MONOTONIC,&t_riondato_end);
+  timespec t_riondato_start, t_riondato_end, t_riondato_det_start, t_riondato_det_end, t_hedge_start, t_hedge_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
 
-  output << "Riondato (epsilon = 0.05) took " << time_difference(t_riondato_start, t_riondato_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_riondato){
+
+
+  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
+  auto B_hoeffding = riondato(g, epsilon, delta,  output);
+  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, g.n);
+  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
+
+  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_hoeffding){
     output << elt.first << " " << elt.second << endl;
   }
   output << endl;
-
-    /*
-  clock_gettime(CLOCK_MONOTONIC,&t_riondato_start);
-  B_riondato = riondato(g, 0.01, 0.1, output);
-  topk_riondato = get_topk_from_betweenness(B_riondato, k);
-  clock_gettime(CLOCK_MONOTONIC,&t_riondato_end);
-
-  output << "Riondato (epsilon = 0.01) took " << time_difference(t_riondato_start, t_riondato_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_riondato){
-    output << elt.first << " " << elt.second << endl;
-  }
-  output << endl;
-  */
 
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
-  auto B_riondato_det = exp_betweenness_with_riondato(g2, 0.05, 0.1, output);
+  auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta, output);
   auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, g.n);
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_end);
 
-  output << "Riondato det (epsilon = 0.05) took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
+  output << "Expected betweenness with Riondato took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
   for(const auto &elt: topk_riondato_det){
     output << elt.first << " " << elt.second << endl;
   }
   output << endl;
 
 
-  int k = min(1000, g.n);
-  clock_gettime(CLOCK_MONOTONIC,&t_hedge_start);
-  auto topk_hedge = hedge(g, 0.1, k, output);
-  clock_gettime(CLOCK_MONOTONIC,&t_hedge_end);
+  if(g.n <= 1000){
+      clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
+      auto B_naive = betweenness_naive(g, output);
+      auto topk_naive = get_topk_from_betweenness(B_naive, g.n);
+      clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
 
-  output << "Hedge took " << time_difference(t_hedge_start, t_hedge_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_hedge){
-    output << elt << endl;
+      output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+      for(const auto &elt: topk_naive){
+          output << elt.first << " " << elt.second << endl;
+      }
+      output << endl;
   }
-  output << endl;
-
-
-  clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
-  auto B_naive = betweenness_naive(g, output);
-  auto topk_naive = get_topk_from_betweenness(B_naive, g.n);
-  clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
-
-  output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_naive){
-    output << elt.first << " " << elt.second << endl;
-  }
-  output << endl;
 
   output.close();
 
@@ -810,7 +939,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			list<edge> p_p, p_np;
 			int c_p, c_np, f, pruned;
 			bool m_p, m_np;
-			tie(p_p,p_np,c_p,c_np,f,prob_p,prob_np,m_p,m_np,r,pruned) = mpsp(&g, s, t, 20, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
+			tie(p_p,p_np,c_p,c_np,f,prob_p,prob_np,m_p,m_np,r,pruned) = mpsp(&g, s, t, DIJKSTRA_RUNS, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
 			if (! p_p.empty())
 			{
 				num++;
@@ -956,6 +1085,8 @@ int main(int argc, char* argv[])
     {
         cout << "Doing betweenness experiment" << endl;
         experiment_betweenness(argv[1], argv[2]);
+        //finding_epsilon_delta(argv[1], argv[2]);
+        
     }
     else if(argc == 4)
     {
