@@ -867,8 +867,8 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
     */
 
   clock_gettime(CLOCK_MONOTONIC,&t_h_start);
-  auto B_hoeffding = riondato(g, epsilon, delta,  output);
-  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, g.n);
+  auto B_hoeffding = betweenness_hoeffding(g, epsilon, delta,  output);
+  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
   clock_gettime(CLOCK_MONOTONIC,&t_h_end);
 
   output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
@@ -879,12 +879,12 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
   auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta, output);
-  auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, g.n);
+  auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, min(k,g.n));
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_end);
 
   output << "Expected betweenness with Riondato took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
   for(const auto &elt: topk_riondato_det){
-    output << elt.first << " ";
+    output << elt.first << " " << elt.second << endl;
   }
   output << endl;
 
@@ -892,7 +892,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   if(g.n <= 1000){
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
       auto B_naive = betweenness_naive(g, output);
-      auto topk_naive = get_topk_from_betweenness(B_naive, g.n);
+      auto topk_naive = get_topk_from_betweenness(B_naive, min(k, g.n));
       clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
 
       output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
