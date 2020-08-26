@@ -1,19 +1,3 @@
-/*
- * author      : Ruben Brokkelkamp
- * description : Implements the algorithms as described in
- *               Top-K Possible Shortest Path Query over a Large Uncertain Graph
- *               Lei Zou, Peng Peng, and Dongyan Zhao
- *               WISE 2011
- *               
- *               In the comments we refer to this paper by [WISE 2011]
- */
-
-
-/*
- * Things to consider:
- *                    - What if the probability goes below double precision ~ 10^{-15} ?
- *                          
- */
 
 #include "topk.h"
 
