@@ -101,11 +101,10 @@ int main(int argc, char* argv[]){
 	}
 	else{
 		cerr << "For WISE experiment" << endl;
-		cerr << "Usage: ./experiment <graph_name> <time-multiplying-factor>" << endl;
-		cerr << "Usage: ./experiment <path-to-graph> <path-to-queries> <path-to-time-thresholds> <path-to-output> <time-multiplying-factor>" << endl;
+		cerr << "Usage: ./wise <graph_name> <time-multiplying-factor>" << endl;
+		cerr << "Usage: ./wise <path-to-graph> <path-to-queries> <path-to-time-thresholds> <path-to-output> <time-multiplying-factor>" << endl;
 		return 1;
 	}
 
 	return 0;
 }
-
