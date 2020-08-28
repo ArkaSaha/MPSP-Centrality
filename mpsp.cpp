@@ -774,12 +774,12 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
 vector< pair<int, double> > get_topk_from_betweenness(vector<double> B, int k){
   auto index_B = vector<pair<int, double>>(B.size(), pair<int, double>());
 
-  for(int i=0; i < B.size(); i++) index_B[i] = {i, B[i]};
+  for(uint i=0; i < B.size(); i++) index_B[i] = {i, B[i]};
 
   sort(index_B.begin(), index_B.end(), [](const pair<int, double> & a, const pair<int, double> & b){
       return a.second > b.second; });   // sort on second element (the betweeness) in decreasing order
   
-  if(k > index_B.size()) return index_B;
+  if(k > (int)index_B.size()) return index_B;
   
   return vector< pair<int, double> >(index_B.begin(), index_B.begin() + k);
 }
