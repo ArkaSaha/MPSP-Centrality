@@ -3,7 +3,7 @@
 #include <algorithm>
 
 
-void do_queries(string graph_file, string query_file, string threshold_file, string output_file, double factor){
+void do_queries(string graph_file, string query_file, string threshold_file, string output_file, double factor, int k){
 
 	Graph G = read_graph_from_file(graph_file);
 
@@ -21,7 +21,7 @@ void do_queries(string graph_file, string query_file, string threshold_file, str
 	int d;
 	queries >> d;
 
-	for (int k = 0; k < d; k++){
+	for (int j = 0; j < d; j++){
 		// cerr << "k = " << k << endl;
 		ull a_w = 0;
 		Statistics stats;
@@ -41,7 +41,7 @@ void do_queries(string graph_file, string query_file, string threshold_file, str
 			do {
 				getline(res,line);
 			} while (line.substr(0,44) != "Candidate Generation Time without Pruning : ");
-			auto topk_result = topk(G, s, t, 1, stats, ofs, stod(line.substr(44),nullptr) * factor);
+			auto topk_result = topk(G, s, t, k, stats, ofs, stod(line.substr(44),nullptr) * factor);
 			auto topk_outcome = topk_result.first;
 			vector<int> ranks = topk_result.second;
 			a_w += topk_outcome[0].first.len();
@@ -50,13 +50,19 @@ void do_queries(string graph_file, string query_file, string threshold_file, str
 			t_p += stats.probability_computation;
 			candidate_generation_timeout += stats.candidate_generation_timeout; // NB: adding a boolean to an int
 			r[min(ranks[0],5)]++;
-			ofs << "MPSP:" << endl;
-			for(auto e: topk_outcome[0].first.edges){
-				ofs << e.u << " " << e.v << " " << e.l << " " << e.p << endl;
+			double prob = 0;
+			int num = min((int)topk_outcome.size(),k);
+			for (auto p : topk_outcome)
+			{
+				ofs << "MPSP:" << endl;
+				for(auto e : p.first.edges){
+					ofs << e.u << " " << e.v << " " << e.l << " " << e.p << endl;
+				}
+				prob += p.second;
 			}
 			ofs << "Length of MPSP : " << topk_outcome[0].first.len() << endl;
-			ofs << "Probability of MPSP : " << topk_outcome[0].second << endl;
-			ofs << "Probability of being MPSP : " << topk_outcome[0].second << endl;
+			ofs << "Probability of MPSP : " << prob / num << endl;
+			ofs << "Probability of being MPSP : " << prob / num  << endl;
 			ofs << "Rank of MPSP : " << ranks[0] << endl;
 			ofs <<fixed << "Candidate Generation Time : " << (1.0*stats.candidate_generation)/CLOCKS_PER_SEC << " seconds" << endl;
 			ofs << fixed << "Probability Computation Time : " << (1.0*stats.probability_computation)/CLOCKS_PER_SEC << " seconds" << endl;
@@ -82,7 +88,7 @@ void do_queries(string graph_file, string query_file, string threshold_file, str
 
 int main(int argc, char* argv[]){
 
-	if (argc == 3){
+	if (argc == 4){
 		string graph_name(argv[1]);
 		string graph_type = graph_name.substr(0, 2);
 		string graph = "data/Synthetic/" + graph_type + "/" + argv[1] + ".graph";
@@ -94,18 +100,18 @@ int main(int argc, char* argv[]){
 		cout << "Threshold  file : " << thresholds << endl;
 		cout << "Output file : " << output << endl;
 		cout << "Seconds      : " << atof(argv[2]) << endl;
-		do_queries(graph, queries, thresholds, output, atof(argv[2]));
+		do_queries(graph, queries, thresholds, output, atof(argv[2]), atoi(argv[3]));
 	}
-	else if (argc == 6){
-		do_queries(argv[1], argv[2], argv[3], argv[4], atof(argv[5]));
+	else if (argc == 7){
+		do_queries(argv[1], argv[2], argv[3], argv[4], atof(argv[5]), atoi(argv[6]));
 	}
 	else{
 		cerr << "For WISE experiment" << endl;
-		cerr << "Usage: ./experiment <graph_name> <time-multiplying-factor>" << endl;
-		cerr << "Usage: ./experiment <path-to-graph> <path-to-queries> <path-to-time-thresholds> <path-to-output> <time-multiplying-factor>" << endl;
-		return 1;
+		cerr << "Usage: ./experiments <graph_name> <time-multiplying-factor> <k>" << endl;
+		cerr << "Usage: ./experiments <path-to-graph> <path-to-queries> <path-to-time-thresholds> <path-to-output> <time-multiplying-factor> <k>" << endl;
+		return EXIT_FAILURE;
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 

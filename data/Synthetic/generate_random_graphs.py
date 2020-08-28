@@ -5,7 +5,7 @@ import random
 import os
 # from tqdm import tqdm
 
-import igraph
+# import igraph
 
 # create directories
 # for dir_name in ["ER", "BA", "SF", "BP"]:
@@ -183,7 +183,7 @@ def generate_queries_skewed(g, filename):
     print("Done for 0 hops")
 
     q.write("{}\n".format(len(queries)))
-    for hops in queries:
+    for hops in sorted(queries):
         q.write("{} {}\n".format(hops, len(queries[hops])))
         for s, t in queries[hops]:
             q.write("{} {}\n".format(s, t))
@@ -351,7 +351,7 @@ def test_hop_distance(graph_name):
 graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 
 
-ER(graph_sizes)
+# ER(graph_sizes)
 BA(graph_sizes)
 # BP(graph_sizes)
 

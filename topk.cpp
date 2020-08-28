@@ -684,9 +684,9 @@ pair< vector< pair<Path,double> >, vector<int> > topk(Graph &g, int s, int t, in
     // take the top k
     vector<pair<Path, double>> topk_mpsp= vector<pair<Path, double>>();
     vector<int> ranks = vector<int>();
-    for(int i=0; i<k; i++){
+    for(int i=0; i<min((int)candidates.size(),k); i++){
         int index = LK_probabilities[i].second;
-        topk_mpsp.push_back({candidates[index], LK_probabilities[i].first});
+        topk_mpsp.push_back(make_pair(candidates[index], LK_probabilities[i].first));
         ranks.push_back(index);
     }
 

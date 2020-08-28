@@ -18,7 +18,9 @@
 
 mt19937 mersenne_mpsp{static_cast<mt19937::result_type>(12345)};
 
-#define DIJKSTRA_RUNS 20 
+# define NUM_MPSP 1
+# define DIJKSTRA_RUNS 20 
+# define LUBY_KARP_SAMPLES 1000
 
 
 using namespace std;
@@ -218,9 +220,11 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 	return make_tuple(p, min_dist, prod * pr, pr);
 }
 
-double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double& elapsed)
+double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed)
 {
-	int C = 0, N = 1000, n = cp.size();
+	int C = 0, n = cp.size();
+	if (n == 0)
+		return exist;
 	auto diff = vector< list<edge> >(n);
 	vector<double> pr = vector<double>(n);
 	double S = 0;
@@ -228,7 +232,7 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 	clock_gettime(CLOCK_MONOTONIC,&begin);
 	for (int i = 0; i < n; i++)
 	{
-		list<edge> p = cp[i];
+		list<edge> p = cp[i].first;
 		double prob = 1;
 		list<edge> l = list<edge>();
 		list<edge>::iterator it = set_difference(p.begin(),p.end(),sp.begin(),sp.end(),l.begin());
@@ -241,13 +245,16 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 	}
 	clock_gettime(CLOCK_MONOTONIC,&m1);
 	random_device rd;
+	mt19937 gen(rd());
 	discrete_distribution<> d(pr.begin(), pr.end());
 	clock_gettime(CLOCK_MONOTONIC,&m2);
 	for (int k = 1; k <= N; k++)
 	{
 		map<edge,bool> sampled = map<edge,bool>();
-		int i = d(mersenne_mpsp);
-		bool f1 = false;
+		int i = d(gen);
+		for (edge e : diff[i])
+			sampled[e] = true;
+		bool f1 = true;
 		for (int j = 0; j < i; j++)
 		{
 			bool f2 = true;
@@ -270,7 +277,7 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 			}
 			if (f2)
 			{
-				f1 = true;
+				f1 = false;
 				break;
 			}
 		}
@@ -282,11 +289,12 @@ double approx_prob(vector< list<edge> > cp, list<edge> sp, double exist, double&
 	return (1 - C * S / N) * exist;
 }
 
-tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(AdjGraph* g, int s, int t, int m, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
+tuple<vector< list<edge> >,vector< list<edge> >,int,int,int,int> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
 {
-	double lb_max = 0, p_max_p = 0, p_max_np = 0;
+	double lb_kth_max = 0, p_max_p = 0, p_max_np = 0;
 	int f_max = 1, n_s = 0, n_d = 0, n_r = m, n_p = 0;
 	bool match_p = false, match_np = false;
+	set<double> lbs = set<double>();
 	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
 
 	for (int i = 1; i <= n_r; i++)
@@ -303,8 +311,22 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 		if (p.empty())
 			continue;
 		n_s++;
-		if (lb_max < lb)
-			lb_max = lb;
+		lbs.insert(lb);
+		size_t pos = 0;
+		if (lbs.size() < k)
+			lb_kth_max = *(lbs.begin());
+		else
+		{
+			for (auto it = lbs.rbegin(); it != lbs.rend(); it++)
+			{
+				pos++;
+				if (pos == k)
+				{
+					lb_kth_max = *it;
+					break;
+				}
+			}
+		}
 		map< long,vector< tuple<list<edge>,double,double,int> > >::iterator it = paths.find(w);
 		if (it == paths.end())
 		{
@@ -340,9 +362,9 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 	}
 
 	f_max = 1;
-	list<edge> pp_p, pp_np = list<edge>();
-	vector< list<edge> > cp_p = vector< list<edge> >(), cp_np = vector< list<edge> >();
-	map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
+	// list<edge> pp_p, pp_np = list<edge>();
+	vector< pair<list<edge>,double> > cp_p = vector< pair<list<edge>,double> >(), cp_np = vector< pair<list<edge>,double> >();
+	// map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
 
 	for (auto x = paths.begin(); x != paths.end(); x++)
 	{
@@ -353,43 +375,209 @@ tuple<list<edge>,list<edge>,int,int,int,double,double,bool,bool,int,int> mpsp(Ad
 			// double lb = get<1>(tt);
 			double ub = get<2>(tt);
 			int freq = get<3>(tt);
-			double prob_np = approx_prob(cp_np,p,ub,prob_time_noprune);
-			cp_np.push_back(p);
-			if (prob_np > p_max_np)
-			{
-				p_max_np = prob_np;
-				pp_np = p;
-			}
-			if (ub < lb_max)
+			double prob_np = approx_prob(cp_np,p,N,ub,prob_time_noprune);
+			cp_np.push_back(make_pair(p,prob_np));
+			// if (prob_np > p_max_np)
+			// {
+			// 	p_max_np = prob_np;
+			// 	pp_np = p;
+			// }
+			if (ub < lb_kth_max)
 				n_p++;
 			else
 			{
-				double prob_p = approx_prob(cp_p,p,ub,prob_time_prune);
-				cp_p.push_back(p);
+				double prob_p = approx_prob(cp_p,p,N,ub,prob_time_prune);
+				cp_p.push_back(make_pair(p,prob_p));
 				// if (prob_p < lb || prob_p > ub)
 				// 	n_p += freq;
-				if (prob_p > p_max_p)
+				// if (prob_p > p_max_p)
+				// {
+				// 	p_max_p = prob_p;
+				// 	pp_p = p;
+				// }
+			}
+			// if (fp.find(freq) == fp.end())
+			// 	fp[freq] = set< list<edge> >();
+			// fp[freq].insert(p);
+			// if (freq > f_max)
+			// 	f_max = freq;
+		}
+	}
+	struct { bool operator() (pair<list<edge>,double> x, pair<list<edge>,double> y) { return x.second > y.second; } } comp;
+	timespec t1, t2;
+	clock_gettime(CLOCK_MONOTONIC,&t1);
+	sort(cp_p.begin(),cp_p.end(),comp);
+	clock_gettime(CLOCK_MONOTONIC,&t2);
+	prob_time_prune += time_difference(t1,t2);
+	clock_gettime(CLOCK_MONOTONIC,&t1);
+	sort(cp_np.begin(),cp_np.end(),comp);
+	clock_gettime(CLOCK_MONOTONIC,&t2);
+	prob_time_prune += time_difference(t1,t2);
+
+	vector< list<edge> > pp_p = vector< list<edge> >(), pp_np = vector< list<edge> >();
+	for (size_t i = 0; i < min(k,cp_p.size()); i++)
+		pp_p.push_back(cp_p[i].first);
+	for (size_t i = 0; i < min(k,cp_np.size()); i++)
+		pp_np.push_back(cp_np[i].first);
+
+	// if (fp[f_max].find(pp_p) != fp[f_max].end())
+	// 	match_p = true;
+	// if (fp[f_max].find(pp_np) != fp[f_max].end())
+	// 	match_np = true;
+
+	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),n_r,n_p);
+}
+
+tuple<vector< list<edge> >,vector< list<edge> >,int,int,int,int,double,double> mpsp_new(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
+{
+	double lb_kth_max = 0, p_max_p = 0, p_max_np = 0;
+	int f_max = 1, n_s = 0, n_d = 0, n_r = m, n_p = 0;
+	bool match_p = false, match_np = false;
+	set<double> lbs = set<double>();
+	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
+
+	for (int i = 1; i <= n_r; i++)
+	{
+		if (n_s >= 10 && f_max >= 0.5 * n_s)
+		{
+			n_r = i;
+			break;
+		}
+		list<edge> p;
+		long w;
+		double lb, ub;
+		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,candidate_time_prune,candidate_time_noprune);
+		if (p.empty())
+			continue;
+		n_s++;
+		lbs.insert(lb);
+		size_t pos = 0;
+		if (lbs.size() < k)
+			lb_kth_max = *(lbs.begin());
+		else
+		{
+			for (auto it = lbs.rbegin(); it != lbs.rend(); it++)
+			{
+				pos++;
+				if (pos == k)
 				{
-					p_max_p = prob_p;
-					pp_p = p;
+					lb_kth_max = *it;
+					break;
 				}
 			}
-			if (fp.find(freq) == fp.end())
-				fp[freq] = set< list<edge> >();
-			fp[freq].insert(p);
-			if (freq > f_max)
-				f_max = freq;
+		}
+		map< long,vector< tuple<list<edge>,double,double,int> > >::iterator it = paths.find(w);
+		if (it == paths.end())
+		{
+			vector< tuple<list<edge>,double,double,int> > ss = vector< tuple<list<edge>,double,double,int> >();
+			ss.push_back(make_tuple(p,lb,ub,1));
+			paths[w] = ss;
+			n_d++;
+		}
+		else
+		{
+			vector< tuple<list<edge>,double,double,int> >& vv = it->second;
+			bool f = true;
+			for (tuple<list<edge>,double,double,int>& tt : vv)
+			{
+				if (get<0>(tt) == p)
+				{
+					double& l = get<1>(tt);
+					if (lb > l)
+						l = lb;
+					get<3>(tt)++;
+					if (get<3>(tt) > f_max)
+						f_max = get<3>(tt);
+					f = false;
+					break;
+				}
+			}
+			if (f)
+			{
+				vv.push_back(make_tuple(p,lb,ub,1));
+				n_d++;
+			}
 		}
 	}
 
-	if (fp[f_max].find(pp_p) != fp[f_max].end())
-		match_p = true;
-	if (fp[f_max].find(pp_np) != fp[f_max].end())
-		match_np = true;
+	f_max = 1;
+	// list<edge> pp_p, pp_np = list<edge>();
+	vector< pair<list<edge>,double> > cp_p = vector< pair<list<edge>,double> >(), cp_np = vector< pair<list<edge>,double> >();
+	// map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
 
-	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),f_max,p_max_p,p_max_np,match_p,match_np,n_r,n_p);
+	for (auto x = paths.begin(); x != paths.end(); x++)
+	{
+		vector< tuple<list<edge>,double,double,int> > vv = x->second;
+		for (tuple<list<edge>,double,double,int> tt : vv)
+		{
+			list<edge> p = get<0>(tt);
+			// double lb = get<1>(tt);
+			double ub = get<2>(tt);
+			int freq = get<3>(tt);
+			double prob_np = approx_prob(cp_np,p,N,ub,prob_time_noprune);
+			cp_np.push_back(make_pair(p,prob_np));
+			// if (prob_np > p_max_np)
+			// {
+			// 	p_max_np = prob_np;
+			// 	pp_np = p;
+			// }
+			if (ub < lb_kth_max)
+				n_p++;
+			else
+			{
+				double prob_p = approx_prob(cp_p,p,N,ub,prob_time_prune);
+				cp_p.push_back(make_pair(p,prob_p));
+				// if (prob_p < lb || prob_p > ub)
+				// 	n_p += freq;
+				// if (prob_p > p_max_p)
+				// {
+				// 	p_max_p = prob_p;
+				// 	pp_p = p;
+				// }
+			}
+			// if (fp.find(freq) == fp.end())
+			// 	fp[freq] = set< list<edge> >();
+			// fp[freq].insert(p);
+			// if (freq > f_max)
+			// 	f_max = freq;
+		}
+	}
+	struct { bool operator() (pair<list<edge>,double> x, pair<list<edge>,double> y) { return x.second > y.second; } } comp;
+	timespec t1, t2;
+	clock_gettime(CLOCK_MONOTONIC,&t1);
+	sort(cp_p.begin(),cp_p.end(),comp);
+	clock_gettime(CLOCK_MONOTONIC,&t2);
+	prob_time_prune += time_difference(t1,t2);
+	clock_gettime(CLOCK_MONOTONIC,&t1);
+	sort(cp_np.begin(),cp_np.end(),comp);
+	clock_gettime(CLOCK_MONOTONIC,&t2);
+	prob_time_prune += time_difference(t1,t2);
+
+	vector< list<edge> > pp_p = vector< list<edge> >(), pp_np = vector< list<edge> >();
+	double prob_p = 0, prob_np = 0;
+	size_t len = min(k,cp_p.size());
+	for (size_t i = 0; i < len; i++)
+	{
+		pp_p.push_back(cp_p[i].first);
+		prob_p += cp_p[i].second;
+	}
+	if (len)
+		prob_p /= len;
+	for (size_t i = 0; i < len; i++)
+	{
+		pp_np.push_back(cp_np[i].first);
+		prob_np += cp_np[i].second;
+	}
+	if (len)
+		prob_np /= len;
+
+	// if (fp[f_max].find(pp_p) != fp[f_max].end())
+	// 	match_p = true;
+	// if (fp[f_max].find(pp_np) != fp[f_max].end())
+	// 	match_np = true;
+
+	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),n_r,n_p,prob_p,prob_np);
 }
-
 
 vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
 {
@@ -408,11 +596,11 @@ vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
         {
             if(s == t) continue;
             //output << s << " " << t << endl;
-            auto cur_mpsp = mpsp(&g, s, t, DIJKSTRA_RUNS, _t1_p, _t1_np, _t2_p, _t2_np);
+            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1_p, _t1_np, _t2_p, _t2_np);
 
-            if(get<0>(cur_mpsp).size() >= 2) // path consists of at least 2 edges
+            if(get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
             {
-                list<edge> p = get<0>(cur_mpsp);
+                list<edge> p = get<0>(cur_mpsp)[0];
                 /*
                 for (edge e : p)
                 	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
@@ -462,7 +650,7 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
         continue;
       }
 
-      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, DIJKSTRA_RUNS, _t1, _t2, _t3, _t4));
+      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, _t3, _t4))[0];
 
       if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
       {
@@ -625,7 +813,7 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
       continue;
     }
 
-    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, DIJKSTRA_RUNS, _t1, _t2, _t3, _t4));
+    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, _t3, _t4))[0];
 
     if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
     {
@@ -906,7 +1094,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
 }
 
-void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output)
+void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output, size_t k = NUM_MPSP, int m = DIJKSTRA_RUNS, int N = LUBY_KARP_SAMPLES)
 {
 	int num = 0, d;
 	AdjGraph g = read_graph(path_to_graph);
@@ -930,7 +1118,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 	output.open(path_to_output);
 	queries >> d;
 
-	for (int k = 1; k <= d; k++)
+	for (int j = 1; j <= d; j++)
 	{
 		// cerr << "k = " << k << endl;
 		int h, n;
@@ -948,92 +1136,98 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			output << s << "\t" << t << endl;
 			long wt_p = 0, wt_np = 0;
 			double candidate_time_prune = 0, candidate_time_noprune = 0, prob_time_prune = 0, prob_time_noprune = 0, pr_p = 1, pr_np = 1, prob_p = 0, prob_np = 0;
-			list<edge> p_p, p_np;
-			int c_p, c_np, f, pruned;
-			bool m_p, m_np;
-			tie(p_p,p_np,c_p,c_np,f,prob_p,prob_np,m_p,m_np,r,pruned) = mpsp(&g, s, t, DIJKSTRA_RUNS, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
-			if (! p_p.empty())
+			vector< list<edge> > cp_p, cp_np;
+			int c_p, c_np, f = 1, pruned;
+			bool m_p = false, m_np = false;
+			// tie(cp_p,cp_np,c_p,c_np,r,pruned) = mpsp(&g, s, t, k, m, N, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
+			tie(cp_p,cp_np,c_p,c_np,r,pruned,prob_p,prob_np) = mpsp_new(&g, s, t, k, m, N, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
+			for (auto p_p : cp_p)
 			{
-				num++;
-				output << "With Pruning" << endl;
-                for (edge e : p_p)
+				if (! p_p.empty())
 				{
-					output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
-					wt_p += get<2>(e);
-					pr_p *= get<3>(e);
-				}
-				a_c_p += c_p;
-				a_w_p += wt_p;
-				a_p_p += pr_p;
-				a_r += r;
-				a_pr += pruned;
-				t_c_p += candidate_time_prune;
-				t_p_p += prob_time_prune;
-				n_m_p += m_p;
-				Path path = Path({});
-				for (edge e : p_p)
-				{
-					Edge ee;
-					ee.u = get<0>(e);
-					ee.v = get<1>(e);
-					ee.l = (int)get<2>(e);
-					ee.p = get<3>(e);
-					for (Edge eee : G.adj[ee.u])
+					output << "With Pruning" << endl;
+					num++;
+					for (edge e : p_p)
 					{
-						if (eee.v == ee.v)
-						{
-							ee.index = eee.index;
-							break;
-						}
+						output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
+						wt_p += get<2>(e);
+						pr_p *= get<3>(e);
 					}
-					path.edges.push_back(ee);
-				}
-				prob_p = Luby_Karp(G, path, 1000);
-			}
-			else
-				prob_p = dijkstra(&g,s,t);
-			if (! p_np.empty())
-			{
-				output << "Without Pruning" << endl;
-                for (edge e : p_np)
-				{
-					output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
-					wt_np += get<2>(e);
-					pr_np *= get<3>(e);
-				}
-				a_c_np += c_np;
-				a_w_np += wt_np;
-				a_p_np += pr_np;
-				t_c_np += candidate_time_noprune;
-				t_p_np += prob_time_noprune;
-				n_m_np += m_np;
-				if (p_np != p_p)
-				{
-					Path path = Path({});
-					for (edge e : p_np)
-					{
-						Edge ee;
-						ee.u = get<0>(e);
-						ee.v = get<1>(e);
-						ee.l = (int)get<2>(e);
-						ee.p = get<3>(e);
-						for (Edge eee : G.adj[ee.u])
-						{
-							if (eee.v == ee.v)
-							{
-								ee.index = eee.index;
-								break;
-							}
-						}
-						path.edges.push_back(ee);
-					}
-					prob_np = Luby_Karp(G, path, 1000);
+					a_c_p += c_p;
+					a_w_p += wt_p;
+					a_p_p += pr_p;
+					a_r += r;
+					a_pr += pruned;
+					t_c_p += candidate_time_prune;
+					t_p_p += prob_time_prune;
+					n_m_p += m_p;
+					// Path path = Path({});
+					// for (edge e : p_p)
+					// {
+					// 	Edge ee;
+					// 	ee.u = get<0>(e);
+					// 	ee.v = get<1>(e);
+					// 	ee.l = (int)get<2>(e);
+					// 	ee.p = get<3>(e);
+					// 	for (Edge eee : G.adj[ee.u])
+					// 	{
+					// 		if (eee.v == ee.v)
+					// 		{
+					// 			ee.index = eee.index;
+					// 			break;
+					// 		}
+					// 	}
+					// 	path.edges.push_back(ee);
+					// }
+					// double prob = Luby_Karp(G, path, N);
+					// prob_p += prob;
+					// if (find(cp_np.begin(),cp_np.end(),p_p) != cp_np.end())
+					// 	prob_np += prob;
 				}
 				else
-					prob_np = prob_p;
+					prob_p += dijkstra(&g,s,t);
 			}
-			else
-				prob_np = prob_p;
+			for (auto p_np : cp_np)
+			{
+				if (! p_np.empty())
+				{
+					output << "Without Pruning" << endl;
+					for (edge e : p_np)
+					{
+						output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
+						wt_np += get<2>(e);
+						pr_np *= get<3>(e);
+					}
+					a_c_np += c_np;
+					a_w_np += wt_np;
+					a_p_np += pr_np;
+					t_c_np += candidate_time_noprune;
+					t_p_np += prob_time_noprune;
+					n_m_np += m_np;
+					// if (find(cp_p.begin(),cp_p.end(),p_np) == cp_p.end())
+					// {
+					// 	Path path = Path({});
+					// 	for (edge e : p_np)
+					// 	{
+					// 		Edge ee;
+					// 		ee.u = get<0>(e);
+					// 		ee.v = get<1>(e);
+					// 		ee.l = (int)get<2>(e);
+					// 		ee.p = get<3>(e);
+					// 		for (Edge eee : G.adj[ee.u])
+					// 		{
+					// 			if (eee.v == ee.v)
+					// 			{
+					// 				ee.index = eee.index;
+					// 				break;
+					// 			}
+					// 		}
+					// 		path.edges.push_back(ee);
+					// 	}
+					// 	prob_np += Luby_Karp(G, path, N);
+					// }
+				}
+			}
 			output << "Number of Dijkstra Runs : " << r << endl;
 			output << "Number of Paths Pruned : " << pruned << endl;
 			output << "Number of Distinct Candidate Paths with Pruning : " << c_p << endl;
@@ -1085,15 +1279,16 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 int main(int argc, char* argv[])
 {
 	srand(time(NULL));
-	if (argc != 4)
+	if (argc != 4 && argc != 7)
 	{
         cerr << "For mpsp experiment" << endl;
-		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output>" << endl;
+		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output> <k> <m> <N>" << endl;
         cerr << "For betweenness experiment" << endl;
 		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k>" << endl;
 		return EXIT_FAILURE;
 	}
-    else if (string(argv[3]).find_first_not_of("0123456789") == std::string::npos)
+    // else if (string(argv[3]).find_first_not_of("0123456789") == std::string::npos)
+    else if (argc == 4)
     {
         cout << "Doing betweenness experiment" << endl;
         experiment_betweenness(argv[1], argv[2], atoi(argv[3]));
@@ -1102,7 +1297,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        experiment(argv[1], argv[2], argv[3]);
+        experiment(argv[1], argv[2], argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
     }
 
 	return EXIT_SUCCESS;
