@@ -59,3 +59,6 @@ As mentioned in Section 5.8 of our paper, we compare the top-k most central node
 ./mpsp <path-to-graph> <path-to-output> <k>
 ```
 The code for method 3 can be found [here](https://github.com/XNetLab/ProbGraphBetwn).
+
+The output is first the node ids and betweenness values of the top k produced by method 0, then the the top k produced by method 2 and if the graph has at most 1000 nodes also the top k for method 1.
+
