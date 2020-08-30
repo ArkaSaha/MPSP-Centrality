@@ -18,12 +18,6 @@ Generating data is done with `Python 3` using the modules
 ## Input Data
 See [input specifications](data/README.md), [generating test data](data/Synthetic/README.md) and [road data](data/Real/Road/README.md).
 
-## Compiling
-Compiling the `C++` code can be done with
-```
-make all
-```
-
 ## Usage
 
 ### Shortest Paths
