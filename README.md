@@ -50,13 +50,14 @@ grep Average\ SP\ Probability <path-to-output>
 ### Effect of Each Phase
 The effect of each phase on the performance (Section 5.4 of our paper) can be demonstrated using the command below:
 ```
-./mpsp_dasfaa <path-to-graph> <path-to-queries> <path-to-output>
+./dasfaa <path-to-graph> <path-to-queries> <path-to-output>
 ```
-To display the quality of the results obtained, run the following command:
+To display the quality of the results obtained, run the following commands:
 ```
-grep Ours\ vs\ DASFAA <path-to-output>
+grep Luby-Karp\ vs\ Majority <path-to-output>
+grep Luby-Karp\ vs\ Horvitz-Thompson <path-to-output>
 ```
-This command displays, for each query category, 3 space-separated numbers denoting (in order) the fraction of queries for which our method returns better, the same, or worse paths compared to the other method (Majority or HT).
+These commands show the quality of the path returned by Luby-Karp (LK) compared to Majority and Horvitz-Thompson (HT) respectively. Specifically, each of them displays, for every query category, 3 space-separated numbers denoting (in order) the fraction of queries for which LK returns better, the same, or worse paths compared to the other method (Majority or HT).
 
 ### Centrality
 As mentioned in Section 5.8 of our paper, we compare the top-k most central nodes according to 4 betweenness centrality methods. Methods 0, 1 and 2 can be run using the following command:

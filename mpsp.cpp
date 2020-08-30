@@ -114,7 +114,7 @@ double dijkstra(AdjGraph* g, int s, int t)
 	return pr;
 }
 
-tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed_prune, double& elapsed_noprune)
+tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed)
 {
 	struct node
 	{
@@ -146,7 +146,6 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 	prob[s] = 1;
 	prob[t] = 1;
 	long min_dist = 0;
-	double prod = 1;
 	list<edge> p = list<edge>();
 	timespec begin, end;
 	clock_gettime(CLOCK_MONOTONIC,&begin);
@@ -192,15 +191,12 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 						}
 					}
 				}
-				else
-					prod *= (1 - pr);
 			}
 		}
 	}
 	clock_gettime(CLOCK_MONOTONIC,&end);
 	double time = time_difference(begin,end);
-	elapsed_noprune += time;
-	elapsed_prune += time;
+	elapsed += time;
 	if (min_dist != 0)
 	{
 		int v = t;
@@ -217,7 +213,7 @@ tuple< list<edge>,long,double,double > prob_dijkstra(AdjGraph* g, int s, int t, 
 	delete [] visited;
 	delete [] prev;
 	delete [] prob;
-	return make_tuple(p, min_dist, prod * pr, pr);
+	return make_tuple(p, min_dist, pr);
 }
 
 double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed)
@@ -289,299 +285,79 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	return (1 - C * S / N) * exist;
 }
 
-tuple<vector< list<edge> >,vector< list<edge> >,int,int,int,int> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
+tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time)
 {
-	double lb_kth_max = 0, p_max_p = 0, p_max_np = 0;
-	int f_max = 1, n_s = 0, n_d = 0, n_r = m, n_p = 0;
-	bool match_p = false, match_np = false;
-	set<double> lbs = set<double>();
-	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
+	map< long,vector< tuple<list<edge>,double> > > paths = map< long,vector< tuple<list<edge>,double> > >();
 
-	for (int i = 1; i <= n_r; i++)
+	for (int i = 1; i <= m; i++)
 	{
-		if (n_s >= 10 && f_max >= 0.5 * n_s)
-		{
-			n_r = i;
-			break;
-		}
 		list<edge> p;
 		long w;
-		double lb, ub;
-		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,candidate_time_prune,candidate_time_noprune);
+		double ub;
+		tie(p,w,ub) = prob_dijkstra(g,s,t,candidate_time);
 		if (p.empty())
 			continue;
-		n_s++;
-		lbs.insert(lb);
-		size_t pos = 0;
-		if (lbs.size() < k)
-			lb_kth_max = *(lbs.begin());
-		else
-		{
-			for (auto it = lbs.rbegin(); it != lbs.rend(); it++)
-			{
-				pos++;
-				if (pos == k)
-				{
-					lb_kth_max = *it;
-					break;
-				}
-			}
-		}
-		map< long,vector< tuple<list<edge>,double,double,int> > >::iterator it = paths.find(w);
+		map< long,vector< tuple<list<edge>,double> > >::iterator it = paths.find(w);
 		if (it == paths.end())
 		{
-			vector< tuple<list<edge>,double,double,int> > ss = vector< tuple<list<edge>,double,double,int> >();
-			ss.push_back(make_tuple(p,lb,ub,1));
+			vector< tuple<list<edge>,double> > ss = vector< tuple<list<edge>,double> >();
+			ss.push_back(make_tuple(p,ub));
 			paths[w] = ss;
-			n_d++;
 		}
 		else
 		{
-			vector< tuple<list<edge>,double,double,int> >& vv = it->second;
+			vector< tuple<list<edge>,double> >& vv = it->second;
 			bool f = true;
-			for (tuple<list<edge>,double,double,int>& tt : vv)
+			for (tuple<list<edge>,double>& tt : vv)
 			{
 				if (get<0>(tt) == p)
 				{
-					double& l = get<1>(tt);
-					if (lb > l)
-						l = lb;
-					get<3>(tt)++;
-					if (get<3>(tt) > f_max)
-						f_max = get<3>(tt);
 					f = false;
 					break;
 				}
 			}
 			if (f)
-			{
-				vv.push_back(make_tuple(p,lb,ub,1));
-				n_d++;
-			}
+				vv.push_back(make_tuple(p,ub));
 		}
 	}
 
-	f_max = 1;
-	// list<edge> pp_p, pp_np = list<edge>();
-	vector< pair<list<edge>,double> > cp_p = vector< pair<list<edge>,double> >(), cp_np = vector< pair<list<edge>,double> >();
-	// map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
+	vector< pair<list<edge>,double> > cp = vector< pair<list<edge>,double> >();
 
 	for (auto x = paths.begin(); x != paths.end(); x++)
 	{
-		vector< tuple<list<edge>,double,double,int> > vv = x->second;
-		for (tuple<list<edge>,double,double,int> tt : vv)
+		vector< tuple<list<edge>,double> > vv = x->second;
+		for (tuple<list<edge>,double> tt : vv)
 		{
 			list<edge> p = get<0>(tt);
-			// double lb = get<1>(tt);
-			double ub = get<2>(tt);
-			int freq = get<3>(tt);
-			double prob_np = approx_prob(cp_np,p,N,ub,prob_time_noprune);
-			cp_np.push_back(make_pair(p,prob_np));
-			// if (prob_np > p_max_np)
-			// {
-			// 	p_max_np = prob_np;
-			// 	pp_np = p;
-			// }
-			if (ub < lb_kth_max)
-				n_p++;
-			else
-			{
-				double prob_p = approx_prob(cp_p,p,N,ub,prob_time_prune);
-				cp_p.push_back(make_pair(p,prob_p));
-				// if (prob_p < lb || prob_p > ub)
-				// 	n_p += freq;
-				// if (prob_p > p_max_p)
-				// {
-				// 	p_max_p = prob_p;
-				// 	pp_p = p;
-				// }
-			}
-			// if (fp.find(freq) == fp.end())
-			// 	fp[freq] = set< list<edge> >();
-			// fp[freq].insert(p);
-			// if (freq > f_max)
-			// 	f_max = freq;
+			double ub = get<1>(tt);
+			double prob = approx_prob(cp,p,N,ub,prob_time);
+			cp.push_back(make_pair(p,prob));
 		}
 	}
 	struct { bool operator() (pair<list<edge>,double> x, pair<list<edge>,double> y) { return x.second > y.second; } } comp;
 	timespec t1, t2;
 	clock_gettime(CLOCK_MONOTONIC,&t1);
-	sort(cp_p.begin(),cp_p.end(),comp);
+	sort(cp.begin(),cp.end(),comp);
 	clock_gettime(CLOCK_MONOTONIC,&t2);
-	prob_time_prune += time_difference(t1,t2);
-	clock_gettime(CLOCK_MONOTONIC,&t1);
-	sort(cp_np.begin(),cp_np.end(),comp);
-	clock_gettime(CLOCK_MONOTONIC,&t2);
-	prob_time_prune += time_difference(t1,t2);
+	prob_time += time_difference(t1,t2);
 
-	vector< list<edge> > pp_p = vector< list<edge> >(), pp_np = vector< list<edge> >();
-	for (size_t i = 0; i < min(k,cp_p.size()); i++)
-		pp_p.push_back(cp_p[i].first);
-	for (size_t i = 0; i < min(k,cp_np.size()); i++)
-		pp_np.push_back(cp_np[i].first);
-
-	// if (fp[f_max].find(pp_p) != fp[f_max].end())
-	// 	match_p = true;
-	// if (fp[f_max].find(pp_np) != fp[f_max].end())
-	// 	match_np = true;
-
-	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),n_r,n_p);
-}
-
-tuple<vector< list<edge> >,vector< list<edge> >,int,int,int,int,double,double> mpsp_new(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time_prune, double& candidate_time_noprune, double& prob_time_prune, double& prob_time_noprune)
-{
-	double lb_kth_max = 0, p_max_p = 0, p_max_np = 0;
-	int f_max = 1, n_s = 0, n_d = 0, n_r = m, n_p = 0;
-	bool match_p = false, match_np = false;
-	set<double> lbs = set<double>();
-	map< long,vector< tuple<list<edge>,double,double,int> > > paths = map< long,vector< tuple<list<edge>,double,double,int> > >();
-
-	for (int i = 1; i <= n_r; i++)
-	{
-		if (n_s >= 10 && f_max >= 0.5 * n_s)
-		{
-			n_r = i;
-			break;
-		}
-		list<edge> p;
-		long w;
-		double lb, ub;
-		tie(p,w,lb,ub) = prob_dijkstra(g,s,t,candidate_time_prune,candidate_time_noprune);
-		if (p.empty())
-			continue;
-		n_s++;
-		lbs.insert(lb);
-		size_t pos = 0;
-		if (lbs.size() < k)
-			lb_kth_max = *(lbs.begin());
-		else
-		{
-			for (auto it = lbs.rbegin(); it != lbs.rend(); it++)
-			{
-				pos++;
-				if (pos == k)
-				{
-					lb_kth_max = *it;
-					break;
-				}
-			}
-		}
-		map< long,vector< tuple<list<edge>,double,double,int> > >::iterator it = paths.find(w);
-		if (it == paths.end())
-		{
-			vector< tuple<list<edge>,double,double,int> > ss = vector< tuple<list<edge>,double,double,int> >();
-			ss.push_back(make_tuple(p,lb,ub,1));
-			paths[w] = ss;
-			n_d++;
-		}
-		else
-		{
-			vector< tuple<list<edge>,double,double,int> >& vv = it->second;
-			bool f = true;
-			for (tuple<list<edge>,double,double,int>& tt : vv)
-			{
-				if (get<0>(tt) == p)
-				{
-					double& l = get<1>(tt);
-					if (lb > l)
-						l = lb;
-					get<3>(tt)++;
-					if (get<3>(tt) > f_max)
-						f_max = get<3>(tt);
-					f = false;
-					break;
-				}
-			}
-			if (f)
-			{
-				vv.push_back(make_tuple(p,lb,ub,1));
-				n_d++;
-			}
-		}
-	}
-
-	f_max = 1;
-	// list<edge> pp_p, pp_np = list<edge>();
-	vector< pair<list<edge>,double> > cp_p = vector< pair<list<edge>,double> >(), cp_np = vector< pair<list<edge>,double> >();
-	// map< int,set< list<edge> > > fp = map< int,set< list<edge> > >();
-
-	for (auto x = paths.begin(); x != paths.end(); x++)
-	{
-		vector< tuple<list<edge>,double,double,int> > vv = x->second;
-		for (tuple<list<edge>,double,double,int> tt : vv)
-		{
-			list<edge> p = get<0>(tt);
-			// double lb = get<1>(tt);
-			double ub = get<2>(tt);
-			int freq = get<3>(tt);
-			double prob_np = approx_prob(cp_np,p,N,ub,prob_time_noprune);
-			cp_np.push_back(make_pair(p,prob_np));
-			// if (prob_np > p_max_np)
-			// {
-			// 	p_max_np = prob_np;
-			// 	pp_np = p;
-			// }
-			if (ub < lb_kth_max)
-				n_p++;
-			else
-			{
-				double prob_p = approx_prob(cp_p,p,N,ub,prob_time_prune);
-				cp_p.push_back(make_pair(p,prob_p));
-				// if (prob_p < lb || prob_p > ub)
-				// 	n_p += freq;
-				// if (prob_p > p_max_p)
-				// {
-				// 	p_max_p = prob_p;
-				// 	pp_p = p;
-				// }
-			}
-			// if (fp.find(freq) == fp.end())
-			// 	fp[freq] = set< list<edge> >();
-			// fp[freq].insert(p);
-			// if (freq > f_max)
-			// 	f_max = freq;
-		}
-	}
-	struct { bool operator() (pair<list<edge>,double> x, pair<list<edge>,double> y) { return x.second > y.second; } } comp;
-	timespec t1, t2;
-	clock_gettime(CLOCK_MONOTONIC,&t1);
-	sort(cp_p.begin(),cp_p.end(),comp);
-	clock_gettime(CLOCK_MONOTONIC,&t2);
-	prob_time_prune += time_difference(t1,t2);
-	clock_gettime(CLOCK_MONOTONIC,&t1);
-	sort(cp_np.begin(),cp_np.end(),comp);
-	clock_gettime(CLOCK_MONOTONIC,&t2);
-	prob_time_prune += time_difference(t1,t2);
-
-	vector< list<edge> > pp_p = vector< list<edge> >(), pp_np = vector< list<edge> >();
-	double prob_p = 0, prob_np = 0;
-	size_t len = min(k,cp_p.size());
+	vector< list<edge> > pp = vector< list<edge> >();
+	double prob = 0;
+	size_t len = min(k,cp.size());
 	for (size_t i = 0; i < len; i++)
 	{
-		pp_p.push_back(cp_p[i].first);
-		prob_p += cp_p[i].second;
+		pp.push_back(cp[i].first);
+		prob += cp[i].second;
 	}
 	if (len)
-		prob_p /= len;
-	for (size_t i = 0; i < len; i++)
-	{
-		pp_np.push_back(cp_np[i].first);
-		prob_np += cp_np[i].second;
-	}
-	if (len)
-		prob_np /= len;
+		prob /= len;
 
-	// if (fp[f_max].find(pp_p) != fp[f_max].end())
-	// 	match_p = true;
-	// if (fp[f_max].find(pp_np) != fp[f_max].end())
-	// 	match_np = true;
-
-	return make_tuple(pp_p,pp_np,cp_p.size(),cp_np.size(),n_r,n_p,prob_p,prob_np);
+	return make_tuple(pp,cp.size(),prob);
 }
 
-vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
+vector<double> betweenness_naive(AdjGraph & g)
 {
-    double _t1_p, _t1_np, _t2_p, _t2_np;
+    double _t1, _t2;
 
     vector<double> B = vector<double>(g.n, 0);
 
@@ -595,18 +371,11 @@ vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
         for(int t=0; t<g.n; t++)
         {
             if(s == t) continue;
-            //output << s << " " << t << endl;
-            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1_p, _t1_np, _t2_p, _t2_np);
+            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
 
             if(get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
             {
                 list<edge> p = get<0>(cur_mpsp)[0];
-                /*
-                for (edge e : p)
-                	output << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << " " << get<3>(e) << endl;
-                output << get<5>(cur_mpsp) << endl << endl;
-                */
-
                 // raise the betweenness of every inner node of the path by 1
                 for(auto it = next(p.begin()); it != p.end(); it++){
                     B[get<0>(*it)]++;
@@ -626,9 +395,9 @@ vector<double> betweenness_naive(AdjGraph & g, ofstream& output)
 }
 
 
-vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
+vector<double> betweenness_sampling(AdjGraph & g, int samples)
 {
-    double _t1, _t2, _t3, _t4;
+    double _t1, _t2;
 
     double r = samples;
 
@@ -647,7 +416,7 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
         continue;
       }
 
-      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, _t3, _t4))[0];
+      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
 
       if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
       {
@@ -665,22 +434,20 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples, ofstream& output)
 vector<double> betweenness_hoeffding(AdjGraph &g, double epsilon, double delta, ofstream& output){
     double samples =  log(2*g.n / delta) / (2.0 * epsilon * epsilon);
     output << "samples : " << samples << endl;
-    return betweenness_sampling(g, (int) samples, output);
+    return betweenness_sampling(g, (int) samples);
 }
 
-vector<double> riondato(AdjGraph &g, double epsilon, double delta, ofstream& output){
+vector<double> riondato(AdjGraph &g, double epsilon, double delta){
   double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
   double c = 0.5;
 
   double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VC - 2)) + 1 + log(1/delta));
 
-  return betweenness_sampling(g, (int) samples, output);
+  return betweenness_sampling(g, (int) samples);
 }
 
-vector<double> betweenness_sampling_deterministic(Graph & g, int samples, ofstream& output)
+vector<double> betweenness_sampling_deterministic(Graph & g, int samples)
 {
-    double _t1, _t2, _t3, _t4;
-
     double r = samples;
 
     vector<double> B = vector<double>(g.n, 0);
@@ -714,7 +481,7 @@ vector<double> betweenness_sampling_deterministic(Graph & g, int samples, ofstre
 }
 
 
-vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double delta, ofstream & output){
+vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double delta){
 
     int world_samples = ceil(2.0/(epsilon * epsilon) * log(2/delta));
 
@@ -738,7 +505,7 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
         double bound_on_VC = g.n; // replace with bound on VD
         double c = 0.5;
         double worlds = c/(epsilon * epsilon) *(floor(log2(bound_on_VC - 2)) + 1 + log(1/delta));
-        vector<double> B = betweenness_sampling_deterministic(g, (int) worlds, output);
+        vector<double> B = betweenness_sampling_deterministic(g, (int) worlds);
 
         for(int i=0; i <g.n; i++){
             B_total[i] += B[i];
@@ -767,10 +534,10 @@ vector< pair<int, double> > get_topk_from_betweenness(vector<double> B, int k){
   return vector< pair<int, double> >(index_B.begin(), index_B.begin() + k);
 }
 
-vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
+vector<int> hedge(AdjGraph &g, double epsilon, int k){
   double samples = k * log(g.n) / (epsilon * epsilon);
 
-  double _t1, _t2, _t3, _t4;
+  double _t1, _t2;
 
   vector<double> B = vector<double>(g.n, 0);
 
@@ -793,7 +560,7 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k, ofstream & output){
       continue;
     }
 
-    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, _t3, _t4))[0];
+    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
 
     if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
     {
@@ -903,7 +670,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   double epsilon = 0.05;
   double delta = 0.1;
 
-  timespec t_riondato_start, t_riondato_end, t_riondato_det_start, t_riondato_det_end, t_hedge_start, t_hedge_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
+  timespec t_riondato_det_start, t_riondato_det_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
 
   clock_gettime(CLOCK_MONOTONIC,&t_h_start);
   auto B_hoeffding = betweenness_hoeffding(g, epsilon, delta,  output);
@@ -917,7 +684,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   output << endl;
 
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
-  auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta, output);
+  auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta);
   auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, min(k,g.n));
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_end);
 
@@ -930,7 +697,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
   if(g.n <= 1000){
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
-      auto B_naive = betweenness_naive(g, output);
+      auto B_naive = betweenness_naive(g);
       auto topk_naive = get_topk_from_betweenness(B_naive, min(k, g.n));
       clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
 
@@ -947,181 +714,66 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
 void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output, size_t k = NUM_MPSP, int m = DIJKSTRA_RUNS, int N = LUBY_KARP_SAMPLES)
 {
-	int num = 0, d;
+	int d;
 	AdjGraph g = read_graph(path_to_graph);
-	Graph G = Graph({g.n, g.m});
-	for (int i = 0; i < g.n; i++)
-	{
-		for (adj_ent t : g.adj[i])
-		{
-			int j = get<0>(t);
-			long l = get<1>(t);
-			double p = get<2>(t);
-			G.adj[i].push_back(Edge({i, j, (int)l, p, num}));
-			num++;
-		}
-	}
-
-	G.update_incoming_index2edge();
 	ifstream queries;
 	queries.open(path_to_queries);
 	ofstream output;
 	output.open(path_to_output);
 	queries >> d;
-
 	for (int j = 1; j <= d; j++)
 	{
-		// cerr << "k = " << k << endl;
 		int h, n;
 		queries >> h >> n;
 		output << "Number of hops = " << h << endl;
 		output << "Number of queries = " << n << endl << endl;
-		long a_w_p = 0, a_w_np = 0;
-		double t_c_p = 0, t_c_np = 0, t_p_p = 0, t_p_np = 0, a_c_p = 0, a_c_np = 0, a_p_p = 0, a_p_np = 0, a_r = 0, a_pr = 0;
-		int n_m_p = 0, n_m_np = 0, num = 0;
+		double t_c = 0, t_p = 0, a_pr = 0;
+		int num = 0;
 		for (int i = 1; i <= n; i++)
 		{
-			// cerr << "i = " << i << endl;
-			int r, s, t;
+			int s, t;
 			queries >> s >> t;
 			output << s << "\t" << t << endl;
-			long wt_p = 0, wt_np = 0;
-			double candidate_time_prune = 0, candidate_time_noprune = 0, prob_time_prune = 0, prob_time_noprune = 0, pr_p = 1, pr_np = 1, prob_p = 0, prob_np = 0;
-			vector< list<edge> > cp_p, cp_np;
-			int c_p, c_np, f = 1, pruned;
-			bool m_p = false, m_np = false;
-			// tie(cp_p,cp_np,c_p,c_np,r,pruned) = mpsp(&g, s, t, k, m, N, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
-			tie(cp_p,cp_np,c_p,c_np,r,pruned,prob_p,prob_np) = mpsp_new(&g, s, t, k, m, N, candidate_time_prune, candidate_time_noprune, prob_time_prune, prob_time_noprune);
-			for (auto p_p : cp_p)
+			double candidate_time = 0, prob_time = 0, prob = 0;
+			vector< list<edge> > cp;
+			int nc;
+			tie(cp,nc,prob) = mpsp(&g, s, t, k, m, N, candidate_time, prob_time);
+			bool f = false;
+			for (auto p : cp)
 			{
-				if (! p_p.empty())
+				if (! p.empty())
 				{
-					output << "With Pruning" << endl;
-					num++;
-					for (edge e : p_p)
-					{
+					f = true;
+					output << "Path" << endl;
+					for (edge e : p)
 						output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
-						wt_p += get<2>(e);
-						pr_p *= get<3>(e);
-					}
-					a_c_p += c_p;
-					a_w_p += wt_p;
-					a_p_p += pr_p;
-					a_r += r;
-					a_pr += pruned;
-					t_c_p += candidate_time_prune;
-					t_p_p += prob_time_prune;
-					n_m_p += m_p;
-					// Path path = Path({});
-					// for (edge e : p_p)
-					// {
-					// 	Edge ee;
-					// 	ee.u = get<0>(e);
-					// 	ee.v = get<1>(e);
-					// 	ee.l = (int)get<2>(e);
-					// 	ee.p = get<3>(e);
-					// 	for (Edge eee : G.adj[ee.u])
-					// 	{
-					// 		if (eee.v == ee.v)
-					// 		{
-					// 			ee.index = eee.index;
-					// 			break;
-					// 		}
-					// 	}
-					// 	path.edges.push_back(ee);
-					// }
-					// double prob = Luby_Karp(G, path, N);
-					// prob_p += prob;
-					// if (find(cp_np.begin(),cp_np.end(),p_p) != cp_np.end())
-					// 	prob_np += prob;
 				}
 				else
-					prob_p += dijkstra(&g,s,t);
+					prob += dijkstra(&g,s,t);
 			}
-			for (auto p_np : cp_np)
+			if (f)
 			{
-				if (! p_np.empty())
-				{
-					output << "Without Pruning" << endl;
-					for (edge e : p_np)
-					{
-						output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
-						wt_np += get<2>(e);
-						pr_np *= get<3>(e);
-					}
-					a_c_np += c_np;
-					a_w_np += wt_np;
-					a_p_np += pr_np;
-					t_c_np += candidate_time_noprune;
-					t_p_np += prob_time_noprune;
-					n_m_np += m_np;
-					// if (find(cp_p.begin(),cp_p.end(),p_np) == cp_p.end())
-					// {
-					// 	Path path = Path({});
-					// 	for (edge e : p_np)
-					// 	{
-					// 		Edge ee;
-					// 		ee.u = get<0>(e);
-					// 		ee.v = get<1>(e);
-					// 		ee.l = (int)get<2>(e);
-					// 		ee.p = get<3>(e);
-					// 		for (Edge eee : G.adj[ee.u])
-					// 		{
-					// 			if (eee.v == ee.v)
-					// 			{
-					// 				ee.index = eee.index;
-					// 				break;
-					// 			}
-					// 		}
-					// 		path.edges.push_back(ee);
-					// 	}
-					// 	prob_np += Luby_Karp(G, path, N);
-					// }
-				}
+				num++;
+				t_c += candidate_time;
+				t_p += prob_time;
+				a_pr += prob;
 			}
-			output << "Number of Dijkstra Runs : " << r << endl;
-			output << "Number of Paths Pruned : " << pruned << endl;
-			output << "Number of Distinct Candidate Paths with Pruning : " << c_p << endl;
-			output << "Number of Distinct Candidate Paths without Pruning : " << c_np << endl;
-			output << "Frequency of Modal Candidate Path : " << f << endl;
-			output << "MPSP matches Modal Candidate Path with Pruning : " << m_p << endl;
-			output << "MPSP matches Modal Candidate Path without Pruning : " << m_np << endl;
-			output << "Length of MPSP with Pruning : " << wt_p << endl;
-			output << "Length of MPSP without Pruning : " << wt_np << endl;
-			output << "Probability of MPSP with Pruning : " << pr_p << endl;
-			output << "Probability of MPSP without Pruning : " << pr_np << endl;
-			output << "Probability of MPSP being the Shortest Path with Pruning : " << prob_p << endl;
-			output << "Probability of MPSP being the Shortest Path without Pruning : " << prob_np << endl;
-			output << "Candidate Generation Time with Pruning : " << candidate_time_prune << " seconds" << endl;
-			output << "Candidate Generation Time without Pruning : " << candidate_time_noprune << " seconds" << endl;
-			output << "Probability Computation Time with Pruning : " << prob_time_prune << " seconds" << endl;
-			output << "Probability Computation Time without Pruning : " << prob_time_noprune << " seconds" << endl;
+			output << "Number of Distinct Candidate Paths : " << nc << endl;
+			output << "SP Probability : " << prob << endl;
+			output << "Candidate Generation Time : " << candidate_time << " seconds" << endl;
+			output << "Probability Computation Time : " << prob_time << " seconds" << endl;
 			output << endl;
 		}
-
 		output << "Number of Non-Empty Paths for " << h << " hops : " << num << endl;
-		output << "Number of Path Matches with Pruning for " << h << " hops : " << n_m_p << endl;
-		output << "Number of Path Matches without Pruning for " << h << " hops : " << n_m_np << endl;
 		if (num)
 		{
-			output << "Average Length of MPSP with Pruning for " << h << " hops : " << a_w_p / num << endl;
-			output << "Average Length of MPSP without Pruning for " << h << " hops : " << a_w_np / num << endl;
-			output << "Average Probability of MPSP with Pruning for " << h << " hops : " << a_p_p / num << endl;
-			output << "Average Probability of MPSP without Pruning for " << h << " hops : " << a_p_np / num << endl;
-			output << "Average Number of Dijkstra Runs for " << h << " hops : " << a_r / num << endl;
-			output << "Average Number of Paths Pruned for " << h << " hops : " << a_pr / num << endl;
-			output << "Average Number of Distinct Candidate Paths with Pruning for " << h << " hops : " << a_c_p / num << endl;
-			output << "Average Number of Distinct Candidate Paths without Pruning for " << h << " hops : " << a_c_np / num << endl;
-			output << "Average Candidate Generation Time with Pruning for " << h << " hops : " << t_c_p / num << " seconds" << endl;
-			output << "Average Candidate Generation Time without Pruning for " << h << " hops : " << t_c_np / num << " seconds" << endl;
-			output << "Average Probability Computation Time with Pruning for " << h << " hops : " << t_p_p / num << " seconds" << endl;
-			output << "Average Probability Computation Time without Pruning for " << h << " hops : " << t_p_np / num << " seconds" << endl;
-			output << "Average Total Time with Pruning for " << h << " hops : " << (t_c_p + t_p_p) / num << " seconds" << endl;
-			output << "Average Total Time without Pruning for " << h << " hops : " << (t_c_np + t_p_np) / num << " seconds" << endl;
+			output << "Average Candidate Generation Time for " << h << " hops : " << t_c / num << " seconds" << endl;
+			output << "Average Probability Computation Time for " << h << " hops : " << t_p / num << " seconds" << endl;
+			output << "Average Total Time for " << h << " hops : " << (t_c + t_p) / num << " seconds" << endl;
+			output << "Average SP Probability for " << h << " hops : " << a_pr / num << endl;
 		}
 		output << endl << endl;
 	}
-
 	queries.close();
 	output.close();
 	delete [] g.adj;
@@ -1138,7 +790,6 @@ int main(int argc, char* argv[])
 		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k>" << endl;
 		return EXIT_FAILURE;
 	}
-    // else if (string(argv[3]).find_first_not_of("0123456789") == std::string::npos)
     else if (argc == 4)
     {
         cout << "Doing betweenness experiment" << endl;
@@ -1149,6 +800,5 @@ int main(int argc, char* argv[])
     {
         experiment(argv[1], argv[2], argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
     }
-
 	return EXIT_SUCCESS;
 }

@@ -3,6 +3,7 @@
 import networkx as nx
 import random
 import os
+import sys
 # from tqdm import tqdm
 
 # import igraph
@@ -216,11 +217,11 @@ def ER(graph_sizes):
         # test_hop_distance("ER/ER_{}_{}".format(n, m))
 
 
-def BA(graph_sizes):
+def BA(graph_sizes,density):
     print("Generating BA graphs")
     # https://igraph.org/python/doc/igraph.GraphBase-class.html#Barabasi
     for n in graph_sizes:
-        BA_m = 10
+        BA_m = density
 
         print("Generating BA graph with {} nodes".format(n))
         igraph_g = igraph.Graph.Barabasi(n, BA_m , directed=True)
@@ -247,63 +248,6 @@ def BA(graph_sizes):
 
         generate_queries_skewed(g, "BA_{}_{}.queries".format(n, m))
 
-        # test_hop_distance("BA/BA_{}_{}".format(n, m))
-
-def BP(graph_sizes):
-    print("Generating BP graphs")
-    for n in graph_sizes:
-        m = 2*n
-
-        g = nx.DiGraph()
-        g.add_nodes_from(range(n))
-
-        nodes_partition_1 = n//5
-
-        edges = 0
-        while edges < m:
-            u = random.randrange(nodes_partition_1)
-            v = random.randrange(nodes_partition_1, n)
-
-            coin = random.random()
-            if coin < 0.5 and not g.has_edge(u, v):
-                g.add_edge(u, v)
-                edges += 1
-            elif not g.has_edge(v,u):
-                g.add_edge(v, u)
-                edges += 1
-
-        print("Generated BP graph with {} nodes and {} edges".format(n, m))
-
-        f = open("BP/BP_{}_{}.graph".format(n, m), "w")
-        f.write("{} {}\n".format(n, m))
-        for u, v in g.edges:
-            l = random.randint(1, MAX_EDGE_LENGTH)
-            p = random.random()
-            f.write("{} {} {} {}\n".format(u, v, l, p))
-        f.close()
-
-        generate_queries_random(g, "BP/BP_{}_{}.queries".format(n, m))
-
-        test_hop_distance("BP/BP_{}_{}".format(n, m))
-
-#def SF(graph_sizes):
-#    print("Generating SF graphs")
-#    # https://igraph.org/python/doc/igraph.GraphBase-class.html
-#    for n in graph_sizes:
-#
-#        print("Generating SF graph with {} nodes".format(n))
-#        g = nx.scale_free_graph(n)
-#        m = g.number_of_edges()
-#
-#        print("Graph has {} edges".format(m))
-#
-#        f = open("SF/SF_{}_{}.graph".format(n, m), "w")
-#        f.write("{} {}\n".format(n, m))
-#        for u, v, _ in g.edges:
-#            f.write("{} {} {} {}\n".format(u, v, random.randint(1, MAX_EDGE_LENGTH), random.random()))
-#        f.close()
-#
-#        generate_queries(g, "SF/SF_{}_{}.queries".format(n, m))
 
 def convert_edge_entry(x):
     return [int(x[0]), int(x[1]), int(x[2]), float(x[3])]
@@ -347,11 +291,11 @@ def test_hop_distance(graph_name):
 
 
 
+assert len(sys.argv) == 4
+assert sys.argv[1] in ['ER','BA']
+# graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 
-graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
-
-
-# ER(graph_sizes)
-BA(graph_sizes)
-# BP(graph_sizes)
-
+if sys.argv[1] == 'ER':
+    ER([sys.argv[2]],sys.argv[3])
+else:
+    BA([sys.argv[2]],sys.argv[3])
