@@ -10,7 +10,7 @@ representing an edge from node u to v of length l and probability p.
 
 u, v and l are integers while p is a double
 
-### Query files
+## Query files
 
 The query files first contain a line with an integer H.
 Then the following repeats for H times.
