@@ -1,3 +1,4 @@
+
 # MPSP Centrality
 
 This repository contains the code used for the experiments described in the paper titled
@@ -10,10 +11,8 @@ _Arkaprava Saha, Ruben Brokkelkamp, Yllka Velaj, Arijit Khan & Francesco Bonchi_
 The experiments have been run on an Ubuntu 18.04.4 LTS computer with a 3.7 GHz Xeon processor and 16 GB RAM. All programs are written in `C++17` and make use of [the Boost C++ libraries](https://www.boost.org/).
 
 Generating data is done with `Python 3` using the modules
-```
-[networkx](https://networkx.github.io/)
-[python-igraph](https://igraph.org/python/)
-```
+- [networkx](https://networkx.github.io/)
+- [python-igraph](https://igraph.org/python/)
 
 ## Input Data
 See [input specifications](data/README.md), [generating test data](data/Synthetic/README.md) and [road data](data/Real/Road/README.md).
@@ -60,5 +59,5 @@ As mentioned in Section 5.8 of our paper, we compare the top-k most central node
 ```
 The code for method 3 can be found [here](https://github.com/XNetLab/ProbGraphBetwn).
 
-The output is first the node ids and betweenness values of the top k produced by method 0, then the the top k produced by method 2 and if the graph has at most 1000 nodes also the top k for method 1.
+The output is first the node ids and betweenness values of the top-k produced by method 0, then the the top-k produced by method 2 and if the graph has at most 1000 nodes also the top-k for method 1.
 
