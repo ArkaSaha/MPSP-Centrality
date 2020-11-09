@@ -12,9 +12,10 @@
 # include <random>
 # include <ctime>
 # include <cmath>
-# include <boost/heap/fibonacci_heap.hpp>
 # include "topk.h"
 # include "io.h"
+# include "omp.h"
+
 
 mt19937 mersenne_mpsp{static_cast<mt19937::result_type>(12345)};
 
@@ -216,6 +217,25 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	return make_tuple(p, min_dist, pr);
 }
 
+
+// NB: This cannot handle multi edges!!!
+list<edge> p_minus_q(list<edge> p, list<edge> q){
+  list<edge> res = list<edge>();
+  for(auto e : p){
+    bool keep = true;
+    for(auto eq : q){
+      if(get<0>(e) == get<0>(eq) && get<1>(e) == get<1>(eq)){
+        keep = false;
+        break;
+      }
+    }
+    if(keep){
+      res.push_back(e);
+    }
+  }
+  return res;
+}
+
 double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed)
 {
 	int C = 0, n = cp.size();
@@ -228,17 +248,26 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	clock_gettime(CLOCK_MONOTONIC,&begin);
 	for (int i = 0; i < n; i++)
 	{
+    //cerr << i << endl;
 		list<edge> p = cp[i].first;
 		double prob = 1;
-		list<edge> l = list<edge>();
-		list<edge>::iterator it = set_difference(p.begin(),p.end(),sp.begin(),sp.end(),l.begin());
-		l.resize(distance(l.begin(),it));
+		//list<edge> l = list<edge>();
+		//list<edge>::iterator it = set_difference(p.begin(),p.end(),sp.begin(),sp.end(),l.begin());
+		//l.resize(distance(l.begin(),it));
+    list<edge> l = p_minus_q(p, sp);
+    //cerr << "befoore this for" << endl;
+    //cerr << l.size() << endl;
+    //for(auto elt : l){
+    //  cerr << get<0>(elt) << " " << get<1>(elt) << endl;
+    //}
 		for (edge e : l)
 			prob *= get<3>(e);
+    //cerr << "after this for" << endl;
 		S += prob;
 		diff[i] = l;
 		pr[i] = prob;
 	}
+  //cerr << "after for" << endl;
 	clock_gettime(CLOCK_MONOTONIC,&m1);
 	random_device rd;
 	mt19937 gen(rd());
@@ -291,6 +320,7 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 
 	for (int i = 1; i <= m; i++)
 	{
+    //cerr << i << endl;
 		list<edge> p;
 		long w;
 		double ub;
@@ -321,6 +351,8 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 		}
 	}
 
+
+  //cerr << "here" << endl;
 	vector< pair<list<edge>,double> > cp = vector< pair<list<edge>,double> >();
 
 	for (auto x = paths.begin(); x != paths.end(); x++)
@@ -330,10 +362,13 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 		{
 			list<edge> p = get<0>(tt);
 			double ub = get<1>(tt);
+      //cerr << "before approx" << endl;
 			double prob = approx_prob(cp,p,N,ub,prob_time);
+      //cerr << "after approx" << endl;
 			cp.push_back(make_pair(p,prob));
 		}
 	}
+  //cerr << "there" << endl;
 	struct { bool operator() (pair<list<edge>,double> x, pair<list<edge>,double> y) { return x.second > y.second; } } comp;
 	timespec t1, t2;
 	clock_gettime(CLOCK_MONOTONIC,&t1);
@@ -366,6 +401,7 @@ vector<double> betweenness_naive(AdjGraph & g)
 
     for(int s=0; s<g.n; s++)
     {
+      cerr << s << endl;
         timespec t1, t2;
         clock_gettime(CLOCK_MONOTONIC,&t1);
         for(int t=0; t<g.n; t++)
@@ -383,6 +419,58 @@ vector<double> betweenness_naive(AdjGraph & g)
             }
         }
         clock_gettime(CLOCK_MONOTONIC,&t2);
+    }
+
+    // normalize betweenness by size of graph
+    for(uint i=0; i<B.size(); i++)
+    {
+        B[i] /= ((g.n-1) * (g.n));
+    }
+
+    return B;
+}
+
+vector<double> betweenness_naive_p(AdjGraph & g)
+{
+    double _t1, _t2;
+
+    vector<double> B = vector<double>(g.n, 0);
+
+    timespec start;
+    clock_gettime(CLOCK_MONOTONIC,&start);
+
+#pragma omp parallel
+    {
+      vector<double> local_B = vector<double>(g.n, 0);
+#pragma omp nowait
+      {
+        for(int s=0; s<g.n; s++)
+        {
+          timespec t1, t2;
+          clock_gettime(CLOCK_MONOTONIC,&t1);
+          for(int t=0; t<g.n; t++)
+          {
+            if(s == t) continue;
+            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
+
+            if(get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+            {
+              list<edge> p = get<0>(cur_mpsp)[0];
+              // raise the betweenness of every inner node of the path by 1
+              for(auto it = next(p.begin()); it != p.end(); it++){
+                B[get<0>(*it)]++;
+              }
+            }
+          }
+          clock_gettime(CLOCK_MONOTONIC,&t2);
+        }
+      }
+#pragma omp critical
+      {
+        for(int i=0; i<g.n; i++){
+          B[i] += local_B[i];
+        }
+      }
     }
 
     // normalize betweenness by size of graph
@@ -670,29 +758,31 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   double epsilon = 0.05;
   double delta = 0.1;
 
+  output << "we have started" << endl;
+
   timespec t_riondato_det_start, t_riondato_det_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
-
-  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
-  auto B_hoeffding = betweenness_hoeffding(g, epsilon, delta,  output);
-  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
-  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
-
-  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_hoeffding){
-    output << elt.first << " " << elt.second << endl;
-  }
-  output << endl;
-
-  clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
-  auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta);
-  auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, min(k,g.n));
-  clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_end);
-
-  output << "Expected betweenness with Riondato took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_riondato_det){
-    output << elt.first << " " << elt.second << endl;
-  }
-  output << endl;
+//
+//  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
+//  auto B_hoeffding = betweenness_hoeffding(g, epsilon, delta,  output);
+//  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
+//  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
+//
+//  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
+//  for(const auto &elt: topk_hoeffding){
+//    output << elt.first << " " << elt.second << endl;
+//  }
+//  output << endl;
+//
+//  clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
+//  auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta);
+//  auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, min(k,g.n));
+//  clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_end);
+//
+//  output << "Expected betweenness with Riondato took " << time_difference(t_riondato_det_start, t_riondato_det_end) << " seconds" << endl << endl;
+//  for(const auto &elt: topk_riondato_det){
+//    output << elt.first << " " << elt.second << endl;
+//  }
+//  output << endl;
 
 
   if(g.n <= 1000){
@@ -703,6 +793,19 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
       output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
       for(const auto &elt: topk_naive){
+          output << elt.first << " " << elt.second << endl;
+      }
+      output << endl;
+
+
+      // PARALLEL
+      clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
+      auto B_naive_p = betweenness_naive_p(g);
+      auto topk_naive_p = get_topk_from_betweenness(B_naive_p, min(k, g.n));
+      clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
+
+      output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+      for(const auto &elt: topk_naive_p){
           output << elt.first << " " << elt.second << endl;
       }
       output << endl;
