@@ -20,7 +20,7 @@
 mt19937 mersenne_mpsp{static_cast<mt19937::result_type>(12345)};
 
 # define NUM_MPSP 1
-# define DIJKSTRA_RUNS 20 
+# define DIJKSTRA_RUNS 20
 # define LUBY_KARP_SAMPLES 1000
 
 
@@ -33,7 +33,19 @@ typedef tuple<int,int,long,double> edge;
 struct AdjGraph
 {
 	int n, m;
-	vector<adj_ent>* adj;
+	vector<vector<adj_ent>> adj;
+
+    AdjGraph() : n(0), m(0){}
+    AdjGraph(int n, int m) : n(n), m(m){}
+
+    AdjGraph(const AdjGraph & g) {
+        n = g.n;
+        m = g.m;
+        adj = vector<vector<adj_ent>>(g.n, vector<adj_ent>());
+        for(int i = 0; i < g.n; i++){
+            adj[i] = vector<adj_ent>(g.adj[i].begin(), g.adj[i].end());
+        }
+    }
 };
 
 double time_difference(timespec begin, timespec end)
@@ -41,7 +53,7 @@ double time_difference(timespec begin, timespec end)
 	return (end.tv_sec - begin.tv_sec) + (end.tv_nsec - begin.tv_nsec) / pow(10,9);
 }
 
-double dijkstra(AdjGraph* g, int s, int t)
+double dijkstra(AdjGraph const & g, int s, int t)
 {
 	struct node
 	{
@@ -59,12 +71,12 @@ double dijkstra(AdjGraph* g, int s, int t)
 
 	fibonacci_heap< node, compare<compare_node> > heap = fibonacci_heap< node, compare<compare_node> >();
 	typedef fibonacci_heap< node, compare<compare_node> >::handle_type handle_t;
-	handle_t* handles = new handle_t[g->n];
-	bool* exist = new bool[g->n];
-	bool* visited = new bool[g->n];
-	double* prob = new double[g->n];
+	handle_t* handles = new handle_t[g.n];
+	bool* exist = new bool[g.n];
+	bool* visited = new bool[g.n];
+	double* prob = new double[g.n];
 
-	for (int i = 0; i < g->n; i++)
+	for (int i = 0; i < g.n; i++)
 	{
 		exist[i] = false;
 		visited[i] = false;
@@ -85,7 +97,7 @@ double dijkstra(AdjGraph* g, int s, int t)
 		visited[u] = true;
 		if (u == t)
 			break;
-		for (adj_ent e : g->adj[u])
+		for (adj_ent e : g.adj[u])
 		{
 			int v = get<0>(e);
 			if (! visited[v])
@@ -115,7 +127,7 @@ double dijkstra(AdjGraph* g, int s, int t)
 	return pr;
 }
 
-tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed)
+tuple< list<edge>,long,double > prob_dijkstra(AdjGraph const & g, int s, int t, double& elapsed)
 {
 	struct node
 	{
@@ -132,12 +144,12 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	};
 	fibonacci_heap< node, compare<compare_node> > heap = fibonacci_heap< node, compare<compare_node> >();
 	typedef fibonacci_heap< node, compare<compare_node> >::handle_type handle_t;
-	handle_t* handles = new handle_t[g->n];
-	bool* exist = new bool[g->n];
-	bool* visited = new bool[g->n];
-	adj_ent* prev = new adj_ent[g->n];
-	double* prob = new double[g->n];
-	for (int i = 0; i < g->n; i++)
+	handle_t* handles = new handle_t[g.n];
+	bool* exist = new bool[g.n];
+	bool* visited = new bool[g.n];
+	adj_ent* prev = new adj_ent[g.n];
+	double* prob = new double[g.n];
+	for (int i = 0; i < g.n; i++)
 	{
 		exist[i] = false;
 		visited[i] = false;
@@ -163,7 +175,7 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 			min_dist = d;
 			break;
 		}
-		for (adj_ent e : g->adj[u])
+		for (adj_ent e : g.adj[u])
 		{
 			int v = get<0>(e);
 			if (! visited[v])
@@ -314,7 +326,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	return (1 - C * S / N) * exist;
 }
 
-tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time)
+tuple<vector< list<edge> >,int,double> mpsp(AdjGraph const & g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time)
 {
 	map< long,vector< tuple<list<edge>,double> > > paths = map< long,vector< tuple<list<edge>,double> > >();
 
@@ -352,7 +364,6 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 	}
 
 
-  //cerr << "here" << endl;
 	vector< pair<list<edge>,double> > cp = vector< pair<list<edge>,double> >();
 
 	for (auto x = paths.begin(); x != paths.end(); x++)
@@ -362,13 +373,10 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 		{
 			list<edge> p = get<0>(tt);
 			double ub = get<1>(tt);
-      //cerr << "before approx" << endl;
 			double prob = approx_prob(cp,p,N,ub,prob_time);
-      //cerr << "after approx" << endl;
 			cp.push_back(make_pair(p,prob));
 		}
 	}
-  //cerr << "there" << endl;
 	struct { bool operator() (pair<list<edge>,double> x, pair<list<edge>,double> y) { return x.second > y.second; } } comp;
 	timespec t1, t2;
 	clock_gettime(CLOCK_MONOTONIC,&t1);
@@ -401,15 +409,14 @@ vector<double> betweenness_naive(AdjGraph & g)
 
     for(int s=0; s<g.n; s++)
     {
-      cerr << s << endl;
         timespec t1, t2;
         clock_gettime(CLOCK_MONOTONIC,&t1);
         for(int t=0; t<g.n; t++)
         {
             if(s == t) continue;
-            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
+            auto cur_mpsp = mpsp(g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
 
-            if(get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+            if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
             {
                 list<edge> p = get<0>(cur_mpsp)[0];
                 // raise the betweenness of every inner node of the path by 1
@@ -417,6 +424,7 @@ vector<double> betweenness_naive(AdjGraph & g)
                     B[get<0>(*it)]++;
                 }
             }
+
         }
         clock_gettime(CLOCK_MONOTONIC,&t2);
     }
@@ -430,41 +438,35 @@ vector<double> betweenness_naive(AdjGraph & g)
     return B;
 }
 
-vector<double> betweenness_naive_p(AdjGraph & g)
+vector<double> betweenness_naive_p(const AdjGraph & g)
 {
-    double _t1, _t2;
-
     vector<double> B = vector<double>(g.n, 0);
 
-    timespec start;
-    clock_gettime(CLOCK_MONOTONIC,&start);
-
-#pragma omp parallel
+#pragma omp parallel num_threads(2) default(none) shared(g, B)
     {
-      vector<double> local_B = vector<double>(g.n, 0);
-#pragma omp nowait
-      {
+        vector<double> local_B = vector<double>(g.n, 0);
+        #pragma omp for
         for(int s=0; s<g.n; s++)
         {
-          timespec t1, t2;
-          clock_gettime(CLOCK_MONOTONIC,&t1);
-          for(int t=0; t<g.n; t++)
-          {
-            if(s == t) continue;
-            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
-
-            if(get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+            timespec t1, t2;
+            double _t1, _t2;
+            clock_gettime(CLOCK_MONOTONIC,&t1);
+            for(int t=0; t<g.n; t++)
             {
-              list<edge> p = get<0>(cur_mpsp)[0];
-              // raise the betweenness of every inner node of the path by 1
-              for(auto it = next(p.begin()); it != p.end(); it++){
-                B[get<0>(*it)]++;
-              }
+                if(s == t) continue;
+                auto cur_mpsp = mpsp(g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
+
+                if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+                {
+                    list<edge> p = get<0>(cur_mpsp)[0];
+                    // raise the betweenness of every inner node of the path by 1
+                    for(auto it = next(p.begin()); it != p.end(); it++){
+                        local_B[get<0>(*it)]++;
+                    }
+                }
             }
-          }
-          clock_gettime(CLOCK_MONOTONIC,&t2);
+            clock_gettime(CLOCK_MONOTONIC,&t2);
         }
-      }
 #pragma omp critical
       {
         for(int i=0; i<g.n; i++){
@@ -483,7 +485,7 @@ vector<double> betweenness_naive_p(AdjGraph & g)
 }
 
 
-vector<double> betweenness_sampling(AdjGraph & g, int samples)
+vector<double> betweenness_sampling(AdjGraph const & g, int samples)
 {
     double _t1, _t2;
 
@@ -504,7 +506,7 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples)
         continue;
       }
 
-      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
+      list<edge> mpsp_st = get<0>(mpsp(g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
 
       if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
       {
@@ -519,13 +521,13 @@ vector<double> betweenness_sampling(AdjGraph & g, int samples)
     return B;
 }
 
-vector<double> betweenness_hoeffding(AdjGraph &g, double epsilon, double delta, ofstream& output){
+vector<double> betweenness_hoeffding(AdjGraph const &g, double epsilon, double delta, ofstream& output){
     double samples =  log(2*g.n / delta) / (2.0 * epsilon * epsilon);
     output << "samples : " << samples << endl;
     return betweenness_sampling(g, (int) samples);
 }
 
-vector<double> riondato(AdjGraph &g, double epsilon, double delta){
+vector<double> riondato(AdjGraph const &g, double epsilon, double delta){
   double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
   double c = 0.5;
 
@@ -622,7 +624,7 @@ vector< pair<int, double> > get_topk_from_betweenness(vector<double> B, int k){
   return vector< pair<int, double> >(index_B.begin(), index_B.begin() + k);
 }
 
-vector<int> hedge(AdjGraph &g, double epsilon, int k){
+vector<int> hedge(AdjGraph const &g, double epsilon, int k){
   double samples = k * log(g.n) / (epsilon * epsilon);
 
   double _t1, _t2;
@@ -648,7 +650,7 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k){
       continue;
     }
 
-    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
+    list<edge> mpsp_st = get<0>(mpsp(g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
 
     if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
     {
@@ -702,9 +704,7 @@ AdjGraph read_graph(char* file)
 	graph.open(file);
 	AdjGraph g;
 	graph >> g.n >> g.m;
-	g.adj = new vector<adj_ent>[g.n];
-	for (int i=0; i<g.n; i++)
-		g.adj[i] = vector<adj_ent>();
+	g.adj = vector<vector<adj_ent> >(g.n, vector<adj_ent>());
 	for (int i = 0; i < g.m; i++)
 	{
 		int u, v;
@@ -786,6 +786,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
 
   if(g.n <= 1000){
+        
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
       auto B_naive = betweenness_naive(g);
       auto topk_naive = get_topk_from_betweenness(B_naive, min(k, g.n));
@@ -804,7 +805,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
       auto topk_naive_p = get_topk_from_betweenness(B_naive_p, min(k, g.n));
       clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
 
-      output << "Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+      output << "Parallel Naive took " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
       for(const auto &elt: topk_naive_p){
           output << elt.first << " " << elt.second << endl;
       }
@@ -840,7 +841,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			double candidate_time = 0, prob_time = 0, prob = 0;
 			vector< list<edge> > cp;
 			int nc;
-			tie(cp,nc,prob) = mpsp(&g, s, t, k, m, N, candidate_time, prob_time);
+			tie(cp,nc,prob) = mpsp(g, s, t, k, m, N, candidate_time, prob_time);
 			bool f = false;
 			for (auto p : cp)
 			{
@@ -852,7 +853,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 						output << get<0>(e) << "\t" << get<1>(e) << "\t" << get<2>(e) << "\t" << get<3>(e) << endl;
 				}
 				else
-					prob += dijkstra(&g,s,t);
+					prob += dijkstra(g,s,t);
 			}
 			if (f)
 			{
@@ -879,7 +880,6 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 	}
 	queries.close();
 	output.close();
-	delete [] g.adj;
 }
 
 int main(int argc, char* argv[])

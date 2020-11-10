@@ -1,5 +1,5 @@
 
-CC = g++-10
+CC = g++
 CCFLAGS_BAD_PRACTICE = -Wno-unused-parameter -Wno-unused-variable
 CCFLAGS = -Wall -Wextra -pedantic -fopenmp -std=c++17 -O3 $(CCFLAGS_BAD_PRACTICE)
 
