@@ -216,6 +216,25 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	return make_tuple(p, min_dist, pr);
 }
 
+
+// NB: This cannot handle multi edges which have the same length+probability 
+list<edge> p_minus_q(list<edge> p, list<edge> q){
+  list<edge> res = list<edge>();
+  for(auto e : p){
+    bool keep = true;
+    for(auto eq: q){
+      if(e == eq){
+        keep = false;
+        break;
+      }
+    }
+    if(keep){
+      res.push_back(e);
+    }
+  }
+  return res;
+}
+
 double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed)
 {
 	int C = 0, n = cp.size();
@@ -230,9 +249,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	{
 		list<edge> p = cp[i].first;
 		double prob = 1;
-		list<edge> l = list<edge>();
-		list<edge>::iterator it = set_difference(p.begin(),p.end(),sp.begin(),sp.end(),l.begin());
-		l.resize(distance(l.begin(),it));
+    list<edge> l = p_minus_q(p, sp);
 		for (edge e : l)
 			prob *= get<3>(e);
 		S += prob;
@@ -677,7 +694,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
   clock_gettime(CLOCK_MONOTONIC,&t_h_end);
 
-  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
+  output << "Hoeffding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
   for(const auto &elt: topk_hoeffding){
     output << elt.first << " " << elt.second << endl;
   }
