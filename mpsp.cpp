@@ -15,8 +15,7 @@
 # include <boost/heap/fibonacci_heap.hpp>
 # include "topk.h"
 # include "io.h"
-
-mt19937 mersenne_mpsp{static_cast<mt19937::result_type>(12345)};
+# include <pthread.h>
 
 # define NUM_MPSP 1
 # define DIJKSTRA_RUNS 20 
@@ -114,7 +113,7 @@ double dijkstra(AdjGraph* g, int s, int t)
 	return pr;
 }
 
-tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed)
+tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed, mt19937 gen)
 {
 	struct node
 	{
@@ -149,6 +148,7 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	list<edge> p = list<edge>();
 	timespec begin, end;
 	clock_gettime(CLOCK_MONOTONIC,&begin);
+    uniform_real_distribution<double> coin(0.0, 1.0);
 	while (! heap.empty())
 	{
 		node n = heap.top();
@@ -167,7 +167,8 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 			int v = get<0>(e);
 			if (! visited[v])
 			{
-				double r = (double)rand() / RAND_MAX, pr = get<2>(e);
+				double r = coin(gen);
+                double pr = get<2>(e);
 				if (r < pr)
 				{
 					long w = get<1>(e);
@@ -216,7 +217,7 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	return make_tuple(p, min_dist, pr);
 }
 
-double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed)
+double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed, mt19937 gen)
 {
 	int C = 0, n = cp.size();
 	if (n == 0)
@@ -226,6 +227,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	double S = 0;
 	timespec begin, end, m1, m2;
 	clock_gettime(CLOCK_MONOTONIC,&begin);
+     
 	for (int i = 0; i < n; i++)
 	{
 		list<edge> p = cp[i].first;
@@ -239,11 +241,12 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 		diff[i] = l;
 		pr[i] = prob;
 	}
+
 	clock_gettime(CLOCK_MONOTONIC,&m1);
-	random_device rd;
-	mt19937 gen(rd());
 	discrete_distribution<> d(pr.begin(), pr.end());
+    uniform_real_distribution<double> coin(0.0, 1.0);
 	clock_gettime(CLOCK_MONOTONIC,&m2);
+
 	for (int k = 1; k <= N; k++)
 	{
 		map<edge,bool> sampled = map<edge,bool>();
@@ -260,7 +263,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 				map<edge,bool>::iterator it = sampled.find(e);
 				if (it == sampled.end())
 				{
-					double r = (double)rand() / RAND_MAX;
+                    double r = coin(gen);
 					s = sampled[e] = (r < get<2>(e));
 				}
 				else
@@ -285,7 +288,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	return (1 - C * S / N) * exist;
 }
 
-tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time)
+tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time, mt19937 gen)
 {
 	map< long,vector< tuple<list<edge>,double> > > paths = map< long,vector< tuple<list<edge>,double> > >();
 
@@ -294,7 +297,7 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 		list<edge> p;
 		long w;
 		double ub;
-		tie(p,w,ub) = prob_dijkstra(g,s,t,candidate_time);
+		tie(p,w,ub) = prob_dijkstra(g,s,t,candidate_time, gen);
 		if (p.empty())
 			continue;
 		map< long,vector< tuple<list<edge>,double> > >::iterator it = paths.find(w);
@@ -330,7 +333,7 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 		{
 			list<edge> p = get<0>(tt);
 			double ub = get<1>(tt);
-			double prob = approx_prob(cp,p,N,ub,prob_time);
+			double prob = approx_prob(cp,p,N,ub,prob_time, gen);
 			cp.push_back(make_pair(p,prob));
 		}
 	}
@@ -355,25 +358,28 @@ tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k,
 	return make_tuple(pp,cp.size(),prob);
 }
 
-vector<double> betweenness_naive(AdjGraph & g)
+vector<double> betweenness_naive(AdjGraph * g)
 {
     double _t1, _t2;
 
-    vector<double> B = vector<double>(g.n, 0);
+    vector<double> B = vector<double>(g->n, 0);
 
     timespec start;
     clock_gettime(CLOCK_MONOTONIC,&start);
 
-    for(int s=0; s<g.n; s++)
+    random_device rd;
+    mt19937 gen(rd());
+
+    for(int s=0; s<g->n; s++)
     {
         timespec t1, t2;
         clock_gettime(CLOCK_MONOTONIC,&t1);
-        for(int t=0; t<g.n; t++)
+        for(int t=0; t<g->n; t++)
         {
             if(s == t) continue;
-            auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2);
+            auto cur_mpsp = mpsp(g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, gen);
 
-            if(get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+            if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
             {
                 list<edge> p = get<0>(cur_mpsp)[0];
                 // raise the betweenness of every inner node of the path by 1
@@ -388,57 +394,211 @@ vector<double> betweenness_naive(AdjGraph & g)
     // normalize betweenness by size of graph
     for(uint i=0; i<B.size(); i++)
     {
-        B[i] /= ((g.n-1) * (g.n));
+        B[i] /= ((g->n-1) * (g->n));
+    }
+
+    return B;
+}
+
+struct thread_data {
+    int start, end;
+    int samples;
+    AdjGraph *g;
+    vector<double> B;
+};
+
+void *betweenness_naive_pthread_helper(void *arg){
+    thread_data *tdata = (thread_data *) arg;
+    double _t1, _t2;
+    random_device rd;
+    mt19937 gen(rd());
+
+    for(int s = tdata->start; s < tdata->end; s++){
+        for(int t=0; t<tdata->g->n; t++)
+        {
+            if(s == t) continue;
+            //auto cur_mpsp = mpsp(tdata->g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, gen);
+            auto cur_mpsp = mpsp(tdata->g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, gen);
+
+            if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+            {
+                list<edge> p = get<0>(cur_mpsp)[0];
+                // raise the betweenness of every inner node of the path by 1
+                for(auto it = next(p.begin()); it != p.end(); it++){
+                    tdata->B[get<0>(*it)]++;
+                }
+            }
+        }
+    }
+    pthread_exit(NULL);
+}
+
+vector<double> betweenness_naive_pthread(AdjGraph * g, int nr_threads)
+{
+    vector<double> B = vector<double>(g->n, 0);
+
+    auto tdata = vector<thread_data>(nr_threads);
+    int nodes_per_block = g->n/nr_threads;
+    if(g->n % nr_threads != 0) nodes_per_block++;
+    auto tid = vector<pthread_t>(nr_threads);
+    int start = 0;
+    for(int i=0; i<nr_threads; i++){
+        tdata[i].g = g;
+        tdata[i].B = vector<double>(g->n, 0);
+        tdata[i].start = start;
+        tdata[i].end = min(start + nodes_per_block, g->n);
+        start += nodes_per_block;
+        //cerr << "starting thread with s = " << tdata[i].start << " -> " << tdata[i].end << endl;
+        int rc = pthread_create(&tid[i], NULL, betweenness_naive_pthread_helper, (void *)(&tdata[i]));
+        if(rc){
+            cerr << "ERROR : pthread_create, rc : " + rc << endl;
+        }
+    }
+
+    for(int i=0; i<nr_threads;i++){
+        pthread_join(tid[i], NULL);
+    }
+
+    for(int i=0;i <nr_threads;i++){
+        for(uint j=0; j<B.size(); j++){
+            B[j] += tdata[i].B[j];
+        }
+    }
+
+
+    // normalize betweenness by size of graph
+    for(uint i=0; i<B.size(); i++)
+    {
+        B[i] /= ((g->n-1) * (g->n));
     }
 
     return B;
 }
 
 
-vector<double> betweenness_sampling(AdjGraph & g, int samples)
+vector<double> betweenness_sampling(AdjGraph * g, int samples)
 {
     double _t1, _t2;
 
     double r = samples;
 
-    vector<double> B = vector<double>(g.n, 0);
+    vector<double> B = vector<double>(g->n, 0);
 
     random_device rd;
-    uniform_int_distribution<int> random_node(0, g.n-1);
+    mt19937 gen(rd());
+    uniform_int_distribution<int> random_node(0, g->n-1);
 
     for(int sample = 0; sample < samples; sample++){
       // sample s and t
-      int s = random_node(mersenne_mpsp);
-      int t = random_node(mersenne_mpsp);
+      int s = random_node(gen);
+      int t = random_node(gen);
 
       if(s == t){
         sample--;
         continue;
       }
 
-      list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
+      auto cur_mpsp = mpsp(g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, gen);
 
-      if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
+      if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
       {
-
-        // raise the betweenness of every inner node of the path by 1/samples
-        for(auto it = next(mpsp_st.begin()); it != mpsp_st.end(); it++){
-          B[get<0>(*it)] += 1/r;
-        }
+          list<edge> p = get<0>(cur_mpsp)[0];
+          // raise the betweenness of every inner node of the path by 1/r
+          for(auto it = next(p.begin()); it != p.end(); it++){
+              B[get<0>(*it)] += 1/r;
+          }
       }
     }
 
     return B;
 }
 
-vector<double> betweenness_hoeffding(AdjGraph &g, double epsilon, double delta, ofstream& output){
-    double samples =  log(2*g.n / delta) / (2.0 * epsilon * epsilon);
+vector<double> betweenness_hoeffding(AdjGraph *g, double epsilon, double delta, ofstream& output){
+    double samples =  log(2*g->n / delta) / (2.0 * epsilon * epsilon);
     output << "samples : " << samples << endl;
     return betweenness_sampling(g, (int) samples);
 }
 
-vector<double> riondato(AdjGraph &g, double epsilon, double delta){
-  double bound_on_VC = g.n; // Can we find a better bound on VC dimension?
+
+void *betweenness_sampling_pthread_helper(void *arg)
+{
+    thread_data *tdata = (thread_data *) arg;
+    double _t1, _t2;
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> random_node(0, tdata->g->n-1);
+
+    for(int sample = 0; sample < tdata->samples; sample++){
+      // sample s and t
+      int s = random_node(gen);
+      int t = random_node(gen);
+
+      if(s == t){
+        sample--;
+        continue;
+      }
+
+      auto cur_mpsp = mpsp(tdata->g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, gen);
+
+      if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
+      {
+          list<edge> p = get<0>(cur_mpsp)[0];
+          // raise the betweenness of every inner node of the path by 1
+          for(auto it = next(p.begin()); it != p.end(); it++){
+              tdata->B[get<0>(*it)]++;
+          }
+      }
+    }
+    pthread_exit(NULL);
+}
+
+vector<double> betweenness_hoeffding_pthread(AdjGraph *g, double epsilon, double delta, ofstream& output, int nr_threads){
+    int samples = (int) ( log(2*g->n / delta) / (2.0 * epsilon * epsilon));
+    int samples_per_thread = samples/nr_threads;
+    if(samples %nr_threads != 0) samples_per_thread++;
+    output << "samples : " << samples << endl;
+    output << "samples/thread : " << samples_per_thread << endl;
+
+    auto tdata = vector<thread_data>(nr_threads);
+    auto tid = vector<pthread_t>(nr_threads);
+    int start = 0;
+    for(int i=0; i<nr_threads; i++){
+        tdata[i].g = g;
+        tdata[i].samples = samples_per_thread;
+        tdata[i].B = vector<double>(g->n, 0);
+        //cerr << "starting thread #" << i << endl;
+        int rc = pthread_create(&tid[i], NULL, betweenness_sampling_pthread_helper, (void *)(&tdata[i]));
+        if(rc){
+            cerr << "ERROR : pthread_create, rc : " + rc << endl;
+        }
+    }
+
+    for(int i=0; i<nr_threads;i++){
+        pthread_join(tid[i], NULL);
+    }
+
+    auto B = vector<double>(g->n, 0);
+
+    for(int i=0;i <nr_threads;i++){
+        for(uint j=0; j<B.size(); j++){
+            B[j] += tdata[i].B[j];
+        }
+    }
+
+    double r = samples_per_thread * nr_threads;
+
+    // normalize by nr of samples 
+    for(uint i=0; i<B.size(); i++)
+    {
+        B[i] /= r;
+    }
+
+    return B;
+}
+
+vector<double> riondato(AdjGraph *g, double epsilon, double delta){
+  double bound_on_VC = g->n; // Can we find a better bound on VC dimension?
   double c = 0.5;
 
   double samples = c/(epsilon * epsilon) *(floor(log2(bound_on_VC - 2)) + 1 + log(1/delta));
@@ -453,12 +613,13 @@ vector<double> betweenness_sampling_deterministic(Graph & g, int samples)
     vector<double> B = vector<double>(g.n, 0);
 
     random_device rd;
+    mt19937 gen(rd());
     uniform_int_distribution<int> random_node(0, g.n-1);
 
     for(int sample = 0; sample < samples; sample++){
       // sample s and t
-      int s = random_node(mersenne_mpsp);
-      int t = random_node(mersenne_mpsp);
+      int s = random_node(gen);
+      int t = random_node(gen);
 
       if(s == t){
         sample--;
@@ -486,6 +647,7 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
     int world_samples = ceil(2.0/(epsilon * epsilon) * log(2/delta));
 
     random_device rd;
+    mt19937 gen(rd());
     uniform_real_distribution<double> coin(0.0, 1.0);
 
     vector<double> B_total = vector<double>(g.n, 0);
@@ -493,7 +655,7 @@ vector<double> exp_betweenness_with_riondato(Graph &g, double epsilon, double de
 
         // sample a world by flipping a coin for every edge
         for(auto &edge: g.index2edge){
-            if(coin(mersenne_mpsp) < edge->p){
+            if(coin(gen) < edge->p){
                 edge->available = true;
             }
             else{
@@ -542,6 +704,7 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k){
   vector<double> B = vector<double>(g.n, 0);
 
   random_device rd;
+  mt19937 gen(rd());
   uniform_int_distribution<int> random_node(0, g.n-1);
 
   auto H = vector< vector<int> >();
@@ -552,19 +715,19 @@ vector<int> hedge(AdjGraph &g, double epsilon, int k){
   // sampling part
   for(int sample = 0; sample < samples; sample++){
     // sample s and t
-    int s = random_node(mersenne_mpsp);
-    int t = random_node(mersenne_mpsp);
+    int s = random_node(gen);
+    int t = random_node(gen);
 
     if(s == t){
       sample--;
       continue;
     }
 
-    list<edge> mpsp_st = get<0>(mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2))[0];
+    auto cur_mpsp = mpsp(&g, s, t, NUM_MPSP, DIJKSTRA_RUNS, LUBY_KARP_SAMPLES, _t1, _t2, gen);
 
-    if(mpsp_st.size() >= 2)  // the path consists of at least 2 edges
+    if(get<0>(cur_mpsp).size() > 0 && get<0>(cur_mpsp)[0].size() >= 2) // path consists of at least 2 edges
     {
-
+      auto mpsp_st = get<0>(cur_mpsp)[0];
       auto h = vector<int>(mpsp_st.size() - 1);
       // raise the betweenness of every inner node of the path by 1/samples
       int index = 0;
@@ -672,16 +835,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
   timespec t_riondato_det_start, t_riondato_det_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
 
-  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
-  auto B_hoeffding = betweenness_hoeffding(g, epsilon, delta,  output);
-  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
-  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
-
-  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_hoeffding){
-    output << elt.first << " " << elt.second << endl;
-  }
-  output << endl;
+  /*
 
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
   auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta);
@@ -693,11 +847,42 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
     output << elt.first << " " << elt.second << endl;
   }
   output << endl;
+  */
 
 
-  if(g.n <= 1000){
+
+  // PARALLEL
+  for(int nr_threads=4; nr_threads >= 1; nr_threads-- ){
+      output << "Parallel Sampling #threads = " << nr_threads << endl;
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
-      auto B_naive = betweenness_naive(g);
+      //auto B_naive_p = betweenness_naive_pthread(&g, nr_threads);
+      auto B_naive_p = betweenness_hoeffding_pthread(&g, epsilon, delta, output, nr_threads);
+      auto topk_naive_p = get_topk_from_betweenness(B_naive_p, min(k, g.n));
+      clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
+
+      output << "Time elapsed : " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+      for(const auto &elt: topk_naive_p){
+          output << elt.first << " " << elt.second << endl;
+      }
+      output << endl;
+  }
+
+  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
+  auto B_hoeffding = betweenness_hoeffding(&g, epsilon, delta,  output);
+  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
+  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
+
+  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
+  for(const auto &elt: topk_hoeffding){
+      output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+
+
+/*
+  if(g.n <= 10){
+      clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
+      auto B_naive = betweenness_naive(&g);
       auto topk_naive = get_topk_from_betweenness(B_naive, min(k, g.n));
       clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
 
@@ -707,6 +892,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
       }
       output << endl;
   }
+  */
 
   output.close();
 
@@ -721,6 +907,9 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 	ofstream output;
 	output.open(path_to_output);
 	queries >> d;
+
+    random_device rd;
+    mt19937 gen(rd());
 	for (int j = 1; j <= d; j++)
 	{
 		int h, n;
@@ -737,7 +926,7 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 			double candidate_time = 0, prob_time = 0, prob = 0;
 			vector< list<edge> > cp;
 			int nc;
-			tie(cp,nc,prob) = mpsp(&g, s, t, k, m, N, candidate_time, prob_time);
+			tie(cp,nc,prob) = mpsp(&g, s, t, k, m, N, candidate_time, prob_time, gen);
 			bool f = false;
 			for (auto p : cp)
 			{

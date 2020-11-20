@@ -1,7 +1,7 @@
 
 CC = g++
 CCFLAGS_BAD_PRACTICE = -Wno-unused-parameter -Wno-unused-variable
-CCFLAGS = -Wall -Wextra -pedantic -std=c++17 -O3 $(CCFLAGS_BAD_PRACTICE)
+CCFLAGS = -Wall -Wextra -pedantic -pthread -std=c++17 -O3 $(CCFLAGS_BAD_PRACTICE)
 
 wise: wise_experiment.cpp topk.cpp
 	$(CC) $(CCFLAGS) wise_experiment.cpp topk.cpp -o wise
