@@ -529,9 +529,10 @@ vector<double> betweenness_naive_pthread(const AdjGraph & g)
 {
     vector<double> B = vector<double>(g.n, 0);
 
-    int nr_threads = 4;
+    int nr_threads = 5;
     auto tdata = vector<thread_data>(nr_threads);
-    int nodes_per_block = g.n/nr_threads+1;
+    int nodes_per_block = g.n/nr_threads;
+    if(g.n % nr_threads != 0) nodes_per_block++;
     auto tid = vector<pthread_t>(nr_threads);
     int start = 0;
     for(int i=0; i<nr_threads; i++){
