@@ -233,8 +233,20 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 		list<edge> p = cp[i].first;
 		double prob = 1;
 		list<edge> l = list<edge>();
-		list<edge>::iterator it = set_difference(p.begin(),p.end(),sp.begin(),sp.end(),l.begin());
-		l.resize(distance(l.begin(),it));
+		for (edge e : p)
+		{
+			bool keep = true;
+			for (edge ee : sp)
+			{
+				if (ee == e)
+				{
+					keep = false;
+					break;
+				}
+			}
+			if (keep)
+				l.push_back(e);
+		}
 		for (edge e : l)
 			prob *= get<3>(e);
 		S += prob;
@@ -851,32 +863,35 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
 
 
+  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
+  auto B_hoeffding = betweenness_hoeffding(&g, epsilon, delta,  output);
+  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
+  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
+  double serial = time_difference(t_h_start, t_h_end);
+
+  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << serial << " seconds" << endl;
+  for(const auto &elt: topk_hoeffding){
+      output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
+
   // PARALLEL
-  for(int nr_threads=4; nr_threads >= 1; nr_threads-- ){
+  for(int nr_threads=4; nr_threads <= 64; nr_threads *= 4){
       output << "Parallel Sampling #threads = " << nr_threads << endl;
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
       //auto B_naive_p = betweenness_naive_pthread(&g, nr_threads);
       auto B_naive_p = betweenness_hoeffding_pthread(&g, epsilon, delta, output, nr_threads);
       auto topk_naive_p = get_topk_from_betweenness(B_naive_p, min(k, g.n));
       clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
+      double parallel = time_difference(t_naive_start, t_naive_end);
 
-      output << "Time elapsed : " << time_difference(t_naive_start, t_naive_end) << " seconds" << endl << endl;
+      output << "Time elapsed : " << parallel << " seconds" << endl;
+      output << "Speedup : " << serial / parallel << endl;
       for(const auto &elt: topk_naive_p){
           output << elt.first << " " << elt.second << endl;
       }
       output << endl;
   }
-
-  clock_gettime(CLOCK_MONOTONIC,&t_h_start);
-  auto B_hoeffding = betweenness_hoeffding(&g, epsilon, delta,  output);
-  auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
-  clock_gettime(CLOCK_MONOTONIC,&t_h_end);
-
-  output << "Hoefdding (epsilon = " << epsilon << ", delta = " << delta << ") took " << time_difference(t_h_start, t_h_end) << " seconds" << endl << endl;
-  for(const auto &elt: topk_hoeffding){
-      output << elt.first << " " << elt.second << endl;
-  }
-  output << endl;
 
 
 /*
