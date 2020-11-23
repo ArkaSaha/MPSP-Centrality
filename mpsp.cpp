@@ -113,7 +113,7 @@ double dijkstra(AdjGraph* g, int s, int t)
 	return pr;
 }
 
-tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed, mt19937 gen)
+tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double& elapsed, mt19937& gen)
 {
 	struct node
 	{
@@ -217,7 +217,7 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	return make_tuple(p, min_dist, pr);
 }
 
-double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed, mt19937 gen)
+double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed, mt19937& gen)
 {
 	int C = 0, n = cp.size();
 	if (n == 0)
@@ -300,7 +300,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	return (1 - C * S / N) * exist;
 }
 
-tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time, mt19937 gen)
+tuple<vector< list<edge> >,int,double> mpsp(AdjGraph* g, int s, int t, size_t k, int m, int N, double& candidate_time, double& prob_time, mt19937& gen)
 {
 	map< long,vector< tuple<list<edge>,double> > > paths = map< long,vector< tuple<list<edge>,double> > >();
 
@@ -876,7 +876,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   output << endl;
 
   // PARALLEL
-  for(int nr_threads=4; nr_threads <= 64; nr_threads *= 4){
+  for(int nr_threads=2; nr_threads <= 64; nr_threads *= 2){
       output << "Parallel Sampling #threads = " << nr_threads << endl;
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
       //auto B_naive_p = betweenness_naive_pthread(&g, nr_threads);
