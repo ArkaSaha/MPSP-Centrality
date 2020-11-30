@@ -535,13 +535,18 @@ vector<double> betweenness_hoeffding(AdjGraph *g, double epsilon, double delta, 
 void *betweenness_sampling_pthread_helper(void *arg)
 {
     thread_data *tdata = (thread_data *) arg;
+    timespec t1, t2;
     double _t1, _t2;
+
+    double total_time = 0;
+    pthread_t pid = pthread_self();
 
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<int> random_node(0, tdata->g->n-1);
 
-    for(int sample = 0; sample < tdata->samples; sample++){
+    for(int sample = 1; sample <= tdata->samples; sample++){
+      clock_gettime(CLOCK_MONOTONIC,&t1);
       // sample s and t
       int s = random_node(gen);
       int t = random_node(gen);
@@ -561,6 +566,14 @@ void *betweenness_sampling_pthread_helper(void *arg)
               tdata->B[get<0>(*it)]++;
           }
       }
+      clock_gettime(CLOCK_MONOTONIC, &t2);
+      total_time += time_difference(t1, t2);
+      double avg_time = total_time/sample;
+      double remaining_time = ((tdata->samples) - sample) * avg_time;
+      cerr << pid << " : (total =) " << total_time << " / (sample =) " << sample << " = " << avg_time;
+      cerr << " || remaining = " << remaining_time << endl;
+
+      
     }
     pthread_exit(NULL);
 }
@@ -583,6 +596,9 @@ vector<double> betweenness_hoeffding_pthread(AdjGraph *g, double epsilon, double
         int rc = pthread_create(&tid[i], NULL, betweenness_sampling_pthread_helper, (void *)(&tdata[i]));
         if(rc){
             cerr << "ERROR : pthread_create, rc : " + rc << endl;
+        }
+        else{
+            cerr << "Created thread #" << i << endl;
         }
     }
 
@@ -836,7 +852,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 {
   AdjGraph g = read_graph(path_to_graph);
 
-  Graph g2 = read_graph_from_file(path_to_graph);
+  //Graph g2 = read_graph_from_file(path_to_graph);
 
   ofstream output;
   output.open(path_to_output);
@@ -862,6 +878,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   */
 
 
+/*
 
   clock_gettime(CLOCK_MONOTONIC,&t_h_start);
   auto B_hoeffding = betweenness_hoeffding(&g, epsilon, delta,  output);
@@ -874,9 +891,10 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
       output << elt.first << " " << elt.second << endl;
   }
   output << endl;
+  */
 
   // PARALLEL
-  for(int nr_threads=2; nr_threads <= 64; nr_threads *= 2){
+  for(int nr_threads=8; nr_threads <= 8; nr_threads *= 2){
       output << "Parallel Sampling #threads = " << nr_threads << endl;
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
       //auto B_naive_p = betweenness_naive_pthread(&g, nr_threads);
@@ -886,7 +904,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
       double parallel = time_difference(t_naive_start, t_naive_end);
 
       output << "Time elapsed : " << parallel << " seconds" << endl;
-      output << "Speedup : " << serial / parallel << endl;
+      //output << "Speedup : " << serial / parallel << endl;
       for(const auto &elt: topk_naive_p){
           output << elt.first << " " << elt.second << endl;
       }
