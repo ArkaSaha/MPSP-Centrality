@@ -217,6 +217,24 @@ tuple< list<edge>,long,double > prob_dijkstra(AdjGraph* g, int s, int t, double&
 	return make_tuple(p, min_dist, pr);
 }
 
+// NB: This cannot handle multi edges which have the same length+probability 
+list<edge> p_minus_q(list<edge> p, list<edge> q){
+  list<edge> res = list<edge>();
+  for(auto e : p){
+    bool keep = true;
+    for(auto eq: q){
+      if(e == eq){
+        keep = false;
+        break;
+      }
+    }
+    if(keep){
+      res.push_back(e);
+    }
+  }
+  return res;
+}
+
 double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, double exist, double& elapsed, mt19937& gen)
 {
 	int C = 0, n = cp.size();
@@ -232,21 +250,7 @@ double approx_prob(vector< pair<list<edge>,double> > cp, list<edge> sp, int N, d
 	{
 		list<edge> p = cp[i].first;
 		double prob = 1;
-		list<edge> l = list<edge>();
-		for (edge e : p)
-		{
-			bool keep = true;
-			for (edge ee : sp)
-			{
-				if (ee == e)
-				{
-					keep = false;
-					break;
-				}
-			}
-			if (keep)
-				l.push_back(e);
-		}
+    list<edge> l = p_minus_q(p, sp);
 		for (edge e : l)
 			prob *= get<3>(e);
 		S += prob;
@@ -852,7 +856,6 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 {
   AdjGraph g = read_graph(path_to_graph);
 
-  //Graph g2 = read_graph_from_file(path_to_graph);
 
   ofstream output;
   output.open(path_to_output);
@@ -864,7 +867,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   timespec t_riondato_det_start, t_riondato_det_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
 
   /*
-
+  Graph g2 = read_graph_from_file(path_to_graph);
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
   auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta);
   auto topk_riondato_det = get_topk_from_betweenness(B_riondato_det, min(k,g.n));
@@ -877,9 +880,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
   output << endl;
   */
 
-
-/*
-
+  /*
   clock_gettime(CLOCK_MONOTONIC,&t_h_start);
   auto B_hoeffding = betweenness_hoeffding(&g, epsilon, delta,  output);
   auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
