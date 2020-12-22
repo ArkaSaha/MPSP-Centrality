@@ -467,7 +467,7 @@ vector<double> betweenness_naive_pthread(AdjGraph * g, int nr_threads)
         //cerr << "starting thread with s = " << tdata[i].start << " -> " << tdata[i].end << endl;
         int rc = pthread_create(&tid[i], NULL, betweenness_naive_pthread_helper, (void *)(&tdata[i]));
         if(rc){
-            cerr << "ERROR : pthread_create, rc : " + rc << endl;
+            cerr << "ERROR : pthread_create, rc : " << rc << endl;
         }
     }
 
@@ -574,8 +574,8 @@ void *betweenness_sampling_pthread_helper(void *arg)
       total_time += time_difference(t1, t2);
       double avg_time = total_time/sample;
       double remaining_time = ((tdata->samples) - sample) * avg_time;
-      cerr << pid << " : (total =) " << total_time << " / (sample =) " << sample << " = " << avg_time;
-      cerr << " || remaining = " << remaining_time << endl;
+      //cerr << pid << " : (total =) " << total_time << " / (sample =) " << sample << " = " << avg_time;
+      //cerr << " || remaining = " << remaining_time << endl;
 
       
     }
@@ -591,15 +591,14 @@ vector<double> betweenness_hoeffding_pthread(AdjGraph *g, double epsilon, double
 
     auto tdata = vector<thread_data>(nr_threads);
     auto tid = vector<pthread_t>(nr_threads);
-    int start = 0;
     for(int i=0; i<nr_threads; i++){
         tdata[i].g = g;
         tdata[i].samples = samples_per_thread;
         tdata[i].B = vector<double>(g->n, 0);
-        //cerr << "starting thread #" << i << endl;
+        cerr << "starting thread #" << i << endl;
         int rc = pthread_create(&tid[i], NULL, betweenness_sampling_pthread_helper, (void *)(&tdata[i]));
         if(rc){
-            cerr << "ERROR : pthread_create, rc : " + rc << endl;
+            cerr << "ERROR : pthread_create, rc : " << rc << endl;
         }
         else{
             cerr << "Created thread #" << i << endl;
@@ -866,7 +865,6 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
 
   timespec t_riondato_det_start, t_riondato_det_end, t_naive_start, t_naive_end, t_h_start, t_h_end;
 
-  /*
   Graph g2 = read_graph_from_file(path_to_graph);
   clock_gettime(CLOCK_MONOTONIC,&t_riondato_det_start);
   auto B_riondato_det = exp_betweenness_with_riondato(g2, epsilon, delta);
@@ -878,9 +876,7 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
     output << elt.first << " " << elt.second << endl;
   }
   output << endl;
-  */
 
-  /*
   clock_gettime(CLOCK_MONOTONIC,&t_h_start);
   auto B_hoeffding = betweenness_hoeffding(&g, epsilon, delta,  output);
   auto topk_hoeffding = get_topk_from_betweenness(B_hoeffding, min(k, g.n));
@@ -892,29 +888,9 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
       output << elt.first << " " << elt.second << endl;
   }
   output << endl;
-  */
-
-  // PARALLEL
-  for(int nr_threads=8; nr_threads <= 8; nr_threads *= 2){
-      output << "Parallel Sampling #threads = " << nr_threads << endl;
-      clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
-      //auto B_naive_p = betweenness_naive_pthread(&g, nr_threads);
-      auto B_naive_p = betweenness_hoeffding_pthread(&g, epsilon, delta, output, nr_threads);
-      auto topk_naive_p = get_topk_from_betweenness(B_naive_p, min(k, g.n));
-      clock_gettime(CLOCK_MONOTONIC,&t_naive_end);
-      double parallel = time_difference(t_naive_start, t_naive_end);
-
-      output << "Time elapsed : " << parallel << " seconds" << endl;
-      //output << "Speedup : " << serial / parallel << endl;
-      for(const auto &elt: topk_naive_p){
-          output << elt.first << " " << elt.second << endl;
-      }
-      output << endl;
-  }
 
 
-/*
-  if(g.n <= 10){
+  if(g.n <= 100){
       clock_gettime(CLOCK_MONOTONIC,&t_naive_start);
       auto B_naive = betweenness_naive(&g);
       auto topk_naive = get_topk_from_betweenness(B_naive, min(k, g.n));
@@ -926,7 +902,39 @@ void experiment_betweenness(char* path_to_graph, char* path_to_output, int k)
       }
       output << endl;
   }
-  */
+
+  output.close();
+
+}
+
+
+void experiment_betweenness_parallel(char* path_to_graph, char* path_to_output, int k, int nr_threads)
+{
+  AdjGraph g = read_graph(path_to_graph);
+
+
+  ofstream output;
+  output.open(path_to_output);
+  output << scientific;
+
+  double epsilon = 0.05;
+  double delta = 0.1;
+
+  timespec t_start, t_end;
+
+  // PARALLEL
+  output << "Parallel Sampling #threads = " << nr_threads << endl;
+  clock_gettime(CLOCK_MONOTONIC,&t_start);
+  auto B_naive_p = betweenness_hoeffding_pthread(&g, epsilon, delta, output, nr_threads);
+  auto topk_naive_p = get_topk_from_betweenness(B_naive_p, min(k, g.n));
+  clock_gettime(CLOCK_MONOTONIC,&t_end);
+  double parallel = time_difference(t_start, t_end);
+
+  output << "Time elapsed : " << parallel << " seconds" << endl;
+  for(const auto &elt: topk_naive_p){
+    output << elt.first << " " << elt.second << endl;
+  }
+  output << endl;
 
   output.close();
 
@@ -1004,24 +1012,32 @@ void experiment(char* path_to_graph, char* path_to_queries, char* path_to_output
 
 int main(int argc, char* argv[])
 {
-	srand(time(NULL));
-	if (argc != 4 && argc != 7)
-	{
-        cerr << "For mpsp experiment" << endl;
-		cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output> <k> <m> <N>" << endl;
-        cerr << "For betweenness experiment" << endl;
-		cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k>" << endl;
-		return EXIT_FAILURE;
-	}
-    else if (argc == 4)
-    {
-        cout << "Doing betweenness experiment" << endl;
-        experiment_betweenness(argv[1], argv[2], atoi(argv[3]));
-
-    }
-    else
-    {
-        experiment(argv[1], argv[2], argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
-    }
-	return EXIT_SUCCESS;
+  srand(time(NULL));
+  if (argc != 4 && argc != 5 && argc != 7)
+  {
+    cerr << "For mpsp experiment" << endl;
+    cerr << "Usage: ./mpsp <path-to-graph> <path-to-queries> <path-to-output> <k> <m> <N>" << endl;
+    cerr << "For betweenness experiment" << endl;
+    cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k>" << endl;
+    cerr << "For parallel betweenness experiment" << endl;
+    cerr << "Usage: ./mpsp <path-to-graph> <path-to-output> <k> <nr_threads>" << endl;
+    return EXIT_FAILURE;
+  }
+  else if (argc == 4)
+  {
+    cout << "Doing betweenness experiment" << endl;
+    experiment_betweenness(argv[1], argv[2], atoi(argv[3]));
+  }
+  else if (argc == 5){
+    cout << "Doing parallel betweenness experiment" << endl;
+    experiment_betweenness_parallel(argv[1], argv[2], atoi(argv[3]), atoi(argv[4]));
+  }
+  else
+  {
+    experiment(argv[1], argv[2], argv[3], atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
+  }
+  return EXIT_SUCCESS;
 }
+
+
+
