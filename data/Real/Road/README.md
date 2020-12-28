@@ -7,4 +7,4 @@ unzip <city>.zip
 Running the above command and typing the password will generate the uncompressed graph file named `<city>.graph`.
 The format of the generated graph and query files is mentioned [here](../../README.md).
 
-This work is currently under submission to VLDB 2020, and hence the password has been made available only to the reviewers. If you are interested in these graphs, kindly send an email to <saha0003@e.ntu.edu.sg> requesting the password.
+This work is currently under submission to VLDB 2021, and hence the password has been made available only to the reviewers. If you are interested in these graphs, kindly send an email to <saha0003@e.ntu.edu.sg> requesting the password.

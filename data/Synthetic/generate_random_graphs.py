@@ -192,6 +192,20 @@ def generate_queries_skewed(g, filename):
     q.close()
 
 
+def generate_queries_single(g, filename):
+    single = {0: "target", 1: "source"}
+    queries_per_category = 100
+
+    for f in single:
+        q = open(filename+single[f]+".queries", "w")
+        q.write("{}\n{}\n".format(f, queries_per_category))
+
+        l = random.sample(g.nodes, queries_per_category)
+        for v in l:
+            q.write("{}\n".format(v))
+
+        print("Done for single {}".format(single[f]))
+        q.close()
 
 
 def ER(n, m):
@@ -211,6 +225,7 @@ def ER(n, m):
     f.close()
 
     generate_queries_skewed(g, "ER/ER_{}_{}.queries".format(n, m))
+    generate_queries_single(g, "ER/ER_{}_{}_".format(n, m))
 
     # test_hop_distance("ER/ER_{}_{}".format(n, m))
 
@@ -243,7 +258,8 @@ def BA(graph_sizes, density):
         f.write("{} {} {} {}\n".format(u, v, l, p))
     f.close()
 
-    generate_queries_skewed(g, "BA_{}_{}.queries".format(n, m))
+    generate_queries_skewed(g, "BA/BA_{}_{}.queries".format(n, m))
+    generate_queries_single(g, "BA/BA_{}_{}_".format(n, m))
 
 
 def convert_edge_entry(x):
@@ -290,12 +306,10 @@ def test_hop_distance(graph_name):
 
 assert len(sys.argv) == 4
 assert sys.argv[1] in ['ER','BA']
-# graph_sizes = [10000, 20000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 
 n = int(sys.argv[2])
 
 if sys.argv[1] == 'ER':
-    m = n * int(sys.argv[3])
-    ER(n, m)
+    ER(n, n * int(sys.argv[3]))
 else:
     BA(n, int(sys.argv[3]))
