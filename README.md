@@ -7,6 +7,9 @@ _Shortest Paths and Centrality in Uncertain Networks_
 by
 _Arkaprava Saha, Ruben Brokkelkamp, Yllka Velaj, Arijit Khan & Francesco Bonchi_
 
+## Extended Version of the Paper
+The extended version can be found [here](MPSP_extend.pdf).
+
 ## Requirements
 The experiments have been run on an Ubuntu 18.04.4 LTS computer with a 3.7 GHz Xeon processor and 256 GB RAM. All programs are written in `C++17` and make use of [the Boost C++ libraries](https://www.boost.org/).
 
