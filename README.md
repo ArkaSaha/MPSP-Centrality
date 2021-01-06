@@ -73,7 +73,7 @@ grep Average\ Probability\ Computation\ Time <path-to-output>
 ```
 
 ### Centrality
-As mentioned in Section 5.8 of our paper, we compare the top-`k` most central nodes according to 4 betweenness centrality methods. Methods 0, 1 and 2 can be run using the following command:
+As mentioned in Section 5.10 of our paper, we compare the top-`k` most central nodes according to 4 betweenness centrality methods. Methods 0, 1 and 2 can be run using the following command:
 ```
 ./mpsp <path-to-graph> <path-to-output> <k>
 ```
