@@ -6,10 +6,10 @@ This repository contains the code used for the experiments described in the pape
 _Shortest Paths and Centrality in Uncertain Networks_
 by
 _Arkaprava Saha, Ruben Brokkelkamp, Yllka Velaj, Arijit Khan & Francesco Bonchi_
-
+<!-- 
 ## Extended Version of the Paper
 The extended version can be found [here](MPSP_extend.pdf).
-
+ -->
 ## Requirements
 The experiments have been run on an Ubuntu 18.04.4 LTS computer with a 3.7 GHz Xeon processor and 256 GB RAM. All programs are written in `C++17` and make use of [the Boost C++ libraries](https://www.boost.org/).
 
@@ -37,7 +37,7 @@ To run the baseline algorithm, we also need the output of our method in order to
 ```
 
 #### Yen+MC
-To run the method which is similar to our proposed one but uses `m` runs of Yen+MC to generate `l` paths in each run in Phase 1 (Section 5.7 of our [extended version](MPSP_extend.pdf)), use the following command:
+To run the method which is similar to our proposed one but uses `m` runs of Yen+MC to generate `l` paths in each run in Phase 1<!-- (Section 5.7 of our [extended version](MPSP_extend.pdf))-->, use the following command:
 ```
 ./yen <path-to-graph> <path-to-queries> <path-to-output> <k> <m> <N> <l>
 ```
