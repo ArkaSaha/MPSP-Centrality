@@ -20,6 +20,12 @@ Generating data is done with `Python 3` using the modules
 ## Input Data
 See [input specifications](data/README.md), [generating test data](data/Synthetic/README.md) and [road data](data/Real/Road/README.md).
 
+## Compilation
+The entire code can be compiled using the following command:
+```
+make all
+```
+
 ## Usage
 
 ### Shortest Paths from a Single Source to a Single Target
@@ -36,11 +42,11 @@ To run the baseline algorithm, we also need the output of our method in order to
 ./wise <path-to-graph> <path-to-queries> <path-to-output-mpsp> <path-to-output> <time-multiplying-factor> <k>
 ```
 
-#### Yen+MC
-To run the method which is similar to our proposed one but uses `m` runs of Yen+MC to generate `l` paths in each run in Phase 1<!-- (Section 5.7 of our [extended version](MPSP_extend.pdf))-->, use the following command:
+<!-- #### Yen+MC
+To run the method which is similar to our proposed one but uses `m` runs of Yen+MC to generate `l` paths in each run in Phase 1, use the following command:
 ```
 ./yen <path-to-graph> <path-to-queries> <path-to-output> <k> <m> <N> <l>
-```
+``` -->
 
 #### Output
 For every method, the running time and quality results can be respectively obtained using the commands below:
