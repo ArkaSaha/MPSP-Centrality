@@ -1,10 +1,11 @@
-
 # MPSP Centrality
 
-This repository contains the code used for the experiments described in the paper titled
+This repository contains the code used for the experiments described in the VLDB 2021 paper titled
 
 _Shortest Paths and Centrality in Uncertain Networks_
+
 by
+
 _Arkaprava Saha, Ruben Brokkelkamp, Yllka Velaj, Arijit Khan & Francesco Bonchi_
 <!-- 
 ## Extended Version of the Paper
@@ -18,7 +19,7 @@ Generating data is done with `Python 3` using the modules
 - [python-igraph](https://igraph.org/python/)
 
 ## Input Data
-See [input specifications](data/README.md), [generating test data](data/Synthetic/README.md) and [road data](data/Real/Road/README.md).
+See [input specifications](data/README.md), [generating synthetic data](data/Synthetic/README.md) and [road data](data/Real/Road/README.md).
 
 ## Compilation
 The entire code can be compiled using the following command:
